@@ -1,7 +1,7 @@
 package it.unibo.game.app.api;
 
 public interface AppView {
-
+    
     /*permette di conoscere il controller 
      * per chiamare i metodi necessari
      */
