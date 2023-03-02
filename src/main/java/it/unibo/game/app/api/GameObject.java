@@ -11,5 +11,5 @@ public interface GameObject {
 
     Pair<Double, Double> getPos();
 
-    BoundingBox getBox();
+    BoundingBox getBoundingBox();
 }
