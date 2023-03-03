@@ -1,5 +1,4 @@
 package it.unibo.game.app.model;
-import it.unibo.game.app.api.BoundingBox;
 /*questa classe deve essere estesa da 
  * la classe che rappresenta i mattoni come ostacoli e 
  * mattoni di gioco
@@ -7,7 +6,7 @@ import it.unibo.game.app.api.BoundingBox;
  */
 import it.unibo.game.app.api.BrickType;
 
-public class Brick extends AbstractGameObj {
+public class Brick extends GameObj {
     /*cazzi della chiara */
     private BrickType type;
     private int brickWidth;
@@ -31,9 +30,4 @@ public class Brick extends AbstractGameObj {
         return this.brickWidth;
     }
 
-    @Override
-    public BoundingBox getBoundingBox() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBoundingBox'");
-    }
 }
