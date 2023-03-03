@@ -3,7 +3,7 @@
 `./gradlew run`
 
 
-###organizzazione view
+### organizzazione view
 
 La classe UIController può essere utilizzata per gestire le diverse viste all'interno di un singolo JFrame. In pratica, questa classe sarà responsabile di cambiare la vista visualizzata a seconda dell'interazione dell'utente o di altre azioni.
 
