@@ -5,9 +5,9 @@ Procedura per scaricare repository remota:
 Con questa operazione avremo:
 
 - scaricato la repo, ma tracciamo solo il branch di default (in questo caso master..o meglio origin/master, ovvero master aggiornato (con la testa attaccata)). 
-(Per verificare questo digitare 'git branch' e vediamo solo master, mentre con 'git branch -r' vediamo gli altri branch della repo che però non sono tracciati)
+(Per verificare questo digitare `git branch` e vediamo solo master, mentre con `git branch -r` vediamo gli altri branch della repo che però non sono tracciati)
 
-- settato in automatico il remote che rappresenta lo pseudonimo dell'indirizzo clonato. (Per verificare questo digitare 'git remote -v')
+- settato in automatico il remote che rappresenta lo pseudonimo dell'indirizzo clonato. (Per verificare questo digitare `git remote -v`)
 
 ### Procedura per tracciare il branch che vogliamo:
 
