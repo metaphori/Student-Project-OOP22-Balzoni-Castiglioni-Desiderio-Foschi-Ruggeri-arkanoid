@@ -10,10 +10,27 @@ import it.unibo.game.app.api.BrickType;
 public class Brick extends AbstractGameObj {
     /*cazzi della chiara */
     private BrickType type;
+    private int brickWidth;
+    private int brickHight;
+    
+    public Brick (BrickType type, int width, int hight) {
+        this.type = type;
+        this.brickWidth = width;
+        this.brickHight = hight;
+    }
 
     public BrickType getType() {
-        return type;
+        return this.type;
     }
+
+    public int getBrickH () {
+        return this.brickHight;
+    }
+
+    public int getBrickW () {
+        return this.brickWidth;
+    }
+
     @Override
     public BoundingBox getBoundingBox() {
         // TODO Auto-generated method stub
