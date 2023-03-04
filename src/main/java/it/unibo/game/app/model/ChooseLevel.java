@@ -6,12 +6,7 @@ package it.unibo.game.app.model;
 
 public class ChooseLevel {
     
-    private final int chosenLevel;
-
-    public ChooseLevel(int chosenLevel) {
-        this.chosenLevel = chosenLevel;
-    }
-    public void chooseLevel() {
+    public void chooseLevel(int chosenLevel) {
         switch (chosenLevel) {
             case 1:
                 new FirstLevel();
