@@ -5,16 +5,16 @@ import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.GameObject;
 
 public class GameObj implements GameObject {
-    private Pair<Double, Double> pos;
+    private Pair<Integer, Integer> pos;
     private BoundingBox Bbox;
 
     @Override
-    public void setPos(Pair<Double, Double> pos) {
+    public void setPos(Pair<Integer, Integer> pos) {
         this.pos = pos;
     }
 
     @Override
-    public Pair<Double, Double> getPos() {
+    public Pair<Integer, Integer> getPos() {
         return this.pos;
     }
 

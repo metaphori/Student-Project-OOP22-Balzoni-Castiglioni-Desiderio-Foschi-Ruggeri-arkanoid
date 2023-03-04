@@ -2,7 +2,7 @@ package it.unibo.game.app.model;
 
 import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.MovingObject;
-public class Ball extends AbstractGameObj implements MovingObject {
+public class Ball extends GameObj implements MovingObject {
 
     private final static double PI = Math.PI;
     private double r;
