@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.*;
+import java.awt.*;
 
 import it.unibo.game.app.api.UIController;
 
 public class UIControllerImpl implements UIController {
-    JFrame frame = new JFrame("Arkanoid");
+    JFrame window = new JFrame("Arkanoid");
+    
     Map<PAGES, JPanel> views = new HashMap<>(
             Map.of(
                     PAGES.GAME, new JPanel(),
@@ -19,19 +21,36 @@ public class UIControllerImpl implements UIController {
 
 
     public UIControllerImpl() {
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setVisible(true);
+        var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        /*creo una finestra minima 2/3 dello schermo */
+        this.window.setMinimumSize(new Dimension((int)screenSize.getHeight()/2,(int)screenSize.getWidth()/3));
+        this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.window.setVisible(true);
     }
 
-    @Override
-    public void chargeView(PAGES p) {
-        this.frame.setContentPane(views.get(p));
+    private void chargeView(PAGES p) {
+        this.window.setContentPane(views.get(p));
     }
 
     @Override
     public void initialView() {
         // TODO Auto-generated method stub
         chargeView(PAGES.START_MENU);
+    }
+
+    @Override
+    public void pauseMenu() {
+        chargeView(PAGES.START_MENU);
+    }
+
+    @Override
+    public void gameView() {
+        chargeView(PAGES.GAME);
+    }
+
+    @Override
+    public void leaderBoardView() {
+        chargeView(PAGES.TOP_10);
     }
 
 }
