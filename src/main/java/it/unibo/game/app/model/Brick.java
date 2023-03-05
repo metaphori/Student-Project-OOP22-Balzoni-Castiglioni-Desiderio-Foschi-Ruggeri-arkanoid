@@ -6,8 +6,8 @@ package it.unibo.game.app.model;
  */
 import it.unibo.game.app.api.BrickType;
 
-public class Brick extends GameObj {
-    /*cazzi della chiara */
+public class Brick extends GameObjectImpl {
+    
     private BrickType type;
     private int brickWidth;
     private int brickHight;
