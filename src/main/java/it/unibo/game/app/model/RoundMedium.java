@@ -21,7 +21,7 @@ public class RoundMedium extends AbstractRound {
 
     public boolean setBrickHard () {
         Random random = new Random();
-        GameObj brickH;
+        GameObjectImpl brickH;
         int idx = random.nextInt(this.getBrick().size());
         
         if (this.getBrick().get(idx).getType() == BrickType.NORMAL && this.getBrick().get(idx).getBrickColor() != Color.gray) {

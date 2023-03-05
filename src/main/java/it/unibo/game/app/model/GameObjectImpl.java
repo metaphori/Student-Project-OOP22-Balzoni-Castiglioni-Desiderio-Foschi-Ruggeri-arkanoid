@@ -5,22 +5,25 @@ import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.GameObject;
 
 public class GameObjectImpl implements GameObject {
-    private Pair<Double, Double> pos;
+    private Pair<Integer,Integer> pos;
     private BoundingBox Bbox;
 
-    @Override
-    public void setPos(Pair<Double, Double> pos) {
-        this.pos = pos;
-    }
+    
 
     @Override
-    public Pair<Double, Double> getPos() {
+    public Pair<Integer, Integer> getPos() {
         return this.pos;
     }
 
     @Override
     public BoundingBox getBoundingBox() {
         return this.Bbox;
+    }
+
+    @Override
+    public void setPos(Pair<Integer, Integer> pos) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setPos'");
     }
 
     
