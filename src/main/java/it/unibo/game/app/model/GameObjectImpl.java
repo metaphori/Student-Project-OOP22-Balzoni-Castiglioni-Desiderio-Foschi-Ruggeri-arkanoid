@@ -22,8 +22,7 @@ public class GameObjectImpl implements GameObject {
 
     @Override
     public void setPos(Pair<Integer, Integer> pos) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setPos'");
+        this.pos = pos;
     }
 
     
