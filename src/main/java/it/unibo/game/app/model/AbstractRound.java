@@ -51,7 +51,7 @@ public abstract class AbstractRound {
 
     public boolean setBrickSurprise () {
         Random random = new Random();
-        GameObj brickS;
+        GameObject brickS;
         int idx = random.nextInt(brick.size());
         
         if (brick.get(idx).getType() == BrickType.NORMAL) {
