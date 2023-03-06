@@ -5,14 +5,14 @@ package it.unibo.game.app.model;
 public abstract class Level {
 
     /*Definire delle costanti per ogni livello che definiscno queste variabili */
-    protected int NormalBricksFirstRound;
-    protected int SurpriseBricksFirstRound;
+    protected int normalBricksFirstRound;
+    protected int surpriseBricksFirstRound;
 
-    protected int NormalBricksSecondRound;
-    protected int SurpriseBricksSecondRound;
+    protected int normalBricksSecondRound;
+    protected int surpriseBricksSecondRound;
 
-    protected int NormalBricksThirdRound;
-    protected int SurpriseBricksThirdRound;
+    protected int normalBricksThirdRound;
+    protected int surpriseBricksThirdRound;
 
     /*Posizionano gli oggetti (pad,pallina e blocchi) all'interno di ciascun round*/
     protected abstract void setFirstRound();
