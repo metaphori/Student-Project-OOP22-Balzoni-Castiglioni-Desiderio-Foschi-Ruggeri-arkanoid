@@ -12,7 +12,6 @@ public abstract class AbstractRound {
     
     protected final int step = 2; /*Indica il bordo dei blocchi */
     private int jump; /*Serve per indicate quanti blocchi saltare se vogliamo fare le colonne */
-    private int setColor = 0; /*serve per settare il colore */
     private int numBrick;
     private int numSurprise;
     private List<Brick> brick = new ArrayList<>();
@@ -51,13 +50,13 @@ public abstract class AbstractRound {
 
     public boolean setBrickSurprise () {
         Random random = new Random();
-        GameObject brickS;
+        Brick brickS;
         int idx = random.nextInt(brick.size());
         
         if (brick.get(idx).getType() == BrickType.NORMAL) {
-            brickS = new Brick(BrickType.SURPRISE, brick.get(idx).getBrickW(),brick.get(idx).getBrickH() , brick.get(idx).getBrickColor());
+            brickS = new Brick(BrickType.SURPRISE, brick.get(idx).getBrickW(),brick.get(idx).getBrickH());
             brick.remove(idx);
-            brick.add(idx, (Brick)brickS);
+            brick.add(idx, brickS);
             return true;
         }
         else {

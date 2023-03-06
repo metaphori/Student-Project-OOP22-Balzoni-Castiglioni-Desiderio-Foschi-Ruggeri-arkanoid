@@ -1,6 +1,6 @@
 package it.unibo.game.app.model;
 
-import java.awt.Color;
+
 import java.util.Random;
 
 import it.unibo.game.app.api.BrickType;
@@ -21,13 +21,13 @@ public class RoundMedium extends AbstractRound {
 
     public boolean setBrickHard () {
         Random random = new Random();
-        GameObjectImpl brickH;
+        Brick brickH;
         int idx = random.nextInt(this.getBrick().size());
         
-        if (this.getBrick().get(idx).getType() == BrickType.NORMAL && this.getBrick().get(idx).getBrickColor() != Color.gray) {
-            brickH = new NormalBrick(BrickType.NORMAL, this.getBrick().get(idx).getBrickW(), this.getBrick().get(idx).getBrickH() , Color.gray, 2);
+        if (this.getBrick().get(idx).getType() == BrickType.NORMAL /* mettere un'altra condizione*/) {
+            brickH = new NormalBrick(BrickType.NORMAL, this.getBrick().get(idx).getBrickW(), this.getBrick().get(idx).getBrickH() , 2);
             this.getBrick().remove(idx);
-            this.getBrick().add(idx, (Brick)brickH);
+            this.getBrick().add(idx, brickH);
             return true;
         }
         else {
