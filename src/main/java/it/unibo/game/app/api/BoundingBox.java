@@ -1,5 +1,11 @@
 package it.unibo.game.app.api;
-/*cazzi della marghe */
+
+import it.unibo.game.Pair;
+
 public interface BoundingBox {
-    Boolean collideWith();
+    Pair<Integer, Integer> getLeftCornerDown();
+    Pair<Integer, Integer> getLeftCornerUP();
+    Pair<Integer, Integer> getRightConrnerDown();
+    Pair<Integer, Integer> getRightConrnerUp();
+    Boolean collideWith(BoundingBox b);
 }
