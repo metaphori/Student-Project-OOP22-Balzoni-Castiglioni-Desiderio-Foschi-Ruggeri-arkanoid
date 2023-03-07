@@ -6,7 +6,7 @@ package it.unibo.game.app.model;
  */
 import it.unibo.game.app.api.BrickType;
 
-public class Brick extends GameObjectImpl {
+public abstract class Brick extends GameObjectImpl {
     
     private BrickType type;
     private int brickWidth;
@@ -29,5 +29,9 @@ public class Brick extends GameObjectImpl {
     public int getBrickW () {
         return this.brickWidth;
     }
+
+    public abstract boolean isDestroyable();
+
+    public abstract void hit();
 
 }
