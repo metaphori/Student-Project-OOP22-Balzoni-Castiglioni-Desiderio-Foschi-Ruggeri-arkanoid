@@ -54,7 +54,7 @@ public abstract class AbstractRound {
         int idx = random.nextInt(brick.size());
         
         if (brick.get(idx).getType() == BrickType.NORMAL) {
-            brickS = new Brick(BrickType.SURPRISE, brick.get(idx).getBrickW(),brick.get(idx).getBrickH());
+            brickS = new NormalBrick(BrickType.SURPRISE, brick.get(idx).getBrickW(),brick.get(idx).getBrickH(), 1);
             brick.remove(idx);
             brick.add(idx, brickS);
             return true;

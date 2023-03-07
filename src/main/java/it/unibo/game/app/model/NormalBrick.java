@@ -18,5 +18,10 @@ public class NormalBrick extends Brick{
     public void hit() {
         this.brickResistence --;
     }
+
+    @Override
+    public boolean isDestroyable() {
+        return true;
+    }
     
 }
