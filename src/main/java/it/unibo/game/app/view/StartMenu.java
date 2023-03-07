@@ -18,16 +18,24 @@ public class StartMenu extends JPanel{
 
         final Color blue = new Color(0000255);
         this.setBackground(blue);
+        buttonContainer.setBackground(blue);
 
-        Font f = new Font("ar destine",  Font.BOLD, 50);
+        Font f = new Font("ar destine",  Font.BOLD, 60);
         title.setFont(f);
         title.setForeground(Color.WHITE);
+        
 
         this.setLayout(new BorderLayout());
 
-        this.add(title);
-        
+
+        this.add(title, BorderLayout.NORTH);
+        this.add(buttonContainer, BorderLayout.CENTER);
+        buttonContainer.add(easy);
+        buttonContainer.add(medium);
+        buttonContainer.add(hard);
+        buttonContainer.add(top5);
 
         
     }
+   
 }
