@@ -7,28 +7,23 @@ import java.awt.*;
 public class StartMenu extends JPanel{
         
     public StartMenu(){
-        JButton easy = new JButton("EASY");
-        JButton medium = new JButton("MEDIUM");
-        JButton hard = new JButton("HARD");
-        JButton top5 = new JButton("CLASSIFICA");
+        JButton easy = new CustomBtn(30,"EASY");
+        JButton medium = new CustomBtn(30,"MEDIUM");
+        JButton hard = new CustomBtn(30,"HARD");
+        JButton top5 = new CustomBtn(30,"CLASSIFICA");
         JLabel title = new JLabel("ARKANOID");
-        
+        JPanel buttonContainer = new JPanel();
       
+        buttonContainer.setLayout(new GridBagLayout());
 
-        Color blue = new Color(0000255);
+        final Color blue = new Color(0000255);
         this.setBackground(blue);
 
         Font f = new Font("ar destine",  Font.BOLD, 50);
         title.setFont(f);
         title.setForeground(Color.WHITE);
 
-        Font bottonFont = new Font("arial", Font.ROMAN_BASELINE, 30);
-        easy.setFont(bottonFont);
-        medium.setFont(bottonFont);
-        hard.setFont(bottonFont);
-        top5.setFont(bottonFont);
-
-        this.setLayout(new GridBagLayout());
+        this.setLayout(new BorderLayout());
 
         this.add(title);
         
