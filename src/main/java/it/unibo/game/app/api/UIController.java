@@ -7,4 +7,5 @@ public interface UIController {
     void pauseMenu();
     void gameView();
     void leaderBoardView();
+    void level(int numLevel);
 }

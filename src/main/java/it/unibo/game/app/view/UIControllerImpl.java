@@ -56,5 +56,10 @@ public class UIControllerImpl implements UIController {
     protected  Map<Pair<Integer,Integer>, Integer>> getList() {
         /*return controller.getBrickList() */
     }
+
+    @Override
+    public void level(int numLevel) {
+        // controller.chooseLevel(numLevel)
+    }
     
 }

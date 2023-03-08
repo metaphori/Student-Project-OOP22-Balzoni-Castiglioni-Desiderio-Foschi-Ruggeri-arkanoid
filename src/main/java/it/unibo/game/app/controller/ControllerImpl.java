@@ -7,8 +7,10 @@ import java.util.stream.Stream;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
+import it.unibo.game.app.model.FirstLevel;
 import it.unibo.game.app.model.Level; /*Forse */
 import it.unibo.game.app.model.NormalBrick;
+import it.unibo.game.app.model.SecondLevel;
 
 public class ControllerImpl implements AppController{
 
@@ -44,6 +46,19 @@ public class ControllerImpl implements AppController{
         return l.getRound().getBrick().stream().collect(
                             Collectors.toMap(b -> b.getPos(), b -> b.getRes()));
 
+    }
+    public void chooseLevel(int numLevel) {
+        switch(numLevel) {
+            case 1:
+                this.l = new FirstLevel();
+                break;
+            case 2:
+                this.l = new SecondLevel();
+                break;
+            case 3:
+                this.l = new ThirdLevel();
+                break;
+        }
     }
     
 }
