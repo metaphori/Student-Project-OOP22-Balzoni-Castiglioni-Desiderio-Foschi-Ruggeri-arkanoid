@@ -6,13 +6,13 @@ package it.unibo.game.app.model;
  */
 import it.unibo.game.app.api.BrickType;
 
-public abstract class Brick extends GameObjectImpl {
+public abstract class AbstractBrick extends GameObjectImpl {
     
     private BrickType type;
     private int brickWidth;
     private int brickHight;
     
-    public Brick (BrickType type, int width, int hight) {
+    public AbstractBrick (BrickType type, int width, int hight) {
         this.type = type;
         this.brickWidth = width;
         this.brickHight = hight;

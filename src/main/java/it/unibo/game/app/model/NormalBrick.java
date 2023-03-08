@@ -2,7 +2,7 @@ package it.unibo.game.app.model;
 
 import it.unibo.game.app.api.BrickType;
 
-public class NormalBrick extends Brick{
+public class NormalBrick extends AbstractBrick{
 
     private int brickResistence;
 
@@ -17,6 +17,11 @@ public class NormalBrick extends Brick{
 
     public void hit() {
         this.brickResistence --;
+    }
+
+    @Override
+    public boolean isDestroyable() {
+        return true;
     }
     
 }

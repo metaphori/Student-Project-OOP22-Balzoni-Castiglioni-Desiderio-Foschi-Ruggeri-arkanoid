@@ -10,6 +10,7 @@ public class SecondLevel extends Level {
     private final static int SURPRISE2 = 10;
     private final static int NORMAL3 = 50;
     private final static int SURPRISE3 = 10;
+
     
     public SecondLevel () {
         this.normalBricksFirstRound = NORMAL1;
@@ -22,17 +23,17 @@ public class SecondLevel extends Level {
 
     @Override
     protected void setFirstRound() {
-        new RoundMedium(1, normalBricksFirstRound, surpriseBricksFirstRound, GRAY1, 50, 25);
+        this.currentRound = new RoundMedium(1, normalBricksFirstRound, surpriseBricksFirstRound, GRAY1, 50, 25);
     }
 
     @Override
     protected void setSecondRound() {
-        new RoundMedium(1, normalBricksSecondRound, surpriseBricksSecondRound, GRAY2, 50, 25);
+        this.currentRound = new RoundMedium(1, normalBricksSecondRound, surpriseBricksSecondRound, GRAY2, 50, 25);
     }
 
     @Override
     protected void setThirdRound() {
-        new RoundMedium(1, normalBricksThirdRound, surpriseBricksThirdRound, GRAY3, 50, 25);
+        this.currentRound = new RoundMedium(1, normalBricksThirdRound, surpriseBricksThirdRound, GRAY3, 50, 25);
     }
     
 }

@@ -14,8 +14,15 @@ public abstract class Level {
     protected int normalBricksThirdRound;
     protected int surpriseBricksThirdRound;
 
+    protected AbstractRound currentRound;
+
+
     /*Posizionano gli oggetti (pad,pallina e blocchi) all'interno di ciascun round*/
     protected abstract void setFirstRound();
     protected abstract void setSecondRound();
     protected abstract void setThirdRound();
+    
+    public AbstractRound getRound() {
+        return this.currentRound;
+    }
 }

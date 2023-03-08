@@ -2,7 +2,7 @@ package it.unibo.game.app.view;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import it.unibo.game.Pair;
 import javax.swing.*;
 import java.awt.*;
 
@@ -53,4 +53,8 @@ public class UIControllerImpl implements UIController {
         chargeView(PAGES.TOP_10);
     }
 
+    protected  Map<Pair<Integer,Integer>, Integer>> getList() {
+        /*return controller.getBrickList() */
+    }
+    
 }
