@@ -14,7 +14,7 @@ public abstract class AbstractRound {
     private int jump; /*Serve per indicate quanti blocchi saltare se vogliamo fare le colonne */
     private int numBrick;
     private int numSurprise;
-    private List<Brick> brick = new ArrayList<>();
+    private List<NormalBrick> brick = new ArrayList<>();
     private GameObject ball = new Ball();
     //private GameObject pad = new Pad();
     protected int brickH; /*Ci servono all'inzio del round per sapere quanto fare i brick grandi che dipendono dalla finestra */
@@ -44,13 +44,13 @@ public abstract class AbstractRound {
         return this.numSurprise;
     }
 
-    public List<Brick> getBrick () {
+    public List<NormalBrick> getBrick () {
         return this.brick; /*Mettere quella non modificabile --> unmodifiable*/
     }
 
     public boolean setBrickSurprise () {
         Random random = new Random();
-        Brick brickS;
+        NormalBrick brickS;
         int idx = random.nextInt(brick.size());
         
         if (brick.get(idx).getType() == BrickType.NORMAL) {

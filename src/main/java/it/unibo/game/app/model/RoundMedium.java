@@ -21,10 +21,10 @@ public class RoundMedium extends AbstractRound {
 
     public boolean setBrickHard () {
         Random random = new Random();
-        Brick brickH;
+        NormalBrick brickH;
         int idx = random.nextInt(this.getBrick().size());
         
-        if (this.getBrick().get(idx).getType() == BrickType.NORMAL /* mettere un'altra condizione*/) {
+        if (this.getBrick().get(idx).getType() == BrickType.NORMAL && this.getBrick().get(idx).getRes() == 1 ) { 
             brickH = new NormalBrick(BrickType.NORMAL, this.getBrick().get(idx).getBrickW(), this.getBrick().get(idx).getBrickH() , 2);
             this.getBrick().remove(idx);
             this.getBrick().add(idx, brickH);
