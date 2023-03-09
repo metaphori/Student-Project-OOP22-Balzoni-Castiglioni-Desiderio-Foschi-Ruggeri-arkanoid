@@ -40,7 +40,7 @@ public class UIControllerImpl implements UIController {
 
     @Override
     public void pauseMenu() {
-        chargeView(PAGES.START_MENU);
+        chargeView(PAGES.PAUSE_MENU);
     }
 
     @Override

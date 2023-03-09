@@ -1,11 +1,15 @@
 package it.unibo.game.app.view;
 
 import javax.swing.*;
+
+import it.unibo.game.app.api.UIController;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 
 public class StartMenu extends JPanel{
-        
+        private UIController uiControllerImpl = new UIControllerImpl();
+
     public StartMenu(){
         JButton easy = new CustomBtn(30,"EASY");
         JButton medium = new CustomBtn(30,"MEDIUM");
@@ -20,6 +24,7 @@ public class StartMenu extends JPanel{
         this.setBackground(blue);
         buttonContainer.setBackground(blue);
 
+        //problemi con il font, gli altri non lo vedono
         Font f = new Font("ar destine",  Font.BOLD, 60);
         title.setFont(f);
         title.setForeground(Color.WHITE);
@@ -34,6 +39,44 @@ public class StartMenu extends JPanel{
         buttonContainer.add(medium);
         buttonContainer.add(hard);
         buttonContainer.add(top5);
+
+        
+        top5.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                uiControllerImpl.leaderBoardView();
+            }
+            
+        });
+
+       
+        easy.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                //TO DO
+            }
+            
+        });
+
+        medium.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                //TO DO
+            }
+            
+        });
+
+        hard.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                //TO DO
+            }
+            
+        });
 
         
     }
