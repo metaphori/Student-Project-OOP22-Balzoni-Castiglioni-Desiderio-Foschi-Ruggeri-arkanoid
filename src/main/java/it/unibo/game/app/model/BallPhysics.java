@@ -7,10 +7,11 @@ public class BallPhysics {
 
     public BallPhysics (Ball ball ) {
         this.b = ball;
+       
     }
 
     public void changeDirection(){
-        
+
     }
 
 }
