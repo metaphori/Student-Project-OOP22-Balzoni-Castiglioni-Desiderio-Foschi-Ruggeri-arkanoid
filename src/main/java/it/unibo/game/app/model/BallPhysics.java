@@ -2,16 +2,21 @@ package it.unibo.game.app.model;
 
 public class BallPhysics {
     
-    private Ball b;
     private Direction d = new Direction();
 
-    public BallPhysics (Ball ball ) {
-        this.b = ball;
-       
+    public void changeDirectionVertical(){
+        if(this.d.isDirectionUp()){
+            this.d.setDirectionDown();
+        }else{
+            this.d.setDirectionUp();
+        }
     }
 
-    public void changeDirection(){
-
+    public void changeDirectionHorizontal(){
+        if(this.d.isDirectionLeft()){
+            this.d.setDirectionRight();
+        }else{
+            this.d.setDirectionLeft();
+        }
     }
-
 }
