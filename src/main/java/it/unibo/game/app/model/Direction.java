@@ -3,15 +3,14 @@ package it.unibo.game.app.model;
 import it.unibo.game.Pair;
 
 public class Direction {
-    private static final int CENTRE = 0;
     private static final int LEFT = -1;
     private static final int RIGHT = 1;
     private static final int UP = -1;
     private static final int DOWN = 1;
-    private static Pair<Integer, Integer> d ;
+    private Pair<Integer, Integer> d ;
 
     public Direction(){
-        this.d= new Pair<Integer,Integer>(UP, CENTRE);
+        this.d= new Pair<Integer,Integer>(UP, RIGHT);
     }
     public void setDirectionUp(){
         this.d = new Pair<Integer,Integer>(UP, this.d.getY());
@@ -25,10 +24,13 @@ public class Direction {
     public void setDirectionRight(){
         this.d = new Pair<Integer,Integer>(this.d.getX(), RIGHT);
     }
-    public void setDirectionCentre(){
-        this.d = new Pair<Integer,Integer>(this.d.getX(), CENTRE);
+    public boolean isDirectionUp(){
+        return (this.d.getX() == UP)? true : false;
+    }
+    public boolean isDirectionLeft(){
+        return (this.d.getX() == LEFT)? true : false;
     }
     public Pair<Integer, Integer> getDirection(){
-        return d;
+        return this.d;
     }
 }
