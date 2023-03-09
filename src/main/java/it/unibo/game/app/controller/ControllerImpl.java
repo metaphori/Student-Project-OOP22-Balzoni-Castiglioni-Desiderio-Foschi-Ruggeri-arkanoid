@@ -7,16 +7,18 @@ import java.util.stream.Stream;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
+import it.unibo.game.app.api.UIController;
 import it.unibo.game.app.model.FirstLevel;
 import it.unibo.game.app.model.Level; /*Forse */
 import it.unibo.game.app.model.NormalBrick;
 import it.unibo.game.app.model.SecondLevel;
 
 public class ControllerImpl implements AppController{
-
+    private UIController uiContr;
     private Level l;
-    public ControllerImpl (Level level) {
-        this.l = level;
+
+    public ControllerImpl (UIController uiC) {
+        this.uiContr = uiC;
     }
     @Override
     public void play() {
@@ -60,5 +62,9 @@ public class ControllerImpl implements AppController{
                 break;
         }
     }
+    public Pair<Integer,Integer> getFrameDimension() {
+       return this.uiContr.getDimension();
+    }
+    
     
 }

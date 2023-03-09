@@ -53,13 +53,18 @@ public class UIControllerImpl implements UIController {
         chargeView(PAGES.TOP_10);
     }
 
-    protected  Map<Pair<Integer,Integer>, Integer>> getList() {
+    public  Map<Pair<Integer,Integer>, Integer> getList() {
+		return null;
         /*return controller.getBrickList() */
     }
 
     @Override
     public void level(int numLevel) {
         // controller.chooseLevel(numLevel)
+    }
+
+    public Pair<Integer, Integer> getDimension() {
+        return new Pair<Integer,Integer>(window.getWidth(), window.getHeight());
     }
     
 }
