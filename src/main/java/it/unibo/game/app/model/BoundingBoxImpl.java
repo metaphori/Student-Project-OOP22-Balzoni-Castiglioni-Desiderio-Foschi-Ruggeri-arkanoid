@@ -1,6 +1,5 @@
 package it.unibo.game.app.model;
 
-import java.util.List;
 import java.util.Map;
 
 import it.unibo.game.Pair;
@@ -24,7 +23,7 @@ public class BoundingBoxImpl implements BoundingBox {
     }
 
     public BoundingBoxImpl (Pad p){
-       // setRectBox();
+       setRectBox(p.getHight(), p.getWidth(), p.getPos());
     }
     private void setRectBox (int h, int w, Pair<Integer, Integer> pos){
         this.corners.put(Corner.LEFT_DOWN,new Pair<Integer,Integer>( pos.getX()+h, pos.getY() ) );

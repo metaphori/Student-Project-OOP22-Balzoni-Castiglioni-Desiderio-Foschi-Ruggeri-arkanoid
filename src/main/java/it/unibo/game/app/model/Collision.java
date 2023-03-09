@@ -1,11 +1,9 @@
 package it.unibo.game.app.model;
 
-import it.unibo.game.app.api.BoundingBox;
-
 public class Collision {
     private Level level;
 
-    public Collision(Level lev, Ball b ){
+    public Collision(Level lev){
         this.level = lev;
     
     }
@@ -23,5 +21,12 @@ public class Collision {
             }
         }
         return false;
+    }
+
+    public boolean isCollideWithPad (Ball b, Pad p){
+        var ballBox = new BoundingBoxImpl(b);
+        var padBox = new BoundingBoxImpl(p);
+
+        return ballBox.collideWith(padBox);
     }
 }
