@@ -6,5 +6,21 @@ public class GameOver {
 
     public GameOver(AbstractRound round) {
         this.round = round;
-    }    
+    } 
+    public boolean hasMissedBall() {
+        if(this.round.getPosBall().getX() > this.round.getPosPad().getX()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public boolean isRoundFinished() {
+        if(this.round.getBrick().size() >= 1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
