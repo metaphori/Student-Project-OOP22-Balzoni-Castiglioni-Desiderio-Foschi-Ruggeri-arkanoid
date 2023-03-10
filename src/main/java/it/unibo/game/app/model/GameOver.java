@@ -8,19 +8,9 @@ public class GameOver {
         this.round = round;
     } 
     public boolean hasMissedBall() {
-        if(this.round.getPosBall().getX() > this.round.getPosPad().getX()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (this.round.getPosBall().getX() > this.round.getPosPad().getX()) ? true : false;
     }
     public boolean isRoundFinished() {
-        if(this.round.getBrick().size() >= 1) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return (this.round.getBrick().size() >= 1) ? false : true;
     }
 }
