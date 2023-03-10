@@ -10,30 +10,28 @@ import it.unibo.game.app.api.GameObject;
 
 public abstract class AbstractRound {
     
-    protected final int step = 2; /*Indica il bordo dei blocchi */
     private int jump; /*Serve per indicate quanti blocchi saltare se vogliamo fare le colonne */
     private int numBrick;
     private int numSurprise;
     private List<NormalBrick> brick = new ArrayList<>();
     private GameObject ball = new Ball();
     //private GameObject pad = new Pad();
-    protected int brickH; /*Ci servono all'inzio del round per sapere quanto fare i brick grandi che dipendono dalla finestra */
-    protected int brickW;
+    private SizeCalculation sizeC;
 
-    public AbstractRound (int jump, int numB, int numS, int bH, int bW) {
+
+    public AbstractRound (int jump, int numB, int numS, SizeCalculation size) {
         this.jump = jump;
         this.numBrick = numB;
         this.numSurprise = numS;
-        this.brickH = bH;
-        this.brickW = bW;
+        this.sizeC = size;
     }
 
     public int getJump () {
         return this.jump;
     }
 
-    public int getStep () {
-        return this.step;
+    public SizeCalculation getSizeCalc() {
+        return this.sizeC;
     }
 
     public int getNumBrick () {
@@ -45,7 +43,7 @@ public abstract class AbstractRound {
     }
 
     public List<NormalBrick> getBrick () {
-        return this.brick; /*Mettere quella non modificabile --> unmodifiable*/
+        return this.brick; 
     }
 
     public boolean setBrickSurprise () {

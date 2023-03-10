@@ -55,7 +55,7 @@ public class ControllerImpl implements AppController{
                 this.l = new FirstLevel();
                 break;
             case 2:
-                this.l = new SecondLevel();
+                this.l = new SecondLevel(uiContr.getDimension());
                 break;
             case 3:
                 this.l = new ThirdLevel();
