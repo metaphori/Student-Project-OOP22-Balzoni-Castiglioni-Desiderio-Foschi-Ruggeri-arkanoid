@@ -69,6 +69,12 @@ public abstract class AbstractRound {
     public void setPosPad (Pair<Integer,Integer> pos) {
         //pad.setPos(pos);
     }
+    public Pair<Integer,Integer> getPosBall() {
+        return this.ball.getPos();
+    }
+    public Pair<Integer,Integer> getPosPad() {
+        return this.pad.getPos();
+    }
     
     public abstract void setPosBrick ();
 }
