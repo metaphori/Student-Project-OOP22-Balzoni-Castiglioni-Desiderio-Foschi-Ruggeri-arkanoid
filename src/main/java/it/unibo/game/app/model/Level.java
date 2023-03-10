@@ -35,6 +35,9 @@ public abstract class Level {
     protected int decreaseLife() {
         return this.lives--;
     }
+    protected boolean isAlive() {
+        return this.lives > 0 ? true : false;
+    }
     
     public AbstractRound getRound() {
         return this.currentRound;
