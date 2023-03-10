@@ -9,6 +9,9 @@ import java.awt.event.ActionListener;
 
 public class StartMenu extends JPanel{
         private UIController uiControllerImpl = new UIControllerImpl();
+        private static final int  EASY_LEVEL = 1;
+        private static final int  MEDIUM_LEVEL = 2;
+        private static final int  HARD_LEVEL = 3;
 
     public StartMenu(){
         JButton easy = new CustomBtn(30,"EASY");
@@ -55,7 +58,7 @@ public class StartMenu extends JPanel{
 
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                //TO DO
+                uiControllerImpl.level(EASY_LEVEL);
             }
             
         });
@@ -64,7 +67,7 @@ public class StartMenu extends JPanel{
 
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                //TO DO
+                uiControllerImpl.level(MEDIUM_LEVEL);
             }
             
         });
@@ -73,7 +76,7 @@ public class StartMenu extends JPanel{
 
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                //TO DO
+                uiControllerImpl.level(HARD_LEVEL);
             }
             
         });
