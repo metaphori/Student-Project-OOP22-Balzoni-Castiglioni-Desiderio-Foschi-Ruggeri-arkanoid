@@ -54,7 +54,7 @@ public class ControllerImpl implements AppController{
     public void chooseLevel(int numLevel) {
         switch(numLevel) {
             case 1:
-                this.l = new FirstLevel();
+                this.l = new FirstLevel(uiContr.getDimension());
                 break;
             case 2:
                 this.l = new SecondLevel(uiContr.getDimension());
