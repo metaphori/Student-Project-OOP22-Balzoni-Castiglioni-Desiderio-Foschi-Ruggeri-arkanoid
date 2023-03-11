@@ -11,6 +11,7 @@ public class RoundDifficult extends AbstractRound {
     private int obstacles;
     private List<Obstacle> list;
     private List<NormalBrick> blocks;
+    private int startY; //dimensione del frame orizzontale
 
     public RoundDifficult(int jump, int numB, int numS, int bH, int bW, int obstacles) {
         super(jump, numB, numS, bH, bW);
@@ -21,9 +22,22 @@ public class RoundDifficult extends AbstractRound {
     @Override
     public void setPosBrick() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setPosBrick'");
+        int num=0;
+        int lines;
+        for(int i=20; blocks.size()<(this.obstacles+this.getNumBrick()+this.getNumSur());i=i+getJump()+brickH){
+            num++;
+            lines=0;
+            for(int j=startY/2-(num-1)*(brickW/2); lines<num; j=j+getJump()+brickW){
+                NormalBrick brick = new NormalBrick(BrickType.NORMAL, brickW, brickH,1);
+                blocks.add(brick);
+                lines++;
+            }
+        }
+        setPosObstacles();
     }
 
-    
+    private void setPosObstacles(){
+        
+    }
     
 }
