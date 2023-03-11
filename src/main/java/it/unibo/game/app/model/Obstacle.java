@@ -2,7 +2,7 @@ package it.unibo.game.app.model;
 
 import it.unibo.game.app.api.BrickType;
 
-public class Obstacle extends Brick {
+public class Obstacle extends AbstractBrick {
 
     public Obstacle(BrickType type, int width, int hight) {
         super(type, width, hight);
