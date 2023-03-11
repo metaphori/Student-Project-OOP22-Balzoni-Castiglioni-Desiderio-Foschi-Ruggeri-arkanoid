@@ -20,6 +20,8 @@ public class ControllerImpl implements AppController{
     public ControllerImpl (UIController uiC) {
         this.uiContr = uiC;
     }
+    public ControllerImpl () {
+    }
     @Override
     public void play() {
         // TODO Auto-generated method stub
@@ -44,7 +46,7 @@ public class ControllerImpl implements AppController{
         throw new UnsupportedOperationException("Unimplemented method 'addView'");
     }
 
-    protected Map<Pair<Integer,Integer>, Integer> getBrickList () {
+    public Map<Pair<Integer,Integer>, Integer> getBrickList() {
         return l.getRound().getBrick().stream().collect(
                             Collectors.toMap(b -> b.getPos(), b -> b.getRes()));
 
@@ -66,5 +68,7 @@ public class ControllerImpl implements AppController{
        return this.uiContr.getDimension();
     }
     
-    
+    public Pair<Integer,Integer> getBrickDimension() {
+        return l.getRound().getSizeCalc().getBrickDim();
+    }
 }
