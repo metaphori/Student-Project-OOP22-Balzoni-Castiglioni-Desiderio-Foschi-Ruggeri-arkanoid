@@ -8,12 +8,13 @@ import java.awt.event.ActionListener;
 
 
 public class StartMenu extends JPanel{
-        private UIController uiControllerImpl = new UIControllerImpl();
+        private UIController uiControllerImpl ;
         private static final int  EASY_LEVEL = 1;
         private static final int  MEDIUM_LEVEL = 2;
         private static final int  HARD_LEVEL = 3;
 
-    public StartMenu(){
+    public StartMenu(UIControllerImpl ui){
+        this.uiControllerImpl = ui;
         JButton easy = new CustomBtn(30,"EASY");
         JButton medium = new CustomBtn(30,"MEDIUM");
         JButton hard = new CustomBtn(30,"HARD");
