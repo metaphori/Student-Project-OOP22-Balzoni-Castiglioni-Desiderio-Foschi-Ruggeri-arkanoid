@@ -90,13 +90,46 @@ public class GameView extends JPanel implements KeyListener,ActionListener{
     @Override
     public void keyPressed(KeyEvent arg0) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
+        int x=observer.getPad().getX();
+        int y=observer.getPad().getY();
+        if(arg0.getKeyCode() == KeyEvent.VK_RIGHT){
+            if(x>=observer.getDimension().getX()-observer.getPadWight()) {
+                observer.changePosPad(new Pair<>(observer.getDimension().getX()-observer.getPadWight(), y));
+            } else {
+                moveRight();
+            }
+        }
+        if(arg0.getKeyCode() == KeyEvent.VK_LEFT) {
+            if(x<=0){
+                observer.changePosPad(new Pair<>(0,y));
+            } else {
+                moveLeft();
+            }
+        }
+    }
+
+    private void moveLeft() {
+        play=true;
+        if(observer.getPad().getX()-20>=0){
+            observer.changePosPad(new Pair<>(observer.getPad().getX()-20,observer.getPad().getY()));
+        } else {
+            observer.changePosPad(new Pair<>(0,observer.getPad().getY()));
+        }
+    }
+
+    private void moveRight() {
+        play=true;
+        if(observer.getPad().getX()+20>=observer.getDimension().getX()-observer.getPadWight()){
+            observer.changePosPad(new Pair<>(observer.getDimension().getX()-observer.getPadWight(),observer.getPad().getY()));
+        } else {
+            observer.changePosPad(new Pair<>(observer.getPad().getX()+20,observer.getPad().getY()));
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent arg0) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+        //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
 
     @Override
