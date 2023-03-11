@@ -13,9 +13,11 @@ public abstract class AbstractRound {
     private int jump; /*Serve per indicate quanti blocchi saltare se vogliamo fare le colonne */
     private int numBrick;
     private int numSurprise;
-    private List<NormalBrick> brick = new ArrayList<>();
-    private GameObject ball = new Ball();
-    //private GameObject pad = new Pad();
+    protected List<NormalBrick> brick = new ArrayList<>();
+    //private GameObject ball = new Ball();
+    //fatto io
+    private Ball ball= new Ball();
+    private Pad pad;
     private SizeCalculation sizeC;
 
 
@@ -24,6 +26,10 @@ public abstract class AbstractRound {
         this.numBrick = numB;
         this.numSurprise = numS;
         this.sizeC = size;
+        //fatto io
+        pad = new Pad(size.getFrameSize());
+        ball.setR(size.getFrameSize().getY()/15);
+        ball.setPos(new Pair<>(pad.getPos().getX(),pad.getPos().getY()-(int)ball.getR()));
     }
 
     public int getJump () {
@@ -67,13 +73,22 @@ public abstract class AbstractRound {
     }
 
     public void setPosPad (Pair<Integer,Integer> pos) {
-        //pad.setPos(pos);
+        pad.setPos(pos);
     }
     public Pair<Integer,Integer> getPosBall() {
         return this.ball.getPos();
     }
     public Pair<Integer,Integer> getPosPad() {
         return this.pad.getPos();
+    }
+
+    //aggiunti
+    public Pad getPad(){
+        return this.pad;
+    }
+
+    public Ball getBall(){
+        return this.ball;
     }
     
     public abstract void setPosBrick ();
