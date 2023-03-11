@@ -5,10 +5,9 @@ import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.GameObject;
 
 public class GameObjectImpl implements GameObject {
+    
     private Pair<Integer,Integer> pos;
     private BoundingBox Bbox;
-
-    
 
     @Override
     public Pair<Integer, Integer> getPos() {
