@@ -9,7 +9,7 @@ import it.unibo.game.app.api.BrickType;
 public class RoundDifficult extends AbstractRound {
 
     private int obstacles;
-    private List<Obstacle> list;
+    private List<Obstacle> obs;
     private List<NormalBrick> blocks;
     private int startY; //dimensione del frame orizzontale
 
@@ -37,7 +37,17 @@ public class RoundDifficult extends AbstractRound {
     }
 
     private void setPosObstacles(){
-        
+        int num=0;
+        Random r = new Random();
+        while(num < this.obstacles) {
+            int i = r.nextInt(blocks.size());
+            if(!blocks.get(i).getType().equals(BrickType.OBSTACLE)){
+                Obstacle o = new Obstacle(BrickType.OBSTACLE, brickW, brickH);
+                obs.add(o);
+                blocks.remove(i);
+                num++;
+            }
+        }
     }
     
 }
