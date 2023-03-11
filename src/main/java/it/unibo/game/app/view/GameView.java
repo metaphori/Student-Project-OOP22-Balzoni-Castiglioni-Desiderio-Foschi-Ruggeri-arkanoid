@@ -45,4 +45,15 @@ public class GameView extends JPanel{
             g.drawRect(pos.getY(), pos.getX(), brickDimension.getY(), brickDimension.getX());
         }
     }  
+
+    public void drawBall(Pair<Integer, Integer> pos, Integer radius, Graphics g ){
+        g.setColor(Color.WHITE);
+        g.drawOval(pos.getX()-radius, pos.getY()-radius, radius*2, radius*2);
+    }
+
+    public void drawPad(Pair<Integer, Integer> pos,Pair<Integer, Integer> dimPad,  Graphics g ){
+        g.setColor(Color.GRAY);
+        g.fillRect(pos.getX(),pos.getY(), dimPad.getX(), dimPad.getY());
+        g.drawRect(pos.getX(),pos.getY(), dimPad.getX(), dimPad.getY());
+    }
 }
