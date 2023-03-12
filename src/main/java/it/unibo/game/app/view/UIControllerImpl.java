@@ -93,13 +93,11 @@ public class UIControllerImpl implements UIController {
 
     @Override
     public Pair<Integer,Integer> getBall() {
-        // TODO Auto-generated method stub
         return controller.getBall();
     }
 
     @Override
     public Pair<Integer,Integer> getPad() {
-        // TODO Auto-generated method stub
         return controller.getPad();
     }
 
@@ -118,6 +116,11 @@ public class UIControllerImpl implements UIController {
 
     public double getRBall(){
         return controller.getRBall();
+    }
+
+    @Override
+    public void rPaint() {
+        this.window.repaint();
     }
     
 }

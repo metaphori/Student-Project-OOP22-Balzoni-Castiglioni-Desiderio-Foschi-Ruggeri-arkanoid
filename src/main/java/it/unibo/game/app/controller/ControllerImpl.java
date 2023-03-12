@@ -101,4 +101,8 @@ public class ControllerImpl implements AppController{
     public double getRBall(){
         return l.getRound().getBall().getR();
     }
+
+    public void rPaint() {
+        this.uiContr.rPaint();
+    }
 }

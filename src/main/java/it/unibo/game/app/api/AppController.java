@@ -36,4 +36,5 @@ public interface AppController {
     int getPadWight();
     int getPadHeight();
     double getRBall();
+    void rPaint();
 }
