@@ -1,5 +1,6 @@
 package it.unibo.game.app.model;
 
+import it.unibo.game.Pair;
 import it.unibo.game.app.api.MovingObject;
 
 public class Pad extends GameObjectImpl implements MovingObject {
@@ -9,6 +10,16 @@ public class Pad extends GameObjectImpl implements MovingObject {
     /*le dimensioni sono modificabili per rendere resizable la dinestra
      * 
      */
+
+    //fatto io
+    public Pad(Pair<Integer,Integer> fSize){
+        super.setPos(new Pair<>(fSize.getY()/2-width/2,fSize.getX()-100));
+        //ho impostato due valori di w e h di prova
+        this.width=fSize.getY()/4;
+        this.hight=fSize.getX()/60;
+    }
+
+
     public int getHight() {
         return hight;
     }

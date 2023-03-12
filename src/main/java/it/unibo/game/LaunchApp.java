@@ -1,6 +1,6 @@
 package it.unibo.game;
 
-
+import it.unibo.game.app.view.UIControllerImpl;
 
 public class LaunchApp {
     private LaunchApp() { }
@@ -20,5 +20,6 @@ public class LaunchApp {
         // final var model = new AppModelImpl();
         // final AppController app = new AppControllerImpl(model);
         // app.addView(new ArkanoidJfxView());
+        new UIControllerImpl();
     }
 }

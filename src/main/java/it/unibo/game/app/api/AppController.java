@@ -1,8 +1,9 @@
 package it.unibo.game.app.api;
 
-import java.util.Map;
+import java.util.*;
 
 import it.unibo.game.Pair;
+import it.unibo.game.app.model.*;
 
 public interface AppController {
     
@@ -27,4 +28,12 @@ public interface AppController {
     void chooseLevel(int numLevel);
 
     Pair<Integer,Integer> getBrickDimension();
+
+    //aggiunti io
+    Pair<Integer,Integer> getBall();
+    Pair<Integer,Integer> getPad();
+    void changePos(Pair<Integer,Integer> pos);
+    int getPadWight();
+    int getPadHeight();
+    double getRBall();
 }

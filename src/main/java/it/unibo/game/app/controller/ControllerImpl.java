@@ -7,15 +7,17 @@ import java.util.stream.Stream;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
+import it.unibo.game.app.api.GameObject;
 import it.unibo.game.app.api.UIController;
 import it.unibo.game.app.model.FirstLevel;
 import it.unibo.game.app.model.Level; /*Forse */
 import it.unibo.game.app.model.NormalBrick;
 import it.unibo.game.app.model.SecondLevel;
+import it.unibo.game.app.model.ThirdLevel;
 
 public class ControllerImpl implements AppController{
     private UIController uiContr;
-    private Level l;
+    private Level l=new ThirdLevel(new Pair<>(400,600));
 
     public ControllerImpl (UIController uiC) {
         this.uiContr = uiC;
@@ -50,7 +52,8 @@ public class ControllerImpl implements AppController{
         return l.getRound().getBrick().stream().collect(
                             Collectors.toMap(b -> b.getPos(), b -> b.getRes()));
 
-    }
+    } 
+
     public void chooseLevel(int numLevel) {
         switch(numLevel) {
             case 1:
@@ -60,7 +63,7 @@ public class ControllerImpl implements AppController{
                 this.l = new SecondLevel(uiContr.getDimension());
                 break;
             case 3:
-                this.l = new ThirdLevel();
+                this.l = new ThirdLevel(uiContr.getDimension());
                 break;
         }
     }
@@ -70,5 +73,32 @@ public class ControllerImpl implements AppController{
     
     public Pair<Integer,Integer> getBrickDimension() {
         return l.getRound().getSizeCalc().getBrickDim();
+    }
+    @Override
+    public Pair<Integer,Integer> getBall() {
+        // TODO Auto-generated method stub
+        return l.getRound().getPosBall();
+    }
+    @Override
+    public Pair<Integer,Integer> getPad() {
+        // TODO Auto-generated method stub
+        return l.getRound().getPosPad();
+    }
+
+    //aggiunto
+    public void changePos(Pair<Integer,Integer> pos){
+        l.getRound().setPosPad(pos);
+    }
+
+    public int getPadWight(){
+        return l.getRound().getPad().getWidth();
+    }
+
+    public int getPadHeight(){
+        return l.getRound().getPad().getHight();
+    }
+
+    public double getRBall(){
+        return l.getRound().getBall().getR();
     }
 }

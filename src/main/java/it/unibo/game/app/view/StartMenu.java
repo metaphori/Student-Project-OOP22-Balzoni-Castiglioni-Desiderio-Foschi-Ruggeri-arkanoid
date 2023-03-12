@@ -78,6 +78,9 @@ public class StartMenu extends JPanel{
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 uiControllerImpl.level(HARD_LEVEL);
+                //aggiunto io
+                uiControllerImpl.gameView();
+                //fino qui
             }
             
         });

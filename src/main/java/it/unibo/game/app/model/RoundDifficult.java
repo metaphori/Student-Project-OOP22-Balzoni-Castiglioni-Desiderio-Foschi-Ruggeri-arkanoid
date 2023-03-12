@@ -10,13 +10,15 @@ public class RoundDifficult extends AbstractRound {
 
     private int obstacles;
     private List<Obstacle> obs;
-    private List<NormalBrick> blocks;
     private int startY; //dimensione del frame orizzontale
 
-    public RoundDifficult(int jump, int numB, int numS, int bH, int bW, int obstacles) {
-        super(jump, numB, numS, bH, bW);
+    public RoundDifficult(int jump, int numB, int numS, SizeCalculation size, int obstacles) {
+        super(jump, numB, numS, size);
         this.obstacles=obstacles;
+        super.brick = new ArrayList<>();
+        obs =new ArrayList<>();
         //TODO Auto-generated constructor stub
+        setPosBrick();
     }
 
     @Override
@@ -24,27 +26,28 @@ public class RoundDifficult extends AbstractRound {
         // TODO Auto-generated method stub
         int num=0;
         int lines;
-        for(int i=20; blocks.size()<(this.obstacles+this.getNumBrick()+this.getNumSur());i=i+getJump()+brickH){
+        for(int i=20; super.brick.size()<(this.obstacles+this.getNumBrick()+this.getNumSur());i=i+getJump()+getSizeCalc().getBrickDim().getX()){
             num++;
             lines=0;
-            for(int j=startY/2-(num-1)*(brickW/2); lines<num; j=j+getJump()+brickW){
-                NormalBrick brick = new NormalBrick(BrickType.NORMAL, brickW, brickH,1);
-                blocks.add(brick);
+            for(int j=getSizeCalc().getFrameSize().getY()/2-(num)*(getSizeCalc().getBrickDim().getY()/2)-10; lines<num; j=j+getJump()+getSizeCalc().getBrickDim().getY()){
+                NormalBrick b = new NormalBrick(BrickType.NORMAL, getSizeCalc().getBrickDim().getY(), getSizeCalc().getBrickDim().getX(),1);
+                b.setPos(new Pair<>(j,i));
+                super.brick.add(b);
                 lines++;
             }
         }
-        setPosObstacles();
+        //setPosObstacles();
     }
 
     private void setPosObstacles(){
         int num=0;
         Random r = new Random();
         while(num < this.obstacles) {
-            int i = r.nextInt(blocks.size());
-            if(!blocks.get(i).getType().equals(BrickType.OBSTACLE)){
-                Obstacle o = new Obstacle(BrickType.OBSTACLE, brickW, brickH);
+            int i = r.nextInt(super.brick.size());
+            if(!super.brick.get(i).getType().equals(BrickType.OBSTACLE)){
+                Obstacle o = new Obstacle(BrickType.OBSTACLE, getSizeCalc().getBrickDim().getY(), getSizeCalc().getBrickDim().getX());
                 obs.add(o);
-                blocks.remove(i);
+                super.brick.remove(i);
                 num++;
             }
         }

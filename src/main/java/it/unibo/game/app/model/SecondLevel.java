@@ -17,8 +17,6 @@ public class SecondLevel extends Level {
     private final static int BRICKCOL3 = 7;
     private final static int BRICKROW = 15;
 
-
-
     
     public SecondLevel (Pair<Integer,Integer> fSize) {
         this.normalBricksFirstRound = NORMAL1;
