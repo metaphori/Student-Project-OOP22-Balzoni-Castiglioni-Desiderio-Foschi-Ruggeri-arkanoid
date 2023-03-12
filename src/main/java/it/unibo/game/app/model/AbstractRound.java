@@ -14,9 +14,7 @@ public abstract class AbstractRound {
     private int numBrick;
     private int numSurprise;
     protected List<NormalBrick> brick = new ArrayList<>();
-    //private GameObject ball = new Ball();
-    //fatto io
-    private Ball ball= new Ball();
+    private Ball ball = new Ball();
     private Pad pad;
     private SizeCalculation sizeC;
 

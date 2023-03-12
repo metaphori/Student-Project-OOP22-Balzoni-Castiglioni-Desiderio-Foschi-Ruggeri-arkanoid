@@ -24,6 +24,7 @@ public class RoundMedium extends AbstractRound {
         this.startX = sizeC.getStart().getX();
         this.stopY = sizeC.getFrameSize().getY() - (3 * (this.getSizeCalc().getBrickDim().getY() / 2)); /*Modificata la fine per lasciare lo spazio tra il muro e i blocchi */
         this.stopX = sizeC.getStop().getX();
+        this.setPosBrick();
     }
 
     public boolean setBrickHard () {

@@ -26,6 +26,7 @@ public class SecondLevel extends Level {
         this.normalBricksThirdRound = NORMAL3;
         this.surpriseBricksThirdRound = SURPRISE3;
         this.frameSize = fSize;
+        this.setFirstRound();
     }
 
     @Override
