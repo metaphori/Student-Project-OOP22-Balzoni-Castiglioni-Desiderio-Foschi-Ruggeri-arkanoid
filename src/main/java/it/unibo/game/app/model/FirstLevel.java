@@ -24,6 +24,7 @@ public class FirstLevel extends Level{
         this.surpriseBricksSecondRound = SURPRISE_SECOND;
         this.surpriseBricksThirdRound = SURPRISE_THIRD;
         this.frameSize = frameSize;
+        setFirstRound();
     }
 
 

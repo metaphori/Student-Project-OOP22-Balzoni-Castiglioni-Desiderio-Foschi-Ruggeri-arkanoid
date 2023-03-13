@@ -1,5 +1,6 @@
 package it.unibo.game.app.model;
 
+import it.unibo.game.Pair;
 import it.unibo.game.app.api.BrickType;
 
 public class RoundEasy extends AbstractRound {
@@ -16,20 +17,23 @@ public class RoundEasy extends AbstractRound {
         this.startX = size.getStart().getX();
         this.endY = size.getFrameSize().getY();
         this.endX = size.getStop().getX();
+        setPosBrick();
     }
 
     @Override
     public void setPosBrick() {
         for(int i = startX; i < endX; i = i + this.getSizeCalc().getBrickDim().getX()) {
             for(int j = startY; j < endY; j = j + this.getSizeCalc().getBrickDim().getY()) {
-                this.getBrick().add(new NormalBrick(BrickType.NORMAL, j, i, 1));
+                NormalBrick brick = new NormalBrick(BrickType.NORMAL, getSizeCalc().getBrickDim().getY(), getSizeCalc().getBrickDim().getX(),1);
+                brick.setPos(new Pair<>(j,i));
+                super.brick.add(brick);
             }
         }
-        while (this.numSurpriseBrick <= this.getNumSur()) {
-            if (this.setBrickSurprise()) {
-                this.numSurpriseBrick++;
-            }
-        }
+        // while (this.numSurpriseBrick <= this.getNumSur()) {
+        //     if (this.setBrickSurprise()) {
+        //         this.numSurpriseBrick++;
+        //     }
+        // }
     }
     
 }
