@@ -8,16 +8,9 @@
             "type": "java",
             "name": "Launch Runner",
             "request": "launch",
-            "mainClass": "it.unibo.game.Runner",
+            "mainClass": "it.unibo.game.LaunchApp",
             "projectName": "arkanoid",
-            "stepFilters": {
-                "skipClasses": [
-                    "$JDK",
-                    "junit.*",
-                    "javafx.*",
-                    "com.*"
-                ]
-            }
+            
         }
     ]
 }
