@@ -14,16 +14,24 @@ public class SizeCalculation {
     private int brickL;
     private int brickH;
 
-    public SizeCalculation(int frameW, int frameH, int numBrickCol, int numBrickRow) {
+    public SizeCalculation(int frameW, int frameH, int numBrickCol, int numBrickRow, int roundPassed) {
         this.frameSizeW = frameW;
         this.frameSizeH = frameH;
         this.numBrickCol = numBrickCol;
         this.numBrickRow = numBrickRow;
         startX = (frameSizeH / 2) / 6;
-        stopX = ((frameSizeH / 2) / 3) * 2;
+        stopX = this.getStopX(roundPassed);
         stopY = frameSizeW;
         brickL = frameSizeW / numBrickRow;
         brickH = (stopX - startX) / numBrickCol;
+    }
+
+    private int getStopX(int numR) {
+        if (numR == 0) {
+            return ((this.frameSizeH / 2) / 3);
+        } else {
+            return ((frameSizeH / 2) / 3) * 2;
+        }
     }
 
     public Pair<Integer,Integer> getFrameSize() {
