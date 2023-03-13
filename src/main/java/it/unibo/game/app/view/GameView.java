@@ -31,10 +31,15 @@ public class GameView extends JPanel implements KeyListener,ActionListener{
 
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, observer.getDimension().getX(), observer.getDimension().getY());
-        observer.getList().entrySet().stream().forEach(x->{
+
+        
+       observer.getList().entrySet().stream().forEach(x->{
             g.setColor(x.getValue()==2 ? Color.GRAY : Color.RED);
             g.fillRect(x.getKey().getX(),x.getKey().getY(), observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX());
+            g.setColor(Color.BLACK);
+            g.drawRect(x.getKey().getX(),x.getKey().getY(), observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX());
         }); 
+        
         
         g.setColor(Color.GREEN);
         g.fillOval(observer.getBall().getX(), observer.getBall().getY(), (int)observer.getRBall(),(int)observer.getRBall());
@@ -42,15 +47,15 @@ public class GameView extends JPanel implements KeyListener,ActionListener{
         g.setColor(Color.YELLOW);
         g.fillRect(observer.getPad().getX(), observer.getPad().getY(), observer.getPadWight(), observer.getPadHeight());
         g.dispose();
-    }
+    } 
 
-    /*public void drawBrick(Map<Pair<Integer,Integer>, Integer> brickMap, Pair<Integer,Integer> brickDimension, Graphics g) {
+   /* public void paint(Graphics g) {
         Pair<Integer,Integer> pos;
         int res; 
         Random random = new Random();
         int casualNum;
 
-        for (var elem : brickMap.entrySet()) {
+        for (var elem : observer.getList().entrySet()){
             pos = elem.getKey();
             res = elem.getValue();
             if (res != 2) {
@@ -74,11 +79,12 @@ public class GameView extends JPanel implements KeyListener,ActionListener{
             } else {
                 g.setColor(Color.LIGHT_GRAY);
             }
-            g.fillRect(pos.getY(), pos.getX(), brickDimension.getY(), brickDimension.getX());
+            g.fillRect(pos.getY(), pos.getX(), observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX());
             g.setColor(Color.BLACK);
-            g.drawRect(pos.getY(), pos.getX(), brickDimension.getY(), brickDimension.getX());
-        }
-    } */
+            g.drawRect(pos.getY(), pos.getX(), observer.getDimensionBrick().getY(),observer.getDimensionBrick().getX());
+        } */
+    
+
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
