@@ -3,6 +3,7 @@ package it.unibo.game.app.model;
 
 import java.util.Random;
 
+import it.unibo.game.Pair;
 import it.unibo.game.app.api.BrickType;
 
 public class RoundMedium extends AbstractRound {
@@ -46,9 +47,12 @@ public class RoundMedium extends AbstractRound {
     @Override
     public void setPosBrick() { /*Posiziona i blocchi tutti di tipo normal poi verranno modificati dalla funzione setBrickHard e setBrickSurprise */
         for (int i = this.startX; i < this.stopX; i = i + this.getSizeCalc().getBrickDim().getX()) {
+            countBrick = 0;
             for (int j = this.startY; j <= this.stopY; j = j + this.getSizeCalc().getBrickDim().getY()) {
                 if (countBrick != this.getJump()) {
-                    this.getBrick().add(new NormalBrick(BrickType.NORMAL, j, i, 1));
+                    NormalBrick b = new NormalBrick(BrickType.NORMAL, this.getSizeCalc().getBrickDim().getY(), this.getSizeCalc().getBrickDim().getX(), 1);
+                    b.setPos(new Pair<Integer,Integer>(j, i));
+                    super.brick.add(b);
                     countBrick++;
                 } else {
                     countBrick = 0;
@@ -57,17 +61,17 @@ public class RoundMedium extends AbstractRound {
         }
 
         /*Dopo che ho assegnato la pos a tutti i blocchi e il colore assegno i blocchi surprise in modo random*/
-        while (numSur <= this.getNumSur()) {
+      /*  while (numSur <= this.getNumSur()) {
             if (this.setBrickSurprise()) {
                 numSur++;
             }
         }
-        /*Dopo che ho assegnato la pos a tutti i blocchi e il colore assegno i blocchi grigi in modo random*/
+        /*Dopo che ho assegnato la pos a tutti i blocchi e il colore assegno i blocchi grigi in modo random
         while (numH <= this.numHard) {
             if (this.setBrickHard()) {
                 numH++;
             }
-        }
+        }*/
     }
     
 
