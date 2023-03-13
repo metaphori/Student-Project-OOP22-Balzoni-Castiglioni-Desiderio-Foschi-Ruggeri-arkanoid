@@ -1,27 +1,23 @@
 package it.unibo.game.app.controller;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
-import it.unibo.game.app.api.GameObject;
 import it.unibo.game.app.model.FirstLevel;
 import it.unibo.game.app.model.Level; /*Forse */
-import it.unibo.game.app.model.NormalBrick;
 import it.unibo.game.app.model.SecondLevel;
 import it.unibo.game.app.model.ThirdLevel;
 import it.unibo.game.app.view.jswing.api.UIController;
+import it.unibo.game.app.view.jswing.impleentation.UIControllerImpl;
 
 public class ControllerImpl implements AppController{
     private UIController uiContr;
     private Level l=new ThirdLevel(new Pair<>(400,600));
 
-    public ControllerImpl (UIController uiC) {
-        this.uiContr = uiC;
-    }
+    // public ControllerImpl (UIController uiC) {
+    //     this.uiContr = uiC;
+    // }
     public ControllerImpl () {
     }
     @Override
@@ -38,14 +34,13 @@ public class ControllerImpl implements AppController{
 
     @Override
     public void quit() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'quit'");
+        System.exit(0);
     }
 
     @Override
-    public void addView() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addView'");
+    public void setView() {
+        this.uiContr = new UIControllerImpl();
+        uiContr.setController(this);
     }
 
     public Map<Pair<Integer,Integer>, Integer> getBrickList() {

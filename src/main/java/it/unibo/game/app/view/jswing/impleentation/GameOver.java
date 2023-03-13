@@ -1,4 +1,4 @@
-package it.unibo.game.app.view;
+package it.unibo.game.app.view.jswing.impleentation;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,8 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import it.unibo.game.app.view.jswing.UIControllerImpl;
 
 
 public class GameOver extends JPanel{

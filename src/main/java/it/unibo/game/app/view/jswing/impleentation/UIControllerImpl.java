@@ -1,16 +1,16 @@
-package it.unibo.game.app.view.jswing;
+package it.unibo.game.app.view.jswing.impleentation;
 
 import java.util.*;
 import it.unibo.game.Pair;
-import javax.swing.*;
-import java.awt.*;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.view.jswing.api.*;
-import it.unibo.game.app.controller.*;
 
-public class UIControllerImpl implements UIController {
+import javax.swing.*;
+import java.awt.*;
+
+public class UIControllerImpl implements UIController  {
     JFrame window = new JFrame("Arkanoid");
-    private AppController controller = new ControllerImpl(this);
+    private AppController controller ;
     //aggiunto
     private JPanel deck = new JPanel();
     private CardLayout layout = new CardLayout();
@@ -18,7 +18,7 @@ public class UIControllerImpl implements UIController {
     
     Map<PAGES, JPanel> views = new HashMap<>(
             Map.of(
-                    PAGES.GAME, new GameView(this),
+                    PAGES.GAME, new GameViewImpl(this),
                     PAGES.START_MENU, new StartMenu(this),
                     PAGES.PAUSE_MENU, new JPanel(),
                     PAGES.TOP_10, new JPanel()
@@ -116,6 +116,11 @@ public class UIControllerImpl implements UIController {
     @Override
     public void rPaint() {
         this.window.repaint();
+    }
+
+    @Override
+    public void setController(AppController observer) {
+        controller = observer;
     }
     
 }

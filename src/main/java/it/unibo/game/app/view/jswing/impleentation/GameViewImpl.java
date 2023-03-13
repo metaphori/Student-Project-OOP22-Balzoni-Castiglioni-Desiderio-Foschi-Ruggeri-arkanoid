@@ -1,24 +1,25 @@
-package it.unibo.game.app.view.jswing;
+package it.unibo.game.app.view.jswing.impleentation;
 
 import java.util.Map;
 import java.util.Random;
 
 import javax.swing.*;
 import it.unibo.game.Pair;
+import it.unibo.game.app.view.jswing.api.GameView;
 import it.unibo.game.app.view.jswing.api.UIController;
 
 import java.awt.*;
 import java.awt.event.*;
 
 
-public class GameView extends JPanel implements KeyListener,ActionListener{
+public class GameViewImpl extends JPanel implements KeyListener,ActionListener, GameView{
 
     private UIController observer;
     private Timer timer;
     private static final int delay=8;
     private boolean play=true;
 
-    public GameView(UIController control){
+    public GameViewImpl(UIController control){
         setFocusable(true);
         addKeyListener(this);
         setFocusTraversalKeysEnabled(false);
@@ -27,6 +28,7 @@ public class GameView extends JPanel implements KeyListener,ActionListener{
         timer.start();
     }
 
+    @Override
     public void paint(Graphics g){
 
         g.setColor(Color.WHITE);
@@ -144,11 +146,13 @@ public class GameView extends JPanel implements KeyListener,ActionListener{
         throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }  
 
+    @Override
     public void drawBall(Pair<Integer, Integer> pos, Integer radius, Graphics g ){
         g.setColor(Color.WHITE);
         g.drawOval(pos.getX()-radius, pos.getY()-radius, radius*2, radius*2);
     }
 
+    @Override
     public void drawPad(Pair<Integer, Integer> pos,Pair<Integer, Integer> dimPad,  Graphics g ){
         g.setColor(Color.GRAY);
         g.fillRect(pos.getX(),pos.getY(), dimPad.getX(), dimPad.getY());

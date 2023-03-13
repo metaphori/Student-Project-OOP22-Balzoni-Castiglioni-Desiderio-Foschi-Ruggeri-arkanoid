@@ -21,7 +21,7 @@ public interface AppController {
     /*termina l'applicazione */
     void quit();
 
-    void addView();
+    void setView();
 
     Map<Pair<Integer, Integer>, Integer> getBrickList();
 

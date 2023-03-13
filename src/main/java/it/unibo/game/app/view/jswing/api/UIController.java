@@ -3,6 +3,7 @@ package it.unibo.game.app.view.jswing.api;
 import java.util.Map;
 
 import it.unibo.game.Pair;
+import it.unibo.game.app.api.AppController;
 
 public interface UIController {
     enum PAGES {
@@ -22,6 +23,7 @@ public interface UIController {
         }
     };
 
+    void setController(AppController observer);
     void initialView();
     void pauseMenu();
     void gameView();

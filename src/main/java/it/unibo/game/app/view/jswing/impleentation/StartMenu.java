@@ -1,4 +1,4 @@
-package it.unibo.game.app.view.jswing;
+package it.unibo.game.app.view.jswing.impleentation;
 
 import javax.swing.*;
 
