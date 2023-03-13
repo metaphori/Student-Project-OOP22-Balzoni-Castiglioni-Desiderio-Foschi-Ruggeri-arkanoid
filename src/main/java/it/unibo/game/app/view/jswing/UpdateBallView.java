@@ -1,7 +1,8 @@
-package it.unibo.game.app.view;
+package it.unibo.game.app.view.jswing;
 
 import it.unibo.game.Pair;
-import it.unibo.game.app.api.UpdateView;
+import it.unibo.game.app.view.jswing.api.UpdateView;
+
 import java.awt.*;
 
 public class UpdateBallView implements UpdateView {

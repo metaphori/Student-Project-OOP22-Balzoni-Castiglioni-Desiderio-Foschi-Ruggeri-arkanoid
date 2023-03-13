@@ -1,6 +1,6 @@
 package it.unibo.game;
 
-import it.unibo.game.app.view.UIControllerImpl;
+import it.unibo.game.app.view.jswing.*;
 
 public class LaunchApp {
     private LaunchApp() { }

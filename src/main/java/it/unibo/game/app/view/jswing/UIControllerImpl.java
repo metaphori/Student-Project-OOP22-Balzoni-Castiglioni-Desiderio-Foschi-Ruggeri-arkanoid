@@ -1,23 +1,18 @@
-package it.unibo.game.app.view;
+package it.unibo.game.app.view.jswing;
 
 import java.util.*;
 import it.unibo.game.Pair;
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
-
-
 import it.unibo.game.app.api.AppController;
-import it.unibo.game.app.api.GameObject;
-import it.unibo.game.app.api.UIController;
-import it.unibo.game.app.controller.ControllerImpl;
-import it.unibo.game.app.model.*;
+import it.unibo.game.app.view.jswing.api.*;
+import it.unibo.game.app.controller.*;
 
 public class UIControllerImpl implements UIController {
     JFrame window = new JFrame("Arkanoid");
     private AppController controller = new ControllerImpl(this);
     //aggiunto
-    private JPanel dek = new JPanel();
+    private JPanel deck = new JPanel();
     private CardLayout layout = new CardLayout();
 
     
@@ -32,9 +27,9 @@ public class UIControllerImpl implements UIController {
 
     public UIControllerImpl() {
         //aggiunto
-        this.dek = new JPanel(layout);
-        views.entrySet().stream().forEach(x->dek.add(x.getValue(),x.getKey().getName()));
-        window.add(dek,BorderLayout.CENTER);
+        this.deck = new JPanel(layout);
+        views.entrySet().stream().forEach(x->deck.add(x.getValue(),x.getKey().getName()));
+        window.add(deck,BorderLayout.CENTER);
         //fino qui
 
         var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -49,7 +44,7 @@ public class UIControllerImpl implements UIController {
 
     private void chargeView(PAGES p) {
         //this.window.setContentPane(views.get(p));
-        layout.show(dek, p.getName());
+        layout.show(deck, p.getName());
         window.setTitle(p.getName());
     }
 

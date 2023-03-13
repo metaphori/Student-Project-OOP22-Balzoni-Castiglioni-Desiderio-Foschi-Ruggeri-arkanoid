@@ -8,12 +8,12 @@ import java.util.stream.Stream;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.GameObject;
-import it.unibo.game.app.api.UIController;
 import it.unibo.game.app.model.FirstLevel;
 import it.unibo.game.app.model.Level; /*Forse */
 import it.unibo.game.app.model.NormalBrick;
 import it.unibo.game.app.model.SecondLevel;
 import it.unibo.game.app.model.ThirdLevel;
+import it.unibo.game.app.view.jswing.api.UIController;
 
 public class ControllerImpl implements AppController{
     private UIController uiContr;

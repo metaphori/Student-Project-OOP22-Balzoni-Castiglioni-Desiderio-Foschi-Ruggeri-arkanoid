@@ -1,8 +1,9 @@
-package it.unibo.game.app.view;
+package it.unibo.game.app.view.jswing;
 
 import javax.swing.*;
 
-import it.unibo.game.app.api.UIController;
+import it.unibo.game.app.view.jswing.api.UIController;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 

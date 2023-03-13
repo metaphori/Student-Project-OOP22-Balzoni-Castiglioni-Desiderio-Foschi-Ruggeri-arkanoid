@@ -1,11 +1,11 @@
-package it.unibo.game.app.view;
+package it.unibo.game.app.view.jswing;
 
 import java.util.Map;
 import java.util.Random;
 
 import javax.swing.*;
 import it.unibo.game.Pair;
-import it.unibo.game.app.api.UIController;
+import it.unibo.game.app.view.jswing.api.UIController;
 
 import java.awt.*;
 import java.awt.event.*;

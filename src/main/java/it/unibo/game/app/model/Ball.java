@@ -1,7 +1,8 @@
 package it.unibo.game.app.model;
 
-import it.unibo.game.Pair;
+
 import it.unibo.game.app.api.BoundingBox;
+import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.MovingObject;
 public class Ball extends GameObjectImpl implements MovingObject {
 
@@ -20,6 +21,11 @@ public class Ball extends GameObjectImpl implements MovingObject {
     public BoundingBox getBoundingBox() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getBoundingBox'");
+    }
+    @Override
+    public Direction getDir() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getDir'");
     }
     
 }

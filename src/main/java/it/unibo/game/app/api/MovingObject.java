@@ -4,4 +4,6 @@ public interface MovingObject{
     
     //void SetSpeed(Speed s);
     //Speed getSpeed();
+    Direction getDir();
+    
 }

@@ -1,10 +1,8 @@
-package it.unibo.game.app.api;
+package it.unibo.game.app.view.jswing.api;
 
 import java.util.Map;
 
 import it.unibo.game.Pair;
-import java.util.*;
-import it.unibo.game.app.model.*;
 
 public interface UIController {
     enum PAGES {

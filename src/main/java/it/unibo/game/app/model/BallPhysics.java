@@ -2,11 +2,12 @@ package it.unibo.game.app.model;
 
 import java.util.Optional;
 
+import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.BoundingBox.Side;
 
 public class BallPhysics {
     
-    private Direction d = new Direction();
+    private Direction d = new DirectionImpl();
 
     public Direction changeDirection(Optional<Side> side){
         if(side == Optional.of(Side.UP_DOWN)){
