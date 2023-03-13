@@ -23,12 +23,16 @@ public abstract class Level {
     protected SizeCalculation sizeCalc;
 
     protected Pair<Integer,Integer> frameSize;
+    protected int numRoundPassed;
 
     /*Posizionano gli oggetti (pad,pallina e blocchi) all'interno di ciascun round*/
     protected abstract void setFirstRound();
     protected abstract void setSecondRound();
     protected abstract void setThirdRound();
 
+    public Level (int numRoundP) {
+        this.numRoundPassed = numRoundP;
+    }
     protected int increaseLife() {
         return this.lives++;
     }
@@ -41,5 +45,8 @@ public abstract class Level {
     
     public AbstractRound getRound() {
         return this.currentRound;
+    }
+    public int getNumRoundPassed() {
+        return this.numRoundPassed;
     }
 }

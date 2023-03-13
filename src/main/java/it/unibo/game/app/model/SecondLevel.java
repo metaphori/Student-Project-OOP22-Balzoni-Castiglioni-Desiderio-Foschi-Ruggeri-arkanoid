@@ -18,7 +18,8 @@ public class SecondLevel extends Level {
     private final static int BRICKROW = 15;
 
     
-    public SecondLevel (Pair<Integer,Integer> fSize) {
+    public SecondLevel (Pair<Integer,Integer> fSize, int numRoundPassed) {
+        super(numRoundPassed);
         this.normalBricksFirstRound = NORMAL1;
         this.surpriseBricksFirstRound = SURPRISE1;
         this.normalBricksSecondRound = NORMAL2;
@@ -27,23 +28,24 @@ public class SecondLevel extends Level {
         this.surpriseBricksThirdRound = SURPRISE3;
         this.frameSize = fSize;
         this.setFirstRound();
+
     }
 
     @Override
     protected void setFirstRound() {
-        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICKCOL1 - 1, BRICKROW);
+        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICKCOL1 - 1, BRICKROW, super.getNumRoundPassed());
         this.currentRound = new RoundMedium(4, normalBricksFirstRound, surpriseBricksFirstRound, GRAY1, this.sizeCalc);
     }
 
     @Override
     protected void setSecondRound() {
-        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICKCOL2 - 1, BRICKROW);
+        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICKCOL2 - 1, BRICKROW, super.getNumRoundPassed());
         this.currentRound = new RoundMedium(4, normalBricksSecondRound, surpriseBricksSecondRound, GRAY2, this.sizeCalc);
     }
 
     @Override
     protected void setThirdRound() {
-        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICKCOL3 - 1, BRICKROW);
+        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICKCOL3 - 1, BRICKROW, super.getNumRoundPassed());
         this.currentRound = new RoundMedium(4, normalBricksThirdRound, surpriseBricksThirdRound, GRAY3, this.sizeCalc);
     }
     
