@@ -10,7 +10,14 @@
             "request": "launch",
             "mainClass": "it.unibo.game.LaunchApp",
             "projectName": "arkanoid",
-            
+            "stepFilters": {
+                "skipClasses": [
+                    "$JDK",
+                    "junit.*",
+                    "javafx.*",
+                    "com.*"
+                ]
+            }
         }
     ]
 }
