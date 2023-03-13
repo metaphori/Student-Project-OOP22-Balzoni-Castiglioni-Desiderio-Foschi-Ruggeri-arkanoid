@@ -7,12 +7,6 @@ public class SizeCalculation {
     private int frameSizeH;
     private int numBrickCol;
     private int numBrickRow;
-    /*private int startX = (frameSizeH / 2) / 6;
-    private int startY = 0;
-    private int stopX = ((frameSizeH / 2) / 3) * 2;
-    private int stopY = frameSizeW;
-    private int brickL = frameSizeW / numBrickRow;
-    private int brickH = (stopX - startX) / numBrickCol; */
     private int startX;
     private int startY = 0;
     private int stopX;
@@ -27,7 +21,7 @@ public class SizeCalculation {
         this.numBrickRow = numBrickRow;
         startX = (frameSizeH / 2) / 6;
         stopX = ((frameSizeH / 2) / 3) * 2;
-        stopY=frameSizeW;
+        stopY = frameSizeW;
         brickL = frameSizeW / numBrickRow;
         brickH = (stopX - startX) / numBrickCol;
     }
