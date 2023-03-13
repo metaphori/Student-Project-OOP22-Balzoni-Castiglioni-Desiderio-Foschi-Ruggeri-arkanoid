@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import it.unibo.game.app.view.jswing.UIControllerImpl;
+
 
 public class GameOver extends JPanel{
     
