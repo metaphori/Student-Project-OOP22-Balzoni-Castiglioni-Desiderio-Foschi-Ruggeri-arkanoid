@@ -1,10 +1,11 @@
 package it.unibo.game.app.model;
 
 import it.unibo.game.Pair;
+import it.unibo.game.app.api.Level;
 
 /*Questa classe astratta dichiara variabili e definisce metodi in comune ai vari livelli */
 
-public abstract class AbstractLevel {
+public abstract class AbstractLevel implements Level {
 
     private final static int INITIAL_LIVES=3;
     protected int lives = INITIAL_LIVES;
