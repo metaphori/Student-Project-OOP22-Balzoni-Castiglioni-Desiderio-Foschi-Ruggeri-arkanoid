@@ -22,6 +22,10 @@ public abstract class AbstractBrick extends GameObjectImpl {
         return this.type;
     }
 
+    public void changeType(BrickType type) {
+        this.type = type;
+    }
+
     public int getBrickH () {
         return this.brickHight;
     }
