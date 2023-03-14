@@ -16,30 +16,31 @@ public class StartMenu extends JPanel{
 
     public StartMenu(UIControllerImpl ui){
         this.uiControllerImpl = ui;
-        JButton easy = new CustomBtn(30,"EASY");
-        JButton medium = new CustomBtn(30,"MEDIUM");
-        JButton hard = new CustomBtn(30,"HARD");
-        JButton top5 = new CustomBtn(30,"CLASSIFICA");
+        JButton easy = new CustomBtn(50,"EASY");
+        JButton medium = new CustomBtn(50,"MEDIUM");
+        JButton hard = new CustomBtn(50,"HARD");
+        JButton top5 = new CustomBtn(50,"CLASSIFICA");
         JLabel title = new JLabel("ARKANOID");
         JPanel buttonContainer = new JPanel();
       
-        buttonContainer.setLayout(new GridBagLayout());
+        buttonContainer.setLayout(new GridLayout(4, 1, 15, 15));
 
-        final Color blue = new Color(0000255);
-        this.setBackground(blue);
-        buttonContainer.setBackground(blue);
+        this.setBackground(Color.BLACK);
+        buttonContainer.setBackground(Color.BLACK);
 
-        //problemi con il font, gli altri non lo vedono
-        Font f = new Font("ar destine",  Font.BOLD, 60);
+    
+        Font f = new Font("Serif",  Font.BOLD, 60);
         title.setFont(f);
         title.setForeground(Color.WHITE);
-        
+        title.setHorizontalAlignment(SwingConstants.CENTER);
 
-        this.setLayout(new BorderLayout());
+        this.setLayout(new GridLayout(2, 1, 15, 15));
+        this.setBorder(BorderFactory.createEmptyBorder(50, 25, 25, 50));
 
 
         this.add(title, BorderLayout.NORTH);
         this.add(buttonContainer, BorderLayout.CENTER);
+
         buttonContainer.add(easy);
         buttonContainer.add(medium);
         buttonContainer.add(hard);
@@ -71,7 +72,9 @@ public class StartMenu extends JPanel{
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 uiControllerImpl.level(MEDIUM_LEVEL);
+                //aggiunta da chiara
                 uiControllerImpl.gameView();
+                //fino a qui
             }
             
         });
@@ -81,7 +84,7 @@ public class StartMenu extends JPanel{
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 uiControllerImpl.level(HARD_LEVEL);
-                //aggiunto io
+                //aggiunto da virgi
                 uiControllerImpl.gameView();
                 //fino qui
             }
