@@ -2,6 +2,7 @@ package it.unibo.game.app.model;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.api.Round;
 
 /*Questa classe astratta dichiara variabili e definisce metodi in comune ai vari livelli */
 
@@ -20,9 +21,9 @@ public abstract class AbstractLevel implements Level {
     protected int normalBricksThirdRound;
     protected int surpriseBricksThirdRound;
 
-    protected AbstractRound currentRound;
+    protected Round currentRound;
     protected SizeCalculation sizeCalc;
-    private GameOver gameOver = new GameOver(currentRound);
+    //private GameOver gameOver = new GameOver(currentRound);
 
     protected Pair<Integer,Integer> frameSize;
     protected int numRoundPassed = 0;
@@ -42,7 +43,7 @@ public abstract class AbstractLevel implements Level {
         return this.lives > 0 ? true : false;
     }
     
-    public AbstractRound getRound() {
+    public Round getRound() {
         return this.currentRound;
     }
     public int getNumRoundPassed() {

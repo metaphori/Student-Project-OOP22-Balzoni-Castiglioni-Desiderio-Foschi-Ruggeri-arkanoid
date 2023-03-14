@@ -21,8 +21,7 @@ public class RoundDifficult extends AbstractRound {
         setPosBrick();
     }
 
-    @Override
-    public void setPosBrick() {
+    protected void setPosBrick() {
         // TODO Auto-generated method stub
         int num=0;
         int lines;

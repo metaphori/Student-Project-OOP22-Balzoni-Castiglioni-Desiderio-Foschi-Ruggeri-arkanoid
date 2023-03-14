@@ -7,8 +7,9 @@ import java.util.Random;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.GameObject;
+import it.unibo.game.app.api.Round;
 
-public abstract class AbstractRound {
+public abstract class AbstractRound implements Round {
     
     private int jump; /*Serve per indicate quanti blocchi saltare se vogliamo fare le colonne */
     private int numBrick;
@@ -24,7 +25,6 @@ public abstract class AbstractRound {
         this.numBrick = numB;
         this.numSurprise = numS;
         this.sizeC = size;
-        //fatto io
         pad = new Pad(size.getFrameSize());
         ball.setR(size.getFrameSize().getY()/15);
         ball.setPos(new Pair<>(pad.getPos().getX(),pad.getPos().getY()-(int)ball.getR()));
@@ -50,7 +50,7 @@ public abstract class AbstractRound {
         return this.brick; 
     }
 
-    public boolean setBrickSurprise () {
+    protected boolean setBrickSurprise () {
         Random random = new Random();
         int idx = random.nextInt(brick.size());
         
@@ -70,14 +70,15 @@ public abstract class AbstractRound {
     public void setPosPad (Pair<Integer,Integer> pos) {
         pad.setPos(pos);
     }
+
     public Pair<Integer,Integer> getPosBall() {
         return this.ball.getPos();
     }
+
     public Pair<Integer,Integer> getPosPad() {
         return this.pad.getPos();
     }
 
-    //aggiunti
     public Pad getPad(){
         return this.pad;
     }
@@ -86,5 +87,5 @@ public abstract class AbstractRound {
         return this.ball;
     }
     
-    public abstract void setPosBrick ();
+    protected abstract void setPosBrick ();
 }
