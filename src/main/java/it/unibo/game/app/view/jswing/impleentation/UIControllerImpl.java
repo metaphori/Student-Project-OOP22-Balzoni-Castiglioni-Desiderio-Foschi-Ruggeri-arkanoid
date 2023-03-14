@@ -21,7 +21,7 @@ public class UIControllerImpl implements UIController  {
                     PAGES.GAME, new GameViewImpl(this),
                     PAGES.START_MENU, new StartMenu(this),
                     PAGES.PAUSE_MENU, new PauseMenu(this),
-                    PAGES.TOP_5, new JPanel(),
+                    PAGES.TOP_5, new LeaderBoardView(this),
                     PAGES.VICTORY, new Victory(this),
                     PAGES.GAME_OVER, new GameOver(this)
     ));
