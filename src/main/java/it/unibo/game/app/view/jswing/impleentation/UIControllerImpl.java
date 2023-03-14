@@ -39,7 +39,7 @@ public class UIControllerImpl implements UIController  {
         this.window.setMinimumSize(new Dimension((int)screenSize.getHeight()/2,(int)screenSize.getWidth()/3));
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.window.setVisible(true);
-        
+        this.window.requestFocusInWindow();
         //fatto io
         initialView();
     }
@@ -48,6 +48,7 @@ public class UIControllerImpl implements UIController  {
         //this.window.setContentPane(views.get(p));
         layout.show(deck, p.getName());
         window.setTitle(p.getName());
+        views.get(p).requestFocusInWindow();
     }
 
     @Override
