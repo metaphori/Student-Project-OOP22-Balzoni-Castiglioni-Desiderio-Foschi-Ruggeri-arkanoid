@@ -11,6 +11,6 @@ public interface Level {
     int decreaseLife();
     boolean isAlive();
     
-    AbstractRound getRound();
+    Round getRound();
     int getNumRoundPassed();
 }
