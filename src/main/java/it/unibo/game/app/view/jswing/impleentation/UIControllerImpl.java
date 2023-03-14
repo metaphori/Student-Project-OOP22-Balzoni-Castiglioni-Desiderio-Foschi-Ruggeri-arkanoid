@@ -45,7 +45,6 @@ public class UIControllerImpl implements UIController  {
     }
 
     private void chargeView(PAGES p) {
-        //this.window.setContentPane(views.get(p));
         layout.show(deck, p.getName());
         window.setTitle(p.getName());
         views.get(p).requestFocusInWindow();
