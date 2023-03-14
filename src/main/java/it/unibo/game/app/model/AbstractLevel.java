@@ -43,7 +43,7 @@ public abstract class AbstractLevel implements Level {
         return this.lives > 0 ? true : false;
     }
     
-    public AbstractRound getRound() {
+    public Round getRound() {
         return this.currentRound;
     }
     public int getNumRoundPassed() {
