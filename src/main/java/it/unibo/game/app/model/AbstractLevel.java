@@ -22,6 +22,7 @@ public abstract class AbstractLevel implements Level {
 
     protected AbstractRound currentRound;
     protected SizeCalculation sizeCalc;
+    private GameOver gameOver = new GameOver(currentRound);
 
     protected Pair<Integer,Integer> frameSize;
     protected int numRoundPassed;
