@@ -20,8 +20,10 @@ public class UIControllerImpl implements UIController  {
             Map.of(
                     PAGES.GAME, new GameViewImpl(this),
                     PAGES.START_MENU, new StartMenu(this),
-                    PAGES.PAUSE_MENU, new JPanel(),
-                    PAGES.TOP_10, new JPanel()
+                    PAGES.PAUSE_MENU, new PauseMenu(this),
+                    PAGES.TOP_5, new JPanel(),
+                    PAGES.VICTORY, new Victory(this),
+                    PAGES.GAME_OVER, new GameOver(this)
     ));
 
 
@@ -66,7 +68,7 @@ public class UIControllerImpl implements UIController  {
 
     @Override
     public void leaderBoardView() {
-        chargeView(PAGES.TOP_10);
+        chargeView(PAGES.TOP_5);
     }
 
     public  Map<Pair<Integer,Integer>, Integer> getList() {
@@ -121,6 +123,16 @@ public class UIControllerImpl implements UIController  {
     @Override
     public void setController(AppController observer) {
         controller = observer;
+    }
+
+    @Override
+    public void gameOver() {
+        chargeView(PAGES.GAME_OVER);
+    }
+
+    @Override
+    public void victory() {
+      chargeView(PAGES.VICTORY);
     }
     
 }
