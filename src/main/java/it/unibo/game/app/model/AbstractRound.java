@@ -52,13 +52,10 @@ public abstract class AbstractRound {
 
     public boolean setBrickSurprise () {
         Random random = new Random();
-        NormalBrick brickS;
         int idx = random.nextInt(brick.size());
         
         if (brick.get(idx).getType() == BrickType.NORMAL) {
-            brickS = new NormalBrick(BrickType.SURPRISE, brick.get(idx).getBrickW(),brick.get(idx).getBrickH(), 1);
-            brick.remove(idx);
-            brick.add(idx, brickS);
+            brick.get(idx).changeType(BrickType.SURPRISE);
             return true;
         }
         else {

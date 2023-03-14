@@ -30,13 +30,10 @@ public class RoundMedium extends AbstractRound {
 
     public boolean setBrickHard () {
         Random random = new Random();
-        NormalBrick brickH;
         int idx = random.nextInt(this.getBrick().size());
         
         if (this.getBrick().get(idx).getType() == BrickType.NORMAL && this.getBrick().get(idx).getRes() == 1 ) { 
-            brickH = new NormalBrick(BrickType.NORMAL, this.getBrick().get(idx).getBrickW(), this.getBrick().get(idx).getBrickH() , 2);
-            this.getBrick().remove(idx);
-            this.getBrick().add(idx, brickH);
+            this.getBrick().get(idx).increaseRes(this.getBrick().get(idx).getRes());
             return true;
         }
         else {
@@ -61,17 +58,17 @@ public class RoundMedium extends AbstractRound {
         }
 
         /*Dopo che ho assegnato la pos a tutti i blocchi e il colore assegno i blocchi surprise in modo random*/
-      /*  while (numSur <= this.getNumSur()) {
+        while (numSur <= this.getNumSur()) {
             if (this.setBrickSurprise()) {
                 numSur++;
             }
         }
-        /*Dopo che ho assegnato la pos a tutti i blocchi e il colore assegno i blocchi grigi in modo random
+        /*Dopo che ho assegnato la pos a tutti i blocchi e il colore assegno i blocchi grigi in modo random*/
         while (numH <= this.numHard) {
             if (this.setBrickHard()) {
                 numH++;
             }
-        }*/
+        }
     }
     
 
