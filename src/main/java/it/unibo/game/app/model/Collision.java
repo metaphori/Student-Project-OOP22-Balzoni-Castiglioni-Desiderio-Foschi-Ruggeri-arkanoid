@@ -2,14 +2,13 @@ package it.unibo.game.app.model;
 
 import java.util.Optional;
 
-import javax.print.attribute.standard.Sides;
-
 import it.unibo.game.app.api.BoundingBox.Corner;
 import it.unibo.game.app.api.BoundingBox.Side;
-//devi trovare il modo per comunicare dov'è avvenuta la collisione
+
 public class Collision {
     private AbstractLevel level;
     private BallPhysics physics;
+    private Score score = new Score();
 
     public Collision(AbstractLevel lev, BallPhysics physics){
         this.level = lev;
@@ -24,13 +23,15 @@ public class Collision {
         }else if(ballBox.getBox().get(Corner.LEFT_UP).getX()==0 ){
             physics.changeDirection(Side.UP_DOWN);
         }
+    }
 
     public Optional<Integer> isCollideWithBrick(Ball b){
         var ballBox = new BoundingBoxImpl(b);
         for (NormalBrick obj : level.getRound().getBrick()) {
             var box = new BoundingBoxImpl(obj);
             if(ballBox.collideWith(box).isPresent()){
-                physics.changeDirection(ballBox.collideWith(box).get());
+                this.score.increaseScore();
+                this.physics.changeDirection(ballBox.collideWith(box).get());
                 return Optional.of(level.getRound().getBrick().indexOf(obj));
             }
         }
@@ -41,7 +42,8 @@ public class Collision {
         var ballBox = new BoundingBoxImpl(b);
         var padBox = new BoundingBoxImpl(p);
         if(ballBox.collideWith(padBox).isPresent()) {
-            physics.changeDirection(Side.UP_DOWN);
+            this.score.resetPoints();
+            this.physics.changeDirection(Side.UP_DOWN);
             return true;
         }
         return false;

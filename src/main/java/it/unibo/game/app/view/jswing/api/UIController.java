@@ -10,7 +10,9 @@ public interface UIController {
         START_MENU("START MENU"), 
         PAUSE_MENU("PAUSE MENU"), 
         GAME("ARKANOID"), 
-        TOP_10("TOP FIVE");
+        TOP_5("TOP FIVE"),
+        VICTORY("VICTORY"),
+        GAME_OVER("GAME_OVER");
 
         String name;
 
@@ -28,6 +30,8 @@ public interface UIController {
     void pauseMenu();
     void gameView();
     void leaderBoardView();
+    void gameOver();
+    void victory();
     void level(int numLevel);
     Map<Pair<Integer, Integer>, Integer> getList();
     Pair<Integer,Integer> getDimension();
