@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.model.FirstLevel;
-import it.unibo.game.app.model.Level; /*Forse */
+import it.unibo.game.app.model.AbstractLevel; /*Forse */
 import it.unibo.game.app.model.SecondLevel;
 import it.unibo.game.app.model.ThirdLevel;
 import it.unibo.game.app.view.jswing.api.UIController;
@@ -13,7 +13,7 @@ import it.unibo.game.app.view.jswing.impleentation.UIControllerImpl;
 
 public class ControllerImpl implements AppController{
     private UIController uiContr;
-    private Level l=new ThirdLevel(new Pair<>(400,600));
+    private AbstractLevel l=new ThirdLevel(new Pair<>(400,600));
 
     // public ControllerImpl (UIController uiC) {
     //     this.uiContr = uiC;

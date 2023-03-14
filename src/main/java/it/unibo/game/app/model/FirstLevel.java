@@ -2,7 +2,7 @@ package it.unibo.game.app.model;
 
 import it.unibo.game.Pair;
 
-public class FirstLevel extends Level{
+public class FirstLevel extends AbstractLevel{
 
     private final static int NORMAL_FIRST = 19;
     private final static int NORMAL_SECOND = 27;

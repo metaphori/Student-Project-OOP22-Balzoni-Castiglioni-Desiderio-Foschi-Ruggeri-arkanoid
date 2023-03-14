@@ -4,7 +4,7 @@ import it.unibo.game.Pair;
 
 /*Questa classe astratta dichiara variabili e definisce metodi in comune ai vari livelli */
 
-public abstract class Level {
+public abstract class AbstractLevel {
 
     private final static int INITIAL_LIVES=3;
     protected int lives = INITIAL_LIVES;
@@ -30,7 +30,7 @@ public abstract class Level {
     protected abstract void setSecondRound();
     protected abstract void setThirdRound();
 
-    public Level (int numRoundP) {
+    public AbstractLevel (int numRoundP) {
         this.numRoundPassed = numRoundP;
     }
     protected int increaseLife() {

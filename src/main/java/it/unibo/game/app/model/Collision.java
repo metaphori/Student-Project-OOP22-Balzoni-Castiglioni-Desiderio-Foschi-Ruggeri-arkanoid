@@ -6,10 +6,10 @@ import it.unibo.game.app.api.BoundingBox.Corner;
 import it.unibo.game.app.api.BoundingBox.Side;
 //devi trovare il modo per comunicare dov'è avvenuta la collisione
 public class Collision {
-    private Level level;
+    private AbstractLevel level;
     private BallPhysics physics;
 
-    public Collision(Level lev, BallPhysics physics){
+    public Collision(AbstractLevel lev, BallPhysics physics){
         this.level = lev;
         this.physics = physics;
     

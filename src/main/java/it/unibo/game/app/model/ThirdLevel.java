@@ -2,7 +2,7 @@ package it.unibo.game.app.model;
 
 import it.unibo.game.Pair;
 
-public class ThirdLevel extends Level {
+public class ThirdLevel extends AbstractLevel {
 
     private Pair<Integer,Integer> fSize;
 

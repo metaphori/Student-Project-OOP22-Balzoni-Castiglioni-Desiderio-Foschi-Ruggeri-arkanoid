@@ -2,7 +2,7 @@ package it.unibo.game.app.model;
 
 import it.unibo.game.Pair;
 
-public class SecondLevel extends Level {
+public class SecondLevel extends AbstractLevel {
     private final static int GRAY1 = 8;
     private final static int GRAY2 = 12;
     private final static int GRAY3 = 14;
