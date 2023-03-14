@@ -25,16 +25,13 @@ public abstract class AbstractLevel implements Level {
     private GameOver gameOver = new GameOver(currentRound);
 
     protected Pair<Integer,Integer> frameSize;
-    protected int numRoundPassed;
+    protected int numRoundPassed = 0;
 
     /*Posizionano gli oggetti (pad,pallina e blocchi) all'interno di ciascun round*/
     public abstract void setFirstRound();
     public abstract void setSecondRound();
     public abstract void setThirdRound();
 
-    public AbstractLevel () {
-        this.numRoundPassed = 0;
-    }
     public int increaseLife() {
         return this.lives++;
     }
