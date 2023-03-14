@@ -27,20 +27,20 @@ public abstract class AbstractLevel implements Level {
     protected int numRoundPassed;
 
     /*Posizionano gli oggetti (pad,pallina e blocchi) all'interno di ciascun round*/
-    protected abstract void setFirstRound();
-    protected abstract void setSecondRound();
-    protected abstract void setThirdRound();
+    public abstract void setFirstRound();
+    public abstract void setSecondRound();
+    public abstract void setThirdRound();
 
-    public AbstractLevel (int numRoundP) {
-        this.numRoundPassed = numRoundP;
+    public AbstractLevel () {
+        this.numRoundPassed = 0;
     }
-    protected int increaseLife() {
+    public int increaseLife() {
         return this.lives++;
     }
-    protected int decreaseLife() {
+    public int decreaseLife() {
         return this.lives--;
     }
-    protected boolean isAlive() {
+    public boolean isAlive() {
         return this.lives > 0 ? true : false;
     }
     
