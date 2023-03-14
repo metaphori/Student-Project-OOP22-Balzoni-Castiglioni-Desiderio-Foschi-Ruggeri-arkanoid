@@ -18,8 +18,8 @@ public class SecondLevel extends AbstractLevel {
     private final static int BRICKROW = 15;
 
     
-    public SecondLevel (Pair<Integer,Integer> fSize, int numRoundPassed) {
-        super(numRoundPassed);
+    public SecondLevel (Pair<Integer,Integer> fSize) {
+        super();
         this.normalBricksFirstRound = NORMAL1;
         this.surpriseBricksFirstRound = SURPRISE1;
         this.normalBricksSecondRound = NORMAL2;
@@ -32,19 +32,19 @@ public class SecondLevel extends AbstractLevel {
     }
 
     @Override
-    protected void setFirstRound() {
+    public void setFirstRound() {
         this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICKCOL1 - 1, BRICKROW, super.getNumRoundPassed());
         this.currentRound = new RoundMedium(4, normalBricksFirstRound, surpriseBricksFirstRound, GRAY1, this.sizeCalc);
     }
 
     @Override
-    protected void setSecondRound() {
+    public void setSecondRound() {
         this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICKCOL2 - 1, BRICKROW, super.getNumRoundPassed());
         this.currentRound = new RoundMedium(4, normalBricksSecondRound, surpriseBricksSecondRound, GRAY2, this.sizeCalc);
     }
 
     @Override
-    protected void setThirdRound() {
+    public void setThirdRound() {
         this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICKCOL3 - 1, BRICKROW, super.getNumRoundPassed());
         this.currentRound = new RoundMedium(4, normalBricksThirdRound, surpriseBricksThirdRound, GRAY3, this.sizeCalc);
     }
