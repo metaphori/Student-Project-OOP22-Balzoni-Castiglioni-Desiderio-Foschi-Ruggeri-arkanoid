@@ -7,16 +7,19 @@ import it.unibo.game.app.api.BoundingBox.Side;
 
 public class BallPhysics {
     
-    private Direction d = new DirectionImpl();
+    private Direction d ;
 
-    public Direction changeDirection(Optional<Side> side){
-        if(side == Optional.of(Side.UP_DOWN)){
+    public BallPhysics (Direction dir){
+        this.d = dir;
+    }
+    public Direction changeDirection(Side side){
+        if(side == Side.UP_DOWN){
             if(this.d.isDirectionUp()){
                 this.d.setDirectionDown();
             }else{
                 this.d.setDirectionUp();
             }
-        }else if(side == Optional.of(Side.LEFT_RIGHT)){
+        }else if(side == Side.LEFT_RIGHT){
             if(this.d.isDirectionLeft()){
                 this.d.setDirectionRight();
             }else{
