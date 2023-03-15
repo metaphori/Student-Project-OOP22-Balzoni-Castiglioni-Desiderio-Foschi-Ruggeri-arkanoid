@@ -1,26 +1,41 @@
 package it.unibo.game.app.model;
-
-import it.unibo.game.Pair;
-import it.unibo.game.app.api.GameObject;
 /*questa classe deve essere estesa da 
  * la classe che rappresenta i mattoni come ostacoli e 
  * mattoni di gioco
  * 
  */
-public abstract class AbstractBrick implements GameObject {
-    private Pair<Double, Double> pos;
+import it.unibo.game.app.api.BrickType;
 
-    public Pair<Double, Double> getPos() {
-        return pos;
+public abstract class AbstractBrick extends GameObjectImpl {
+    
+    private BrickType type;
+    private int brickWidth;
+    private int brickHight;
+    
+    public AbstractBrick (BrickType type, int width, int hight) {
+        this.type = type;
+        this.brickWidth = width;
+        this.brickHight = hight;
     }
 
-    public void setPos(Pair<Double, Double> pos) {
-        this.pos = pos;
+    public BrickType getType() {
+        return this.type;
     }
-    /*define if the brick is obstacle */
-    public abstract boolean isObstacle();
-    /*implements only for brick */
-    public abstract boolean isDestroyed();
-    /*implements only for brick */
+
+    public void changeType(BrickType type) {
+        this.type = type;
+    }
+
+    public int getBrickH () {
+        return this.brickHight;
+    }
+
+    public int getBrickW () {
+        return this.brickWidth;
+    }
+
+    public abstract boolean isDestroyable();
+
     public abstract void hit();
+
 }
