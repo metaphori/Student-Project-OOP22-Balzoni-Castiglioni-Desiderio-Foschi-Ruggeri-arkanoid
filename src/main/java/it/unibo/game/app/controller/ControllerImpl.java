@@ -102,4 +102,15 @@ public class ControllerImpl implements AppController{
     public void rPaint() {
         this.uiContr.rPaint();
     }
+    public void nextRound() {
+        if(l.checkRound()) {
+            if(l.getNumRoundPassed() == 1) {
+                l.setSecondRound();
+            } else if(l.getNumRoundPassed() == 2) {
+                l.setThirdRound();
+            } else {
+                uiContr.victory();
+            }
+        }
+    }
 }

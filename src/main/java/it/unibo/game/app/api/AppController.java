@@ -28,6 +28,7 @@ public interface AppController {
     void chooseLevel(int numLevel);
 
     Pair<Integer,Integer> getBrickDimension();
+    public void nextRound();
 
     //aggiunti io
     Pair<Integer,Integer> getBall();

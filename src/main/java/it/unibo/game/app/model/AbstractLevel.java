@@ -23,7 +23,7 @@ public abstract class AbstractLevel implements Level {
 
     protected Round currentRound;
     protected SizeCalculation sizeCalc;
-    //private GameOver gameOver = new GameOver(currentRound);
+    private GameOver gameOver = new GameOver(currentRound);
 
     protected Pair<Integer,Integer> frameSize;
     protected int numRoundPassed = 0;
@@ -48,5 +48,13 @@ public abstract class AbstractLevel implements Level {
     }
     public int getNumRoundPassed() {
         return this.numRoundPassed;
+    }
+    public boolean checkRound() {
+        if(gameOver.isRoundFinished()) {
+            this.numRoundPassed++;
+            return true;
+        }else {
+            return false;
+        }
     }
 }

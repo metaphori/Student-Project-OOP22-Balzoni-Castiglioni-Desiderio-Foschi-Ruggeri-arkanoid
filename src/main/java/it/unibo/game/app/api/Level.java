@@ -10,7 +10,7 @@ public interface Level {
     int increaseLife();
     int decreaseLife();
     boolean isAlive();
-    
+    boolean checkRound();
     Round getRound();
     int getNumRoundPassed();
 }

@@ -1,10 +1,12 @@
 package it.unibo.game.app.model;
 
+import it.unibo.game.app.api.Round;
+
 public class GameOver {
     
-    protected AbstractRound round;
+    protected Round round;
 
-    public GameOver(AbstractRound round) {
+    public GameOver(Round round) {
         this.round = round;
     } 
     public boolean hasMissedBall() {
