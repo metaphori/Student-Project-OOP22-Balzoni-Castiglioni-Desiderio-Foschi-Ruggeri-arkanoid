@@ -1,3 +1,4 @@
+
 # Comandi git per interagire con GitHub
 
 ### **Procedura per scaricare repository remota:**
@@ -35,8 +36,7 @@ Questo comando permette di vedere il lavoro degli altri caricato sulla repo remo
 * `git fetch <remote> <branch>`
 
 Questo comando permette di fare la fetch di un solo branch. Immaginate che dal branch develop ho creato un branch per lavorare ad una funzionalità, e mentre ci lavoro altri hanno fatto la stessa cosa per altre funzionalità, ma hanno fatto la merge con develop e caricato su GitHub. In questo momento quindi il mio branch devolop non è aggiornato alle ultime modifiche (non ha tutti i commit presenti sulla repo remota).
-Facendo 'git fetch origin develop' mi ritrovo un nuovo branch che parte dal mio branch develop che si chiamerà origin/develop (che appunto rappresenta il branch aggiornato). Questo mi permette di vedere i nuovi commit, senza dover per forza fare la merge con il mio stato attuale di develop.
-
+Facendo 'git fetch origin develop' mi ritrovo un nuovo branch che parte dal mio branch develop che si chiamerà origin/develop (che appunto rappresenta il branch aggiornato). Questo mi permette di vedere i nuovi commit, senza dover per forza fare la merge con il mio stato attuale di deve
 ### **Procedura per scaricare/aggiornare i cambiamenti fatti da altri caricati su repo remota (GitHub)**
 
 * `git pull <remote> <branch>`
@@ -58,9 +58,10 @@ Lanciando questo comando git assume che il remote di default sia origin e che vo
 
 N.B:
  Abbiamo deciso di avere:
+
 - il branch master (su cui carichiamo le versioni funzionanti), 
 - il branch develop (su cui costruiamo man mano il gioco),
 - altri branch, che partono da develop, su cui creiamo nuove funzioanlità. 
-Ogni branch, quando la funzionalità per cui è stato creato è completata, va riunito, con una merge, al branch develop.
+Ogni branch, quando la funzionalità per cui è stato creato è completata, va riunito, con una merge, al branch deve
 
 ---
