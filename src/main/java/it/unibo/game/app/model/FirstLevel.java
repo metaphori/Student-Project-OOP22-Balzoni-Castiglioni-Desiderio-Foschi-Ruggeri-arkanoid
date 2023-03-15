@@ -24,25 +24,25 @@ public class FirstLevel extends AbstractLevel{
         this.surpriseBricksSecondRound = SURPRISE_SECOND;
         this.surpriseBricksThirdRound = SURPRISE_THIRD;
         this.frameSize = frameSize;
-        setFirstRound();
+        this.setFirstRound();
     }
 
 
     @Override
-    protected void setFirstRound() {
-        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICK_COLUMNS, BRICK_ROWS_FIRST);
+    public void setFirstRound() {
+        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICK_COLUMNS, BRICK_ROWS_FIRST, super.getNumRoundPassed());
         this.currentRound = new RoundEasy(JUMP, normalBricksFirstRound, surpriseBricksFirstRound, this.sizeCalc);
     }
 
     @Override
-    protected void setSecondRound() {
-        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICK_COLUMNS, BRICK_ROWS_SECOND);
+    public void setSecondRound() {
+        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICK_COLUMNS, BRICK_ROWS_SECOND, super.getNumRoundPassed());
         this.currentRound = new RoundEasy(JUMP, normalBricksSecondRound, surpriseBricksSecondRound, this.sizeCalc);
     }
 
     @Override
-    protected void setThirdRound() {
-        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICK_COLUMNS, BRICK_ROWS_THIRD);
+    public void setThirdRound() {
+        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICK_COLUMNS, BRICK_ROWS_THIRD, super.getNumRoundPassed());
         this.currentRound = new RoundEasy(JUMP, normalBricksThirdRound, surpriseBricksThirdRound, this.sizeCalc);
     }
     
