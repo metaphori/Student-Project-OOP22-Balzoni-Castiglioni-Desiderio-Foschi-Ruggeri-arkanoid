@@ -1,31 +1,25 @@
 package it.unibo.game.app.model;
 
-
-import it.unibo.game.app.api.BoundingBox;
+import it.unibo.game.app.api.BallPhysics;
 import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.MovingObject;
+
 public class Ball extends GameObjectImpl implements MovingObject {
 
-    private final static double PI = Math.PI;
-    private double r;
-    
-    public double getR() {
+    private Integer r;
+    private BallPhysics phi;
+
+    public Integer getR() {
         return r;
     }
-    public void setR(double r) {
+
+    public void setR(Integer r) {
         this.r = r;
     }
-    
-    
+
     @Override
-    public BoundingBox getBoundingBox() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBoundingBox'");
+    public BallPhysics getPhysics() {
+        return phi;
     }
-    @Override
-    public Direction getDir() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDir'");
-    }
-    
+
 }
