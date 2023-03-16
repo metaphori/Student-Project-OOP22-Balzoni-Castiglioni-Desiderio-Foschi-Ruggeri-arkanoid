@@ -135,4 +135,7 @@ public class UIControllerImpl implements UIController  {
       chargeView(PAGES.VICTORY);
     }
     
+    public int getRowC(int x) {
+        return this.controller.getRow(x);
+    }
 }

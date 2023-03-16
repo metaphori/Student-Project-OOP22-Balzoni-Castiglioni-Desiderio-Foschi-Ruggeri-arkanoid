@@ -113,4 +113,8 @@ public class ControllerImpl implements AppController{
             }
         }
     }
+
+    public int getRow(int x) {
+        return l.getRound().getSizeCalc().getRowCordinate(x);
+    }
 }

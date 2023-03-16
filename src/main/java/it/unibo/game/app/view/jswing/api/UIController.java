@@ -44,4 +44,5 @@ public interface UIController {
     int getPadHeight();
     double getRBall();
     void rPaint();
+    int getRowC(int x);
 }
