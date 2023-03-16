@@ -7,12 +7,9 @@ import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.BoundingBox.Side;
 
 public class BallPhysicsImpl implements BallPhysics {
-    
+   
     private Direction d ;
 
-    public BallPhysicsImpl(Direction dir){
-        this.d = dir;
-    }
     @Override
     public Direction changeDirection(Side side){
         if(side == Side.UP_DOWN){
