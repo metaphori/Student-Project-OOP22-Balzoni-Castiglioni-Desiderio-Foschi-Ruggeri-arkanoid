@@ -1,7 +1,6 @@
 package it.unibo.game.app.model;
 
 import it.unibo.game.app.api.BallPhysics;
-import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.MovingObject;
 
 public class Ball extends GameObjectImpl implements MovingObject {
