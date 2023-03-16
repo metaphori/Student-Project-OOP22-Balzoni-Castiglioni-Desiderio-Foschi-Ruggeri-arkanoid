@@ -2,31 +2,22 @@ package it.unibo.game.app.model;
 
 import java.util.Optional;
 
-import it.unibo.game.app.api.BallPhysics;
 import it.unibo.game.app.api.BoundingBox.Corner;
 import it.unibo.game.app.api.BoundingBox.Side;
 
 public class Collision {
     private AbstractLevel level;
-    private BallPhysics physics;
     private Score score = new Score();
 
-    public Collision(AbstractLevel lev, BallPhysics physics){
+    public Collision(AbstractLevel lev){
         this.level = lev;
-        this.physics = physics;
-    
     }
     public void CollideWithEdges(Ball b, int height, int width){
-        /*da cambiare la logica delle collisioni considerando che la palla
-         * ritorna la sua fisica corrente dalla quale si estrapolerà
-         * la direzione
-         */
         var ballBox = new BoundingBoxImpl(b);
-        this.physics = new BallPhysicsImpl(b.getDir());
         if(ballBox.getBox().get(Corner.LEFT_DOWN).getY() == 0 ||ballBox.getBox().get(Corner.RIGHT_DOWN).getY() == width-1){
-            physics.changeDirection(Side.LEFT_RIGHT);
+            b.getPhysics().changeDirection(Side.LEFT_RIGHT);
         }else if(ballBox.getBox().get(Corner.LEFT_UP).getX()==0 ){
-            physics.changeDirection(Side.UP_DOWN);
+            b.getPhysics().changeDirection(Side.UP_DOWN);
         }
     }
 
@@ -36,7 +27,7 @@ public class Collision {
             var box = new BoundingBoxImpl(obj);
             if(ballBox.collideWith(box).isPresent()){
                 this.score.increaseScore();
-                this.physics.changeDirection(ballBox.collideWith(box).get());
+                b.getPhysics().changeDirection(ballBox.collideWith(box).get());
                 return Optional.of(level.getRound().getBrick().indexOf(obj));
             }
         }
@@ -48,7 +39,7 @@ public class Collision {
         var padBox = new BoundingBoxImpl(p);
         if(ballBox.collideWith(padBox).isPresent()) {
             this.score.resetPoints();
-            this.physics.changeDirection(Side.UP_DOWN);
+            b.getPhysics().changeDirection(Side.UP_DOWN);
             return true;
         }
         return false;
