@@ -58,13 +58,13 @@ public class RoundMedium extends AbstractRound {
         }
 
         /*Dopo che ho assegnato la pos a tutti i blocchi e il colore assegno i blocchi surprise in modo random*/
-        while (numSur <= this.getNumSur()) {
+        while (numSur < this.getNumSur()) {
             if (this.setBrickSurprise()) {
                 numSur++;
             }
         }
         /*Dopo che ho assegnato la pos a tutti i blocchi e il colore assegno i blocchi grigi in modo random*/
-        while (numH <= this.numHard) {
+        while (numH < this.numHard) {
             if (this.setBrickHard()) {
                 numH++;
             }
