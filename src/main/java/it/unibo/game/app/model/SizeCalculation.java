@@ -30,7 +30,7 @@ public class SizeCalculation {
         if (numR == 0) {
             return ((this.frameSizeH / 2) / 3);
         } else {
-            return ((frameSizeH / 2) / 3) * 2;
+            return ((frameSizeH / 2) / 4) * 2;
         }
     }
 
@@ -48,6 +48,10 @@ public class SizeCalculation {
 
     public Pair<Integer,Integer> getBrickDim() {
         return new Pair<Integer,Integer>(brickH, brickL);
+    }
+
+    public int getRowCordinate(int x) {
+        return this.startX + (x * this.brickH);
     }
 
 }
