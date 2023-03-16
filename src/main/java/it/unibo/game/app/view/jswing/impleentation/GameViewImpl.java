@@ -17,7 +17,7 @@ public class GameViewImpl extends JPanel implements KeyListener,ActionListener, 
     private UIController observer;
     private Timer timer;
     private static final int delay=8;
-    private boolean play=true;
+    private boolean play = true;
 
     public GameViewImpl(UIController control){
         setFocusable(true);
@@ -30,13 +30,19 @@ public class GameViewImpl extends JPanel implements KeyListener,ActionListener, 
 
     @Override
     public void paint(Graphics g){
-
+    
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, observer.getDimension().getX(), observer.getDimension().getY());
 
         
        observer.getList().entrySet().stream().forEach(x->{
-            g.setColor(x.getValue()==2 ? Color.GRAY : Color.RED);
+            g.setColor(x.getValue() == 2 ? Color.LIGHT_GRAY : 
+            x.getKey().getY() == observer.getRowC(0) ? Color.RED :
+            x.getKey().getY() == observer.getRowC(1) ? Color.BLUE :
+            x.getKey().getY() == observer.getRowC(2) ? Color.YELLOW :
+            x.getKey().getY() == observer.getRowC(3) ? Color.MAGENTA : 
+            x.getKey().getY() == observer.getRowC(4) ? Color.ORANGE :
+            x.getKey().getY() == observer.getRowC(5) ? Color.CYAN : Color.GREEN);
             g.fillRect(x.getKey().getX(),x.getKey().getY(), observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX());
             g.setColor(Color.BLACK);
             g.drawRect(x.getKey().getX(),x.getKey().getY(), observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX());
