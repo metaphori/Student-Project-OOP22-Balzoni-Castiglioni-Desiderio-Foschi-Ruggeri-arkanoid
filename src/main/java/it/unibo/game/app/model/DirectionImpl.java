@@ -13,6 +13,9 @@ public class DirectionImpl implements Direction {
     public DirectionImpl(){
         this.d= new Pair<Integer,Integer>(UP, RIGHT);
     }
+    public void setDirection(Pair<Integer,Integer> newD){
+        this.d = newD;
+    }
     @Override
     public void setDirectionUp(){
         this.d = new Pair<Integer,Integer>(UP, this.d.getY());
