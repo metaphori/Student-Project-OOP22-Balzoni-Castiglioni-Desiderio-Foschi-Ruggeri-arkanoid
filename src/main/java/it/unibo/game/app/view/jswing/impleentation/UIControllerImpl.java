@@ -50,13 +50,12 @@ public class UIControllerImpl implements UIController  {
         
 
         var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        /*creo una finestra minima 2/3 dello schermo */
-        this.window.setMinimumSize(new Dimension((int)screenSize.getHeight()/2,(int)screenSize.getWidth()/3));
+        
+        this.window.setMinimumSize(new Dimension(screenSize.height/2,screenSize.width/3));
         this.window.setJMenuBar(navBar);
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.window.setVisible(true);
         this.window.requestFocusInWindow();
-        //fatto io
         initialView();
     }
 
