@@ -14,6 +14,12 @@ public class UIControllerImpl implements UIController  {
     //aggiunto
     private JPanel deck = new JPanel();
     private CardLayout layout = new CardLayout();
+    private JMenuBar navBar = new JMenuBar();
+    private JMenu options = new JMenu("options");
+    private final JMenuItem menu = new JMenuItem(PAGES.START_MENU.toString());
+    private final JMenuItem pause = new JMenuItem(PAGES.PAUSE_MENU.toString());
+    private final JMenuItem leadrBoard = new JMenuItem(PAGES.TOP_5.toString());
+
 
     
     Map<PAGES, JPanel> views = new HashMap<>(
@@ -28,15 +34,25 @@ public class UIControllerImpl implements UIController  {
 
 
     public UIControllerImpl() {
-        //aggiunto
+        
+        options.add(menu);
+        options.add(pause);
+        options.add(leadrBoard);
+        navBar.add(options);
+
+        menu.addActionListener(e-> initialView());
+        pause.addActionListener(e-> pauseMenu());
+        leadrBoard.addActionListener(e-> leaderBoardView());
+
         this.deck = new JPanel(layout);
         views.entrySet().stream().forEach(x->deck.add(x.getValue(),x.getKey().getName()));
         window.add(deck,BorderLayout.CENTER);
-        //fino qui
+        
 
         var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         /*creo una finestra minima 2/3 dello schermo */
         this.window.setMinimumSize(new Dimension((int)screenSize.getHeight()/2,(int)screenSize.getWidth()/3));
+        this.window.setJMenuBar(navBar);
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.window.setVisible(true);
         this.window.requestFocusInWindow();
