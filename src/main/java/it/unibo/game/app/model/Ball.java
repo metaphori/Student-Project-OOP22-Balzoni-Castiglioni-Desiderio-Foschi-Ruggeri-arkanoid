@@ -1,12 +1,12 @@
 package it.unibo.game.app.model;
 
-import it.unibo.game.app.api.BallPhysics;
+import it.unibo.game.app.api.Physics;
 import it.unibo.game.app.api.MovingObject;
 
 public class Ball extends GameObjectImpl implements MovingObject {
 
     private Integer r;
-    private BallPhysics phi;
+    private Physics phi;
 
     public Integer getR() {
         return r;
@@ -17,7 +17,7 @@ public class Ball extends GameObjectImpl implements MovingObject {
     }
 
     @Override
-    public BallPhysics getPhysics() {
+    public Physics getPhysics() {
         return phi;
     }
 
