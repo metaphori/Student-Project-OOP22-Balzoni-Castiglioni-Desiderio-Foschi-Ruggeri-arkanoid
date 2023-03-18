@@ -96,7 +96,7 @@ public class UIControllerImpl implements UIController  {
     }
 
     public Pair<Integer, Integer> getDimension() {
-        return new Pair<Integer,Integer>(window.getWidth(), window.getHeight());
+        return controller.getWorldDimension();
     }
 
     public Pair<Integer,Integer> getDimensionBrick() {

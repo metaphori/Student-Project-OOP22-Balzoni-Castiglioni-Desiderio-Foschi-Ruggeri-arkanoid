@@ -31,7 +31,7 @@ public interface AppController {
 
     Pair<Integer,Integer> getBrickDimension();
 
-    Pair<Integer,Integer> getFrameDimension();
+    Pair<Integer,Integer> getWorldDimension();
 
     void nextRound();
 

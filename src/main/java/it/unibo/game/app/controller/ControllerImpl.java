@@ -56,8 +56,8 @@ public class ControllerImpl implements AppController{
     }
     
     @Override
-    public Pair<Integer,Integer> getFrameDimension() {
-       return this.uiContr.getDimension();
+    public Pair<Integer,Integer> getWorldDimension() {
+       return new Pair<Integer,Integer>(400, 300);
     }
     
     @Override
