@@ -10,7 +10,7 @@ import it.unibo.game.app.view.jswing.api.UIController;
 
 import java.awt.*;
 import java.awt.event.*;
-
+import java.awt.geom.*;
 
 public class GameViewImpl extends JPanel implements KeyListener,ActionListener, GameView{
 
@@ -29,68 +29,46 @@ public class GameViewImpl extends JPanel implements KeyListener,ActionListener, 
     }
 
     @Override
-    public void paint(Graphics g){
+    public void paintComponent(Graphics g){
     
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, observer.getDimension().getX(), observer.getDimension().getY());
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        // Determina la dimensione del pannello
+        int panelWidth = getWidth();
+        int panelHeight = getHeight();
 
         
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0,panelWidth,panelHeight);
+
+        //delta di trasformazione
+        double deltaH = ((double)panelHeight/observer.getDimension().getX());
+        double deltaW = ((double)panelWidth/observer.getDimension().getY());
+
        observer.getList().entrySet().stream().forEach(x->{
-            g.setColor(x.getValue() == 2 ? Color.LIGHT_GRAY : 
+            g2d.setColor(x.getValue() == 2 ? Color.LIGHT_GRAY : 
             x.getKey().getY() == observer.getRowC(0) ? Color.RED :
             x.getKey().getY() == observer.getRowC(1) ? Color.BLUE :
             x.getKey().getY() == observer.getRowC(2) ? Color.YELLOW :
             x.getKey().getY() == observer.getRowC(3) ? Color.MAGENTA : 
             x.getKey().getY() == observer.getRowC(4) ? Color.ORANGE :
             x.getKey().getY() == observer.getRowC(5) ? Color.CYAN : Color.GREEN);
-            g.fillRect(x.getKey().getX(),x.getKey().getY(), observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX());
-            g.setColor(Color.BLACK);
-            g.drawRect(x.getKey().getX(),x.getKey().getY(), observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX());
+            //g2d.draw(new Rectangle2D.Double(x.getKey().getX(),x.getKey().getY(), observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX()));
+            g2d.fill(new Rectangle2D.Double(x.getKey().getX()*deltaH,x.getKey().getY()*deltaW, observer.getDimensionBrick().getY()*deltaW, observer.getDimensionBrick().getX()*deltaH));
+            g2d.setColor(Color.BLACK);
+            g2d.draw(new Rectangle2D.Double(x.getKey().getX()*deltaH,x.getKey().getY()*deltaW, observer.getDimensionBrick().getY()*deltaW, observer.getDimensionBrick().getX()*deltaH));
         }); 
         
         
-        g.setColor(Color.GREEN);
-        g.fillOval(observer.getBall().getX(), observer.getBall().getY(), (int)observer.getRBall(),(int)observer.getRBall());
+        g2d.setColor(Color.GREEN);
+        g2d.fill(new Ellipse2D.Double(observer.getBall().getX()*deltaH, observer.getBall().getY()*deltaW, observer.getRBall()*deltaW,observer.getRBall()*deltaH));
 
-        g.setColor(Color.YELLOW);
-        g.fillRect(observer.getPad().getX(), observer.getPad().getY(), observer.getPadWight(), observer.getPadHeight());
-        g.dispose();
+        g2d.setColor(Color.YELLOW);
+        g2d.fill(new Rectangle2D.Double(observer.getPad().getX()*deltaH,observer.getPad().getY()*deltaW,observer.getPadWight()*deltaW, observer.getPadHeight()*deltaH));
+        g2d.dispose();
     } 
 
-   /* public void paint(Graphics g) {
-        Pair<Integer,Integer> pos;
-        int res; 
-        Random random = new Random();
-        int casualNum;
-
-        for (var elem : observer.getList().entrySet()){
-            pos = elem.getKey();
-            res = elem.getValue();
-            if (res != 2) {
-                casualNum = random.nextInt(5);
-                switch (casualNum) {
-                    case 0: g.setColor(Color.BLUE);
-                        break;
-                    case 1: g.setColor(Color.GREEN);
-                        break;
-                    case 2: g.setColor(Color.MAGENTA);
-                        break; 
-                    case 3: g.setColor(Color.ORANGE);
-                        break;  
-                    case 4: g.setColor(Color.RED);
-                        break;   
-                    case 5: g.setColor(Color.CYAN);
-                        break;      
-                    default:
-                        break;
-                }
-            } else {
-                g.setColor(Color.LIGHT_GRAY);
-            }
-            g.fillRect(pos.getY(), pos.getX(), observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX());
-            g.setColor(Color.BLACK);
-            g.drawRect(pos.getY(), pos.getX(), observer.getDimensionBrick().getY(),observer.getDimensionBrick().getX());
-        } */
+   
     
 
 
