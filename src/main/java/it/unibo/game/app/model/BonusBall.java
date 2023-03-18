@@ -20,6 +20,9 @@ public class BonusBall extends GameObjectImpl implements MovingObject{
     private Pair<Integer,Integer> centerCalculate(Pair<Integer,Integer> c) {
         return new Pair<Integer,Integer>(c.getX() + (this.height/2), c.getY() + (this.width/2));
     }
+    public int gerRadius() {
+        return this.radius;
+    }
 
     @Override
     public BallPhysics getPhysics() {
