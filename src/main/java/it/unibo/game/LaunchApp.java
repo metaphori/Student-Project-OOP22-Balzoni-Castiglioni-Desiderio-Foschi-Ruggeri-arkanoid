@@ -23,5 +23,6 @@ public class LaunchApp {
         // app.addView(new ArkanoidJfxView());
         final AppController app = new ControllerImpl();
         app.setView();
+        app.setModel();
     }
 }
