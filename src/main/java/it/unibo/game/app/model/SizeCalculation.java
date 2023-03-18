@@ -3,8 +3,8 @@ package it.unibo.game.app.model;
 import it.unibo.game.Pair;
 
 public class SizeCalculation {
-    private int frameSizeW;
-    private int frameSizeH;
+    private final static int WorldHight = 400;
+    private final static int WorldWidth = 300;
     private int numBrickCol;
     private int numBrickRow;
     private int startX;
@@ -14,28 +14,26 @@ public class SizeCalculation {
     private int brickL;
     private int brickH;
 
-    public SizeCalculation(int frameW, int frameH, int numBrickCol, int numBrickRow, int roundPassed) {
-        this.frameSizeW = frameW;
-        this.frameSizeH = frameH;
+    public SizeCalculation(int numBrickCol, int numBrickRow, int roundPassed) {
         this.numBrickCol = numBrickCol;
         this.numBrickRow = numBrickRow;
-        startX = (frameSizeH / 2) / 6;
+        startX = (WorldHight / 2) / 6;
         stopX = this.getStopX(roundPassed);
-        stopY = frameSizeW;
-        brickL = frameSizeW / numBrickRow;
+        stopY = WorldWidth;
+        brickL = WorldWidth / numBrickRow;
         brickH = (stopX - startX) / numBrickCol;
     }
 
     private int getStopX(int numR) {
         if (numR == 0) {
-            return ((this.frameSizeH / 2) / 3);
+            return ((WorldHight / 2) / 3);
         } else {
-            return ((frameSizeH / 2) / 4) * 2;
+            return ((WorldHight / 2) / 4) * 2;
         }
     }
 
-    public Pair<Integer,Integer> getFrameSize() {
-        return new Pair<Integer,Integer>(frameSizeH, frameSizeW);
+    public static Pair<Integer,Integer> getWorldSize() {
+        return new Pair<Integer,Integer>(WorldHight, WorldWidth);
     }
 
     public Pair<Integer,Integer> getStart() {

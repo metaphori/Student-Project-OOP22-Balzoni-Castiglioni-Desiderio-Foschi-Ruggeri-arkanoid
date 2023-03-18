@@ -25,8 +25,8 @@ public abstract class AbstractRound implements Round {
         this.numBrick = numB;
         this.numSurprise = numS;
         this.sizeC = size;
-        pad = new Pad(size.getFrameSize());
-        ball.setR(size.getFrameSize().getY()/15);
+        pad = new Pad(size.getWorldSize());
+        ball.setR(size.getWorldSize().getY()/15);
         ball.setPos(new Pair<>(pad.getPos().getX(),pad.getPos().getY()-(int)ball.getR()));
     }
 
