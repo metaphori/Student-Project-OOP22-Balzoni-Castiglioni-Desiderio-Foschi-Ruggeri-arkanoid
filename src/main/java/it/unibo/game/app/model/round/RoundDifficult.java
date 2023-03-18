@@ -1,10 +1,13 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.round;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.BrickType;
+import it.unibo.game.app.model.SizeCalculation;
+import it.unibo.game.app.model.brick.NormalBrick;
+import it.unibo.game.app.model.brick.Obstacle;
 
 public class RoundDifficult extends AbstractRound {
 

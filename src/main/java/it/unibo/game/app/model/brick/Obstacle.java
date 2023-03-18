@@ -1,4 +1,4 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.brick;
 
 import it.unibo.game.app.api.BrickType;
 

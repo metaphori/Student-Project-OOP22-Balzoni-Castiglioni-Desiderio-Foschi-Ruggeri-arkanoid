@@ -1,4 +1,4 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.round;
 
 import it.unibo.game.app.api.Round;
 

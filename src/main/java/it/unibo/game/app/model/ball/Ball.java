@@ -1,6 +1,7 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.ball;
 
 import it.unibo.game.app.api.Physics;
+import it.unibo.game.app.model.GameObjectImpl;
 import it.unibo.game.app.api.MovingObject;
 
 public class Ball extends GameObjectImpl implements MovingObject {

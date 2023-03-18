@@ -1,10 +1,12 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.round;
 
 
 import java.util.Random;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.BrickType;
+import it.unibo.game.app.model.SizeCalculation;
+import it.unibo.game.app.model.brick.NormalBrick;
 
 public class RoundMedium extends AbstractRound {
 

@@ -1,6 +1,6 @@
 package it.unibo.game.app.api;
 
-import it.unibo.game.app.model.AbstractRound;
+import it.unibo.game.app.model.round.*;
 
 public interface Level {
     void setFirstRound();

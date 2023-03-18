@@ -1,4 +1,4 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.ball;
 
 
 

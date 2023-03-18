@@ -1,8 +1,10 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.levels;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.Round;
+import it.unibo.game.app.model.SizeCalculation;
+import it.unibo.game.app.model.round.GameOver;
 
 /*Questa classe astratta dichiara variabili e definisce metodi in comune ai vari livelli */
 

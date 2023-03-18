@@ -1,4 +1,4 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.leaderb;
 import it.unibo.game.Pair;
 import java.util.*;
 

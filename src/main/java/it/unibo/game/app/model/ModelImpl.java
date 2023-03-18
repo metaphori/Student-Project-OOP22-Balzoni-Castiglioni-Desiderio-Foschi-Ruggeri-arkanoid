@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.model.levels.*;
 import it.unibo.game.app.api.Model;
 
 public class ModelImpl implements Model{

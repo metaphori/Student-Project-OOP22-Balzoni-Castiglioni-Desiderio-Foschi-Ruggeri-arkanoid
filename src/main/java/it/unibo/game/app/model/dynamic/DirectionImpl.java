@@ -1,4 +1,4 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.dynamic;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Direction;

@@ -1,7 +1,8 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.pad;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Physics;
+import it.unibo.game.app.model.GameObjectImpl;
 import it.unibo.game.app.api.MovingObject;
 
 public class Pad extends GameObjectImpl implements MovingObject {

@@ -1,10 +1,15 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.dynamic;
 
 import java.util.Optional;
 
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.BoundingBox.Corner;
 import it.unibo.game.app.api.BoundingBox.Side;
+import it.unibo.game.app.model.ball.*;
+import it.unibo.game.app.model.brick.NormalBrick;
+import it.unibo.game.app.model.pad.Pad;
+import it.unibo.game.app.model.BoundingBoxImpl;
+import it.unibo.game.app.model.*;
 
 public class Collision {
     private Level level;
