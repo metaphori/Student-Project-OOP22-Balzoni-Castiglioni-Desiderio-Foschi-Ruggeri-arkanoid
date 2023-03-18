@@ -15,10 +15,10 @@ public class Move {
     public Move (Level l, Ball ball, Pad p){
         coll = new Collision(l);
         this.ball = ball;
-        this.pad = pad;
+        this.pad = p;
     }
     public void nextBall(){ 
-        coll.CollideWithEdges(this.ball, SizeCalculation.getFrameSize().getX() , SizeCalculation.getFrameSize().getY());
+        coll.CollideWithEdges(this.ball, SizeCalculation.getWorldSize().getX() , SizeCalculation.getWorldSize().getY());
         index = coll.collideWithBrick(this.ball);
         coll.CollideWithPad(this.ball, this.pad);
         var newPos = new Pair<Integer, Integer> (this.ball.getPos().getX() +this.ball.getPhysics().getDir().getDirection().getX(),
