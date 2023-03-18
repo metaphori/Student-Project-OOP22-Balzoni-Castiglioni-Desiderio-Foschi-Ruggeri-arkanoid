@@ -16,10 +16,10 @@ public class StartMenu extends JPanel{
 
     public StartMenu(UIControllerImpl ui){
         this.uiControllerImpl = ui;
-        JButton easy = new CustomBtn(50,"EASY");
-        JButton medium = new CustomBtn(50,"MEDIUM");
-        JButton hard = new CustomBtn(50,"HARD");
-        JButton top5 = new CustomBtn(50,"CLASSIFICA");
+        JButton easy = new CustomBtn(25,"EASY");
+        JButton medium = new CustomBtn(25,"MEDIUM");
+        JButton hard = new CustomBtn(25,"HARD");
+        JButton top5 = new CustomBtn(25,"CLASSIFICA");
         JLabel title = new JLabel("ARKANOID");
         JPanel buttonContainer = new JPanel();
       
