@@ -18,7 +18,7 @@ public class ModelImpl implements Model{
     public void setController(AppController c) {
         // TODO Auto-generated method stub
         this.control=c;
-        this.level=new FirstLevel(this.control.getFrameDimension());
+        this.level=new FirstLevel(this.control.getWorldDimension());
     }
 
     @Override
@@ -33,13 +33,13 @@ public class ModelImpl implements Model{
         // TODO Auto-generated method stub
         switch(numLevel) {
             case 1:
-                this.level = new FirstLevel(control.getFrameDimension());
+                this.level = new FirstLevel(control.getWorldDimension());
                 break;
             case 2:
-                this.level = new SecondLevel(control.getFrameDimension());
+                this.level = new SecondLevel(control.getWorldDimension());
                 break;
             case 3:
-                this.level = new ThirdLevel(control.getFrameDimension());
+                this.level = new ThirdLevel(control.getWorldDimension());
                 break;
         }
     }
