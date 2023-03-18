@@ -29,11 +29,11 @@ public class RoundEasy extends AbstractRound {
                 super.brick.add(brick);
             }
         }
-        // while (this.numSurpriseBrick <= this.getNumSur()) {
-        //     if (this.setBrickSurprise()) {
-        //         this.numSurpriseBrick++;
-        //     }
-        // }
+        while (this.numSurpriseBrick < this.getNumSur()) {
+            if (this.setBrickSurprise()) {
+                this.numSurpriseBrick++;
+            }
+        }
     }
     
 }

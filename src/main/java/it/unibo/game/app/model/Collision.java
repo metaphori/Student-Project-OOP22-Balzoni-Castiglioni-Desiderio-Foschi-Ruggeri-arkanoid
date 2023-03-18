@@ -2,14 +2,15 @@ package it.unibo.game.app.model;
 
 import java.util.Optional;
 
+import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.BoundingBox.Corner;
 import it.unibo.game.app.api.BoundingBox.Side;
 
 public class Collision {
-    private AbstractLevel level;
+    private Level level;
     private Score score = new Score();
 
-    public Collision(AbstractLevel lev){
+    public Collision(Level lev){
         this.level = lev;
     }
     public void CollideWithEdges(Ball b, int height, int width){
@@ -21,7 +22,7 @@ public class Collision {
         }
     }
 
-    public Optional<Integer> isCollideWithBrick(Ball b){
+    public Optional<Integer> collideWithBrick(Ball b){
         var ballBox = new BoundingBoxImpl(b);
         for (NormalBrick obj : level.getRound().getBrick()) {
             var box = new BoundingBoxImpl(obj);
@@ -34,14 +35,13 @@ public class Collision {
         return Optional.empty();
     }
 
-    public boolean isCollideWithPad (Ball b, Pad p){
+    public void CollideWithPad (Ball b, Pad p){
         var ballBox = new BoundingBoxImpl(b);
         var padBox = new BoundingBoxImpl(p);
         if(ballBox.collideWith(padBox).isPresent()) {
             this.score.resetPoints();
             b.getPhysics().changeDirection(Side.UP_DOWN);
-            return true;
+        
         }
-        return false;
     }
 }
