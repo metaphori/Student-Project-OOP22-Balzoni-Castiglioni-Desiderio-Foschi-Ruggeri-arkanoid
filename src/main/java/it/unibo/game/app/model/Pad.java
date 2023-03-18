@@ -1,7 +1,7 @@
 package it.unibo.game.app.model;
 
 import it.unibo.game.Pair;
-import it.unibo.game.app.api.BallPhysics;
+import it.unibo.game.app.api.Physics;
 import it.unibo.game.app.api.MovingObject;
 
 public class Pad extends GameObjectImpl implements MovingObject {
@@ -44,7 +44,7 @@ public class Pad extends GameObjectImpl implements MovingObject {
 
 
     @Override
-    public BallPhysics getPhysics() {
+    public Physics getPhysics() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPhysics'");
     }
