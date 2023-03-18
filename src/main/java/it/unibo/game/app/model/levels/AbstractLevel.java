@@ -6,6 +6,7 @@ import it.unibo.game.app.api.Round;
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.round.GameOver;
 
+
 /*Questa classe astratta dichiara variabili e definisce metodi in comune ai vari livelli */
 
 public abstract class AbstractLevel implements Level {
