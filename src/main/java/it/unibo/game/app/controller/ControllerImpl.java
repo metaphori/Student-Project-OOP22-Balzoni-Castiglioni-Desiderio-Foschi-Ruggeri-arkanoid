@@ -5,7 +5,9 @@ import java.util.stream.Collectors;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.api.Model;
 import it.unibo.game.app.model.FirstLevel;
+import it.unibo.game.app.model.ModelImpl;
 import it.unibo.game.app.model.AbstractLevel; /*Forse */
 import it.unibo.game.app.model.SecondLevel;
 import it.unibo.game.app.model.ThirdLevel;
@@ -13,14 +15,10 @@ import it.unibo.game.app.view.jswing.api.UIController;
 import it.unibo.game.app.view.jswing.impleentation.UIControllerImpl;
 
 public class ControllerImpl implements AppController{
-    private UIController uiContr;
-    private Level l;
 
-    // public ControllerImpl (UIController uiC) {
-    //     this.uiContr = uiC;
-    // }
-    public ControllerImpl () {
-    }
+    private UIController uiContr;
+    private Model model;
+
     @Override
     public void play() {
         // TODO Auto-generated method stub
@@ -44,77 +42,79 @@ public class ControllerImpl implements AppController{
         uiContr.setController(this);
     }
 
+    @Override
+    public void setModel(){
+        this.model=new ModelImpl();
+        this.model.setController(this);
+    }
+
+    @Override
     public Map<Pair<Integer,Integer>, Integer> getBrickList() {
-        return l.getRound().getBrick().stream().collect(
-                            Collectors.toMap(b -> b.getPos(), b -> b.getRes()));
+        return this.model.getBrickList();
 
     } 
 
+    @Override
     public void chooseLevel(int numLevel) {
-        switch(numLevel) {
-            case 1:
-                this.l = new FirstLevel(uiContr.getDimension());
-                break;
-            case 2:
-                this.l = new SecondLevel(uiContr.getDimension());
-                break;
-            case 3:
-                this.l = new ThirdLevel(uiContr.getDimension());
-                break;
-        }
+        this.model.chooseLevel(numLevel);
     }
     
+    @Override
     public Pair<Integer,Integer> getFrameDimension() {
        return this.uiContr.getDimension();
     }
     
+    @Override
     public Pair<Integer,Integer> getBrickDimension() {
-        return l.getRound().getSizeCalc().getBrickDim();
+        return this.model.getBrickDimension();
     }
+
     @Override
     public Pair<Integer,Integer> getBall() {
         // TODO Auto-generated method stub
-        return l.getRound().getPosBall();
+        return this.model.getBall();
     }
+
     @Override
     public Pair<Integer,Integer> getPad() {
         // TODO Auto-generated method stub
-        return l.getRound().getPosPad();
+        return this.model.getPad();
     }
 
-    //aggiunto
+    @Override
     public void changePos(Pair<Integer,Integer> pos){
-        l.getRound().setPosPad(pos);
+        this.model.changePos(pos);
     }
 
+    @Override
     public int getPadWight(){
-        return l.getRound().getPad().getWidth();
+        return this.model.getPadWight();
     }
 
+    @Override
     public int getPadHeight(){
-        return l.getRound().getPad().getHight();
+        return this.model.getPadHeight();
     }
 
+    @Override
     public double getRBall(){
-        return l.getRound().getBall().getR();
+        return this.model.getRBall();
     }
 
+    @Override
     public void rPaint() {
         this.uiContr.rPaint();
     }
+
+    @Override
     public void nextRound() {
-        if(l.checkRound()) {
-            if(l.getNumRoundPassed() == 1) {
-                l.setSecondRound();
-            } else if(l.getNumRoundPassed() == 2) {
-                l.setThirdRound();
-            } else {
-                uiContr.victory();
-            }
+        if(!this.model.nextRound()) {
+            uiContr.victory();
         }
     }
 
+    @Override
     public int getRow(int x) {
-        return l.getRound().getSizeCalc().getRowCordinate(x);
+        return this.model.getRow(x);
     }
 }
