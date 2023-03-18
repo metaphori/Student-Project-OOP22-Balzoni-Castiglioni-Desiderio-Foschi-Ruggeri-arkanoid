@@ -25,10 +25,10 @@ public class RoundDifficult extends AbstractRound {
         // TODO Auto-generated method stub
         int num=0;
         int lines;
-        for(int i=20; super.brick.size()<(this.obstacles+this.getNumBrick()+this.getNumSur());i=i+getJump()+getSizeCalc().getBrickDim().getX()){
+        for(int i=getSizeCalc().getStart().getX(); super.brick.size()<(this.obstacles+this.getNumBrick()+this.getNumSur());i=i+getSizeCalc().getBrickDim().getX()){
             num++;
             lines=0;
-            for(int j=getSizeCalc().getFrameSize().getY()/2-(num)*(getSizeCalc().getBrickDim().getY()/2)-10; lines<num; j=j+getJump()+getSizeCalc().getBrickDim().getY()){
+            for(int j=getSizeCalc().getFrameSize().getY()/2-(num)*(getSizeCalc().getBrickDim().getY()/2)-10; lines<num; j=j+getSizeCalc().getBrickDim().getY()){
                 NormalBrick b = new NormalBrick(BrickType.NORMAL, getSizeCalc().getBrickDim().getY(), getSizeCalc().getBrickDim().getX(),1);
                 b.setPos(new Pair<>(j,i));
                 super.brick.add(b);
