@@ -3,11 +3,11 @@ package it.unibo.game.app.model;
 
 
 import it.unibo.game.Pair;
-import it.unibo.game.app.api.BallPhysics;
+import it.unibo.game.app.api.Physics;
 import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.BoundingBox.Side;
 
-public class BallPhysicsImpl implements BallPhysics {
+public class BallPhysicsImpl implements Physics {
    
     private Direction d ;
 
