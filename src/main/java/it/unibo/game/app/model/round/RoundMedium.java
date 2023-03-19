@@ -34,8 +34,8 @@ public class RoundMedium extends AbstractRound {
         Random random = new Random();
         int idx = random.nextInt(this.getBrick().size());
         
-        if (this.getBrick().get(idx).getType() == BrickType.NORMAL && this.getBrick().get(idx).getRes() == 1 ) { 
-            this.getBrick().get(idx).increaseRes(this.getBrick().get(idx).getRes());
+        if (this.getBrick().get(idx).getType() == BrickType.NORMAL && this.getBrick().get(idx).getRes().get() == 1 ) { 
+            this.getBrick().get(idx).increaseRes(this.getBrick().get(idx).getRes().get());
             return true;
         }
         else {
