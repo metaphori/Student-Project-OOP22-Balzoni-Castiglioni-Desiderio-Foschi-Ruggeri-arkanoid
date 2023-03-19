@@ -2,6 +2,7 @@ package it.unibo.game.app.model.dynamic;
 
 import java.util.Optional;
 
+import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.BoundingBox.Corner;
 import it.unibo.game.app.api.BoundingBox.Side;
@@ -29,7 +30,7 @@ public class Collision {
 
     public Optional<Integer> collideWithBrick(Ball b){
         var ballBox = new BoundingBoxImpl(b);
-        for (NormalBrick obj : level.getRound().getBrick()) {
+        for (Brick obj : level.getRound().getBrick()) {
             var box = new BoundingBoxImpl(obj);
             if(ballBox.collideWith(box).isPresent()){
                 this.score.increaseScore();

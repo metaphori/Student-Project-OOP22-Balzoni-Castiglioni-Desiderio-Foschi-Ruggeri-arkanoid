@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.BoundingBox;
+import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.model.brick.AbstractBrick;
 import it.unibo.game.app.model.pad.Pad;
@@ -22,7 +23,7 @@ public class BoundingBoxImpl implements BoundingBox {
         //this.corners.put(Corner.RIGHT_UP,new Pair<Integer,Integer>(centre.getX()+radius,centre.getY()-radius ));
   
     }
-    public BoundingBoxImpl(AbstractBrick b){
+    public BoundingBoxImpl(Brick b){
        setRectBox(b.getBrickH(), b.getBrickW(), b.getPos());
     }
 
