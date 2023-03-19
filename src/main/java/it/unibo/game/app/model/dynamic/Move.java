@@ -24,7 +24,7 @@ public class Move {
         coll.CollideWithEdges(this.ball, SizeCalculation.getWorldSize().getX() , SizeCalculation.getWorldSize().getY());
         index = coll.collideWithBrick(this.ball);
         coll.CollideWithPad(this.ball, this.pad);
-        var newPos = new Pair<Integer, Integer> (this.ball.getPos().getX() +this.ball.getPhysics().getDir().getDirection().getX(),
+        var newPos = new Pair<Double,Double> (this.ball.getPos().getX() +this.ball.getPhysics().getDir().getDirection().getX(),
                                                  this.ball.getPos().getY() + this.ball.getPhysics().getDir().getDirection().getY());
         ball.setPos(newPos);
     }

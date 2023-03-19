@@ -20,7 +20,7 @@ public class SecondLevel extends AbstractLevel {
     private final static int BRICKROW = 15;
 
     
-    public SecondLevel (Pair<Integer,Integer> fSize) {
+    public SecondLevel (Pair<Double, Double> pair) {
         super();
         this.normalBricksFirstRound = NORMAL1;
         this.surpriseBricksFirstRound = SURPRISE1;
@@ -28,7 +28,7 @@ public class SecondLevel extends AbstractLevel {
         this.surpriseBricksSecondRound = SURPRISE2;
         this.normalBricksThirdRound = NORMAL3;
         this.surpriseBricksThirdRound = SURPRISE3;
-        this.frameSize = fSize;
+        this.worldSize = pair;
         this.setFirstRound();
 
     }

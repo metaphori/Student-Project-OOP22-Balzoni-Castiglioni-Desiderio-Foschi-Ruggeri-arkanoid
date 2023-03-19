@@ -4,8 +4,8 @@ import it.unibo.game.app.api.BrickType;
 
 public class Obstacle extends AbstractBrick {
 
-    public Obstacle(BrickType type, int width, int hight) {
-        super(type, width, hight);
+    public Obstacle(BrickType type, Double double1, Double double2) {
+        super(type, double1, double2);
         //TODO Auto-generated constructor stub
     }
 

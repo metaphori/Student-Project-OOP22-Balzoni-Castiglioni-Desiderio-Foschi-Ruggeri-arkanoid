@@ -11,7 +11,7 @@ import it.unibo.game.app.model.pad.Pad;
 
 public class BoundingBoxImpl implements BoundingBox {
 
-    private Map<Corner, Pair<Integer, Integer>> corners;
+    private Map<Corner, Pair<Double,Double>> corners;
   
     public BoundingBoxImpl(Ball b){
         var radius = b.getR();
@@ -29,11 +29,11 @@ public class BoundingBoxImpl implements BoundingBox {
     public BoundingBoxImpl (Pad p){
        setRectBox(p.getHight(), p.getWidth(), p.getPos());
     }
-    private void setRectBox (int h, int w, Pair<Integer, Integer> pos){
-        this.corners.put(Corner.LEFT_DOWN,new Pair<Integer,Integer>( pos.getX()+h, pos.getY() ) );
-        this.corners.put(Corner.LEFT_UP, pos );
-        this.corners.put(Corner.RIGHT_DOWN,new Pair<Integer,Integer>(pos.getX() + h, pos.getY() + w) );
-        this.corners.put(Corner.RIGHT_UP,new Pair<Integer, Integer> (pos.getX(), pos.getY()+w));
+    private void setRectBox (Double double1, Double double2, Pair<Double, Double> pair){
+        this.corners.put(Corner.LEFT_DOWN,new Pair<Double,Double>( pair.getX()+double1, pair.getY() ) );
+        this.corners.put(Corner.LEFT_UP, pair );
+        this.corners.put(Corner.RIGHT_DOWN,new Pair<Double,Double>(pair.getX() + double1, pair.getY() + double2) );
+        this.corners.put(Corner.RIGHT_UP,new Pair<Double,Double> (pair.getX(), pair.getY()+double2));
       
     }
     @Override
@@ -54,7 +54,7 @@ public class BoundingBoxImpl implements BoundingBox {
    
        return Optional.empty();
     }
-    public Map<Corner, Pair<Integer, Integer>> getBox(){
+    public Map<Corner, Pair<Double,Double>> getBox(){
         return this.corners;
     }
   

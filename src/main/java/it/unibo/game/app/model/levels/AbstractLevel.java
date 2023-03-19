@@ -28,7 +28,7 @@ public abstract class AbstractLevel implements Level {
     protected SizeCalculation sizeCalc;
     private GameOver gameOver = new GameOver(currentRound);
 
-    protected Pair<Integer,Integer> frameSize;
+    protected Pair<Double, Double> worldSize;
     protected int numRoundPassed = 0;
 
     /*Posizionano gli oggetti (pad,pallina e blocchi) all'interno di ciascun round*/

@@ -20,13 +20,13 @@ public interface Round{
 
     List<NormalBrick> getBrick ();
 
-    void setPosBall (Pair<Integer,Integer> pos);
+    void setPosBall (Pair<Double,Double> pos);
 
-    void setPosPad (Pair<Integer,Integer> pos);
+    void setPosPad (Pair<Double,Double> pos);
 
-    Pair<Integer,Integer> getPosBall();
+    Pair<Double,Double> getPosBall();
 
-    Pair<Integer,Integer> getPosPad();
+    Pair<Double,Double> getPosPad();
 
     Pad getPad();
 

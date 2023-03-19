@@ -7,26 +7,26 @@ public interface Model{
     
     void setController(AppController c);
 
-    Map<Pair<Integer,Integer>, Integer> getBrickList();
+    Map<Pair<Double,Double>, Integer> getBrickList();
 
     void chooseLevel(int numLevel);
 
-    Pair<Integer,Integer> getBrickDimension();
+    Pair<Double,Double> getBrickDimension();
 
-    Pair<Integer,Integer> getBall();
+    Pair<Double,Double> getBall();
 
-    Pair<Integer,Integer> getPad();
+    Pair<Double,Double> getPad();
 
-    void changePos(Pair<Integer,Integer> pos);
+    void changePos(Pair<Double,Double> pos);
 
     boolean nextRound();
 
-    int getPadWight();
+    Double getPadWight();
 
-    int getPadHeight();
+    Double getPadHeight();
 
-    double getRBall();
+    Double getRBall();
 
-    int getRow(int x);
+    Double getRow(Double x);
 
 }

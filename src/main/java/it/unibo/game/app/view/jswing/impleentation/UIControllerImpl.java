@@ -86,7 +86,7 @@ public class UIControllerImpl implements UIController  {
         chargeView(PAGES.TOP_5);
     }
 
-    public  Map<Pair<Integer,Integer>, Integer> getList() {
+    public  Map<Pair<Double, Double>, Integer> getList() {
         return controller.getBrickList(); 
     } 
 
@@ -95,38 +95,38 @@ public class UIControllerImpl implements UIController  {
         controller.chooseLevel(numLevel);
     }
 
-    public Pair<Integer, Integer> getDimension() {
+    public Pair<Double, Double> getDimension() {
         return controller.getWorldDimension();
     }
 
-    public Pair<Integer,Integer> getDimensionBrick() {
+    public Pair<Double, Double> getDimensionBrick() {
         return controller.getBrickDimension();
     }
 
     @Override
-    public Pair<Integer,Integer> getBall() {
+    public Pair<Double, Double> getBall() {
         return controller.getBall();
     }
 
     @Override
-    public Pair<Integer,Integer> getPad() {
+    public Pair<Double, Double> getPad() {
         return controller.getPad();
     }
 
     //aggiunto
-    public void changePosPad(Pair<Integer,Integer> pos){
+    public void changePosPad(Pair<Double, Double> pos){
         controller.changePos(pos);
     }
 
-    public int getPadWight(){
+    public Double getPadWight(){
         return controller.getPadWight();
     }
 
-    public int getPadHeight(){
+    public Double getPadHeight(){
         return controller.getPadHeight();
     }
 
-    public double getRBall(){
+    public Double getRBall(){
         return controller.getRBall();
     }
 
@@ -150,7 +150,7 @@ public class UIControllerImpl implements UIController  {
       chargeView(PAGES.VICTORY);
     }
     
-    public int getRowC(int x) {
+    public Double getRowC(Double x) {
         return this.controller.getRow(x);
     }
 }

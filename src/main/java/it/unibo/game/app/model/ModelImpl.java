@@ -22,10 +22,11 @@ public class ModelImpl implements Model{
     }
 
     @Override
-    public Map<Pair<Integer, Integer>, Integer> getBrickList() {
+    public Map<Pair<Double,Double>, Integer> getBrickList() {
         // TODO Auto-generated method stub
-        return this.level.getRound().getBrick().stream().collect(
-                            Collectors.toMap(b -> b.getPos(), b -> b.getRes()));
+        // return this.level.getRound().getBrick().stream().collect(
+        //                     Collectors.toMap(b -> b.getPos(), b -> b.getRes()));
+        return this.level.getRound().getBrick().stream().collect(Collectors.toMap(b->b.getPos(), b->b.getRes()));
     }
 
     @Override
@@ -45,49 +46,49 @@ public class ModelImpl implements Model{
     }
 
     @Override
-    public Pair<Integer, Integer> getBrickDimension() {
+    public Pair<Double,Double> getBrickDimension() {
         // TODO Auto-generated method stub
         return this.level.getRound().getSizeCalc().getBrickDim();
     }
 
     @Override
-    public Pair<Integer, Integer> getBall() {
+    public Pair<Double,Double> getBall() {
         // TODO Auto-generated method stub
         return this.level.getRound().getPosBall();
     }
 
     @Override
-    public Pair<Integer, Integer> getPad() {
+    public Pair<Double, Double> getPad() {
         // TODO Auto-generated method stub
         return this.level.getRound().getPosPad();
     }
 
     @Override
-    public void changePos(Pair<Integer, Integer> pos) {
+    public void changePos(Pair<Double,Double> pos) {
         // TODO Auto-generated method stub
         this.level.getRound().setPosPad(pos);
     }
 
     @Override
-    public int getPadWight() {
+    public Double getPadWight() {
         // TODO Auto-generated method stub
         return this.level.getRound().getPad().getWidth();
     }
 
     @Override
-    public int getPadHeight() {
+    public Double getPadHeight() {
         // TODO Auto-generated method stub
         return this.level.getRound().getPad().getHight();
     }
 
     @Override
-    public double getRBall() {
+    public Double getRBall() {
         // TODO Auto-generated method stub
         return this.level.getRound().getBall().getR();
     }
 
     @Override
-    public int getRow(int x) {
+    public Double getRow(Double x) {
         // TODO Auto-generated method stub
         return this.level.getRound().getSizeCalc().getRowCordinate(x);
     }

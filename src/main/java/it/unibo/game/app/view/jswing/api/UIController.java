@@ -33,16 +33,16 @@ public interface UIController {
     void gameOver();
     void victory();
     void level(int numLevel);
-    Map<Pair<Integer, Integer>, Integer> getList();
-    Pair<Integer,Integer> getDimension();
-    Pair<Integer,Integer> getDimensionBrick();
-    Pair<Integer,Integer> getBall();
-    Pair<Integer,Integer> getPad();
+    Map<Pair<Double, Double>, Integer> getList();
+    Pair<Double, Double> getDimension();
+    Pair<Double, Double> getDimensionBrick();
+    Pair<Double, Double> getBall();
+    Pair<Double, Double> getPad();
     //aggiunto
-    void changePosPad(Pair<Integer,Integer> pos);
-    int getPadWight();
-    int getPadHeight();
-    double getRBall();
+    void changePosPad(Pair<Double, Double> pos);
+    Double getPadWight();
+    Double getPadHeight();
+    Double getRBall();
     void rPaint();
-    int getRowC(int x);
+    Double getRowC(Double x);
 }

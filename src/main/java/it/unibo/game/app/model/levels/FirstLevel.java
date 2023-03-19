@@ -18,14 +18,14 @@ public class FirstLevel extends AbstractLevel{
     private final static int BRICK_ROWS_SECOND = 10;
     private final static int BRICK_ROWS_THIRD = 13;
 
-    public FirstLevel(Pair<Integer,Integer> frameSize) {
+    public FirstLevel(Pair<Double, Double> pair) {
         this.normalBricksFirstRound = NORMAL_FIRST;
         this.normalBricksSecondRound = NORMAL_SECOND;
         this.normalBricksThirdRound = NORMAL_THIRD;
         this.surpriseBricksFirstRound = SURPRISE_FIRST;
         this.surpriseBricksSecondRound = SURPRISE_SECOND;
         this.surpriseBricksThirdRound = SURPRISE_THIRD;
-        this.frameSize = frameSize;
+        this.worldSize = pair;
         this.setFirstRound();
     }
 

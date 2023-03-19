@@ -25,29 +25,29 @@ public interface AppController {
 
     void setModel();
 
-    Map<Pair<Integer, Integer>, Integer> getBrickList();
+    Map<Pair<Double, Double>, Integer> getBrickList();
 
     void chooseLevel(int numLevel);
 
-    Pair<Integer,Integer> getBrickDimension();
+    Pair<Double, Double> getBrickDimension();
 
-    Pair<Integer,Integer> getWorldDimension();
+    Pair<Double, Double> getWorldDimension();
 
     void nextRound();
 
-    Pair<Integer,Integer> getBall();
+    Pair<Double, Double> getBall();
 
-    Pair<Integer,Integer> getPad();
+    Pair<Double, Double> getPad();
 
-    void changePos(Pair<Integer,Integer> pos);
+    void changePos(Pair<Double, Double> pos);
 
-    int getPadWight();
+    Double getPadWight();
 
-    int getPadHeight();
+    Double getPadHeight();
 
-    double getRBall();
+    Double getRBall();
 
     void rPaint();
     
-    int getRow(int x);
+    Double getRow(Double x);
 }

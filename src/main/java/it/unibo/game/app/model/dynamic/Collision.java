@@ -18,9 +18,9 @@ public class Collision {
     public Collision(Level lev){
         this.level = lev;
     }
-    public void CollideWithEdges(Ball b, int height, int width){
+    public void CollideWithEdges(Ball b, Double double1, Double double2){
         var ballBox = new BoundingBoxImpl(b);
-        if(ballBox.getBox().get(Corner.LEFT_DOWN).getY() == 0 ||ballBox.getBox().get(Corner.RIGHT_DOWN).getY() == width-1){
+        if(ballBox.getBox().get(Corner.LEFT_DOWN).getY() == 0 ||ballBox.getBox().get(Corner.RIGHT_DOWN).getY() == double2-1){
             b.getPhysics().changeDirection(Side.LEFT_RIGHT);
         }else if(ballBox.getBox().get(Corner.LEFT_UP).getX()==0 ){
             b.getPhysics().changeDirection(Side.UP_DOWN);

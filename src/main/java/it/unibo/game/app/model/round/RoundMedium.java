@@ -14,10 +14,10 @@ public class RoundMedium extends AbstractRound {
     private int numHard;
     private int numSur = 0;
     private int numH = 0;
-    private int startY;
-    private int startX;
-    private int stopY;
-    private int stopX; 
+    private Double startY;
+    private Double startX;
+    private Double stopY;
+    private Double stopX; 
 
 
     public RoundMedium(int jump, int numB, int numS, int numHard, SizeCalculation sizeC ) {
@@ -45,12 +45,12 @@ public class RoundMedium extends AbstractRound {
 
     @Override
     public void setPosBrick() { /*Posiziona i blocchi tutti di tipo normal poi verranno modificati dalla funzione setBrickHard e setBrickSurprise */
-        for (int i = this.startX; i < this.stopX; i = i + this.getSizeCalc().getBrickDim().getX()) {
+        for (Double i = this.startX; i < this.stopX; i = i + this.getSizeCalc().getBrickDim().getX()) {
             countBrick = 0;
-            for (int j = this.startY; j <= this.stopY; j = j + this.getSizeCalc().getBrickDim().getY()) {
+            for (Double j = this.startY; j <= this.stopY; j = j + this.getSizeCalc().getBrickDim().getY()) {
                 if (countBrick != this.getJump()) {
                     NormalBrick b = new NormalBrick(BrickType.NORMAL, this.getSizeCalc().getBrickDim().getY(), this.getSizeCalc().getBrickDim().getX(), 1);
-                    b.setPos(new Pair<Integer,Integer>(j, i));
+                    b.setPos(new Pair<Double,Double>(j, i));
                     super.brick.add(b);
                     countBrick++;
                 } else {

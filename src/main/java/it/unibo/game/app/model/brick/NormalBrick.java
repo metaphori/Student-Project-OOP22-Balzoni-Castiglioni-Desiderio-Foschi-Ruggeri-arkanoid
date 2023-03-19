@@ -6,7 +6,7 @@ public class NormalBrick extends AbstractBrick{
 
     private int brickResistence;
 
-    public NormalBrick(BrickType type, int width, int hight, int resistence) {
+    public NormalBrick(BrickType type, Double width, Double hight, int resistence) {
         super(type, width, hight);
         this.brickResistence = resistence;
     }

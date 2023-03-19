@@ -7,6 +7,7 @@ import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.Model;
 import it.unibo.game.app.model.ModelImpl;
+import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.view.jswing.api.UIController;
 import it.unibo.game.app.view.jswing.impleentation.UIControllerImpl;
 
@@ -45,7 +46,7 @@ public class ControllerImpl implements AppController{
     }
 
     @Override
-    public Map<Pair<Integer,Integer>, Integer> getBrickList() {
+    public Map<Pair<Double, Double>, Integer> getBrickList() {
         return this.model.getBrickList();
 
     } 
@@ -57,44 +58,44 @@ public class ControllerImpl implements AppController{
     
     @Override
     //non va bene deve prendere le informazioni da SizeCaplulator
-    public Pair<Integer,Integer> getWorldDimension() {
-       return new Pair<Integer,Integer>(400, 300);
+    public Pair<Double, Double> getWorldDimension() {
+       return SizeCalculation.getWorldSize();
     }
     
     @Override
-    public Pair<Integer,Integer> getBrickDimension() {
+    public Pair<Double, Double> getBrickDimension() {
         return this.model.getBrickDimension();
     }
 
     @Override
-    public Pair<Integer,Integer> getBall() {
+    public Pair<Double, Double> getBall() {
         // TODO Auto-generated method stub
         return this.model.getBall();
     }
 
     @Override
-    public Pair<Integer,Integer> getPad() {
+    public Pair<Double, Double> getPad() {
         // TODO Auto-generated method stub
         return this.model.getPad();
     }
 
     @Override
-    public void changePos(Pair<Integer,Integer> pos){
+    public void changePos(Pair<Double, Double> pos){
         this.model.changePos(pos);
     }
 
     @Override
-    public int getPadWight(){
+    public Double getPadWight(){
         return this.model.getPadWight();
     }
 
     @Override
-    public int getPadHeight(){
+    public Double getPadHeight(){
         return this.model.getPadHeight();
     }
 
     @Override
-    public double getRBall(){
+    public Double getRBall(){
         return this.model.getRBall();
     }
 
@@ -111,7 +112,7 @@ public class ControllerImpl implements AppController{
     }
 
     @Override
-    public int getRow(int x) {
+    public Double getRow(Double x) {
         return this.model.getRow(x);
     }
 }
