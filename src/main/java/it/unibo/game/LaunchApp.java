@@ -24,5 +24,6 @@ public class LaunchApp {
         final AppController app = new ControllerImpl();
         app.setView();
         app.setModel();
+        app.setGameEngine();
     }
 }
