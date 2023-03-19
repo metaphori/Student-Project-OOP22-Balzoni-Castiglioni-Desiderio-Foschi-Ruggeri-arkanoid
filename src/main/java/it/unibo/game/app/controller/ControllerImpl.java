@@ -119,7 +119,6 @@ public class ControllerImpl implements AppController{
 
     @Override
     public void setGameEngine() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setGameEngine'");
+        this.gameEngine = new GameEngine(this);
     }
 }
