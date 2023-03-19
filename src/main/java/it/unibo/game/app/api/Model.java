@@ -29,4 +29,6 @@ public interface Model{
 
     Double getRow(Double x);
 
+    Pair<Integer,Integer> getWorldDim();
+
 }

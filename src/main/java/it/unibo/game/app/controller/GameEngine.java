@@ -9,7 +9,7 @@ public class GameEngine {
     private long period = 20;
     //private LinkedList<WorldEvent> event;
     private AppController controller;
-    private boolean thread = true;
+    private boolean thread = false;
 
     public GameEngine(AppController contr) {
         //event = new LinkedList<>();

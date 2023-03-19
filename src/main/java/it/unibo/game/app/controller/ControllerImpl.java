@@ -15,6 +15,7 @@ public class ControllerImpl implements AppController{
 
     private UIController uiContr;
     private Model model;
+    private GameEngine gameEngine;
 
     @Override
     public void play() {
@@ -114,5 +115,11 @@ public class ControllerImpl implements AppController{
     @Override
     public Double getRow(Double x) {
         return this.model.getRow(x);
+    }
+
+    @Override
+    public void setGameEngine() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setGameEngine'");
     }
 }
