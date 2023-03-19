@@ -1,4 +1,5 @@
 package it.unibo.game.app.model.brick;
+import it.unibo.game.app.api.Brick;
 /*questa classe deve essere estesa da 
  * la classe che rappresenta i mattoni come ostacoli e 
  * mattoni di gioco
@@ -7,7 +8,7 @@ package it.unibo.game.app.model.brick;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.model.GameObjectImpl;
 
-public abstract class AbstractBrick extends GameObjectImpl {
+public abstract class AbstractBrick extends GameObjectImpl implements Brick{
     
     private BrickType type;
     private Double brickWidth;
