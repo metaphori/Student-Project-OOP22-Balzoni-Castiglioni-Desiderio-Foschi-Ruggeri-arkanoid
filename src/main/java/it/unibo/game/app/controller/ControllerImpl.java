@@ -56,9 +56,8 @@ public class ControllerImpl implements AppController{
     }
     
     @Override
-    //non va bene deve prendere le informazioni da SizeCaplulator
     public Pair<Integer,Integer> getWorldDimension() {
-       return new Pair<Integer,Integer>(400, 300);
+       return this.model.getWorldDim();
     }
     
     @Override

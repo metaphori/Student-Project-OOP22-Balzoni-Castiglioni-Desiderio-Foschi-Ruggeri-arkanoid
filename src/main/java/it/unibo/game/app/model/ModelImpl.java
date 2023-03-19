@@ -106,5 +106,10 @@ public class ModelImpl implements Model{
             return false;
         }
     }
+
+    @Override
+    public Pair<Integer, Integer> getWorldDim() {
+        return SizeCalculation.getWorldSize();
+    }
     
 }
