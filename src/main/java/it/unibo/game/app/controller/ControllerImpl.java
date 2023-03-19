@@ -14,6 +14,7 @@ public class ControllerImpl implements AppController{
 
     private UIController uiContr;
     private Model model;
+    private GameEngine gameEngine;
 
     @Override
     public void play() {
@@ -42,6 +43,11 @@ public class ControllerImpl implements AppController{
     public void setModel(){
         this.model=new ModelImpl();
         this.model.setController(this);
+    }
+
+    @Override
+    public void setGameEngine() {
+        this.gameEngine = new GameEngine(this);
     }
 
     @Override

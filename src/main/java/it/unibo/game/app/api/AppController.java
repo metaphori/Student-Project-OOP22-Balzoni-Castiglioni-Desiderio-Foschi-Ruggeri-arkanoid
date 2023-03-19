@@ -50,4 +50,6 @@ public interface AppController {
     void rPaint();
     
     int getRow(int x);
+
+    void setGameEngine();
 }
