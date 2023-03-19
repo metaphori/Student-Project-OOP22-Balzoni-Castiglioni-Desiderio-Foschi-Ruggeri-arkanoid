@@ -1,6 +1,7 @@
 package it.unibo.game.app.api;
+import java.util.*;
 
-public interface Brick{
+public interface Brick extends GameObject{
     
     BrickType getType();
 
@@ -10,7 +11,11 @@ public interface Brick{
 
     Double getBrickW ();
 
+    Optional<Integer> getRes();
+
     boolean isDestroyable();
 
     void hit();
+
+    void increaseRes(int res);
 }
