@@ -25,7 +25,7 @@ public interface AppController {
 
     void setModel();
 
-    Map<Pair<Double, Double>, Integer> getBrickList();
+    Map<Pair<Double, Double>, Optional<Integer>> getBrickList();
 
     void chooseLevel(int numLevel);
 

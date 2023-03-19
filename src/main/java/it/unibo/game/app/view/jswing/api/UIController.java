@@ -1,6 +1,7 @@
 package it.unibo.game.app.view.jswing.api;
 
 import java.util.Map;
+import java.util.Optional;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
@@ -33,7 +34,7 @@ public interface UIController {
     void gameOver();
     void victory();
     void level(int numLevel);
-    Map<Pair<Double, Double>, Integer> getList();
+    Map<Pair<Double, Double>, Optional<Integer>> getList();
     Pair<Double, Double> getDimension();
     Pair<Double, Double> getDimensionBrick();
     Pair<Double, Double> getBall();
