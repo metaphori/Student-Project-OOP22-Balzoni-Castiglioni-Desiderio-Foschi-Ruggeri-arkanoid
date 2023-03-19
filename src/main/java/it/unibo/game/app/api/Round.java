@@ -18,7 +18,7 @@ public interface Round{
 
     int getNumSur ();
 
-    List<NormalBrick> getBrick ();
+    List<Brick> getBrick ();
 
     void setPosBall (Pair<Double,Double> pos);
 
