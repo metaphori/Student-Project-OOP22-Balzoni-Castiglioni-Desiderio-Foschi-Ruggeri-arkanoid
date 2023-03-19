@@ -46,7 +46,7 @@ public class GameViewImpl extends JPanel implements KeyListener,ActionListener, 
         double deltaW = ((double)panelWidth/observer.getDimension().getY());
 
        observer.getList().entrySet().stream().forEach(x->{
-            g2d.setColor(x.getValue() == 2 ? Color.LIGHT_GRAY : 
+            g2d.setColor(x.getValue().isEmpty()? Color.BLACK : x.getValue().get() == 2 ? Color.LIGHT_GRAY : 
             x.getKey().getY() == observer.getRowC(0d) ? Color.RED :
             x.getKey().getY() == observer.getRowC(1d) ? Color.BLUE :
             x.getKey().getY() == observer.getRowC(2d) ? Color.YELLOW :
