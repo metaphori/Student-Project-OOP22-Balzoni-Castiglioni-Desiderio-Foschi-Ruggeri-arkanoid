@@ -109,7 +109,7 @@ public class ModelImpl implements Model{
     }
 
     @Override
-    public Pair<Integer, Integer> getWorldDim() {
+    public Pair<Double, Double> getWorldDim() {
         return SizeCalculation.getWorldSize();
     }
     
