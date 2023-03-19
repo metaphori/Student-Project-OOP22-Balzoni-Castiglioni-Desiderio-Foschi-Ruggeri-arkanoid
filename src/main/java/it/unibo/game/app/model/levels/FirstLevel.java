@@ -1,6 +1,8 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.levels;
 
 import it.unibo.game.Pair;
+import it.unibo.game.app.model.SizeCalculation;
+import it.unibo.game.app.model.round.*;
 
 public class FirstLevel extends AbstractLevel{
 
@@ -30,19 +32,19 @@ public class FirstLevel extends AbstractLevel{
 
     @Override
     public void setFirstRound() {
-        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICK_COLUMNS, BRICK_ROWS_FIRST, super.getNumRoundPassed());
+        this.sizeCalc = new SizeCalculation(BRICK_COLUMNS, BRICK_ROWS_FIRST, super.getNumRoundPassed());
         this.currentRound = new RoundEasy(JUMP, normalBricksFirstRound, surpriseBricksFirstRound, this.sizeCalc);
     }
 
     @Override
     public void setSecondRound() {
-        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICK_COLUMNS, BRICK_ROWS_SECOND, super.getNumRoundPassed());
+        this.sizeCalc = new SizeCalculation( BRICK_COLUMNS, BRICK_ROWS_SECOND, super.getNumRoundPassed());
         this.currentRound = new RoundEasy(JUMP, normalBricksSecondRound, surpriseBricksSecondRound, this.sizeCalc);
     }
 
     @Override
     public void setThirdRound() {
-        this.sizeCalc = new SizeCalculation(frameSize.getX(), frameSize.getY(), BRICK_COLUMNS, BRICK_ROWS_THIRD, super.getNumRoundPassed());
+        this.sizeCalc = new SizeCalculation(BRICK_COLUMNS, BRICK_ROWS_THIRD, super.getNumRoundPassed());
         this.currentRound = new RoundEasy(JUMP, normalBricksThirdRound, surpriseBricksThirdRound, this.sizeCalc);
     }
     

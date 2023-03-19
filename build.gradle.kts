@@ -33,16 +33,19 @@ dependencies {
     // Suppressions for SpotBugs
     compileOnly("com.github.spotbugs:spotbugs-annotations:4.7.3")
 
+    // https://mavenlibs.com/maven/dependency/org.dyn4j/dyn4j
+    implementation("org.dyn4j:dyn4j:5.0.1")
     // Example library: Guava. Add what you need (and remove Guava if you don't use it)
-    // implementation("com.google.guava:guava:28.1-jre")
-
+    //implementation("com.google.guava:guava:28.1-jre")
+    // https://mavenlibs.com/maven/dependency/org.jbox2d/jbox2d-library
+    //implementation("org.jbox2d:jbox2d-library:2.2.1.1")
     // JavaFX: comment out if you do not need them
-    val javaFxVersion = 15
-    for (platform in supportedPlatforms) {
-        for (module in javaFXModules) {
-            implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
-        }
-    }
+    // val javaFxVersion = 15
+    // for (platform in supportedPlatforms) {
+    //     for (module in javaFXModules) {
+    //         implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
+    //     }
+    // }
 
     val jUnitVersion = "5.9.2"
     // JUnit API and testing engine

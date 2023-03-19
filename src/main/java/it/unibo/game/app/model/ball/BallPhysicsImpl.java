@@ -1,18 +1,18 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.ball;
 
-import java.util.Optional;
 
+
+import it.unibo.game.Pair;
+import it.unibo.game.app.api.Physics;
 import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.BoundingBox.Side;
 
-public class BallPhysics {
-    
+public class BallPhysicsImpl implements Physics {
+   
     private Direction d ;
 
-    public BallPhysics (Direction dir){
-        this.d = dir;
-    }
-    public Direction changeDirection(Side side){
+    @Override
+    public void changeDirection(Side side){
         if(side == Side.UP_DOWN){
             if(this.d.isDirectionUp()){
                 this.d.setDirectionDown();
@@ -26,7 +26,11 @@ public class BallPhysics {
                 this.d.setDirectionLeft();
             }
         }
+    }
+
+    public Direction getDir(){
         return this.d;
     }
+    
  
 }

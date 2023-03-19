@@ -1,4 +1,4 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.round;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,11 @@ import it.unibo.game.Pair;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.GameObject;
 import it.unibo.game.app.api.Round;
+
+import it.unibo.game.app.model.SizeCalculation;
+import it.unibo.game.app.model.ball.Ball;
+import it.unibo.game.app.model.brick.NormalBrick;
+import it.unibo.game.app.model.pad.Pad;
 
 public abstract class AbstractRound implements Round {
     
@@ -25,8 +30,8 @@ public abstract class AbstractRound implements Round {
         this.numBrick = numB;
         this.numSurprise = numS;
         this.sizeC = size;
-        pad = new Pad(size.getFrameSize());
-        ball.setR(size.getFrameSize().getY()/15);
+        pad = new Pad(size.getWorldSize());
+        ball.setR(size.getWorldSize().getY()/15);
         ball.setPos(new Pair<>(pad.getPos().getX(),pad.getPos().getY()-(int)ball.getR()));
     }
 

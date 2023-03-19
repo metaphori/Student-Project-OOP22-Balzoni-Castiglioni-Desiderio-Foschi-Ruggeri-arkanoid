@@ -46,7 +46,7 @@ public abstract class AbstractView extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                uiCtrl.initialView();
             }
 
         });
@@ -54,8 +54,7 @@ public abstract class AbstractView extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                System.exit(0);
             }
             
         });

@@ -1,4 +1,4 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.dynamic;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Direction;
@@ -12,6 +12,9 @@ public class DirectionImpl implements Direction {
 
     public DirectionImpl(){
         this.d= new Pair<Integer,Integer>(UP, RIGHT);
+    }
+    public void setDirection(Pair<Integer,Integer> newD){
+        this.d = newD;
     }
     @Override
     public void setDirectionUp(){

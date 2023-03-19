@@ -1,7 +1,8 @@
-package it.unibo.game.app.model;
+package it.unibo.game.app.model.pad;
 
 import it.unibo.game.Pair;
-import it.unibo.game.app.api.Direction;
+import it.unibo.game.app.api.Physics;
+import it.unibo.game.app.model.GameObjectImpl;
 import it.unibo.game.app.api.MovingObject;
 
 public class Pad extends GameObjectImpl implements MovingObject {
@@ -44,9 +45,9 @@ public class Pad extends GameObjectImpl implements MovingObject {
 
 
     @Override
-    public Direction getDir() {
+    public Physics getPhysics() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDir'");
+        throw new UnsupportedOperationException("Unimplemented method 'getPhysics'");
     }
 
 }
