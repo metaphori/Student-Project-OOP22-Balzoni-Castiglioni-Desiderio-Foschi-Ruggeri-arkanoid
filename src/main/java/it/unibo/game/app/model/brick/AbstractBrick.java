@@ -1,4 +1,6 @@
 package it.unibo.game.app.model.brick;
+import java.util.Optional;
+
 import it.unibo.game.app.api.Brick;
 /*questa classe deve essere estesa da 
  * la classe che rappresenta i mattoni come ostacoli e 
@@ -39,5 +41,9 @@ public abstract class AbstractBrick extends GameObjectImpl implements Brick{
     public abstract boolean isDestroyable();
 
     public abstract void hit();
+
+    public abstract Optional<Integer> getRes();
+
+    public abstract void increaseRes(int res);
 
 }
