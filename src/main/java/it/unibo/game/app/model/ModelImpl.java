@@ -1,6 +1,7 @@
 package it.unibo.game.app.model;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import it.unibo.game.Pair;
@@ -22,7 +23,7 @@ public class ModelImpl implements Model{
     }
 
     @Override
-    public Map<Pair<Double,Double>, Integer> getBrickList() {
+    public Map<Pair<Double,Double>, Optional<Integer>> getBrickList() {
         // TODO Auto-generated method stub
         // return this.level.getRound().getBrick().stream().collect(
         //                     Collectors.toMap(b -> b.getPos(), b -> b.getRes()));

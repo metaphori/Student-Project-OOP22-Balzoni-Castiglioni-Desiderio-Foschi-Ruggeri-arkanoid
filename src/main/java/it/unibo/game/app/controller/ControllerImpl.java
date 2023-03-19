@@ -1,6 +1,7 @@
 package it.unibo.game.app.controller;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
@@ -47,7 +48,7 @@ public class ControllerImpl implements AppController{
     }
 
     @Override
-    public Map<Pair<Double, Double>, Integer> getBrickList() {
+    public Map<Pair<Double, Double>, Optional<Integer>> getBrickList() {
         return this.model.getBrickList();
 
     } 

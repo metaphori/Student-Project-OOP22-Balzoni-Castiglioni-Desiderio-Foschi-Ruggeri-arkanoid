@@ -86,7 +86,7 @@ public class UIControllerImpl implements UIController  {
         chargeView(PAGES.TOP_5);
     }
 
-    public  Map<Pair<Double, Double>, Integer> getList() {
+    public  Map<Pair<Double, Double>, Optional<Integer>> getList() {
         return controller.getBrickList(); 
     } 
 
