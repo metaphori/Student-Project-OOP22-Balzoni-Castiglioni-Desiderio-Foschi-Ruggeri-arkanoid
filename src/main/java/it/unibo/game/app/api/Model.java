@@ -33,4 +33,8 @@ public interface Model{
 
     void update(long dt);
 
+    List<Pair<String,Integer>> getBestFive();
+
+    boolean isPresent(String name);
+
 }

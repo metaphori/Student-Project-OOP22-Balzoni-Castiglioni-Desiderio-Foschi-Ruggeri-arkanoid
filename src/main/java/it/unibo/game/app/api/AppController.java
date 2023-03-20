@@ -51,6 +51,9 @@ public interface AppController {
     
     Double getRow(Double x);
     
+    List<Pair<String,Integer>> getBestFive();
+
+    boolean isPresent(String name);
 
     void setGameEngine();
 

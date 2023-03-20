@@ -1,5 +1,6 @@
 package it.unibo.game.app.model;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -8,6 +9,8 @@ import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.model.dynamic.Move;
+import it.unibo.game.app.model.leaderb.LeaderBoard;
+import it.unibo.game.app.model.leaderb.LeaderBoardImpl;
 import it.unibo.game.app.model.levels.*;
 import it.unibo.game.app.api.Model;
 
@@ -16,6 +19,7 @@ public class ModelImpl implements Model{
     private AppController control;
     private Level level;
     private Move move;
+    private LeaderBoard board = new LeaderBoardImpl();
 
     @Override
     public void setController(AppController c) {
@@ -103,9 +107,16 @@ public class ModelImpl implements Model{
     public Pair<Double, Double> getWorldDim() {
         return SizeCalculation.getWorldSize();
     }
-
     public void update(long dt) {
         move.update(dt);
+    }
+
+    public boolean isPresent(String name){
+        return board.isPresent(name);
+    }
+
+    public List<Pair<String,Integer>> getBestFive(){
+        return board.getBestFive();
     }
     
 }

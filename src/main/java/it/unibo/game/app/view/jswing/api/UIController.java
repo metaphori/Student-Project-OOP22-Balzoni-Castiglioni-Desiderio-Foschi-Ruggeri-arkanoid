@@ -1,5 +1,6 @@
 package it.unibo.game.app.view.jswing.api;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -46,4 +47,6 @@ public interface UIController {
     Double getRBall();
     void rPaint();
     Double getRowC(Double x);
+    List<Pair<String,Integer>> getBestFive();
+    boolean isPresent(String name);
 }

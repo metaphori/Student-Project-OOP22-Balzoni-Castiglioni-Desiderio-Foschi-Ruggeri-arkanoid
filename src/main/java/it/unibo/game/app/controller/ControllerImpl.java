@@ -1,5 +1,6 @@
 package it.unibo.game.app.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -120,5 +121,13 @@ public class ControllerImpl implements AppController{
 
     public void update(long dt) {
         this.model.update(dt);
+    }
+
+    public boolean isPresent(String name){
+        return this.model.isPresent(name);
+    }
+
+    public List<Pair<String,Integer>> getBestFive(){
+        return this.model.getBestFive();
     }
 }
