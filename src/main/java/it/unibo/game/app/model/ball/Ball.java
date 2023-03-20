@@ -7,7 +7,7 @@ import it.unibo.game.app.api.MovingObject;
 public class Ball extends GameObjectImpl implements MovingObject {
 
     private Double r;
-    private Physics phi;
+    private Physics phi = new BallPhysicsImpl();
 
     public Double getR() {
         return r;
