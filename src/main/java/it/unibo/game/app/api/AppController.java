@@ -53,4 +53,6 @@ public interface AppController {
     
 
     void setGameEngine();
+
+    void update(long dt);
 }

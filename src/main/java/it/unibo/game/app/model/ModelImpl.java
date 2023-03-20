@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.model.dynamic.Move;
 import it.unibo.game.app.model.levels.*;
 import it.unibo.game.app.api.Model;
 
@@ -14,25 +15,21 @@ public class ModelImpl implements Model{
 
     private AppController control;
     private Level level;
+    private Move move;
 
     @Override
     public void setController(AppController c) {
-        // TODO Auto-generated method stub
-        this.control=c;
-        this.level=new FirstLevel(this.control.getWorldDimension());
+        this.control = c;
+        //this.level = new FirstLevel(this.control.getWorldDimension()); In teora va lo stesso
     }
 
     @Override
     public Map<Pair<Double,Double>, Optional<Integer>> getBrickList() {
-        // TODO Auto-generated method stub
-        // return this.level.getRound().getBrick().stream().collect(
-        //                     Collectors.toMap(b -> b.getPos(), b -> b.getRes()));
         return this.level.getRound().getBrick().stream().collect(Collectors.toMap(b->b.getPos(), b->b.getRes()));
     }
 
     @Override
     public void chooseLevel(int numLevel) {
-        // TODO Auto-generated method stub
         switch(numLevel) {
             case 1:
                 this.level = new FirstLevel(control.getWorldDimension());
@@ -44,59 +41,52 @@ public class ModelImpl implements Model{
                 this.level = new ThirdLevel(control.getWorldDimension());
                 break;
         }
+        this.move = new Move(level, level.getRound().getBall(), level.getRound().getPad());
+
     }
 
     @Override
     public Pair<Double,Double> getBrickDimension() {
-        // TODO Auto-generated method stub
         return this.level.getRound().getSizeCalc().getBrickDim();
     }
 
     @Override
     public Pair<Double,Double> getBall() {
-        // TODO Auto-generated method stub
         return this.level.getRound().getPosBall();
     }
 
     @Override
     public Pair<Double, Double> getPad() {
-        // TODO Auto-generated method stub
         return this.level.getRound().getPosPad();
     }
 
     @Override
     public void changePos(Pair<Double,Double> pos) {
-        // TODO Auto-generated method stub
         this.level.getRound().setPosPad(pos);
     }
 
     @Override
     public Double getPadWight() {
-        // TODO Auto-generated method stub
         return this.level.getRound().getPad().getWidth();
     }
 
     @Override
     public Double getPadHeight() {
-        // TODO Auto-generated method stub
         return this.level.getRound().getPad().getHight();
     }
 
     @Override
     public Double getRBall() {
-        // TODO Auto-generated method stub
         return this.level.getRound().getBall().getR();
     }
 
     @Override
     public Double getRow(Double x) {
-        // TODO Auto-generated method stub
         return this.level.getRound().getSizeCalc().getRowCordinate(x);
     }
 
     @Override
     public boolean nextRound() {
-        // TODO Auto-generated method stub
         if(this.level.checkRound() && this.level.getNumRoundPassed()<=2) {
             if(this.level.getNumRoundPassed() == 1) {
                 this.level.setSecondRound();
@@ -112,6 +102,10 @@ public class ModelImpl implements Model{
     @Override
     public Pair<Double, Double> getWorldDim() {
         return SizeCalculation.getWorldSize();
+    }
+
+    public void update(long dt) {
+        move.update(dt);
     }
     
 }

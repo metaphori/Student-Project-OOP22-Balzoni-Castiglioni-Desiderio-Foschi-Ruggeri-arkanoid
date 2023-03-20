@@ -20,13 +20,11 @@ public class ControllerImpl implements AppController{
 
     @Override
     public void play() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'play'");
+        this.gameEngine.resume();
     }
 
     @Override
     public void onPause() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'onPause'");
     }
 
@@ -59,7 +57,6 @@ public class ControllerImpl implements AppController{
     }
     
     @Override
-    //non va bene deve prendere le informazioni da SizeCaplulator
     public Pair<Double, Double> getWorldDimension() {
        return SizeCalculation.getWorldSize();
     }
@@ -71,13 +68,11 @@ public class ControllerImpl implements AppController{
 
     @Override
     public Pair<Double, Double> getBall() {
-        // TODO Auto-generated method stub
         return this.model.getBall();
     }
 
     @Override
     public Pair<Double, Double> getPad() {
-        // TODO Auto-generated method stub
         return this.model.getPad();
     }
 
@@ -121,5 +116,9 @@ public class ControllerImpl implements AppController{
     @Override
     public void setGameEngine() {
         this.gameEngine = new GameEngine(this);
+    }
+
+    public void update(long dt) {
+        this.model.update(dt);
     }
 }

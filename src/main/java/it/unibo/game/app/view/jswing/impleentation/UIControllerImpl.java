@@ -67,7 +67,6 @@ public class UIControllerImpl implements UIController  {
 
     @Override
     public void initialView() {
-        // TODO Auto-generated method stub
         chargeView(PAGES.START_MENU);
     }
 
@@ -79,6 +78,7 @@ public class UIControllerImpl implements UIController  {
     @Override
     public void gameView() {
         chargeView(PAGES.GAME);
+        controller.play();
     }
 
     @Override
