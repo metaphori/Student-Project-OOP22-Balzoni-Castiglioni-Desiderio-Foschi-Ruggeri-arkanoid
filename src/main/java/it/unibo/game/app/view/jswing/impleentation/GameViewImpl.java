@@ -15,22 +15,17 @@ import java.awt.geom.*;
 public class GameViewImpl extends JPanel implements KeyListener,ActionListener, GameView{
 
     private UIController observer;
-    private Timer timer;
-    private static final int delay=8;
     private boolean play = true;
 
     public GameViewImpl(UIController control){
         setFocusable(true);
         addKeyListener(this);
         setFocusTraversalKeysEnabled(false);
-        this.observer=control;
-        this.timer = new Timer(delay,this);
-        timer.start();
+        this.observer = control;
     }
 
     @Override
     public void paintComponent(Graphics g){
-    
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         // Determina la dimensione del pannello
@@ -59,7 +54,6 @@ public class GameViewImpl extends JPanel implements KeyListener,ActionListener, 
             g2d.draw(new Rectangle2D.Double(x.getKey().getX()*deltaH,x.getKey().getY()*deltaW, observer.getDimensionBrick().getY()*deltaW, observer.getDimensionBrick().getX()*deltaH));
         }); 
         
-        
         g2d.setColor(Color.GREEN);
         g2d.fill(new Ellipse2D.Double(observer.getBall().getX()*deltaH, observer.getBall().getY()*deltaW, observer.getRBall()*deltaW,observer.getRBall()*deltaH));
 
@@ -70,8 +64,6 @@ public class GameViewImpl extends JPanel implements KeyListener,ActionListener, 
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        // TODO Auto-generated method stub
-        timer.start();
         repaint();
     }
 
