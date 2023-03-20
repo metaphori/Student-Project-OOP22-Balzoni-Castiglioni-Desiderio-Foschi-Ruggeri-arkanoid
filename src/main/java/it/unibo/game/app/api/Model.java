@@ -31,4 +31,8 @@ public interface Model{
 
     Pair<Double,Double> getWorldDim();
 
+    List<Pair<String,Integer>> getBestFive();
+
+    boolean isPresent(String name);
+
 }
