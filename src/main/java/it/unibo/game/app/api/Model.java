@@ -31,4 +31,6 @@ public interface Model{
 
     Pair<Double,Double> getWorldDim();
 
+    void update(long dt);
+
 }

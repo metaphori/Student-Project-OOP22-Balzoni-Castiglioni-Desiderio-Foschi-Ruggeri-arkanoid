@@ -19,7 +19,7 @@ public class ModelImpl implements Model{
     @Override
     public void setController(AppController c) {
         this.control = c;
-        this.level = new FirstLevel(this.control.getWorldDimension());
+        //this.level = new FirstLevel(this.control.getWorldDimension()); In teora va lo stesso
     }
 
     @Override
@@ -43,6 +43,7 @@ public class ModelImpl implements Model{
                 break;
         }
         this.move = new Move(level, level.getRound().getBall(), level.getRound().getPad());
+
     }
 
     @Override
@@ -102,6 +103,10 @@ public class ModelImpl implements Model{
     @Override
     public Pair<Double, Double> getWorldDim() {
         return SizeCalculation.getWorldSize();
+    }
+
+    public void update(long dt) {
+        move.update(dt);
     }
     
 }
