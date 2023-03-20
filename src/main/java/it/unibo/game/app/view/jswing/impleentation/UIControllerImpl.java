@@ -1,6 +1,8 @@
 package it.unibo.game.app.view.jswing.impleentation;
 
 import java.util.*;
+import java.util.List;
+
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.view.jswing.api.*;
@@ -152,5 +154,13 @@ public class UIControllerImpl implements UIController  {
     
     public Double getRowC(Double x) {
         return this.controller.getRow(x);
+    }
+
+    public boolean isPresent(String name){
+        return this.controller.isPresent(name);
+    }
+
+    public List<Pair<String,Integer>> getBestFive(){
+        return this.controller.getBestFive();
     }
 }
