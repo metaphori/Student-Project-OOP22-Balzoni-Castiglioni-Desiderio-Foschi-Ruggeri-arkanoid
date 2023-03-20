@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.model.pad.Pad;
 
@@ -18,7 +19,7 @@ public class Move {
         this.pad = p;
     }
     public void nextBall(long dt){ 
-        //coll.CollideWithEdges(this.ball, SizeCalculation.getWorldSize().getX() , SizeCalculation.getWorldSize().getY());
+        coll.CollideWithEdges(this.ball, SizeCalculation.getWorldSize().getX() , SizeCalculation.getWorldSize().getY());
         //index = coll.collideWithBrick(this.ball);
         //coll.CollideWithPad(this.ball, this.pad);
         var newPos = new Pair<Double,Double> (this.ball.getPos().getX() +this.ball.getPhysics().getDir().getDirection().getX(),

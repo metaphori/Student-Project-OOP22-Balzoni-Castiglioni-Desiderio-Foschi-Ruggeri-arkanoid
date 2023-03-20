@@ -1,5 +1,6 @@
 package it.unibo.game.app.model;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -12,15 +13,15 @@ import it.unibo.game.app.model.pad.Pad;
 
 public class BoundingBoxImpl implements BoundingBox {
 
-    private Map<Corner, Pair<Double,Double>> corners;
+    private Map<Corner, Pair<Double,Double>> corners = new HashMap<>();
   
     public BoundingBoxImpl(Ball b){
         var radius = b.getR();
         var centre = b.getPos();
-       // this.corners.put(Corner.LEFT_DOWN, new Pair<Integer,Integer>(centre.getX()-radius,centre.getY()+radius ));
-        //this.corners.put(Corner.LEFT_UP,new Pair<Integer,Integer>(centre.getX()-radius,centre.getY()-radius ) );
-        //this.corners.put(Corner.RIGHT_DOWN, new Pair<Integer,Integer>(centre.getX()+radius,centre.getY()+radius ));
-        //this.corners.put(Corner.RIGHT_UP,new Pair<Integer,Integer>(centre.getX()+radius,centre.getY()-radius ));
+        this.corners.put(Corner.LEFT_DOWN, new Pair<Double,Double>(centre.getX()+radius,centre.getY()-radius ));
+        this.corners.put(Corner.LEFT_UP,new Pair<Double,Double>(centre.getX()-radius,centre.getY()-radius ) );
+        this.corners.put(Corner.RIGHT_DOWN, new Pair<Double,Double>(centre.getX()+radius,centre.getY()+radius ));
+        this.corners.put(Corner.RIGHT_UP,new Pair<Double,Double>(centre.getX()-radius,centre.getY()+radius ));
   
     }
     public BoundingBoxImpl(Brick b){
