@@ -4,10 +4,10 @@ import it.unibo.game.Pair;
 import it.unibo.game.app.api.Direction;
 
 public class DirectionImpl implements Direction {
-    private static final int LEFT = -1;
-    private static final int RIGHT = 1;
-    private static final int UP = -1;
-    private static final int DOWN = 1;
+    private static final int LEFT = 1;
+    private static final int RIGHT = -1;
+    private static final int UP = 1;
+    private static final int DOWN = -1;
     private Pair<Integer, Integer> d ;
 
     public DirectionImpl(){
