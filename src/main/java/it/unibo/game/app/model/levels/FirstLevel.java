@@ -14,8 +14,8 @@ public class FirstLevel extends AbstractLevel{
     private final static int SURPRISE_THIRD = 4;
     private final static int JUMP = 0;
     private final static int BRICK_COLUMNS = 3;
-    private final static int BRICK_ROWS_FIRST = 7;
-    private final static int BRICK_ROWS_SECOND = 10;
+    private final static int BRICK_ROWS_FIRST = 8; 
+    private final static int BRICK_ROWS_SECOND = 11;
     private final static int BRICK_ROWS_THIRD = 13;
 
     public FirstLevel(Pair<Double, Double> pair) {
