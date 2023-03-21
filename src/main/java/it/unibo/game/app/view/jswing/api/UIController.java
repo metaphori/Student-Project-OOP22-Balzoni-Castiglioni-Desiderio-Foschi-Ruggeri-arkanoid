@@ -38,14 +38,14 @@ public interface UIController {
     Pair<Double, Double> getDimension();
     Pair<Double, Double> getDimensionBrick();
     Pair<Double, Double> getBall();
-    Pair<Double, Double> getPad();
-    //aggiunto
-    void changePosPad(Pair<Double, Double> pos);
+    Pair<Double, Double> getPadPos();
+    
     Double getPadWight();
     Double getPadHeight();
     Double getRBall();
     void rPaint();
     Double getRowC(Double x);
-    void movePadRight();
     void movePadLeft();
+    void movePadRight();
+    
 }

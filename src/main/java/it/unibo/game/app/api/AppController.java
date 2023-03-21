@@ -38,11 +38,10 @@ public interface AppController {
     Pair<Double, Double> getBall();
 
     Pair<Double, Double> getPad();
-
-    void changePos(Pair<Double, Double> pos);
-
+    void changePadPos(Pair<Double, Double> newPos);
+    
     Double getPadWight();
-
+    
     Double getPadHeight();
 
     Double getRBall();
@@ -55,4 +54,5 @@ public interface AppController {
     void setGameEngine();
 
     void update(long dt);
+
 }

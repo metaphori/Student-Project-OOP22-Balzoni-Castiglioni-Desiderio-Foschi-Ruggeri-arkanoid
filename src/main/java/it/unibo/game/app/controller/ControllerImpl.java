@@ -77,8 +77,8 @@ public class ControllerImpl implements AppController{
     }
 
     @Override
-    public void changePos(Pair<Double, Double> pos){
-        this.model.changePos(pos);
+    public void changePadPos(Pair<Double, Double> pos){
+        this.model.setPadPos(pos);
     }
 
     @Override

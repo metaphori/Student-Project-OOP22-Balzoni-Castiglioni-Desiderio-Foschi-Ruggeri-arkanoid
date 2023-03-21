@@ -16,8 +16,8 @@ public interface Model{
     Pair<Double,Double> getBall();
 
     Pair<Double,Double> getPad();
-
-    void changePos(Pair<Double,Double> pos);
+    
+    void setPadPos(Pair<Double, Double> pos);
 
     boolean nextRound();
 
@@ -32,5 +32,8 @@ public interface Model{
     Pair<Double,Double> getWorldDim();
 
     void update(long dt);
+
+    
+
 
 }

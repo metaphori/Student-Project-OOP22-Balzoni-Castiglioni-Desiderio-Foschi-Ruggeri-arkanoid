@@ -109,14 +109,10 @@ public class UIControllerImpl implements UIController  {
     }
 
     @Override
-    public Pair<Double, Double> getPad() {
+    public Pair<Double, Double> getPadPos() {
         return controller.getPad();
     }
 
-    //aggiunto
-    public void changePosPad(Pair<Double, Double> pos){
-        controller.changePos(pos);
-    }
 
     public Double getPadWight(){
         return controller.getPadWight();
@@ -153,4 +149,17 @@ public class UIControllerImpl implements UIController  {
     public Double getRowC(Double x) {
         return this.controller.getRow(x);
     }
+
+    private void movePad(Pair<Double,Double> newPos){
+        controller.changePadPos(newPos);
+    }
+    
+    public void movePadRight() {
+        movePad(new Pair<Double,Double>(this.getPadPos().getX()+1, this.getPadPos().getY()));
+    }
+
+    public void movePadLeft() {
+        movePad(new Pair<Double,Double>(this.getPadPos().getX()-1, this.getPadPos().getY()));
+    }
+    
 }
