@@ -1,61 +1,109 @@
 package it.unibo.game.app.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import java.util.Random;
+
 import it.unibo.game.app.api.Level;
 
 public class Surprise {
 
+    private final static int NUM_TOT_SURSPRISE = 12;
+    private final static int EXTRA_LIFE = 1;
+    private final static int EXPLOSIVE_BOMB = 2;
+    private final static int DELETE_RANDOM_BRICKS = 3;
+    private final static int REDUCE_SIZE_PAD = 4;
+    private final static int ENLARGE_SIZE_PAD = 5;
+    private final static int INCREASE_BALL_SPEED = 6;
+    private final static int DECREASE_BALL_SPEED = 7;
+    private final static int CHANGE_OBSTACLES = 8;
+    private final static int INCREASE_SCORE = 9;
+    private final static int ADD_BALLS = 10;
+    private final static int CHANGE_ROW = 11;
+    private final static int CHANGE_HARD = 12;
+
+    private Map<Integer,Void> mappa;
+    private Random random = new Random();
     private Level level;
 
     public Surprise(Level level) {
         this.level = level;
+        mappa = new HashMap<>(Map.ofEntries(
+            Map.entry(EXTRA_LIFE, this.extraLife()),
+            Map.entry(EXPLOSIVE_BOMB, this.explosiveBomb()),
+            Map.entry(DELETE_RANDOM_BRICKS, this.deleteRandomBricks()),
+            Map.entry(REDUCE_SIZE_PAD, this.reduceSizePad()),
+            Map.entry(ENLARGE_SIZE_PAD, this.enlargeSizePad()),
+            Map.entry(INCREASE_BALL_SPEED, this.increaseBallSpeed()),
+            Map.entry(DECREASE_BALL_SPEED, this.decreaseBallSpeed()),
+            Map.entry(CHANGE_OBSTACLES, this.changeObstacles()),
+            Map.entry(INCREASE_SCORE, this.increaseScore()),
+            Map.entry(ADD_BALLS, this.addBalls()),
+            Map.entry(CHANGE_ROW, this.changeRow()),
+            Map.entry(CHANGE_HARD, this.changeHard())
+            )
+        );
     }
 
     //simone
-    public void extraLife() {        
+    private Void extraLife() {
+        return null;        
     }
 
     //simone
-    public void explosiveBomb() {
+    private Void explosiveBomb() {
+        return null;
     }
 
     //edoardo
-    public void deleteRandomBricks() {
+    private Void deleteRandomBricks() {
+        return null;
     }
 
     //edoardo
-    public void reduceSizePad() {
+    private Void reduceSizePad() {
+        return null;
     }
 
     //edoardo
-    public void enlargeSizePad() {
+    private Void enlargeSizePad() {
+        return null;
     }
 
     //virginia
-    public void increaseBallSpeed() {
+    private Void increaseBallSpeed() {
+        return null;
     }
 
     //virginia
-    public void decreaseBallSpeed() {
+    private Void decreaseBallSpeed() {
+        return null;
     }
 
     //virginia
-    public void changeObstacles() {
+    private Void changeObstacles() {
+        return null;
     }
 
     //margherita
-    public void increaseScore() {
+    private Void increaseScore() {
+        return null;
     }
 
     //margherita
-    public void addBalls() {
+    private Void addBalls() {
+        return null;
     }
 
     //chiara
-    public void changeRow() {
+    private Void changeRow() {
+        return null;
     }
 
     //chiara
-    public void changeHard() {
+    private Void changeHard() {
+        return null;
     }
 
     //simone
