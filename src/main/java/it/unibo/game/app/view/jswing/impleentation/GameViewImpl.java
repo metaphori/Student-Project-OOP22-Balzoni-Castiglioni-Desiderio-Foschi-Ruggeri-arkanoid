@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.swing.*;
 import it.unibo.game.Pair;
+import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.view.jswing.api.GameView;
 import it.unibo.game.app.view.jswing.api.UIController;
 
@@ -41,7 +42,7 @@ public class GameViewImpl extends JPanel implements KeyListener, ActionListener,
 
         observer.getList().entrySet().stream().forEach(x -> {
             g2d.setColor(x.getValue().isEmpty() ? Color.BLACK
-                : x.getValue().get() == 2 ? Color.LIGHT_GRAY
+                : x.getValue().get() == 2 ? Color.RED
                 : x.getKey().getY() == observer.getRowC(0d) ? Color.RED
                 : x.getKey().getY() == observer.getRowC(1d) ? Color.BLUE
                 : x.getKey().getY() == observer.getRowC(2d) ? Color.YELLOW
@@ -52,11 +53,11 @@ public class GameViewImpl extends JPanel implements KeyListener, ActionListener,
                     : Color.GREEN);
             // g2d.draw(new Rectangle2D.Double(x.getKey().getX(),x.getKey().getY(),
             // observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX()));
-            g2d.fill(new Rectangle2D.Double(x.getKey().getX() * deltaH,  x.getKey().getY() * deltaW,
-                    observer.getDimensionBrick().getY() * deltaW, observer.getDimensionBrick().getX() * deltaH));
+            var rec = new Rectangle2D.Double(x.getKey().getX() * deltaH,  x.getKey().getY() * deltaW,
+            observer.getDimensionBrick().getY() * deltaW, observer.getDimensionBrick().getX() * deltaH);
+            g2d.fill(rec);
             g2d.setColor(Color.BLACK);
-            g2d.draw(new Rectangle2D.Double(x.getKey().getX() * deltaH, x.getKey().getY() * deltaW,
-                    observer.getDimensionBrick().getY() * deltaW, observer.getDimensionBrick().getX() * deltaH));
+            g2d.draw(rec);
         });
 
         g2d.setColor(Color.GREEN);
@@ -66,7 +67,10 @@ public class GameViewImpl extends JPanel implements KeyListener, ActionListener,
         g2d.setColor(Color.BLACK);
         g2d.fill(new Rectangle2D.Double(observer.getPadPos().getX() * deltaH, observer.getPadPos().getY() * deltaW,
                 observer.getPadWight() * deltaW, observer.getPadHeight() * deltaH));
+        
+        g2d.fill(new Rectangle2D.Double(400d , 3d,41, 11));
         g2d.dispose();
+
     }
 
     @Override
