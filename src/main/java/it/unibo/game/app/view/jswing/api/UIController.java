@@ -26,8 +26,8 @@ public interface UIController {
             return this.name;
         }
     };
-
-    void setController(AppController observer);
+    void set(AppController control);
+    //void setController(AppController observer);
     void initialView();
     void pauseMenu();
     void gameView();
@@ -50,5 +50,4 @@ public interface UIController {
     boolean isPresent(String name);
     void movePadLeft();
     void movePadRight();
-    
 }
