@@ -32,10 +32,13 @@ public class Collision {
     public Optional<Integer> collideWithBrick(Ball b){
         var ballBox = new BoundingBoxImpl(b);
         for (Brick obj : level.getRound().getBrick()) {
-            var box = new BoundingBoxImpl(obj);
-            if(ballBox.collideWith(box).isPresent()){
+           var box = new BoundingBoxImpl(obj); 
+           var opt = ballBox.collideWith(box);
+            
+            if(opt.isPresent()){
                 this.score.increaseScore();
-                b.getPhysics().changeDirection(ballBox.collideWith(box).get());
+                b.getPhysics().changeDirection(opt.get());
+                System.out.println(opt.get());
                 return Optional.of(level.getRound().getBrick().indexOf(obj));
             }
         }
