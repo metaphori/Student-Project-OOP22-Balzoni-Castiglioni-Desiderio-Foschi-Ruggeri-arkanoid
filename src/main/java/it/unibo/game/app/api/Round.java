@@ -32,4 +32,6 @@ public interface Round{
 
     Ball getBall();
 
+    void remove(int index);
+
 }
