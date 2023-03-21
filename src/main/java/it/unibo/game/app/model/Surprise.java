@@ -108,6 +108,8 @@ public class Surprise {
 
     //simone
     public void chooseSurprise() {
+        final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
+        this.mappa.get(method);
     }
     
 }
