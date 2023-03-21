@@ -65,7 +65,7 @@ public class ModelImpl implements Model{
     }
 
     @Override
-    public void changePos(Pair<Double,Double> pos) {
+    public void setPadPos(Pair<Double,Double> pos) {
         this.level.getRound().setPosPad(pos);
     }
 

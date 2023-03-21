@@ -31,11 +31,7 @@ public class Move {
         return index;
     }
 
-    /*lo fa edo */
-    public void nextPad(){
-
-    }
-
+    
     public void update(long dt) {
         this.nextBall(dt);
     }
