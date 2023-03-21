@@ -92,6 +92,10 @@ public abstract class AbstractRound implements Round {
     public Ball getBall(){
         return this.ball;
     }
+
+    public void remove(int index){
+        this.brick.remove(index);
+    }
     
     protected abstract void setPosBrick ();
 }
