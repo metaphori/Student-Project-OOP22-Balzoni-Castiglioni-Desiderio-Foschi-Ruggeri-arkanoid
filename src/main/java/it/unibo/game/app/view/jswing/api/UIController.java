@@ -46,4 +46,6 @@ public interface UIController {
     Double getRBall();
     void rPaint();
     Double getRowC(Double x);
+    void movePadRight();
+    void movePadLeft();
 }
