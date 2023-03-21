@@ -13,15 +13,20 @@ public class Move {
     private Optional<Integer> index ;
     private Ball ball ;
     private Pad pad;
+    private Level l;
     public Move (Level l, Ball ball, Pad p){
         coll = new Collision(l);
         this.ball = ball;
         this.pad = p;
+        this.l=l;
     }
     public void nextBall(long dt){ 
         coll.CollideWithEdges(this.ball, SizeCalculation.getWorldSize().getX() , SizeCalculation.getWorldSize().getY());
-        //index = coll.collideWithBrick(this.ball);
-        coll.CollideWithPad(this.ball, this.pad);
+        index = coll.collideWithBrick(this.ball);
+        if(index.isPresent()){
+            this.l.getRound().remove(index.get());
+        }
+        //coll.CollideWithPad(this.ball, this.pad);
         var newPos = new Pair<Double,Double> (this.ball.getPos().getX() +this.ball.getPhysics().getDir().getDirection().getX(),
                                                  this.ball.getPos().getY() + this.ball.getPhysics().getDir().getDirection().getY());
         ball.setPos(newPos);
