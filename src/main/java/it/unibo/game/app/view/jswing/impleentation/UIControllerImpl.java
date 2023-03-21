@@ -161,6 +161,7 @@ public class UIControllerImpl implements UIController  {
     }
     private void movePad(Pair<Double,Double> newPos){
         controller.changePadPos(newPos);
+        //window.repaint();
     }
     
     public void movePadRight() {
