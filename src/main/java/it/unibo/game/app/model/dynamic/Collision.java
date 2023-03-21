@@ -19,12 +19,12 @@ public class Collision {
     public Collision(Level lev){
         this.level = lev;
     }
-    public void CollideWithEdges(Ball b, Double double1, Double double2){
+    public void CollideWithEdges(Ball b, Double h, Double w){
         var ballBox = new BoundingBoxImpl(b);
-        if(ballBox.getBox().get(Corner.LEFT_DOWN).getY() == 0 ||ballBox.getBox().get(Corner.RIGHT_DOWN).getY() == double2-1){
+        if(ballBox.getBox().get(Corner.LEFT_DOWN).getX() == 0 ||ballBox.getBox().get(Corner.RIGHT_DOWN).getX() == w-1){
             b.getPhysics().changeDirection(Side.LEFT_RIGHT);
         }
-         if(ballBox.getBox().get(Corner.LEFT_UP).getX()==0 ){
+         if(ballBox.getBox().get(Corner.LEFT_UP).getY()==0 ){
             b.getPhysics().changeDirection(Side.UP_DOWN);
         }
     }

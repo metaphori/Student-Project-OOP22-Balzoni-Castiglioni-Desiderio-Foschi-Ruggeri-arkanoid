@@ -32,7 +32,7 @@ public abstract class AbstractRound implements Round {
         this.numSurprise = numS;
         this.sizeC = size;
         pad = new Pad(SizeCalculation.getWorldSize());
-        ball.setR(SizeCalculation.getWorldSize().getY()/15);
+        ball.setR(SizeCalculation.getWorldSize().getY()/30);
         ball.setPos(new Pair<>(pad.getPos().getX(),pad.getPos().getY()-ball.getR()));
     }
 
