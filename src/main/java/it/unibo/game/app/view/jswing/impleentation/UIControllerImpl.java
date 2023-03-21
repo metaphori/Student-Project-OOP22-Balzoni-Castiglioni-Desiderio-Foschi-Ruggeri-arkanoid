@@ -24,18 +24,44 @@ public class UIControllerImpl implements UIController  {
 
 
     
-    Map<PAGES, JPanel> views = new HashMap<>(
-            Map.of(
-                    PAGES.GAME, new GameViewImpl(this),
-                    PAGES.START_MENU, new StartMenu(this),
-                    PAGES.PAUSE_MENU, new PauseMenu(this),
-                    PAGES.TOP_5, new LeaderBoardView(this),
-                    PAGES.VICTORY, new Victory(this),
-                    PAGES.GAME_OVER, new GameOver(this)
-    ));
+    Map<PAGES, JPanel> views = new HashMap<>();
+
+    public void set(AppController control){
+        this.controller=control;
+
+        options.add(menu);
+        options.add(pause);
+        options.add(leadrBoard);
+        navBar.add(options);
+
+        menu.addActionListener(e-> initialView());
+        pause.addActionListener(e-> pauseMenu());
+        leadrBoard.addActionListener(e-> leaderBoardView());
+
+        this.deck = new JPanel(layout);
+        views.putAll(Map.of(
+            PAGES.GAME, new GameViewImpl(this),
+            PAGES.START_MENU, new StartMenu(this),
+            PAGES.PAUSE_MENU, new PauseMenu(this),
+            PAGES.TOP_5, new LeaderBoardView(this),
+            PAGES.VICTORY, new Victory(this),
+            PAGES.GAME_OVER, new GameOver(this)
+        ));
+        views.entrySet().stream().forEach(x->deck.add(x.getValue(),x.getKey().getName()));
+        window.add(deck,BorderLayout.CENTER);
+
+        var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        
+        this.window.setMinimumSize(new Dimension(screenSize.height/2,screenSize.width/3));
+        this.window.setJMenuBar(navBar);
+        this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.window.setVisible(true);
+        this.window.requestFocusInWindow();
+        initialView();
+    }
 
 
-    public UIControllerImpl() {
+    /*public UIControllerImpl() {
         
         options.add(menu);
         options.add(pause);
@@ -59,7 +85,7 @@ public class UIControllerImpl implements UIController  {
         this.window.setVisible(true);
         this.window.requestFocusInWindow();
         initialView();
-    }
+    } */
 
     private void chargeView(PAGES p) {
         layout.show(deck, p.getName());
@@ -133,10 +159,10 @@ public class UIControllerImpl implements UIController  {
         this.window.repaint();
     }
 
-    @Override
+    /*@Override
     public void setController(AppController observer) {
         controller = observer;
-    }
+    } */
 
     @Override
     public void gameOver() {
