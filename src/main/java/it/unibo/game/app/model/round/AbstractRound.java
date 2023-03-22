@@ -33,7 +33,7 @@ public abstract class AbstractRound implements Round {
         this.sizeC = size;
         pad = new Pad(SizeCalculation.getWorldSize());
         ball.setR(SizeCalculation.getWorldSize().getY()/30);
-        ball.setPos(new Pair<>(pad.getPos().getX(),pad.getPos().getY()-ball.getR()));
+        ball.setPos(new Pair<>(pad.getPos().getX(),pad.getPos().getY()-(2*ball.getR())-5));
     }
 
     public int getJump () {
