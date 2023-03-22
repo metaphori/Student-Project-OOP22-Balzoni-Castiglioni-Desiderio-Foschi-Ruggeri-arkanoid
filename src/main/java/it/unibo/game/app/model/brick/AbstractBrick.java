@@ -38,7 +38,7 @@ public abstract class AbstractBrick extends GameObjectImpl implements Brick{
         return this.brickWidth;
     }
 
-    public abstract boolean isDestroyable();
+    public abstract boolean isDestroyed();
 
     public abstract void hit();
 

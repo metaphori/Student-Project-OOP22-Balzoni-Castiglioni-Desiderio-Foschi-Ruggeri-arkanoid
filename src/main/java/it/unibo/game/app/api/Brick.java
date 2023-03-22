@@ -13,7 +13,7 @@ public interface Brick extends GameObject{
 
     Optional<Integer> getRes();
 
-    boolean isDestroyable();
+    boolean isDestroyed();
 
     void hit();
 
