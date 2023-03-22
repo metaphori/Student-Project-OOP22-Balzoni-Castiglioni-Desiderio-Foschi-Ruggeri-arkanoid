@@ -12,7 +12,7 @@ public class Obstacle extends AbstractBrick {
     }
 
     @Override
-    public boolean isDestroyable() {
+    public boolean isDestroyed() {
         // TODO Auto-generated method stub
         return false;
     }
