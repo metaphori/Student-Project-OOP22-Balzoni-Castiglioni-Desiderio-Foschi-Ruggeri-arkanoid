@@ -5,7 +5,10 @@ import java.util.Map;
 
 import java.util.Random;
 
+import it.unibo.game.app.api.Brick;
+import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.model.brick.NormalBrick;
 
 public class Surprise {
 
@@ -82,8 +85,16 @@ public class Surprise {
     }
 
     //virginia
-    private Void changeObstacles() {
-        return null;
+    private void changeObstacles() {
+        this.level.getRound().getBrick().replaceAll(x->{
+            if(x.getType().equals(BrickType.OBSTACLE)) {
+                Brick brick = new NormalBrick(BrickType.NORMAL, x.getBrickW(), x.getBrickH(), 1);
+                return brick;
+            }
+            else {
+                return x;
+            }
+        });
     }
 
     //margherita
