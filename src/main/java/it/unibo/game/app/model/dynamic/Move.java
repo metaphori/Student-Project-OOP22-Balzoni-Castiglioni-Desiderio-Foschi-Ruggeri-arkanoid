@@ -26,7 +26,7 @@ public class Move {
         if(index.isPresent()){
             this.l.getRound().remove(index.get());
         }
-        //coll.CollideWithPad(this.ball, this.pad);
+        coll.CollideWithPad(this.ball, this.pad);
         var newPos = new Pair<Double,Double> (this.ball.getPos().getX() +this.ball.getPhysics().getDir().getDirection().getX(),
                                                  this.ball.getPos().getY() + this.ball.getPhysics().getDir().getDirection().getY());
         ball.setPos(newPos);

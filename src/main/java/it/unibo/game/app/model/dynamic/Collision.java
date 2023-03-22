@@ -21,10 +21,10 @@ public class Collision {
     }
     public void CollideWithEdges(Ball b, Double h, Double w){
         var ballBox = new BoundingBoxImpl(b);
-        if(ballBox.getBox().get(Corner.LEFT_DOWN).getX() == 0 ||ballBox.getBox().get(Corner.RIGHT_DOWN).getX() == w-1){
+        if(ballBox.getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 ||ballBox.getBox().get(Corner.RIGHT_DOWN).getX() >= w-1){
             b.getPhysics().changeDirection(Side.LEFT_RIGHT);
         }
-         if(ballBox.getBox().get(Corner.LEFT_UP).getY()==0 ){
+         if(ballBox.getBox().get(Corner.LEFT_UP).getY() <= 0.5 ){
             b.getPhysics().changeDirection(Side.UP_DOWN);
         }
     }
@@ -48,7 +48,7 @@ public class Collision {
     public void CollideWithPad (Ball b, Pad p){
         var ballBox = new BoundingBoxImpl(b);
         var padBox = new BoundingBoxImpl(p);
-        if(ballBox.collideWith(padBox).isPresent()) {
+        if(ballBox.collideWith(padBox).equals(Optional.of(Side.UP_DOWN))) {
             this.score.resetPoints();
             b.getPhysics().changeDirection(Side.UP_DOWN);
         
