@@ -22,8 +22,8 @@ public class NormalBrick extends AbstractBrick{
     }
 
     @Override
-    public boolean isDestroyable() {
-        return this.brickResistence >0;
+    public boolean isDestroyed() {
+        return this.brickResistence ==0;
     }
 
     public void increaseRes(int res) {
