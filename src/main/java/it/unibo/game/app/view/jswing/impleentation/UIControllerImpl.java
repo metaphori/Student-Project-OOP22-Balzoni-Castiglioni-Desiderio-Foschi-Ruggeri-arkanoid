@@ -101,6 +101,7 @@ public class UIControllerImpl implements UIController  {
     @Override
     public void pauseMenu() {
         chargeView(PAGES.PAUSE_MENU);
+        controller.onPause();
     }
 
     @Override

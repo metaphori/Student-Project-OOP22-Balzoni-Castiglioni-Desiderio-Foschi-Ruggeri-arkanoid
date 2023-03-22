@@ -26,7 +26,7 @@ public class ControllerImpl implements AppController{
 
     @Override
     public void onPause() {
-        throw new UnsupportedOperationException("Unimplemented method 'onPause'");
+        this.gameEngine.pause();
     }
 
     @Override
