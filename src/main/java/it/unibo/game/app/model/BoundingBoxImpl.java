@@ -34,18 +34,21 @@ public class BoundingBoxImpl implements BoundingBox {
     }
     @Override
     public Optional<Side> collideWith(BoundingBox b) {
-        if((this.corners.get(Corner.LEFT_UP).getY() == b.getBox().get(Corner.LEFT_DOWN).getY() 
-            || this.corners.get(Corner.LEFT_DOWN).getY() == b.getBox().get(Corner.LEFT_UP).getY())
+        if(((this.corners.get(Corner.LEFT_UP).getY() <= b.getBox().get(Corner.LEFT_DOWN).getY() 
+            &&  this.corners.get(Corner.LEFT_UP).getY() > b.getBox().get(Corner.LEFT_UP).getY())
+            ||( this.corners.get(Corner.LEFT_DOWN).getY() >= b.getBox().get(Corner.LEFT_UP).getY() 
+             && this.corners.get(Corner.LEFT_DOWN).getY() < b.getBox().get(Corner.LEFT_DOWN).getY()))
             && (this.corners.get(Corner.LEFT_UP).getX()<= b.getBox().get(Corner.RIGHT_DOWN).getX() 
             && this.corners.get(Corner.RIGHT_UP).getX()>= b.getBox().get(Corner.LEFT_DOWN).getX())){
+                    return Optional.of(Side.UP_DOWN);
 
-                return Optional.of(Side.LEFT_RIGHT);
-
-            }else if((this.corners.get(Corner.RIGHT_DOWN).getX() >= b.getBox().get(Corner.LEFT_UP).getX() 
-                    || this.corners.get(Corner.LEFT_DOWN).getX() <= b.getBox().get(Corner.RIGHT_UP).getX())
+            }else if(((this.corners.get(Corner.RIGHT_DOWN).getX() >= b.getBox().get(Corner.LEFT_UP).getX() 
+                    && this.corners.get(Corner.RIGHT_DOWN).getX() < b.getBox().get(Corner.RIGHT_UP).getX())
+                    || (this.corners.get(Corner.LEFT_DOWN).getX() <= b.getBox().get(Corner.RIGHT_UP).getX() 
+                    && this.corners.get(Corner.RIGHT_DOWN).getX() < b.getBox().get(Corner.RIGHT_UP).getX()))
                     && (this.corners.get(Corner.RIGHT_DOWN).getY() >= b.getBox().get(Corner.LEFT_UP).getY() 
                     && this.corners.get(Corner.RIGHT_UP).getY() <= b.getBox().get(Corner.LEFT_DOWN).getY())){
-                        return Optional.of(Side.UP_DOWN);
+                        return Optional.of(Side.LEFT_RIGHT);
                     }
    
        return Optional.empty();
