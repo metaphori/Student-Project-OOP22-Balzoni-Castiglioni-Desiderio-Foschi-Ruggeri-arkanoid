@@ -16,14 +16,17 @@ import java.awt.event.ActionListener;
 public abstract class AbstractView extends JPanel{
     protected UIControllerImpl uiControllerImpl;
     protected JLabel titleLabel;
+    protected JPanel buttonsPanel;
+    protected JButton quitBtn;
+    protected JButton menuBtn;
 
     public AbstractView(UIControllerImpl uiCtrl) {
         this.uiControllerImpl = uiCtrl;
         titleLabel = new JLabel("Title");
-        JButton quitBtn = new CustomBtn(30,"Quit");
-        JButton menuBtn = new CustomBtn(30,"Start Menù");
+        quitBtn = new CustomBtn(30,"Quit");
+        menuBtn = new CustomBtn(30,"Start Menù");
         JPanel titlePanel = new JPanel();
-        JPanel buttonsPanel = new JPanel();
+        buttonsPanel = new JPanel();
 
         this.setLayout(new BorderLayout());
         buttonsPanel.setLayout(new GridLayout(2,1,0,1));
@@ -31,8 +34,6 @@ public abstract class AbstractView extends JPanel{
         titleLabel.setForeground(Color.WHITE);
 
         titlePanel.add(titleLabel);
-        buttonsPanel.add(menuBtn);
-        buttonsPanel.add(quitBtn);
 
         titlePanel.setBackground(Color.BLACK);
         buttonsPanel.setBackground(Color.BLACK);
