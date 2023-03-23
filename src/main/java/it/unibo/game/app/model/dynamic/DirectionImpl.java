@@ -11,7 +11,7 @@ public class DirectionImpl implements Direction {
     private Pair<Integer, Integer> d ;
 
     public DirectionImpl(){
-        this.d= new Pair<Integer,Integer>(LEFT, UP);
+       this.resetDirection();
     }
     public void setDirection(Pair<Integer,Integer> newD){
         this.d = newD;
@@ -44,4 +44,9 @@ public class DirectionImpl implements Direction {
     public Pair<Integer, Integer> getDirection(){
         return this.d;
     }
+    @Override
+    public void resetDirection() {
+        this.d = new Pair<Integer,Integer>(LEFT, UP);
+    }
+    
 }
