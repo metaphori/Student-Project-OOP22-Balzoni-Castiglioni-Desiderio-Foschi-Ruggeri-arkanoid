@@ -168,6 +168,7 @@ public class UIControllerImpl implements UIController  {
     @Override
     public void gameOver() {
         chargeView(PAGES.GAME_OVER);
+        controller.onPause();
     }
 
     @Override

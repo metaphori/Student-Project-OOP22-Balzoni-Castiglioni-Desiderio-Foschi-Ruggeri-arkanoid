@@ -1,7 +1,5 @@
 package it.unibo.game.app.api;
 
-import it.unibo.game.app.model.round.*;
-
 public interface Level {
     void setFirstRound();
     void setSecondRound();

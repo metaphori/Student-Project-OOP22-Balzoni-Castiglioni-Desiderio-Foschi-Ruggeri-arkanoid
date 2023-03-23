@@ -134,7 +134,6 @@ public class ControllerImpl implements AppController{
 
     @Override
     public void setGameOver() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setGameOver'");
+        this.uiContr.gameOver();
     }
 }
