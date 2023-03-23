@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
+import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.view.jswing.api.*;
 
 import javax.swing.*;
@@ -198,6 +199,13 @@ public class UIControllerImpl implements UIController  {
 
     public void movePadLeft() {
         movePad(new Pair<Double,Double>(this.getPadPos().getX()-1, this.getPadPos().getY()));
+    }
+
+
+    @Override
+    public List<Ball> getSurprise() {
+        // TODO Auto-generated method stub
+        return this.controller.getSurprise();
     }
     
 }
