@@ -37,4 +37,6 @@ public interface Model{
 
     boolean isPresent(String name);
 
+    void updateLife();
+
 }

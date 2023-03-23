@@ -118,5 +118,13 @@ public class ModelImpl implements Model{
     public List<Pair<String,Integer>> getBestFive(){
         return board.getBestFive();
     }
+
+    @Override
+    public void updateLife() {
+        if(!this.level.checkLife()) {
+            this.control.setGameOver();
+        }
+    }
+    
     
 }
