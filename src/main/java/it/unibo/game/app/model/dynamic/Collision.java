@@ -45,13 +45,14 @@ public class Collision {
         return Optional.empty();
     }
 
-    public void CollideWithPad (Ball b, Pad p){
+    public boolean CollideWithPad (Ball b, Pad p){
         var ballBox = new BoundingBoxImpl(b);
         var padBox = new BoundingBoxImpl(p);
         if(ballBox.collideWith(padBox).equals(Optional.of(Side.UP_DOWN))) {
             this.score.resetPoints();
             b.getPhysics().changeDirection(Side.UP_DOWN);
-        
+            return true;
         }
+        return false;
     }
 }
