@@ -41,4 +41,6 @@ public interface Model{
 
     void updateLife();
 
+    boolean isLevelFinished();
+
 }

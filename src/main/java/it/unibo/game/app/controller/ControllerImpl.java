@@ -105,7 +105,7 @@ public class ControllerImpl implements AppController{
 
     @Override
     public void nextRound() {
-        if(!this.model.nextRound()) {
+        if(this.model.nextRound() && this.model.isLevelFinished()) {
             uiContr.victory();
         }
     }

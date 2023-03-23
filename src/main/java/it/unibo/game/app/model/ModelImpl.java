@@ -99,9 +99,9 @@ public class ModelImpl implements Model{
             } else if(this.level.getNumRoundPassed() == 2) {
                 this.level.setThirdRound();
             }
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -138,6 +138,11 @@ public class ModelImpl implements Model{
                 this.control.setGameOver();
             }
         }
+    }
+
+    @Override
+    public boolean isLevelFinished() {
+        return this.level.getNumRoundPassed() > 2 ? true : false;
     }
     
     
