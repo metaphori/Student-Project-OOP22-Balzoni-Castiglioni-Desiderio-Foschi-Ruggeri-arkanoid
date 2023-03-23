@@ -92,16 +92,17 @@ public class ModelImpl implements Model{
     }
 
     @Override
-    public boolean nextRound() {
-        if(this.checkRound() && this.level.getNumRoundPassed()<=2) {
+    public void nextRound() {
+        if(this.level.getNumRoundPassed() <= 2) {
             if(this.level.getNumRoundPassed() == 1) {
                 this.level.setSecondRound();
+                this.move = new Move(level, level.getRound().getBall(), level.getRound().getPad());
+                this.gameOver = new GameOver(level.getRound());
             } else if(this.level.getNumRoundPassed() == 2) {
                 this.level.setThirdRound();
+                this.move = new Move(level, level.getRound().getBall(), level.getRound().getPad());
+                this.gameOver = new GameOver(level.getRound());
             }
-            return false;
-        } else {
-            return true;
         }
     }
 
@@ -143,10 +144,10 @@ public class ModelImpl implements Model{
         return false;
     }
 
-    @Override
-    public boolean isLevelFinished() {
-        return this.level.getNumRoundPassed() > 2 ? true : false;
-    }
+    // @Override
+    // public boolean isLevelFinished() {
+    //     return this.level.getNumRoundPassed() > 2 ? true : false;
+    // }
 
     @Override
     public void restoreInitialPosition() {

@@ -19,7 +19,7 @@ public interface Model{
     
     void setPadPos(Pair<Double, Double> pos);
 
-    boolean nextRound();
+    void nextRound();
 
     Double getPadWight();
 
@@ -41,7 +41,7 @@ public interface Model{
 
     boolean updateLife();
 
-    boolean isLevelFinished();
+    //boolean isLevelFinished();
 
     void restoreInitialPosition();
 
