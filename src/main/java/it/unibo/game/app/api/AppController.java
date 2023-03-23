@@ -58,4 +58,6 @@ public interface AppController {
 
     void update(long dt);
 
+    void setGameOver();
+
 }

@@ -131,4 +131,10 @@ public class ControllerImpl implements AppController{
     public List<Pair<String,Integer>> getBestFive(){
         return this.model.getBestFive();
     }
+
+    @Override
+    public void setGameOver() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setGameOver'");
+    }
 }
