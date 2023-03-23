@@ -60,6 +60,8 @@ public interface AppController {
 
     void setGameOver();
 
-    void updateLife();
+    boolean updateLife();
+
+    void restoreBall();
 
 }

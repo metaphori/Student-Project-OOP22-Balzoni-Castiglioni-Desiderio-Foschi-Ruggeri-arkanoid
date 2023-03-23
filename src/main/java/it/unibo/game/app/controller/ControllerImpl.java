@@ -138,7 +138,14 @@ public class ControllerImpl implements AppController{
     }
 
     @Override
-    public void updateLife() {
-       this.model.updateLife();
+    public boolean updateLife() {
+       return this.model.updateLife();
     }
+
+    @Override
+    public void restoreBall() {
+        this.model.restoreInitialPosition();
+    }
+
+    
 }
