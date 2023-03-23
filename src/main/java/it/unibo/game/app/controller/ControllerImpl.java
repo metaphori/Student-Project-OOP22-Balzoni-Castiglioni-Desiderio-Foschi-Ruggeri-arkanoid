@@ -48,12 +48,6 @@ public class ControllerImpl implements AppController{
     }
 
     @Override
-    public Map<Pair<Double, Double>, Optional<Integer>> getBrickList() {
-        return this.model.getBrickList();
-
-    } 
-
-    @Override
     public void chooseLevel(int numLevel) {
         this.model.chooseLevel(numLevel);
     }
@@ -62,7 +56,12 @@ public class ControllerImpl implements AppController{
     public Pair<Double, Double> getWorldDimension() {
        return SizeCalculation.getWorldSize();
     }
-    
+    /*-------------------------------------------------------------------- */
+    /*metodi da utili alla gui */
+    @Override
+    public Map<Pair<Double, Double>, Optional<Integer>> getBrickList() {
+        return this.model.getBrickList();
+    } 
     @Override
     public Pair<Double, Double> getBrickDimension() {
         return this.model.getBrickDimension();
@@ -76,11 +75,6 @@ public class ControllerImpl implements AppController{
     @Override
     public Pair<Double, Double> getPad() {
         return this.model.getPad();
-    }
-
-    @Override
-    public void changePadPos(Pair<Double, Double> pos){
-        this.model.setPadPos(pos);
     }
 
     @Override
@@ -98,6 +92,7 @@ public class ControllerImpl implements AppController{
         return this.model.getRBall();
     }
 
+    /*-------------------------------------------- */
     @Override
     public void rPaint() {
         this.uiContr.rPaint();
@@ -108,6 +103,11 @@ public class ControllerImpl implements AppController{
         if(this.model.nextRound() && this.model.isLevelFinished()) {
             uiContr.victory();
         }
+    }
+
+    @Override
+    public void changePadPos(Pair<Double, Double> pos){
+        this.model.setPadPos(pos);
     }
 
     @Override
