@@ -25,6 +25,8 @@ public class GameEngine {
                     long currentCycleStartTime = System.currentTimeMillis();
                     long elapsed = currentCycleStartTime - previousCycleStartTime;
                     update(elapsed);
+                    checkRound();
+
                     render();
                     waitForNextFrame(currentCycleStartTime);
                     previousCycleStartTime = currentCycleStartTime;
@@ -60,6 +62,10 @@ public class GameEngine {
     public void resume() {
         this.thread = true;
         this.processInBackGround();
+    }
+
+    protected void checkRound() {
+        this.controller.nextRound();
     }
 
     
