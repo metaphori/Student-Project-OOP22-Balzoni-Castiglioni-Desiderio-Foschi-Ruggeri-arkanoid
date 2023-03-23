@@ -147,6 +147,12 @@ public class ModelImpl implements Model{
     public boolean isLevelFinished() {
         return this.level.getNumRoundPassed() > 2 ? true : false;
     }
+
+    @Override
+    public void restoreInitialPosition() {
+        this.level.getRound().getBall().setPos(level.getRound().getBallInitialPos());
+        this.level.getRound().getBall().getPhysics().getDir().resetDirection();
+    }
     
     
 }

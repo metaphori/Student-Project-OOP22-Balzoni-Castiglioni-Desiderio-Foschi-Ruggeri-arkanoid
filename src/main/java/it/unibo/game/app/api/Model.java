@@ -43,4 +43,6 @@ public interface Model{
 
     boolean isLevelFinished();
 
+    void restoreInitialPosition();
+
 }
