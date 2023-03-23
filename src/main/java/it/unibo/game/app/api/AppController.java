@@ -4,6 +4,7 @@ import java.util.*;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.model.*;
+import it.unibo.game.app.model.ball.Ball;
 
 public interface AppController {
     
@@ -53,6 +54,8 @@ public interface AppController {
     List<Pair<String,Integer>> getBestFive();
 
     boolean isPresent(String name);
+
+    List<Ball> getSurprise();
 
     void setGameEngine();
 
