@@ -89,8 +89,8 @@ public class ControllerImpl implements AppController{
     @Override
     public Pair<Double, Double> getPad() {
         return new Pair<Double,Double>(
-            this.model.getPad().getX()* this.delta().getY(),
-            this.model.getPad().getY()* this.delta().getX()
+            this.model.getPad().getX()* this.delta().getX(),
+            this.model.getPad().getY()* this.delta().getY()
         );
     }
 
@@ -168,6 +168,21 @@ public class ControllerImpl implements AppController{
     @Override
     public void restoreBall() {
         this.model.restoreInitialPosition();
+    }
+
+    /*movimento pad */
+    private void movePad(Pair<Double,Double>p){
+        this.model.setPadPos(p);
+    }
+
+    @Override
+    public void mvPadR() {
+        movePad(new Pair<Double,Double>(this.model.getPad().getX()+1,this.model.getPad().getY()));
+    }
+
+    @Override
+    public void mvPadL() {
+        movePad(new Pair<Double,Double>(this.model.getPad().getX()-1,this.model.getPad().getY()));
     }
 
     

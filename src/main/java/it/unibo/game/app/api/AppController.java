@@ -64,4 +64,8 @@ public interface AppController {
 
     void restoreBall();
 
+    void mvPadR();
+
+    void mvPadL();
+
 }

@@ -187,17 +187,14 @@ public class UIControllerImpl implements UIController  {
     public List<Pair<String,Integer>> getBestFive(){
         return this.controller.getBestFive();
     }
-    private void movePad(Pair<Double,Double> newPos){
-        controller.changePadPos(newPos);
-        //window.repaint();
-    }
+    
     
     public void movePadRight() {
-        movePad(new Pair<Double,Double>(this.getPadPos().getX()+1, this.getPadPos().getY()));
+        controller.mvPadR();
     }
 
     public void movePadLeft() {
-        movePad(new Pair<Double,Double>(this.getPadPos().getX()-1, this.getPadPos().getY()));
+        controller.mvPadL();
     }
 
 
