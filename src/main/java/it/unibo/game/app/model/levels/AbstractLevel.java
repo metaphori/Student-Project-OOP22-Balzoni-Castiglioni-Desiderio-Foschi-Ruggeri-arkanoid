@@ -11,7 +11,7 @@ import it.unibo.game.app.model.SizeCalculation;
 public abstract class AbstractLevel implements Level {
 
     private final static int INITIAL_LIVES=3;
-    protected static int lives = INITIAL_LIVES;
+    protected int lives = INITIAL_LIVES;
 
     /*Definire delle costanti per ogni livello che definiscno queste variabili */
     protected int normalBricksFirstRound;
