@@ -24,6 +24,8 @@ public abstract class AbstractRound implements Round {
     private Ball ball = new Ball();
     private Pad pad;
     private SizeCalculation sizeC;
+    private final Pair<Double, Double> ballInitialPos;
+    private final Pair<Double, Double> padInitialPos;
 
 
     public AbstractRound (int jump, int numB, int numS, SizeCalculation size) {
@@ -32,12 +34,18 @@ public abstract class AbstractRound implements Round {
         this.numSurprise = numS;
         this.sizeC = size;
         pad = new Pad(SizeCalculation.getWorldSize());
+        this.padInitialPos = pad.getPos();
         ball.setR(SizeCalculation.getWorldSize().getY()/30);
-        ball.setPos(new Pair<>(pad.getPos().getX(),pad.getPos().getY()-(2*ball.getR())-5));
+        this.ballInitialPos = new Pair<>(padInitialPos.getX(),padInitialPos.getY()-(2*ball.getR())-5);
+        ball.setPos(ballInitialPos);
     }
 
     public int getJump () {
         return this.jump;
+    }
+
+    public Pair<Double, Double> getBallInitialPosition() {
+        return this.ballInitialPos;
     }
 
     public SizeCalculation getSizeCalc() {

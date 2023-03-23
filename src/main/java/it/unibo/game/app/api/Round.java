@@ -34,4 +34,6 @@ public interface Round{
 
     void remove(int index);
 
+    Pair<Double, Double> getBallInitialPosition();
+
 }
