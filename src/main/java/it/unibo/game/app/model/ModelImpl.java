@@ -21,7 +21,7 @@ public class ModelImpl implements Model{
     private Level level;
     private Move move;
     private LeaderBoard board = new LeaderBoardImpl();
-    private GameOver gameOver = new GameOver(level.getRound());
+    private GameOver gameOver;
 
     @Override
     public void setController(AppController c) {
@@ -48,7 +48,7 @@ public class ModelImpl implements Model{
                 break;
         }
         this.move = new Move(level, level.getRound().getBall(), level.getRound().getPad());
-
+        this.gameOver = new GameOver(level.getRound());
     }
 
     @Override
