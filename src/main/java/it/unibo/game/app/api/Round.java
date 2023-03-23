@@ -24,6 +24,8 @@ public interface Round{
 
     void setPosPad (Pair<Double,Double> pos);
 
+    List<Ball> getSurprise();
+
     Pair<Double,Double> getPosBall();
 
     Pair<Double,Double> getPosPad();
