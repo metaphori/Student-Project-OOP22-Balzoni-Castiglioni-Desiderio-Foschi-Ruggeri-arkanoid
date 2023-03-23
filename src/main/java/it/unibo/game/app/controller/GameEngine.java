@@ -26,7 +26,7 @@ public class GameEngine {
                     long elapsed = currentCycleStartTime - previousCycleStartTime;
                     update(elapsed);
                     checkRound();
-
+                    updateLife();
                     render();
                     waitForNextFrame(currentCycleStartTime);
                     previousCycleStartTime = currentCycleStartTime;
@@ -66,6 +66,10 @@ public class GameEngine {
 
     protected void checkRound() {
         this.controller.nextRound();
+    }
+
+    protected void updateLife() {
+        this.controller.updateLife();
     }
 
     

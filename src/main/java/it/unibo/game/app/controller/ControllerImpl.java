@@ -136,4 +136,9 @@ public class ControllerImpl implements AppController{
     public void setGameOver() {
         this.uiContr.gameOver();
     }
+
+    @Override
+    public void updateLife() {
+       this.model.updateLife();
+    }
 }

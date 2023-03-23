@@ -60,4 +60,6 @@ public interface AppController {
 
     void setGameOver();
 
+    void updateLife();
+
 }
