@@ -10,7 +10,7 @@ public class GameOver {
         this.round = round;
     } 
     public boolean hasMissedBall() {
-        return (this.round.getPosBall().getX() > this.round.getPosPad().getX()) ? true : false;
+        return (this.round.getPosBall().getY() > this.round.getPosPad().getY()) ? true : false;
     }
     public boolean isRoundFinished() {
         return (this.round.getBrick().size() >= 1) ? false : true;
