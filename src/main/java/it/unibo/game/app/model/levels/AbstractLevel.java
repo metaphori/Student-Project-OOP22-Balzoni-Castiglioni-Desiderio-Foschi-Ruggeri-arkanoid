@@ -60,4 +60,15 @@ public abstract class AbstractLevel implements Level {
             return false;
         }
     }
+    public boolean checkLife() {
+        if(this.gameOver.hasMissedBall()) {
+            this.decreaseLife();
+        }
+        if(this.isAlive()) {
+            return true;
+        }
+        else {
+            return false;
+        }                        
+    }
 }

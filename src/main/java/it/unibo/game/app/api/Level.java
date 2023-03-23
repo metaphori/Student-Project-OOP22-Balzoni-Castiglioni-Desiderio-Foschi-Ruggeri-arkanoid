@@ -13,4 +13,5 @@ public interface Level {
     boolean checkRound();
     Round getRound();
     int getNumRoundPassed();
+    boolean checkLife();
 }
