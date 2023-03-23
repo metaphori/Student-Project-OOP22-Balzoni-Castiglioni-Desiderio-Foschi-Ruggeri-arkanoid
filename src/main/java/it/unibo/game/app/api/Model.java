@@ -37,6 +37,8 @@ public interface Model{
 
     boolean isPresent(String name);
 
+    boolean checkRound();
+
     void updateLife();
 
 }

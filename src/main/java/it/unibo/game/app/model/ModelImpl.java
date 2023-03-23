@@ -12,6 +12,7 @@ import it.unibo.game.app.model.dynamic.Move;
 import it.unibo.game.app.model.leaderb.LeaderBoard;
 import it.unibo.game.app.model.leaderb.LeaderBoardImpl;
 import it.unibo.game.app.model.levels.*;
+import it.unibo.game.app.model.round.GameOver;
 import it.unibo.game.app.api.Model;
 
 public class ModelImpl implements Model{
@@ -20,6 +21,7 @@ public class ModelImpl implements Model{
     private Level level;
     private Move move;
     private LeaderBoard board = new LeaderBoardImpl();
+    private GameOver gameOver = new GameOver(level.getRound());
 
     @Override
     public void setController(AppController c) {
@@ -91,7 +93,7 @@ public class ModelImpl implements Model{
 
     @Override
     public boolean nextRound() {
-        if(this.level.checkRound() && this.level.getNumRoundPassed()<=2) {
+        if(this.checkRound() && this.level.getNumRoundPassed()<=2) {
             if(this.level.getNumRoundPassed() == 1) {
                 this.level.setSecondRound();
             } else if(this.level.getNumRoundPassed() == 2) {
@@ -119,10 +121,22 @@ public class ModelImpl implements Model{
         return board.getBestFive();
     }
 
+    public boolean checkRound() {
+        if(gameOver.isRoundFinished()) {
+            this.level.increaseRound();
+            return true;
+        }else {
+            return false;
+        }
+    }
+                                
     @Override
     public void updateLife() {
-        if(!this.level.checkLife()) {
-            this.control.setGameOver();
+        if(this.gameOver.hasMissedBall()) {
+            this.level.decreaseLife();
+            if(!this.level.isAlive()) {
+                this.control.setGameOver();
+            }
         }
     }
     
