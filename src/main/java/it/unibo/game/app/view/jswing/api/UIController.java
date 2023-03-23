@@ -50,4 +50,5 @@ public interface UIController {
     boolean isPresent(String name);
     void movePadLeft();
     void movePadRight();
+    Pair<Double, Double> windowDim();
 }

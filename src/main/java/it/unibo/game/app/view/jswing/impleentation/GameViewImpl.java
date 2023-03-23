@@ -53,22 +53,21 @@ public class GameViewImpl extends JPanel implements KeyListener, ActionListener,
                     : Color.GREEN);
             // g2d.draw(new Rectangle2D.Double(x.getKey().getX(),x.getKey().getY(),
             // observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX()));
-            var rec = new Rectangle2D.Double(x.getKey().getX() * deltaH,  x.getKey().getY() * deltaW,
-            observer.getDimensionBrick().getY() * deltaW, observer.getDimensionBrick().getX() * deltaH);
+            var rec = new Rectangle2D.Double(x.getKey().getX(),  x.getKey().getY(),
+            observer.getDimensionBrick().getY(), observer.getDimensionBrick().getX());
             g2d.fill(rec);
             g2d.setColor(Color.BLACK);
             g2d.draw(rec);
         });
 
         g2d.setColor(Color.GREEN);
-        g2d.fill(new Ellipse2D.Double(observer.getBall().getX() * deltaH, observer.getBall().getY() * deltaW,
-                observer.getRBall() * deltaW, observer.getRBall() * deltaH));
+        g2d.fill(new Ellipse2D.Double(observer.getBall().getX(), observer.getBall().getY(),
+                observer.getRBall(), observer.getRBall()));
 
         g2d.setColor(Color.BLACK);
-        g2d.fill(new Rectangle2D.Double(observer.getPadPos().getX() * deltaH, observer.getPadPos().getY() * deltaW,
-                observer.getPadWight() * deltaW, observer.getPadHeight() * deltaH));
+        g2d.fill(new Rectangle2D.Double(observer.getPadPos().getX(), observer.getPadPos().getY() ,
+                observer.getPadWight() , observer.getPadHeight()));
         
-        g2d.fill(new Rectangle2D.Double(400d , 3d,41, 11));
         g2d.dispose();
 
     }

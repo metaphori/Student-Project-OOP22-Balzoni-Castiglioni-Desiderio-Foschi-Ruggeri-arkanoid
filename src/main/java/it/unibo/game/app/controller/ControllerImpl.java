@@ -60,38 +60,61 @@ public class ControllerImpl implements AppController{
     /*metodi da utili alla gui */
     @Override
     public Map<Pair<Double, Double>, Optional<Integer>> getBrickList() {
-        return this.model.getBrickList();
+        return this.model.getBrickList().entrySet().stream().collect(
+            Collectors.toMap(
+                m-> new Pair<>(
+                    m.getKey().getX()* this.delta().getX(),
+                    m.getKey().getY()*this.delta().getY()),
+                m->m.getValue()));
     } 
     @Override
     public Pair<Double, Double> getBrickDimension() {
-        return this.model.getBrickDimension();
+        /*nel model le dimensioni sono invertite qundi mi adatto
+         * a quello che mi viene dato
+         */
+        return new Pair<Double,Double>(
+            this.model.getBrickDimension().getX() * this.delta().getY(),
+            this.model.getBrickDimension().getY() * this.delta().getX()
+        );
     }
 
     @Override
     public Pair<Double, Double> getBall() {
-        return this.model.getBall();
+        return new Pair<Double,Double>(
+            this.model.getBall().getX()*this.delta().getX(),
+            this.model.getBall().getY()*this.delta().getY()
+        );
     }
 
     @Override
     public Pair<Double, Double> getPad() {
-        return this.model.getPad();
+        return new Pair<Double,Double>(
+            this.model.getPad().getX()* this.delta().getY(),
+            this.model.getPad().getY()* this.delta().getX()
+        );
     }
 
     @Override
     public Double getPadWight(){
-        return this.model.getPadWight();
+        return this.model.getPadWight()*this.delta().getX();
     }
 
     @Override
     public Double getPadHeight(){
-        return this.model.getPadHeight();
+        return this.model.getPadHeight()* this.delta().getY();
     }
 
     @Override
     public Double getRBall(){
-        return this.model.getRBall();
+        var dt = this.delta().getX()<this.delta().getY()? this.delta().getX():this.delta().getY();
+        return this.model.getRBall()*dt;
     }
 
+    private Pair<Double,Double> delta(){
+        return new Pair<Double,Double>(
+            uiContr.windowDim().getX()/this.getWorldDimension().getY(),
+            uiContr.windowDim().getY()/this.getWorldDimension().getX());
+    }
     /*-------------------------------------------- */
     @Override
     public void rPaint() {
@@ -100,9 +123,9 @@ public class ControllerImpl implements AppController{
 
     @Override
     public void nextRound() {
-        if(this.model.nextRound() && this.model.isLevelFinished()) {
-            uiContr.victory();
-        }
+        // if(this.model.nextRound() && this.model.isLevelFinished()) {
+        //     uiContr.victory();
+        // }
     }
 
     @Override

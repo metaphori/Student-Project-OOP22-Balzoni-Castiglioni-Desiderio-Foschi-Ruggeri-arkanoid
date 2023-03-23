@@ -199,5 +199,13 @@ public class UIControllerImpl implements UIController  {
     public void movePadLeft() {
         movePad(new Pair<Double,Double>(this.getPadPos().getX()-1, this.getPadPos().getY()));
     }
+
+
+    @Override
+    public Pair<Double, Double> windowDim() {
+        return new Pair<Double,Double>(
+            Integer.valueOf(this.window.getWidth()).doubleValue(),
+            Integer.valueOf(this.window.getHeight()).doubleValue());
+    }
     
 }
