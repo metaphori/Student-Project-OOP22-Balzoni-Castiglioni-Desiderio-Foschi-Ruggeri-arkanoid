@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
+import it.unibo.game.app.model.ball.Ball;
 
 public interface UIController {
     enum PAGES {
@@ -40,6 +41,7 @@ public interface UIController {
     Pair<Double, Double> getDimensionBrick();
     Pair<Double, Double> getBall();
     Pair<Double, Double> getPadPos();
+    List<Ball> getSurprise();
     
     Double getPadWight();
     Double getPadHeight();

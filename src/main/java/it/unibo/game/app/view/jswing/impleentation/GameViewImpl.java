@@ -64,6 +64,12 @@ public class GameViewImpl extends JPanel implements KeyListener, ActionListener,
         g2d.fill(new Ellipse2D.Double(observer.getBall().getX(), observer.getBall().getY(),
                 observer.getRBall(), observer.getRBall()));
 
+        observer.getSurprise().stream().forEach(x->{
+            g2d.setColor(Color.RED);
+            g2d.fill(new Ellipse2D.Double(x.getPos().getX() * deltaH, x.getPos().getY() * deltaW,
+                x.getR()* deltaW,x.getR() * deltaH));
+        });
+
         g2d.setColor(Color.BLACK);
         g2d.fill(new Rectangle2D.Double(observer.getPadPos().getX(), observer.getPadPos().getY() ,
                 observer.getPadWight() , observer.getPadHeight()));

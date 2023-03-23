@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
+import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.view.jswing.api.*;
 
 import javax.swing.*;
@@ -203,6 +204,13 @@ public class UIControllerImpl implements UIController  {
         return new Pair<Double,Double>(
             Integer.valueOf(this.window.getWidth()).doubleValue(),
             Integer.valueOf(this.window.getHeight()).doubleValue());
+    }
+
+
+    @Override
+    public List<Ball> getSurprise() {
+        // TODO Auto-generated method stub
+        return this.controller.getSurprise();
     }
     
 }

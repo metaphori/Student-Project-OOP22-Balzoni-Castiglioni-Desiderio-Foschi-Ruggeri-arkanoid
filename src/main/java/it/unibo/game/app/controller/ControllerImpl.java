@@ -10,6 +10,7 @@ import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.Model;
 import it.unibo.game.app.model.ModelImpl;
 import it.unibo.game.app.model.SizeCalculation;
+import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.view.jswing.api.UIController;
 import it.unibo.game.app.view.jswing.impleentation.UIControllerImpl;
 
@@ -136,6 +137,10 @@ public class ControllerImpl implements AppController{
     @Override
     public Double getRow(Double x) {
         return this.model.getRow(x);
+    }
+
+    public List<Ball> getSurprise(){
+        return this.model.getSurprise();
     }
 
     @Override

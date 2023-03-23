@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.model.dynamic.Move;
 import it.unibo.game.app.model.leaderb.LeaderBoard;
 import it.unibo.game.app.model.leaderb.LeaderBoardImpl;
@@ -153,6 +154,10 @@ public class ModelImpl implements Model{
     public void restoreInitialPosition() {
         this.level.getRound().getBall().setPos(level.getRound().getBallInitialPosition());
         this.level.getRound().getBall().getPhysics().getDir().resetDirection();
+    }
+
+    public List<Ball> getSurprise(){
+        return this.level.getRound().getSurprise();
     }
     
     
