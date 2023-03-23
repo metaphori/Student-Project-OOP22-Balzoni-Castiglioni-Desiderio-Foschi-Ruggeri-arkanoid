@@ -26,6 +26,7 @@ public abstract class AbstractRound implements Round {
     private SizeCalculation sizeC;
     private final Pair<Double, Double> ballInitialPos;
     private final Pair<Double, Double> padInitialPos;
+    protected List<Ball> surprise=new ArrayList<>();
 
 
     public AbstractRound (int jump, int numB, int numS, SizeCalculation size) {
@@ -45,7 +46,16 @@ public abstract class AbstractRound implements Round {
     }
 
     public Pair<Double, Double> getBallInitialPosition() {
+        this.surprise.clear();
         return this.ballInitialPos;
+    }
+
+    public List<Ball> getSurprise(){
+        return this.surprise;
+    }
+
+    private void addSurprise(Ball b){
+        this.surprise.add(b);
     }
 
     public SizeCalculation getSizeCalc() {
@@ -103,11 +113,17 @@ public abstract class AbstractRound implements Round {
 
     public void remove(int index){
         Brick brick=this.brick.get(index);
+        if(brick.getType().equals(BrickType.SURPRISE)) {
+            Ball b=new Ball();
+            b.setPos(new Pair<>(brick.getPos().getX()+brick.getBrickW()/2,brick.getPos().getY()+brick.getBrickH()));
+            b.setR(10.0);
+            this.addSurprise(b);
+        }
         brick.hit();
         if(brick.isDestroyed()) {
             this.brick.remove(index);
         }
     }
-    
+
     protected abstract void setPosBrick ();
 }

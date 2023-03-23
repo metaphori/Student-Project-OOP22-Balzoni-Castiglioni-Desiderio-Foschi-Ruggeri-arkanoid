@@ -2,6 +2,7 @@ package it.unibo.game.app.api;
 import java.util.*;
 
 import it.unibo.game.Pair;
+import it.unibo.game.app.model.ball.Ball;
 
 public interface Model{
     
@@ -32,6 +33,8 @@ public interface Model{
     Pair<Double,Double> getWorldDim();
 
     void update(long dt);
+
+    List<Ball> getSurprise();
 
     List<Pair<String,Integer>> getBestFive();
 
