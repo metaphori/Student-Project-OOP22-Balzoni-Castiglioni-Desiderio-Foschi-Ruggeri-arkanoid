@@ -131,13 +131,16 @@ public class ModelImpl implements Model{
     }
                                 
     @Override
-    public void updateLife() {
+    public boolean updateLife() {
         if(this.gameOver.hasMissedBall()) {
             this.level.decreaseLife();
             if(!this.level.isAlive()) {
                 this.control.setGameOver();
+                return false;
             }
+            return true;
         }
+        return false;
     }
 
     @Override

@@ -39,7 +39,7 @@ public interface Model{
 
     boolean checkRound();
 
-    void updateLife();
+    boolean updateLife();
 
     boolean isLevelFinished();
 
