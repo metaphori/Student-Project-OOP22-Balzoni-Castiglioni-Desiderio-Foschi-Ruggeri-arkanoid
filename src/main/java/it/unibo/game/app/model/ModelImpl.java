@@ -150,7 +150,7 @@ public class ModelImpl implements Model{
 
     @Override
     public void restoreInitialPosition() {
-        this.level.getRound().getBall().setPos(level.getRound().getBallInitialPos());
+        this.level.getRound().getBall().setPos(level.getRound().getBallInitialPosition());
         this.level.getRound().getBall().getPhysics().getDir().resetDirection();
     }
     

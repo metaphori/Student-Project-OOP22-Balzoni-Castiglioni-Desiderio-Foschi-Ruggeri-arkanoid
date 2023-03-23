@@ -1,6 +1,8 @@
 package it.unibo.game.app.controller;
 
 
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.SwingWorker;
 
 import it.unibo.game.app.api.AppController;
@@ -26,7 +28,13 @@ public class GameEngine {
                     long elapsed = currentCycleStartTime - previousCycleStartTime;
                     update(elapsed);
                     checkRound();
-                    updateLife();
+                    if (updateLife()) {
+                        pause();
+                        controller.restoreBall();
+                        render();
+                        TimeUnit.SECONDS.sleep(1);
+                        restart();
+                    }
                     render();
                     waitForNextFrame(currentCycleStartTime);
                     previousCycleStartTime = currentCycleStartTime;
@@ -48,6 +56,10 @@ public class GameEngine {
 		}
 	}
 
+    protected void restart() {
+        this.thread = true;
+    }
+
     protected void render() {
         this.controller.rPaint();
     }
@@ -68,8 +80,8 @@ public class GameEngine {
         this.controller.nextRound();
     }
 
-    protected void updateLife() {
-        this.controller.updateLife();
+    protected boolean updateLife() {
+       return this.controller.updateLife();
     }
 
     
