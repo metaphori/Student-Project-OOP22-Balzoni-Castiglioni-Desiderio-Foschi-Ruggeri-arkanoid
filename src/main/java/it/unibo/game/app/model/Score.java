@@ -1,7 +1,7 @@
 package it.unibo.game.app.model;
 
 public class Score {
-    private static final int ONE_COLLISION_POINTS = 100;
+    private static final int ONE_COLLISION_POINTS = 5;
     private int points ;
     private int  score ;
 

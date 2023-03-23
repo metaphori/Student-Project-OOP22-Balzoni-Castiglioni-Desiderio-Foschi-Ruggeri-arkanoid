@@ -15,6 +15,8 @@ public interface Direction {
     boolean isDirectionUp();
 
     boolean isDirectionLeft();
+    
+    void resetDirection();
 
     Pair<Integer, Integer> getDirection();
 

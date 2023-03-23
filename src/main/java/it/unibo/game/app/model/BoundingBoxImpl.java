@@ -45,7 +45,7 @@ public class BoundingBoxImpl implements BoundingBox {
             }else if(((this.corners.get(Corner.RIGHT_DOWN).getX() >= b.getBox().get(Corner.LEFT_UP).getX() 
                     && this.corners.get(Corner.RIGHT_DOWN).getX() < b.getBox().get(Corner.RIGHT_UP).getX())
                     || (this.corners.get(Corner.LEFT_DOWN).getX() <= b.getBox().get(Corner.RIGHT_UP).getX() 
-                    && this.corners.get(Corner.RIGHT_DOWN).getX() < b.getBox().get(Corner.RIGHT_UP).getX()))
+                    && this.corners.get(Corner.RIGHT_DOWN).getX() > b.getBox().get(Corner.RIGHT_UP).getX()))
                     && (this.corners.get(Corner.RIGHT_DOWN).getY() >= b.getBox().get(Corner.LEFT_UP).getY() 
                     && this.corners.get(Corner.RIGHT_UP).getY() <= b.getBox().get(Corner.LEFT_DOWN).getY())){
                         return Optional.of(Side.LEFT_RIGHT);
