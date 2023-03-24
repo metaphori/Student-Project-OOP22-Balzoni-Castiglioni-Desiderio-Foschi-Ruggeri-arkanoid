@@ -38,8 +38,6 @@ public interface Model{
 
     List<Pair<String,Integer>> getBestFive();
 
-    boolean isPresent(String name);
-
     boolean checkRound();
 
     boolean updateLife();

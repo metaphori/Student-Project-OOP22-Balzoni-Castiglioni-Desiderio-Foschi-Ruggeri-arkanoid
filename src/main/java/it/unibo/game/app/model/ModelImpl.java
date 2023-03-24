@@ -118,10 +118,6 @@ public class ModelImpl implements Model{
         move.update(dt);
     }
 
-    public boolean isPresent(String name){
-        return board.isPresent(name);
-    }
-
     public List<Pair<String,Integer>> getBestFive(){
         return board.getBestFive();
     }

@@ -14,7 +14,6 @@ import java.awt.*;
 public class UIControllerImpl implements UIController  {
     JFrame window = new JFrame("Arkanoid");
     private AppController controller ;
-    //aggiunto
     private JPanel deck = new JPanel();
     private CardLayout layout = new CardLayout();
     private JMenuBar navBar = new JMenuBar();
@@ -22,10 +21,7 @@ public class UIControllerImpl implements UIController  {
     private final JMenuItem menu = new JMenuItem(PAGES.START_MENU.toString());
     private final JMenuItem pause = new JMenuItem(PAGES.PAUSE_MENU.toString());
     private final JMenuItem leadrBoard = new JMenuItem(PAGES.TOP_5.toString());
-
-
-    
-    Map<PAGES, JPanel> views = new HashMap<>();
+    private Map<PAGES, JPanel> views = new HashMap<>();
 
     public void set(AppController control){
         this.controller=control;
@@ -181,14 +177,9 @@ public class UIControllerImpl implements UIController  {
         return this.controller.getRow(x);
     }
 
-    public boolean isPresent(String name){
-        return this.controller.isPresent(name);
-    }
-
     public List<Pair<String,Integer>> getBestFive(){
         return this.controller.getBestFive();
     }
-    
     
     public void movePadRight() {
         controller.mvPadR();

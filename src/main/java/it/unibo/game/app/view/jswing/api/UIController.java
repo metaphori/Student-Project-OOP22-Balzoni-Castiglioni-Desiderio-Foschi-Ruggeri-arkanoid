@@ -49,7 +49,6 @@ public interface UIController {
     void rPaint();
     Double getRowC(Double x);
     List<Pair<String,Integer>> getBestFive();
-    boolean isPresent(String name);
     void movePadLeft();
     void movePadRight();
     Pair<Double, Double> windowDim();

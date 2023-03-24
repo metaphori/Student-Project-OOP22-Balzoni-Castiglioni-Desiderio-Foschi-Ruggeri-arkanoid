@@ -149,10 +149,6 @@ public class ControllerImpl implements AppController{
         this.model.update(dt);
     }
 
-    public boolean isPresent(String name){
-        return this.model.isPresent(name);
-    }
-
     public List<Pair<String,Integer>> getBestFive(){
         return this.model.getBestFive();
     }
