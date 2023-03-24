@@ -52,4 +52,5 @@ public interface UIController {
     void movePadLeft();
     void movePadRight();
     Pair<Double, Double> windowDim();
+    int getScore();
 }

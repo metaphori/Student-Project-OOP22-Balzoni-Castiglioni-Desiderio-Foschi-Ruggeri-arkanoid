@@ -54,6 +54,8 @@ public interface AppController {
 
     List<Ball> getSurprise();
 
+    int getScore();
+
     void setGameEngine();
 
     void update(long dt);
