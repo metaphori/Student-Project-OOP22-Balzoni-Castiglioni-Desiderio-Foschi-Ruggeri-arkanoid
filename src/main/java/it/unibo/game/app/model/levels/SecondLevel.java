@@ -35,19 +35,19 @@ public class SecondLevel extends AbstractLevel {
 
     @Override
     public void setFirstRound() {
-        this.sizeCalc = new SizeCalculation(BRICKCOL1 - 1, BRICKROW, super.getNumRoundPassed());
+        this.sizeCalc = new SizeCalculation(BRICKCOL1, BRICKROW, super.getNumRoundPassed());
         this.currentRound = new RoundMedium(4, normalBricksFirstRound, surpriseBricksFirstRound, GRAY1, this.sizeCalc);
     }
 
     @Override
     public void setSecondRound() {
-        this.sizeCalc = new SizeCalculation(BRICKCOL2 - 1, BRICKROW, super.getNumRoundPassed());
+        this.sizeCalc = new SizeCalculation(BRICKCOL2, BRICKROW, super.getNumRoundPassed());
         this.currentRound = new RoundMedium(4, normalBricksSecondRound, surpriseBricksSecondRound, GRAY2, this.sizeCalc);
     }
 
     @Override
     public void setThirdRound() {
-        this.sizeCalc = new SizeCalculation(BRICKCOL3 - 1, BRICKROW, super.getNumRoundPassed());
+        this.sizeCalc = new SizeCalculation(BRICKCOL3 , BRICKROW, super.getNumRoundPassed());
         this.currentRound = new RoundMedium(4, normalBricksThirdRound, surpriseBricksThirdRound, GRAY3, this.sizeCalc);
     }
     

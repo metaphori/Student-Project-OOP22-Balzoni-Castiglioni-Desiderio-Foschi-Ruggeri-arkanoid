@@ -25,10 +25,14 @@ public class SizeCalculation {
     }
 
     private Double getStopX(int numR) {
-        if (numR == 0) {
-            return ((WorldHight / 2) / 3);
-        } else {
-            return ((WorldHight / 2) / 4) * 2;
+        if (numBrickCol > 6) {
+            return (((WorldHight / 2) / 3) * 1.75); 
+        }
+        else if (numBrickCol > 4) {
+            return (((WorldHight / 2) / 3) * 1.5);
+        }
+        else {
+           return ((WorldHight / 2) / 3); 
         }
     }
 
