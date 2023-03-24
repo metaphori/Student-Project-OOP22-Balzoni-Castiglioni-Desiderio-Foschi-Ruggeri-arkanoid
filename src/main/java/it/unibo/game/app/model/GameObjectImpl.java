@@ -6,11 +6,11 @@ import it.unibo.game.app.api.GameObject;
 
 public class GameObjectImpl implements GameObject {
     
-    private Pair<Integer,Integer> pos;
+    private Pair<Double,Double> pos;
     private BoundingBox Bbox;
 
     @Override
-    public Pair<Integer, Integer> getPos() {
+    public Pair<Double,Double> getPos() {
         return this.pos;
     }
 
@@ -20,7 +20,7 @@ public class GameObjectImpl implements GameObject {
     }
 
     @Override
-    public void setPos(Pair<Integer, Integer> pos) {
+    public void setPos(Pair<Double,Double> pos) {
         this.pos = pos;
     }
 

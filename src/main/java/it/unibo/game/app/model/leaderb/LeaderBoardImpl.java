@@ -7,34 +7,25 @@ import it.unibo.game.Pair;
 
 public class LeaderBoardImpl implements java.io.Serializable, LeaderBoard {
 
-    private String fileName;
-    private Set<String> usersRegistered = new HashSet<>();
-
-    public LeaderBoardImpl(final String fileName){
-        this.fileName=fileName;
-    }
+    private File file = new File("src/main/Filee.txt");
 
     public boolean isPresent(String usr){
-        return usersRegistered.contains(usr);
+        return playersFromFile().stream()
+                            .anyMatch(x->x.getName().equals(usr));
     }
 
     public void updatePoints(String name, Integer points, Integer levelId, Integer roundId){
         List<User> players = playersFromFile();
-        if(!usersRegistered.contains(name)) {
-            User usr = new User(name);
-            usr.addRound(levelId, roundId);
-            usr.setPoints(points);
-            players.add(usr);
+        if(!players.stream().anyMatch(x->x.getName().equals(name))) {
+            players.add(new User(name, points, levelId, roundId));
         } else {
             User usr = players.stream().filter(x->x.getName().equals(name)).findFirst().get();
             if(!usr.alreadyDone(levelId, roundId)) {
                 players.remove(usr);
-                usr.addRound(levelId, roundId);
-                usr.setPoints(points);
+                usr.update(points, levelId, roundId);
                 players.add(usr);
             }
         }
-        usersRegistered.add(name);
         players.sort((x,y)->y.getPoints().compareTo(x.getPoints()));
         writeOnFile(players);
     }
@@ -46,21 +37,26 @@ public class LeaderBoardImpl implements java.io.Serializable, LeaderBoard {
     }
 
     public List<Pair<String,Integer>> getBestFive(){
-        return playersFromFile().subList(0, 5).stream().map(x->new Pair<>(x.getName(),x.getPoints())).collect(Collectors.toList());
-    }
-
-    private List<User> playersFromFile(){
-        if(usersRegistered.isEmpty()) return new ArrayList<>();
+        List<User> players = playersFromFile();
+        if(players.size()<5) {
+            return players.stream().map(x->new Pair<>(x.getName(),x.getPoints())).collect(Collectors.toList());
+        }
         else {
-            try(ObjectInputStream oos = new ObjectInputStream(new BufferedInputStream(new FileInputStream(fileName)))){
-                return (List<User>) oos.readObject();
-            } catch(Exception ex){};
-            return new ArrayList<>();
+            return playersFromFile().subList(0, 5).stream().map(x->new Pair<>(x.getName(),x.getPoints())).collect(Collectors.toList());
         }
     }
 
+    private List<User> playersFromFile(){
+        if(this.file.length()>0) {
+            try(ObjectInputStream oos = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file.getPath())))){
+                return (List<User>) oos.readObject();
+            } catch(Exception ex){};
+        }
+        return new ArrayList<>();
+    }
+
     private void writeOnFile(List<User> users){
-        try(ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)))){
+        try(ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file.getPath())))){
             oos.writeObject(users);
         } catch(Exception ex){};
     }
@@ -70,8 +66,10 @@ public class LeaderBoardImpl implements java.io.Serializable, LeaderBoard {
         private int points=0;
         private Set<Pair<Integer,Integer>> levelsDone = new HashSet<>();
 
-        public User(final String name){
+        public User(final String name, final int points, final int levelId, final int roundId){
             this.name = name;
+            this.points=points;
+            this.levelsDone.add(new Pair<>(levelId,roundId));
         }
 
         public String getName(){
@@ -81,10 +79,6 @@ public class LeaderBoardImpl implements java.io.Serializable, LeaderBoard {
         public Integer getPoints(){
             return this.points;
         }
-    
-        public void addRound(final Integer levelId, final Integer roundId){
-            this.levelsDone.add(new Pair<>(levelId,roundId));
-        }
 
         public boolean alreadyDone(final Integer levelId, final Integer roundId) {
             return this.levelsDone.contains(new Pair<>(levelId,roundId));
@@ -93,8 +87,9 @@ public class LeaderBoardImpl implements java.io.Serializable, LeaderBoard {
         public Set<Pair<Integer,Integer>> getLevels(){
             return Collections.unmodifiableSet(this.levelsDone);
         }
-    
-        public void setPoints(int num){
+
+        public void update(int num, int levelId, int roundId){
+            this.levelsDone.add(new Pair<>(levelId,roundId));
             this.points = this.points+num;
         }
     }

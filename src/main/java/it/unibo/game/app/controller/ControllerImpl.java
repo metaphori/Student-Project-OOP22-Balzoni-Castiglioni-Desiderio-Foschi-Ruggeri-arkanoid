@@ -1,12 +1,16 @@
 package it.unibo.game.app.controller;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.Model;
 import it.unibo.game.app.model.ModelImpl;
+import it.unibo.game.app.model.SizeCalculation;
+import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.view.jswing.api.UIController;
 import it.unibo.game.app.view.jswing.impleentation.UIControllerImpl;
 
@@ -14,17 +18,16 @@ public class ControllerImpl implements AppController{
 
     private UIController uiContr;
     private Model model;
+    private GameEngine gameEngine;
 
     @Override
     public void play() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'play'");
+        this.gameEngine.resume();
     }
 
     @Override
     public void onPause() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onPause'");
+        this.gameEngine.pause();
     }
 
     @Override
@@ -35,7 +38,8 @@ public class ControllerImpl implements AppController{
     @Override
     public void setView() {
         this.uiContr = new UIControllerImpl();
-        uiContr.setController(this);
+        this.uiContr.set(this);
+        //uiContr.setController(this);
     }
 
     @Override
@@ -45,59 +49,74 @@ public class ControllerImpl implements AppController{
     }
 
     @Override
-    public Map<Pair<Integer,Integer>, Integer> getBrickList() {
-        return this.model.getBrickList();
-
-    } 
-
-    @Override
     public void chooseLevel(int numLevel) {
         this.model.chooseLevel(numLevel);
     }
     
     @Override
-    //non va bene deve prendere le informazioni da SizeCaplulator
-    public Pair<Integer,Integer> getWorldDimension() {
-       return new Pair<Integer,Integer>(400, 300);
+    public Pair<Double, Double> getWorldDimension() {
+       return SizeCalculation.getWorldSize();
     }
-    
+    /*-------------------------------------------------------------------- */
+    /*metodi da utili alla gui */
     @Override
-    public Pair<Integer,Integer> getBrickDimension() {
-        return this.model.getBrickDimension();
+    public Map<Pair<Double, Double>, Optional<Integer>> getBrickList() {
+        return this.model.getBrickList().entrySet().stream().collect(
+            Collectors.toMap(
+                m-> new Pair<>(
+                    m.getKey().getX()* this.delta().getX(),
+                    m.getKey().getY()*this.delta().getY()),
+                m->m.getValue()));
+    } 
+    @Override
+    public Pair<Double, Double> getBrickDimension() {
+        /*nel model le dimensioni sono invertite qundi mi adatto
+         * a quello che mi viene dato
+         */
+        return new Pair<Double,Double>(
+            this.model.getBrickDimension().getX() * this.delta().getY(),
+            this.model.getBrickDimension().getY() * this.delta().getX()
+        );
     }
 
     @Override
-    public Pair<Integer,Integer> getBall() {
-        // TODO Auto-generated method stub
-        return this.model.getBall();
+    public Pair<Double, Double> getBall() {
+        return new Pair<Double,Double>(
+            this.model.getBall().getX()*this.delta().getX(),
+            this.model.getBall().getY()*this.delta().getY()
+        );
     }
 
     @Override
-    public Pair<Integer,Integer> getPad() {
-        // TODO Auto-generated method stub
-        return this.model.getPad();
+    public Pair<Double, Double> getPad() {
+        return new Pair<Double,Double>(
+            this.model.getPad().getX()* this.delta().getX(),
+            this.model.getPad().getY()* this.delta().getY()
+        );
     }
 
     @Override
-    public void changePos(Pair<Integer,Integer> pos){
-        this.model.changePos(pos);
+    public Double getPadWight(){
+        return this.model.getPadWight()*this.delta().getX();
     }
 
     @Override
-    public int getPadWight(){
-        return this.model.getPadWight();
+    public Double getPadHeight(){
+        return this.model.getPadHeight()* this.delta().getY();
     }
 
     @Override
-    public int getPadHeight(){
-        return this.model.getPadHeight();
+    public Double getRBall(){
+        var dt = this.delta().getX()<this.delta().getY()? this.delta().getX():this.delta().getY();
+        return this.model.getRBall()*dt;
     }
 
-    @Override
-    public double getRBall(){
-        return this.model.getRBall();
+    private Pair<Double,Double> delta(){
+        return new Pair<Double,Double>(
+            uiContr.windowDim().getX()/this.getWorldDimension().getY(),
+            uiContr.windowDim().getY()/this.getWorldDimension().getX());
     }
-
+    /*-------------------------------------------- */
     @Override
     public void rPaint() {
         this.uiContr.rPaint();
@@ -105,13 +124,78 @@ public class ControllerImpl implements AppController{
 
     @Override
     public void nextRound() {
-        if(!this.model.nextRound()) {
-            uiContr.victory();
-        }
+        this.model.nextRound();
     }
 
     @Override
-    public int getRow(int x) {
+    public void changePadPos(Pair<Double, Double> pos){
+        this.model.setPadPos(pos);
+    }
+
+    @Override
+    public Double getRow(Double x) {
         return this.model.getRow(x);
     }
+
+    public List<Ball> getSurprise(){
+        return this.model.getSurprise();
+    }
+
+    @Override
+    public void setGameEngine() {
+        this.gameEngine = new GameEngine(this);
+    }
+
+    public void update(long dt) {
+        this.model.update(dt);
+    }
+
+    public boolean isPresent(String name){
+        return this.model.isPresent(name);
+    }
+
+    public List<Pair<String,Integer>> getBestFive(){
+        return this.model.getBestFive();
+    }
+
+    @Override
+    public void setGameOver() {
+        this.uiContr.gameOver();
+    }
+
+    @Override
+    public boolean updateLife() {
+       return this.model.updateLife();
+    }
+
+    @Override
+    public void restoreBall() {
+        this.model.restoreInitialPosition();
+    }
+
+    /*movimento pad */
+    private void movePad(Pair<Double,Double>p){
+        this.model.setPadPos(p);
+    }
+
+    @Override
+    public void mvPadR() {
+        movePad(new Pair<Double,Double>(this.model.getPad().getX()+1 * 10,this.model.getPad().getY()));
+    }
+
+    @Override
+    public void mvPadL() {
+        movePad(new Pair<Double,Double>(this.model.getPad().getX()-1 * 10,this.model.getPad().getY()));
+    }
+
+    @Override
+    public boolean checkRound() {
+        return this.model.checkRound();
+    }
+
+    @Override
+    public void setVictory() {
+        this.uiContr.victory();
+    }
+    
 }

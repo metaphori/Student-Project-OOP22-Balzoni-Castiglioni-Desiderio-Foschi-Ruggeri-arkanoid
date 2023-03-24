@@ -62,3 +62,9 @@ application {
     // Define the main class for the application
     mainClass.set("it.unibo.game.LaunchApp")
 }
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "it.unibo.game.LaunchApp"
+    }
+}

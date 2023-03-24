@@ -7,9 +7,9 @@ public interface GameObject {
      * game object deve implementare tutti i metodi degli oggetti
      * di gioco considerando che siano statici
      */
-    void setPos(Pair<Integer, Integer> pos);
+    void setPos(Pair<Double,Double> pos);
 
-    Pair<Integer, Integer> getPos();
+    Pair<Double,Double> getPos();
 
     BoundingBox getBoundingBox();
 }

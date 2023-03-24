@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import it.unibo.game.Pair;
+import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.GameObject;
 import it.unibo.game.app.api.Round;
@@ -19,10 +20,13 @@ public abstract class AbstractRound implements Round {
     private int jump; /*Serve per indicate quanti blocchi saltare se vogliamo fare le colonne */
     private int numBrick;
     private int numSurprise;
-    protected List<NormalBrick> brick = new ArrayList<>();
+    protected List<Brick> brick = new ArrayList<>();
     private Ball ball = new Ball();
     private Pad pad;
     private SizeCalculation sizeC;
+    private final Pair<Double, Double> ballInitialPos;
+    private final Pair<Double, Double> padInitialPos;
+    protected List<Ball> surprise=new ArrayList<>();
 
 
     public AbstractRound (int jump, int numB, int numS, SizeCalculation size) {
@@ -30,13 +34,28 @@ public abstract class AbstractRound implements Round {
         this.numBrick = numB;
         this.numSurprise = numS;
         this.sizeC = size;
-        pad = new Pad(size.getWorldSize());
-        ball.setR(size.getWorldSize().getY()/15);
-        ball.setPos(new Pair<>(pad.getPos().getX(),pad.getPos().getY()-(int)ball.getR()));
+        pad = new Pad(SizeCalculation.getWorldSize());
+        this.padInitialPos = pad.getPos();
+        ball.setR(SizeCalculation.getWorldSize().getY()/30);
+        this.ballInitialPos = new Pair<>(padInitialPos.getX(),padInitialPos.getY()-(2*ball.getR())-5);
+        ball.setPos(ballInitialPos);
     }
 
     public int getJump () {
         return this.jump;
+    }
+
+    public Pair<Double, Double> getBallInitialPosition() {
+        this.surprise.clear();
+        return this.ballInitialPos;
+    }
+
+    public List<Ball> getSurprise(){
+        return this.surprise;
+    }
+
+    private void addSurprise(Ball b){
+        this.surprise.add(b);
     }
 
     public SizeCalculation getSizeCalc() {
@@ -51,7 +70,7 @@ public abstract class AbstractRound implements Round {
         return this.numSurprise;
     }
 
-    public List<NormalBrick> getBrick () {
+    public List<Brick> getBrick () {
         return this.brick; 
     }
 
@@ -68,19 +87,19 @@ public abstract class AbstractRound implements Round {
         }
     }
 
-    public void setPosBall (Pair<Integer,Integer> pos) {
+    public void setPosBall (Pair<Double,Double> pos) {
         this.ball.setPos(pos);
     }
 
-    public void setPosPad (Pair<Integer,Integer> pos) {
+    public void setPosPad (Pair<Double,Double> pos) {
         pad.setPos(pos);
     }
 
-    public Pair<Integer,Integer> getPosBall() {
+    public Pair<Double,Double> getPosBall() {
         return this.ball.getPos();
     }
 
-    public Pair<Integer,Integer> getPosPad() {
+    public Pair<Double,Double> getPosPad() {
         return this.pad.getPos();
     }
 
@@ -91,6 +110,20 @@ public abstract class AbstractRound implements Round {
     public Ball getBall(){
         return this.ball;
     }
-    
+
+    public void remove(int index){
+        Brick brick=this.brick.get(index);
+        if(brick.getType().equals(BrickType.SURPRISE)) {
+            Ball b=new Ball();
+            b.setPos(new Pair<>(brick.getPos().getX()+brick.getBrickW()/2,brick.getPos().getY()+brick.getBrickH()));
+            b.setR(10.0);
+            this.addSurprise(b);
+        }
+        brick.hit();
+        if(brick.isDestroyed()) {
+            this.brick.remove(index);
+        }
+    }
+
     protected abstract void setPosBrick ();
 }

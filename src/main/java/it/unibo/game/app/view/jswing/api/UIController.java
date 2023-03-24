@@ -1,9 +1,12 @@
 package it.unibo.game.app.view.jswing.api;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
+import it.unibo.game.app.model.ball.Ball;
 
 public interface UIController {
     enum PAGES {
@@ -24,8 +27,8 @@ public interface UIController {
             return this.name;
         }
     };
-
-    void setController(AppController observer);
+    void set(AppController control);
+    //void setController(AppController observer);
     void initialView();
     void pauseMenu();
     void gameView();
@@ -33,16 +36,21 @@ public interface UIController {
     void gameOver();
     void victory();
     void level(int numLevel);
-    Map<Pair<Integer, Integer>, Integer> getList();
-    Pair<Integer,Integer> getDimension();
-    Pair<Integer,Integer> getDimensionBrick();
-    Pair<Integer,Integer> getBall();
-    Pair<Integer,Integer> getPad();
-    //aggiunto
-    void changePosPad(Pair<Integer,Integer> pos);
-    int getPadWight();
-    int getPadHeight();
-    double getRBall();
+    Map<Pair<Double, Double>, Optional<Integer>> getList();
+    Pair<Double, Double> getDimension();
+    Pair<Double, Double> getDimensionBrick();
+    Pair<Double, Double> getBall();
+    Pair<Double, Double> getPadPos();
+    List<Ball> getSurprise();
+    
+    Double getPadWight();
+    Double getPadHeight();
+    Double getRBall();
     void rPaint();
-    int getRowC(int x);
+    Double getRowC(Double x);
+    List<Pair<String,Integer>> getBestFive();
+    boolean isPresent(String name);
+    void movePadLeft();
+    void movePadRight();
+    Pair<Double, Double> windowDim();
 }

@@ -1,5 +1,7 @@
 package it.unibo.game.app.model.round;
 
+import it.unibo.game.app.api.Brick;
+import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Round;
 
 public class GameOver {
@@ -10,9 +12,17 @@ public class GameOver {
         this.round = round;
     } 
     public boolean hasMissedBall() {
-        return (this.round.getPosBall().getX() > this.round.getPosPad().getX()) ? true : false;
+        return (this.round.getPosBall().getY() > this.round.getPosPad().getY()) ? true : false;
     }
     public boolean isRoundFinished() {
-        return (this.round.getBrick().size() >= 1) ? false : true;
+        return (this.round.getBrick().size() >= 1 || !remainsOnlyObstacles()) ? false : true;
+    }
+    public boolean remainsOnlyObstacles() {
+        for (Brick element : this.round.getBrick()) {
+            if(!element.getType().equals(BrickType.OBSTACLE)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

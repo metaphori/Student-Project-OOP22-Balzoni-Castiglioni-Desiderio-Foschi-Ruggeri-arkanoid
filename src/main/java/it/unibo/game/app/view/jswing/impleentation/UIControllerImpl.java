@@ -1,8 +1,11 @@
 package it.unibo.game.app.view.jswing.impleentation;
 
 import java.util.*;
+import java.util.List;
+
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
+import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.view.jswing.api.*;
 
 import javax.swing.*;
@@ -22,18 +25,44 @@ public class UIControllerImpl implements UIController  {
 
 
     
-    Map<PAGES, JPanel> views = new HashMap<>(
-            Map.of(
-                    PAGES.GAME, new GameViewImpl(this),
-                    PAGES.START_MENU, new StartMenu(this),
-                    PAGES.PAUSE_MENU, new PauseMenu(this),
-                    PAGES.TOP_5, new LeaderBoardView(this),
-                    PAGES.VICTORY, new Victory(this),
-                    PAGES.GAME_OVER, new GameOver(this)
-    ));
+    Map<PAGES, JPanel> views = new HashMap<>();
+
+    public void set(AppController control){
+        this.controller=control;
+
+        options.add(menu);
+        options.add(pause);
+        options.add(leadrBoard);
+        navBar.add(options);
+
+        menu.addActionListener(e-> initialView());
+        pause.addActionListener(e-> pauseMenu());
+        leadrBoard.addActionListener(e-> leaderBoardView());
+
+        this.deck = new JPanel(layout);
+        views.putAll(Map.of(
+            PAGES.GAME, new GameViewImpl(this),
+            PAGES.START_MENU, new StartMenu(this),
+            PAGES.PAUSE_MENU, new PauseMenu(this),
+            PAGES.TOP_5, new LeaderBoardView(this),
+            PAGES.VICTORY, new Victory(this),
+            PAGES.GAME_OVER, new GameOver(this)
+        ));
+        views.entrySet().stream().forEach(x->deck.add(x.getValue(),x.getKey().getName()));
+        window.add(deck,BorderLayout.CENTER);
+
+        var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        
+        this.window.setMinimumSize(new Dimension(screenSize.height/2,screenSize.width/3));
+        this.window.setJMenuBar(navBar);
+        this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.window.setVisible(true);
+        this.window.requestFocusInWindow();
+        initialView();
+    }
 
 
-    public UIControllerImpl() {
+    /*public UIControllerImpl() {
         
         options.add(menu);
         options.add(pause);
@@ -57,7 +86,7 @@ public class UIControllerImpl implements UIController  {
         this.window.setVisible(true);
         this.window.requestFocusInWindow();
         initialView();
-    }
+    } */
 
     private void chargeView(PAGES p) {
         layout.show(deck, p.getName());
@@ -67,18 +96,19 @@ public class UIControllerImpl implements UIController  {
 
     @Override
     public void initialView() {
-        // TODO Auto-generated method stub
         chargeView(PAGES.START_MENU);
     }
 
     @Override
     public void pauseMenu() {
         chargeView(PAGES.PAUSE_MENU);
+        controller.onPause();
     }
 
     @Override
     public void gameView() {
         chargeView(PAGES.GAME);
+        controller.play();
     }
 
     @Override
@@ -86,7 +116,7 @@ public class UIControllerImpl implements UIController  {
         chargeView(PAGES.TOP_5);
     }
 
-    public  Map<Pair<Integer,Integer>, Integer> getList() {
+    public  Map<Pair<Double, Double>, Optional<Integer>> getList() {
         return controller.getBrickList(); 
     } 
 
@@ -95,38 +125,34 @@ public class UIControllerImpl implements UIController  {
         controller.chooseLevel(numLevel);
     }
 
-    public Pair<Integer, Integer> getDimension() {
+    public Pair<Double, Double> getDimension() {
         return controller.getWorldDimension();
     }
 
-    public Pair<Integer,Integer> getDimensionBrick() {
+    public Pair<Double, Double> getDimensionBrick() {
         return controller.getBrickDimension();
     }
 
     @Override
-    public Pair<Integer,Integer> getBall() {
+    public Pair<Double, Double> getBall() {
         return controller.getBall();
     }
 
     @Override
-    public Pair<Integer,Integer> getPad() {
+    public Pair<Double, Double> getPadPos() {
         return controller.getPad();
     }
 
-    //aggiunto
-    public void changePosPad(Pair<Integer,Integer> pos){
-        controller.changePos(pos);
-    }
 
-    public int getPadWight(){
+    public Double getPadWight(){
         return controller.getPadWight();
     }
 
-    public int getPadHeight(){
+    public Double getPadHeight(){
         return controller.getPadHeight();
     }
 
-    public double getRBall(){
+    public Double getRBall(){
         return controller.getRBall();
     }
 
@@ -135,14 +161,15 @@ public class UIControllerImpl implements UIController  {
         this.window.repaint();
     }
 
-    @Override
+    /*@Override
     public void setController(AppController observer) {
         controller = observer;
-    }
+    } */
 
     @Override
     public void gameOver() {
         chargeView(PAGES.GAME_OVER);
+        controller.onPause();
     }
 
     @Override
@@ -150,7 +177,40 @@ public class UIControllerImpl implements UIController  {
       chargeView(PAGES.VICTORY);
     }
     
-    public int getRowC(int x) {
+    public Double getRowC(Double x) {
         return this.controller.getRow(x);
     }
+
+    public boolean isPresent(String name){
+        return this.controller.isPresent(name);
+    }
+
+    public List<Pair<String,Integer>> getBestFive(){
+        return this.controller.getBestFive();
+    }
+    
+    
+    public void movePadRight() {
+        controller.mvPadR();
+    }
+
+    public void movePadLeft() {
+        controller.mvPadL();
+    }
+
+
+    @Override
+    public Pair<Double, Double> windowDim() {
+        return new Pair<Double,Double>(
+            Integer.valueOf(this.window.getWidth()).doubleValue(),
+            Integer.valueOf(this.window.getHeight()).doubleValue());
+    }
+
+
+    @Override
+    public List<Ball> getSurprise() {
+        // TODO Auto-generated method stub
+        return this.controller.getSurprise();
+    }
+    
 }

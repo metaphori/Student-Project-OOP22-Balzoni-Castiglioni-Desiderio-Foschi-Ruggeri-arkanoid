@@ -11,30 +11,30 @@ public class DirectionImpl implements Direction {
     private Pair<Integer, Integer> d ;
 
     public DirectionImpl(){
-        this.d= new Pair<Integer,Integer>(UP, RIGHT);
+       this.resetDirection();
     }
     public void setDirection(Pair<Integer,Integer> newD){
         this.d = newD;
     }
     @Override
     public void setDirectionUp(){
-        this.d = new Pair<Integer,Integer>(UP, this.d.getY());
+        this.d = new Pair<Integer,Integer>(this.d.getX(), UP);
     }
     @Override
     public void setDirectionDown(){
-        this.d = new Pair<Integer,Integer>(DOWN, this.d.getY());
+        this.d = new Pair<Integer,Integer>(this.d.getX(), DOWN);
     }
     @Override
     public void setDirectionLeft(){
-        this.d = new Pair<Integer,Integer>(this.d.getX(), LEFT);
+        this.d = new Pair<Integer,Integer>(LEFT, this.d.getY());
     }
     @Override
     public void setDirectionRight(){
-        this.d = new Pair<Integer,Integer>(this.d.getX(), RIGHT);
+        this.d = new Pair<Integer,Integer>(RIGHT,this.d.getY());
     }
     @Override
     public boolean isDirectionUp(){
-        return (this.d.getX() == UP)? true : false;
+        return (this.d.getY() == UP)? true : false;
     }
     @Override
     public boolean isDirectionLeft(){
@@ -44,4 +44,9 @@ public class DirectionImpl implements Direction {
     public Pair<Integer, Integer> getDirection(){
         return this.d;
     }
+    @Override
+    public void resetDirection() {
+        this.d = new Pair<Integer,Integer>(LEFT, UP);
+    }
+    
 }

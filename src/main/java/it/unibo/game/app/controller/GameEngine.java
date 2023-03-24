@@ -1,32 +1,58 @@
 package it.unibo.game.app.controller;
 
-import java.util.LinkedList;
+
+import java.util.concurrent.TimeUnit;
+
+import javax.swing.SwingWorker;
 
 import it.unibo.game.app.api.AppController;
 
 public class GameEngine {
     
-    private long period = 20;
-    //private LinkedList<WorldEvent> event;
+    private long period = 30;
     private AppController controller;
-    private boolean thread = true;
+    private boolean thread = false;
 
     public GameEngine(AppController contr) {
-        //event = new LinkedList<>();
         this.controller = contr;
     }
+    
+    public void processInBackGround() {
+        SwingWorker<Void, Void> worker = new SwingWorker<Void,Void>() {
 
-    public void mainLoop() {
-        long previousCycleStartTime = System.currentTimeMillis();
-        while(this.thread) {
-            long currentCycleStartTime = System.currentTimeMillis();
-			long elapsed = currentCycleStartTime - previousCycleStartTime;
-
-            this.render();
-            this.waitForNextFrame(currentCycleStartTime);
-            previousCycleStartTime = currentCycleStartTime;
-        }
+			@Override
+			protected Void doInBackground() throws Exception {
+                long previousCycleStartTime = System.currentTimeMillis();
+                while(thread) {
+                    long currentCycleStartTime = System.currentTimeMillis();
+                    long elapsed = currentCycleStartTime - previousCycleStartTime;
+                    update(elapsed);
+                    if (checkRound()) {
+                        pause();
+                        controller.nextRound();
+                        render();
+                        TimeUnit.SECONDS.sleep(3);
+                        restart();
+                    }
+                    
+                    if (updateLife()) {
+                        pause();
+                        controller.restoreBall();
+                        render();
+                        TimeUnit.SECONDS.sleep(1);
+                        restart();
+                    }
+                    render();
+                    waitForNextFrame(currentCycleStartTime);
+                    previousCycleStartTime = currentCycleStartTime;
+                }
+				return null;
+			}
+            
+        };
+        worker.execute();
     }
+
 
     protected void waitForNextFrame(long cycleStartTime){
 		long dt = System.currentTimeMillis() - cycleStartTime;
@@ -37,8 +63,16 @@ public class GameEngine {
 		}
 	}
 
+    protected void restart() {
+        this.thread = true;
+    }
+
     protected void render() {
         this.controller.rPaint();
+    }
+
+    protected void update(long dt) {
+        this.controller.update(dt);
     }
 
     public void pause() {
@@ -46,6 +80,17 @@ public class GameEngine {
     }
     public void resume() {
         this.thread = true;
+        this.processInBackGround();
     }
+
+    protected boolean checkRound() {
+        return this.controller.checkRound();
+    }
+
+    protected boolean updateLife() {
+       return this.controller.updateLife();
+    }
+
+
     
 }

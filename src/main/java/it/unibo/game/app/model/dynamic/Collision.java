@@ -2,6 +2,7 @@ package it.unibo.game.app.model.dynamic;
 
 import java.util.Optional;
 
+import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.BoundingBox.Corner;
 import it.unibo.game.app.api.BoundingBox.Side;
@@ -18,35 +19,40 @@ public class Collision {
     public Collision(Level lev){
         this.level = lev;
     }
-    public void CollideWithEdges(Ball b, int height, int width){
+    public void CollideWithEdges(Ball b, Double h, Double w){
         var ballBox = new BoundingBoxImpl(b);
-        if(ballBox.getBox().get(Corner.LEFT_DOWN).getY() == 0 ||ballBox.getBox().get(Corner.RIGHT_DOWN).getY() == width-1){
+        if(ballBox.getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 ||ballBox.getBox().get(Corner.RIGHT_DOWN).getX() >= w-1){
             b.getPhysics().changeDirection(Side.LEFT_RIGHT);
-        }else if(ballBox.getBox().get(Corner.LEFT_UP).getX()==0 ){
+        }
+         if(ballBox.getBox().get(Corner.LEFT_UP).getY() <= 0.5 ){
             b.getPhysics().changeDirection(Side.UP_DOWN);
         }
     }
 
     public Optional<Integer> collideWithBrick(Ball b){
         var ballBox = new BoundingBoxImpl(b);
-        for (NormalBrick obj : level.getRound().getBrick()) {
-            var box = new BoundingBoxImpl(obj);
-            if(ballBox.collideWith(box).isPresent()){
+        for (Brick obj : level.getRound().getBrick()) {
+           var box = new BoundingBoxImpl(obj); 
+           var opt = ballBox.collideWith(box);
+            
+            if(opt.isPresent()){
                 this.score.increaseScore();
-                b.getPhysics().changeDirection(ballBox.collideWith(box).get());
+                b.getPhysics().changeDirection(opt.get());
+                System.out.println(opt.get());
                 return Optional.of(level.getRound().getBrick().indexOf(obj));
             }
         }
         return Optional.empty();
     }
 
-    public void CollideWithPad (Ball b, Pad p){
+    public boolean CollideWithPad (Ball b, Pad p){
         var ballBox = new BoundingBoxImpl(b);
         var padBox = new BoundingBoxImpl(p);
-        if(ballBox.collideWith(padBox).isPresent()) {
+        if(ballBox.collideWith(padBox).equals(Optional.of(Side.UP_DOWN))) {
             this.score.resetPoints();
             b.getPhysics().changeDirection(Side.UP_DOWN);
-        
+            return true;
         }
+        return false;
     }
 }

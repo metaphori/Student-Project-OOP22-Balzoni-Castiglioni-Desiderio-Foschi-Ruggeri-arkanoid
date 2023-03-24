@@ -2,31 +2,50 @@ package it.unibo.game.app.api;
 import java.util.*;
 
 import it.unibo.game.Pair;
+import it.unibo.game.app.model.ball.Ball;
 
 public interface Model{
     
     void setController(AppController c);
 
-    Map<Pair<Integer,Integer>, Integer> getBrickList();
+    Map<Pair<Double,Double>, Optional<Integer>> getBrickList();
 
     void chooseLevel(int numLevel);
 
-    Pair<Integer,Integer> getBrickDimension();
+    Pair<Double,Double> getBrickDimension();
 
-    Pair<Integer,Integer> getBall();
+    Pair<Double,Double> getBall();
 
-    Pair<Integer,Integer> getPad();
+    Pair<Double,Double> getPad();
+    
+    void setPadPos(Pair<Double, Double> pos);
 
-    void changePos(Pair<Integer,Integer> pos);
+    void nextRound();
 
-    boolean nextRound();
+    Double getPadWight();
 
-    int getPadWight();
+    Double getPadHeight();
 
-    int getPadHeight();
+    Double getRBall();
 
-    double getRBall();
+    Double getRow(Double x);
 
-    int getRow(int x);
+    Pair<Double,Double> getWorldDim();
+
+    void update(long dt);
+
+    List<Ball> getSurprise();
+
+    List<Pair<String,Integer>> getBestFive();
+
+    boolean isPresent(String name);
+
+    boolean checkRound();
+
+    boolean updateLife();
+
+    //boolean isLevelFinished();
+
+    void restoreInitialPosition();
 
 }

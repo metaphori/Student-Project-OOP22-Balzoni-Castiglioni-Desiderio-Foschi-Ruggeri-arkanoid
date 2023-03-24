@@ -4,6 +4,7 @@ import java.util.*;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.model.*;
+import it.unibo.game.app.model.ball.Ball;
 
 public interface AppController {
     
@@ -25,29 +26,53 @@ public interface AppController {
 
     void setModel();
 
-    Map<Pair<Integer, Integer>, Integer> getBrickList();
+    Map<Pair<Double, Double>, Optional<Integer>> getBrickList();
 
     void chooseLevel(int numLevel);
 
-    Pair<Integer,Integer> getBrickDimension();
+    Pair<Double, Double> getBrickDimension();
 
-    Pair<Integer,Integer> getWorldDimension();
+    Pair<Double, Double> getWorldDimension();
 
     void nextRound();
 
-    Pair<Integer,Integer> getBall();
+    Pair<Double, Double> getBall();
 
-    Pair<Integer,Integer> getPad();
+    Pair<Double, Double> getPad();
+    void changePadPos(Pair<Double, Double> newPos);
+    
+    Double getPadWight();
+    
+    Double getPadHeight();
 
-    void changePos(Pair<Integer,Integer> pos);
-
-    int getPadWight();
-
-    int getPadHeight();
-
-    double getRBall();
+    Double getRBall();
 
     void rPaint();
     
-    int getRow(int x);
+    Double getRow(Double x);
+    
+    List<Pair<String,Integer>> getBestFive();
+
+    boolean isPresent(String name);
+
+    List<Ball> getSurprise();
+
+    void setGameEngine();
+
+    void update(long dt);
+
+    void setGameOver();
+
+    boolean updateLife();
+
+    void restoreBall();
+
+    void mvPadR();
+
+    void mvPadL();
+
+    boolean checkRound();
+
+    void setVictory();
+
 }

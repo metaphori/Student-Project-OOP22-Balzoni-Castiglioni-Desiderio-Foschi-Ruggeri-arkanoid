@@ -1,18 +1,20 @@
 package it.unibo.game.app.model.brick;
 
+import java.util.Optional;
+
 import it.unibo.game.app.api.BrickType;
 
 public class NormalBrick extends AbstractBrick{
 
     private int brickResistence;
 
-    public NormalBrick(BrickType type, int width, int hight, int resistence) {
+    public NormalBrick(BrickType type, Double width, Double hight, int resistence) {
         super(type, width, hight);
         this.brickResistence = resistence;
     }
 
-    public int getRes () {
-        return this.brickResistence;
+    public Optional<Integer> getRes () {
+        return Optional.of(this.brickResistence);
     }
 
     public void hit() {
@@ -20,8 +22,8 @@ public class NormalBrick extends AbstractBrick{
     }
 
     @Override
-    public boolean isDestroyable() {
-        return true;
+    public boolean isDestroyed() {
+        return this.brickResistence ==0;
     }
 
     public void increaseRes(int res) {

@@ -6,14 +6,14 @@ import it.unibo.game.app.api.MovingObject;
 
 public class Ball extends GameObjectImpl implements MovingObject {
 
-    private Integer r;
-    private Physics phi;
+    private Double r;
+    private Physics phi = new BallPhysicsImpl();
 
-    public Integer getR() {
+    public Double getR() {
         return r;
     }
 
-    public void setR(Integer r) {
+    public void setR(Double r) {
         this.r = r;
     }
 

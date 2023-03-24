@@ -3,16 +3,16 @@ package it.unibo.game.app.model;
 import it.unibo.game.Pair;
 
 public class SizeCalculation {
-    private final static int WorldHight = 400;
-    private final static int WorldWidth = 300;
+    private final static Double WorldHight = 400d;
+    private final static Double WorldWidth = 300d;
     private int numBrickCol;
     private int numBrickRow;
-    private int startX;
-    private int startY = 0;
-    private int stopX;
-    private int stopY;
-    private int brickL;
-    private int brickH;
+    private Double startX;
+    private Double startY = 0d;
+    private Double stopX;
+    private Double stopY;
+    private Double brickL;
+    private Double brickH;
 
     public SizeCalculation(int numBrickCol, int numBrickRow, int roundPassed) {
         this.numBrickCol = numBrickCol;
@@ -24,31 +24,35 @@ public class SizeCalculation {
         brickH = (stopX - startX) / numBrickCol;
     }
 
-    private int getStopX(int numR) {
-        if (numR == 0) {
-            return ((WorldHight / 2) / 3);
-        } else {
-            return ((WorldHight / 2) / 4) * 2;
+    private Double getStopX(int numR) {
+        if (numBrickCol > 6) {
+            return (((WorldHight / 2) / 3) * 1.75); 
+        }
+        else if (numBrickCol > 4) {
+            return (((WorldHight / 2) / 3) * 1.5);
+        }
+        else {
+           return ((WorldHight / 2) / 3); 
         }
     }
 
-    public static Pair<Integer,Integer> getWorldSize() {
-        return new Pair<Integer,Integer>(WorldHight, WorldWidth);
+    public static Pair<Double,Double> getWorldSize() {
+        return new Pair<Double,Double>(WorldHight, WorldWidth);
     }
 
-    public Pair<Integer,Integer> getStart() {
-        return new Pair<Integer,Integer>(startX, startY);
+    public Pair<Double,Double> getStart() {
+        return new Pair<Double,Double>(startX, startY);
     }
 
-    public Pair<Integer,Integer> getStop() {
-        return new Pair<Integer,Integer>(stopX, stopY);
+    public Pair<Double,Double> getStop() {
+        return new Pair<Double,Double>(stopX, stopY);
     }
 
-    public Pair<Integer,Integer> getBrickDim() {
-        return new Pair<Integer,Integer>(brickH, brickL);
+    public Pair<Double,Double> getBrickDim() {
+        return new Pair<Double,Double>(brickH, brickL);
     }
 
-    public int getRowCordinate(int x) {
+    public Double getRowCordinate(Double x) {
         return this.startX + (x * this.brickH);
     }
 
