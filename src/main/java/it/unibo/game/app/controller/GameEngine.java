@@ -27,7 +27,14 @@ public class GameEngine {
                     long currentCycleStartTime = System.currentTimeMillis();
                     long elapsed = currentCycleStartTime - previousCycleStartTime;
                     update(elapsed);
-                    checkRound();
+                    if (checkRound()) {
+                        pause();
+                        controller.nextRound();
+                        render();
+                        TimeUnit.SECONDS.sleep(3);
+                        restart();
+                    }
+                    
                     if (updateLife()) {
                         pause();
                         controller.restoreBall();
@@ -76,13 +83,14 @@ public class GameEngine {
         this.processInBackGround();
     }
 
-    protected void checkRound() {
-        this.controller.nextRound();
+    protected boolean checkRound() {
+        return this.controller.checkRound();
     }
 
     protected boolean updateLife() {
        return this.controller.updateLife();
     }
+
 
     
 }

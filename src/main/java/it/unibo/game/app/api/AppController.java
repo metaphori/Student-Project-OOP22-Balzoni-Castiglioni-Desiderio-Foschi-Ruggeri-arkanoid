@@ -71,4 +71,8 @@ public interface AppController {
 
     void mvPadL();
 
+    boolean checkRound();
+
+    void setVictory();
+
 }

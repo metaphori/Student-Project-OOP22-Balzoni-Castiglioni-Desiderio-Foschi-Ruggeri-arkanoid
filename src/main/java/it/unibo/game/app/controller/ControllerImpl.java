@@ -124,9 +124,7 @@ public class ControllerImpl implements AppController{
 
     @Override
     public void nextRound() {
-        // if(this.model.nextRound() && this.model.isLevelFinished()) {
-        //     uiContr.victory();
-        // }
+        this.model.nextRound();
     }
 
     @Override
@@ -182,13 +180,22 @@ public class ControllerImpl implements AppController{
 
     @Override
     public void mvPadR() {
-        movePad(new Pair<Double,Double>(this.model.getPad().getX()+1,this.model.getPad().getY()));
+        movePad(new Pair<Double,Double>(this.model.getPad().getX()+1 * 10,this.model.getPad().getY()));
     }
 
     @Override
     public void mvPadL() {
-        movePad(new Pair<Double,Double>(this.model.getPad().getX()-1,this.model.getPad().getY()));
+        movePad(new Pair<Double,Double>(this.model.getPad().getX()-1 * 10,this.model.getPad().getY()));
     }
 
+    @Override
+    public boolean checkRound() {
+        return this.model.checkRound();
+    }
+
+    @Override
+    public void setVictory() {
+        this.uiContr.victory();
+    }
     
 }
