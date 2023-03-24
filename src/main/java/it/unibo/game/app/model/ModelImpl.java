@@ -77,6 +77,10 @@ public class ModelImpl implements Model{
         return this.level.getRound().getPad().getWidth();
     }
 
+    public int getScore(){
+        return this.move.getScore();
+    }
+
     @Override
     public Double getPadHeight() {
         return this.level.getRound().getPad().getHight();

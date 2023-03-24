@@ -203,5 +203,12 @@ public class UIControllerImpl implements UIController  {
         // TODO Auto-generated method stub
         return this.controller.getSurprise();
     }
+
+
+    @Override
+    public int getScore() {
+        // TODO Auto-generated method stub
+        return this.controller.getScore();
+    }
     
 }

@@ -153,6 +153,10 @@ public class ControllerImpl implements AppController{
         return this.model.getBestFive();
     }
 
+    public int getScore(){
+        return this.model.getScore();
+    }
+
     @Override
     public void setGameOver() {
         this.uiContr.gameOver();
