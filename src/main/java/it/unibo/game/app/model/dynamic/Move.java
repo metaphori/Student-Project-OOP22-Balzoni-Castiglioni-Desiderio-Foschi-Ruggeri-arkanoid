@@ -6,6 +6,7 @@ import java.util.Optional;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.model.SizeCalculation;
+import it.unibo.game.app.model.Surprise;
 import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.model.pad.Pad;
 
@@ -15,14 +16,14 @@ public class Move {
     private Ball ball ;
     private Pad pad;
     private Level l;
-    //private Surprise surprise;
+    private Surprise surprise;
 
     public Move (Level l, Ball ball, Pad p){
         coll = new Collision(l);
         this.ball = ball;
         this.pad = p;
         this.l=l;
-        //this.surprise = new Surprise(l);
+        this.surprise = new Surprise(l);
     }
 
     public void nextBall(long dt){ 
@@ -47,6 +48,7 @@ public class Move {
             }
             else if(coll.CollideWithPad(next, this.pad)) {
                 //this.surprise.chooseSurprise();
+                this.surprise.bonus();
                 it.remove();
             }
             else {

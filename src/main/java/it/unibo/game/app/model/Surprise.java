@@ -5,6 +5,7 @@ import java.util.Map;
 
 import java.util.Random;
 
+import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
@@ -32,7 +33,8 @@ public class Surprise {
 
     public Surprise(Level level) {
         this.level = level;
-        mappa = new HashMap<>(Map.ofEntries(
+        
+       /* mappa = new HashMap<>(Map.ofEntries(
             Map.entry(EXTRA_LIFE, this.extraLife()),
             Map.entry(EXPLOSIVE_BOMB, this.explosiveBomb()),
             Map.entry(DELETE_RANDOM_BRICKS, this.deleteRandomBricks()),
@@ -46,7 +48,7 @@ public class Surprise {
             Map.entry(CHANGE_ROW, this.changeRow()),
             Map.entry(CHANGE_HARD, this.changeHard())
             )
-        );
+        );*/
     }
 
     //simone
@@ -110,6 +112,16 @@ public class Surprise {
 
     //chiara
     private Void changeRow() {
+        double lastY = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getPos().getY();
+        double brickH = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getBrickH();
+        double brickW = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getBrickW();
+        double start = (brickW / 2) - 5;
+        double stop = (SizeCalculation.getWorldSize().getY()) -(3 * (brickW / 2));
+        for (double x = start; x <= stop; x = x + brickW) {
+            NormalBrick brick = new NormalBrick(BrickType.NORMAL, brickW, brickH,2);
+                brick.setPos(new Pair<>(x, lastY + brickH));
+                this.level.getRound().getBrick().add(brick);
+        }
         return null;
     }
 
@@ -122,6 +134,11 @@ public class Surprise {
     public void chooseSurprise() {
         final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
         this.mappa.get(method);
+    }
+    
+    /*Metodo per testare i vari bonus richiamandoli direttamente, non in modo random*/
+    public void bonus() {
+        this.changeRow();
     }
     
 }
