@@ -54,4 +54,8 @@ public class Collision {
         }
         return false;
     }
+
+    public int getScore(){
+        return this.score.getScore();
+    }
 }
