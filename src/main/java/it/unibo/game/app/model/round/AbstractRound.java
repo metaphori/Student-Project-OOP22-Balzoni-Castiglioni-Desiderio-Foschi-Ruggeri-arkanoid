@@ -7,12 +7,10 @@ import java.util.Random;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
-import it.unibo.game.app.api.GameObject;
 import it.unibo.game.app.api.Round;
 
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.ball.Ball;
-import it.unibo.game.app.model.brick.NormalBrick;
 import it.unibo.game.app.model.pad.Pad;
 
 public abstract class AbstractRound implements Round {

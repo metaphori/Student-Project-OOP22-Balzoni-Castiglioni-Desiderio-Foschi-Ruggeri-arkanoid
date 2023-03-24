@@ -1,11 +1,7 @@
 package it.unibo.game.app.view.jswing.impleentation;
 
-import java.util.Map;
-import java.util.Random;
-
 import javax.swing.*;
 import it.unibo.game.Pair;
-import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.view.jswing.api.GameView;
 import it.unibo.game.app.view.jswing.api.UIController;
 
@@ -16,7 +12,7 @@ import java.awt.geom.*;
 public class GameViewImpl extends JPanel implements KeyListener, ActionListener, GameView {
 
     private UIController observer;
-    private boolean play = true;
+    //private boolean play = true;
 
     public GameViewImpl(UIController control) {
         setFocusable(true);

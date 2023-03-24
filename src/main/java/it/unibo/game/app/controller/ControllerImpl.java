@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
-import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.Model;
 import it.unibo.game.app.model.ModelImpl;
 import it.unibo.game.app.model.SizeCalculation;

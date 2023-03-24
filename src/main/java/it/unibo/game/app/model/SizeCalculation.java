@@ -6,7 +6,7 @@ public class SizeCalculation {
     private final static Double WorldHight = 400d;
     private final static Double WorldWidth = 300d;
     private int numBrickCol;
-    private int numBrickRow;
+    //private int numBrickRow;
     private Double startX;
     private Double startY = 0d;
     private Double stopX;
@@ -16,7 +16,7 @@ public class SizeCalculation {
 
     public SizeCalculation(int numBrickCol, int numBrickRow, int roundPassed) {
         this.numBrickCol = numBrickCol;
-        this.numBrickRow = numBrickRow;
+        //this.numBrickRow = numBrickRow;
         startX = (WorldHight / 2) / 6;
         stopX = this.getStopX(roundPassed);
         stopY = WorldWidth;

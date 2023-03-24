@@ -3,7 +3,6 @@ package it.unibo.game.app.api;
 import java.util.*;
 
 import it.unibo.game.Pair;
-import it.unibo.game.app.model.*;
 import it.unibo.game.app.model.ball.Ball;
 
 public interface AppController {

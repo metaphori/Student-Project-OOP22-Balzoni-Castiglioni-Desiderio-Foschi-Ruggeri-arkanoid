@@ -6,7 +6,6 @@ import java.util.Optional;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.model.SizeCalculation;
-import it.unibo.game.app.model.Surprise;
 import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.model.pad.Pad;
 

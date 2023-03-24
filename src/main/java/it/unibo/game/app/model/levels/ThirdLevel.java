@@ -6,7 +6,7 @@ import it.unibo.game.app.model.round.*;
 
 public class ThirdLevel extends AbstractLevel {
 
-    private Pair<Double, Double> worldSize;
+    //private Pair<Double, Double> worldSize;
 
     public ThirdLevel(Pair<Double, Double> pair){
         this.worldSize=pair;
