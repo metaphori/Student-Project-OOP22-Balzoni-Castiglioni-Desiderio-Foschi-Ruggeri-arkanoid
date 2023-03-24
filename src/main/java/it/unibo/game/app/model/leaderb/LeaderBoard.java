@@ -4,11 +4,7 @@ import java.util.*;
 
 public interface LeaderBoard {
 
-    boolean isPresent(String usr);
-
-    void updatePoints(String name, Integer points, Integer levelId, Integer roundId);
-
-    Integer getPosition(String name);
+    void updatePoints(String name, String passWord, Integer points, Integer levelId);
 
     List<Pair<String,Integer>> getBestFive();
 
