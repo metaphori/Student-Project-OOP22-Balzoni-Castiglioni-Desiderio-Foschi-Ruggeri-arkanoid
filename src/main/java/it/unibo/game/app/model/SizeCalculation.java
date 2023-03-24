@@ -19,9 +19,9 @@ public class SizeCalculation {
         this.numBrickRow = numBrickRow;
         startX = (WorldHight / 2) / 6;
         stopX = this.getStopX(roundPassed);
-        stopY = WorldWidth;
         brickL = WorldWidth / numBrickRow;
         brickH = (stopX - startX) / numBrickCol;
+        stopY = WorldWidth -7.5;
     }
 
     private Double getStopX(int numR) {
