@@ -34,11 +34,11 @@ public interface Model{
 
     void update(long dt);
 
+    int getScore();
+
     List<Ball> getSurprise();
 
     List<Pair<String,Integer>> getBestFive();
-
-    boolean isPresent(String name);
 
     boolean checkRound();
 

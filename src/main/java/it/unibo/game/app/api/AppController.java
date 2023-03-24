@@ -52,9 +52,9 @@ public interface AppController {
     
     List<Pair<String,Integer>> getBestFive();
 
-    boolean isPresent(String name);
-
     List<Ball> getSurprise();
+
+    int getScore();
 
     void setGameEngine();
 

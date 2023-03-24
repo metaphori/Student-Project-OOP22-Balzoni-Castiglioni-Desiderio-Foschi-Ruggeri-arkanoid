@@ -66,4 +66,8 @@ public class Move {
         this.nextBall(dt);
     }
 
+    public int getScore(){
+        return this.coll.getScore();
+    }
+
 }
