@@ -45,7 +45,7 @@ public class ModelImpl implements Model{
                 this.level = new SecondLevel(control.getWorldDimension());
                 break;
             case 3:
-                this.level = new ThirdLevel(control.getWorldDimension());
+                this.level = new ThirdLevel();
                 break;
         }
         this.move = new Move(level, level.getRound().getBall(), level.getRound().getPad());
