@@ -15,11 +15,11 @@ public class GameOver {
         return (this.round.getPosBall().getY() > this.round.getPosPad().getY()) ? true : false;
     }
     public boolean isRoundFinished() {
-        return (this.round.getBrick().size() >= 1 || !remainsOnlyObstacles()) ? false : true;
+        return (this.round.getBrick().size() < 1 || remainsOnlyObstacles()) ? true : false;
     }
     public boolean remainsOnlyObstacles() {
         for (Brick element : this.round.getBrick()) {
-            if(!element.getType().equals(BrickType.OBSTACLE)) {
+            if(element.getType() != BrickType.OBSTACLE) {
                 return false;
             }
         }
