@@ -105,6 +105,9 @@ public class ModelImpl implements Model{
                 this.gameOver = new GameOver(level.getRound());
             }
         }
+        else {
+            this.control.setVictory();
+        }
     }
 
     @Override
