@@ -113,7 +113,7 @@ public class Surprise {
 
             @Override
             public void run() {
-              this.level.getScore.enableBonus(true);
+              level.getScore().enableBonus(true);
             }
             
         }; 
