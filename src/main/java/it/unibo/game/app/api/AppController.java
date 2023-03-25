@@ -58,6 +58,8 @@ public interface AppController {
 
     void setGameEngine();
 
+    void updatePoints(String name, String passWord);
+
     void update(long dt);
 
     void setGameOver();

@@ -28,6 +28,8 @@ public interface Model{
 
     Double getRBall();
 
+    void updatePoints(String name, String passWord);
+
     Double getRow(Double x);
 
     Pair<Double,Double> getWorldDim();

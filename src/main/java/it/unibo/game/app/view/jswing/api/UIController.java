@@ -46,6 +46,7 @@ public interface UIController {
     Double getPadWight();
     Double getPadHeight();
     Double getRBall();
+    void updatePoints(String name, String passWord);
     void rPaint();
     Double getRowC(Double x);
     List<Pair<String,Integer>> getBestFive();
