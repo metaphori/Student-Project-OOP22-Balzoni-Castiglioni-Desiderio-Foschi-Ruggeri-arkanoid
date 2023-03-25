@@ -1,6 +1,8 @@
 package it.unibo.game.app.model.levels;
 
 import it.unibo.game.Pair;
+import it.unibo.game.app.api.Score;
+import it.unibo.game.app.model.ScoreImpl;
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.round.*;
 
@@ -23,6 +25,7 @@ public class SecondLevel extends AbstractLevel {
     public SecondLevel (Pair<Double, Double> pair) {
         super();
         super.levelId = 2;
+        super.score = new ScoreImpl();
         this.normalBricksFirstRound = NORMAL1;
         this.surpriseBricksFirstRound = SURPRISE1;
         this.normalBricksSecondRound = NORMAL2;
