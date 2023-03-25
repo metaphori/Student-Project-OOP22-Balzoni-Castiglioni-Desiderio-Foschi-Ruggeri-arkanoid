@@ -104,6 +104,10 @@ public class ControllerImpl implements AppController{
         return this.model.getPadHeight()* this.delta().getY();
     }
 
+    public void updatePoints(String name, String passWord){
+        this.model.updatePoints(name,passWord);
+    }
+
     @Override
     public Double getRBall(){
         var dt = this.delta().getX()<this.delta().getY()? this.delta().getX():this.delta().getY();

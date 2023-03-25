@@ -14,8 +14,8 @@ import java.awt.*;
 public class UIControllerImpl implements UIController  {
     JFrame window = new JFrame("Arkanoid");
     private AppController controller ;
-    private JPanel deck = new JPanel();
     private CardLayout layout = new CardLayout();
+    private JPanel deck;
     private JMenuBar navBar = new JMenuBar();
     private JMenu options = new JMenu("options");
     private final JMenuItem menu = new JMenuItem(PAGES.START_MENU.toString());
@@ -35,6 +35,14 @@ public class UIControllerImpl implements UIController  {
         pause.addActionListener(e-> pauseMenu());
         leadrBoard.addActionListener(e-> leaderBoardView());
 
+        var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        
+        this.window.setMinimumSize(new Dimension(screenSize.height/2,screenSize.width/3));
+        this.window.setJMenuBar(navBar);
+        this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.window.setVisible(true);
+        this.window.requestFocusInWindow();
+
         this.deck = new JPanel(layout);
         views.putAll(Map.of(
             PAGES.GAME, new GameViewImpl(this),
@@ -46,14 +54,6 @@ public class UIControllerImpl implements UIController  {
         ));
         views.entrySet().stream().forEach(x->deck.add(x.getValue(),x.getKey().getName()));
         window.add(deck,BorderLayout.CENTER);
-
-        var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        
-        this.window.setMinimumSize(new Dimension(screenSize.height/2,screenSize.width/3));
-        this.window.setJMenuBar(navBar);
-        this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.window.setVisible(true);
-        this.window.requestFocusInWindow();
         initialView();
     }
 
@@ -210,12 +210,14 @@ public class UIControllerImpl implements UIController  {
         // TODO Auto-generated method stub
         return this.controller.getScore();
     }
-
-
     @Override
     public int getLife() {
         // TODO Auto-generated method stub
         return this.controller.getLife();
+    }
+
+    public void updatePoints(String name, String passWord){
+        this.controller.updatePoints(name,passWord);
     }
     
 }

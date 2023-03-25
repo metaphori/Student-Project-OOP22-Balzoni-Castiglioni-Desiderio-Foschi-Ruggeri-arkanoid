@@ -28,6 +28,7 @@ public abstract class AbstractLevel implements Level {
 
     protected Pair<Double, Double> worldSize;
     protected int numRoundPassed = 0;
+    protected int levelId;
 
     /*Posizionano gli oggetti (pad,pallina e blocchi) all'interno di ciascun round*/
     public abstract void setFirstRound();
@@ -55,5 +56,9 @@ public abstract class AbstractLevel implements Level {
     }
     public int getLife() {
         return this.lives;
+    }
+
+    public int getId(){
+        return this.levelId;
     }
 }

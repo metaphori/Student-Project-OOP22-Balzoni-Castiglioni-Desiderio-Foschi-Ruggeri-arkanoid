@@ -96,6 +96,10 @@ public class ModelImpl implements Model{
         return this.level.getRound().getSizeCalc().getRowCordinate(x);
     }
 
+    public void updatePoints(String name, String passWord){
+        this.board.updatePoints(name,passWord,this.getScore(),this.level.getId());
+    }
+
     @Override
     public void nextRound() {
         if(this.level.getNumRoundPassed() <= 2) {

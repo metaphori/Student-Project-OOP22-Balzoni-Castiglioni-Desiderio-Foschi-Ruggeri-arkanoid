@@ -22,8 +22,8 @@ public class LaunchApp {
         // final AppController app = new AppControllerImpl(model);
         // app.addView(new ArkanoidJfxView());
         final AppController app = new ControllerImpl();
-        app.setView();
         app.setModel();
+        app.setView();
         app.setGameEngine();
     }
 }
