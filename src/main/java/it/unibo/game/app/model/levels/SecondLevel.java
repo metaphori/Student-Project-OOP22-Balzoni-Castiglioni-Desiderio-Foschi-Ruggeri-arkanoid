@@ -22,6 +22,7 @@ public class SecondLevel extends AbstractLevel {
     
     public SecondLevel (Pair<Double, Double> pair) {
         super();
+        super.levelId = 2;
         this.normalBricksFirstRound = NORMAL1;
         this.surpriseBricksFirstRound = SURPRISE1;
         this.normalBricksSecondRound = NORMAL2;
