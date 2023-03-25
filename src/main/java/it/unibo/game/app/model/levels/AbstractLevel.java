@@ -3,6 +3,7 @@ package it.unibo.game.app.model.levels;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.Round;
+import it.unibo.game.app.api.Score;
 import it.unibo.game.app.model.SizeCalculation;
 
 
@@ -25,6 +26,7 @@ public abstract class AbstractLevel implements Level {
 
     protected Round currentRound;
     protected SizeCalculation sizeCalc;
+    protected Score score;
 
     protected Pair<Double, Double> worldSize;
     protected int numRoundPassed = 0;
@@ -60,5 +62,9 @@ public abstract class AbstractLevel implements Level {
 
     public int getId(){
         return this.levelId;
+    }
+
+    public Score getScore(){
+        return this.score;
     }
 }

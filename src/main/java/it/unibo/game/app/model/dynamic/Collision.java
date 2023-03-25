@@ -9,11 +9,10 @@ import it.unibo.game.app.api.BoundingBox.Side;
 import it.unibo.game.app.model.ball.*;
 import it.unibo.game.app.model.pad.Pad;
 import it.unibo.game.app.model.BoundingBoxImpl;
-import it.unibo.game.app.model.*;
+
 
 public class Collision {
     private Level level;
-    private Score score = new Score();
 
     public Collision(Level lev){
         this.level = lev;
@@ -35,7 +34,7 @@ public class Collision {
            var opt = ballBox.collideWith(box);
             
             if(opt.isPresent()){
-                this.score.increaseScore();
+                this.level.getScore().increaseScore();
                 b.getPhysics().changeDirection(opt.get());
                 System.out.println(opt.get());
                 return Optional.of(level.getRound().getBrick().indexOf(obj));
@@ -48,7 +47,7 @@ public class Collision {
         var ballBox = new BoundingBoxImpl(b);
         var padBox = new BoundingBoxImpl(p);
         if(ballBox.collideWith(padBox).equals(Optional.of(Side.UP_DOWN))) {
-            this.score.resetPoints();
+            this.level.getScore().resetPoints();
             b.getPhysics().changeDirection(Side.UP_DOWN);
             return true;
         }
@@ -56,6 +55,6 @@ public class Collision {
     }
 
     public int getScore(){
-        return this.score.getScore();
+        return this.level.getScore().getScore();
     }
 }

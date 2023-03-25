@@ -108,6 +108,18 @@ public class Surprise {
 
     //margherita
     private Void increaseScore() {
+        Timer time = new Timer();
+        TimerTask task = new TimerTask() {
+
+            @Override
+            public void run() {
+              this.level.getScore.enableBonus(true);
+            }
+            
+        }; 
+        time.schedule(task,10000);
+        this.level.getScore().enableBonus(false);
+
         return null;
     }
 
