@@ -19,6 +19,7 @@ public class ThirdLevel extends AbstractLevel {
     private static final int OBSTACLE3=6;
 
     public ThirdLevel(){
+        super.levelId=3;
         this.setFirstRound();
     }
 
