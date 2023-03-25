@@ -18,15 +18,15 @@ public class SaveScore extends JDialog{
                                                      new Pair<>(new JLabel("Insert password: "),this.password)));
     private JButton button = new JButton("OK");
 
-    public SaveScore(UIController control, int levelId){
-        this.init(control,levelId);
+    public SaveScore(UIController control){
+        this.init(control);
         this.add(panel);
         this.setSize(400,150);
         this.setBounds(300,300,400,150);
         this.setVisible(true);
     }
 
-    private void init(UIController control, int levelId){
+    private void init(UIController control){
         GridBagConstraints cnst = new GridBagConstraints();
         cnst.insets=new Insets(3,3,3,3);
         cnst.fill=GridBagConstraints.CENTER;
@@ -40,6 +40,7 @@ public class SaveScore extends JDialog{
         button.addActionListener(e->{
             if(name.getText().length()!=0 && password.getText().length()!=0){
                 control.updatePoints(name.getText(),password.getText());
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this,"Please insert name and password");
             }
