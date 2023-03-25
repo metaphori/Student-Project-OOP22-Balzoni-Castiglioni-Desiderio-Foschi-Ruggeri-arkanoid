@@ -10,8 +10,7 @@ import java.awt.event.ActionListener;
 
 /*Implements a common JPanel for Pause, GameOver and Victory */
 /* 
- * Just change the titleLabel text
- * this.titleLabel.setText("");
+ * 
 */
 public abstract class AbstractView extends JPanel{
     protected UIControllerImpl uiControllerImpl;
@@ -19,12 +18,14 @@ public abstract class AbstractView extends JPanel{
     protected JPanel buttonsPanel;
     protected JButton quitBtn;
     protected JButton menuBtn;
+    protected JButton saveBtn;
 
     public AbstractView(UIControllerImpl uiCtrl) {
         this.uiControllerImpl = uiCtrl;
         titleLabel = new JLabel("Title");
         quitBtn = new CustomBtn(30,"Quit");
         menuBtn = new CustomBtn(30,"Start Menù");
+        saveBtn = new CustomBtn(30, "Save");
         JPanel titlePanel = new JPanel();
         buttonsPanel = new JPanel();
 
@@ -56,6 +57,16 @@ public abstract class AbstractView extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+            }
+            
+        });
+
+        saveBtn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
             }
             
         });
