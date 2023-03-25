@@ -13,4 +13,5 @@ public interface Level {
     void increaseRound();
     int getLife();
     int getId();
+    Score getScore();
 }
