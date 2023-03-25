@@ -29,5 +29,10 @@ public class NormalBrick extends AbstractBrick{
     public void increaseRes(int res) {
         this.brickResistence = ++res;
     }
+
+    @Override
+    public void decreaseRes(int res) {
+       this.brickResistence = --res;
+    }
     
 }

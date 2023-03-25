@@ -18,4 +18,6 @@ public interface Brick extends GameObject{
     void hit();
 
     void increaseRes(int res);
+
+    void decreaseRes(int res);
 }
