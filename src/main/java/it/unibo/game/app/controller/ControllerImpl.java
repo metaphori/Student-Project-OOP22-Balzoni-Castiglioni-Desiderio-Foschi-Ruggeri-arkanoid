@@ -133,7 +133,7 @@ public class ControllerImpl implements AppController{
 
     @Override
     public Double getRow(Double x) {
-        return this.model.getRow(x);
+        return this.model.getRow(x) * this.delta().getY();
     }
 
     public List<Ball> getSurprise(){

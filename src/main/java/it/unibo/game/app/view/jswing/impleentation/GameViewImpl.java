@@ -39,12 +39,12 @@ public class GameViewImpl extends JPanel implements KeyListener, ActionListener,
         observer.getList().entrySet().stream().forEach(x -> {
             g2d.setColor(x.getValue().isEmpty() ? Color.BLACK
                 : x.getValue().get() == 2 ? Color.LIGHT_GRAY
-                : x.getKey().getY() == observer.getRowC(0d) ? Color.RED
-                : x.getKey().getY() == observer.getRowC(1d) ? Color.BLUE
-                : x.getKey().getY() == observer.getRowC(2d) ? Color.YELLOW
-                : x.getKey().getY() == observer.getRowC(3d) ? Color.MAGENTA
-                : x.getKey().getY() == observer.getRowC(4d) ? Color.ORANGE
-                : x.getKey().getY() == observer.getRowC(5d)
+                : x.getKey().getY().intValue() == observer.getRowC(0d).intValue() ? Color.RED
+                : x.getKey().getY().intValue() == observer.getRowC(1d).intValue() ? Color.BLUE
+                : x.getKey().getY().intValue() == observer.getRowC(2d).intValue() ? Color.YELLOW
+                : x.getKey().getY().intValue() == observer.getRowC(3d).intValue() ? Color.MAGENTA
+                : x.getKey().getY().intValue() == observer.getRowC(4d).intValue() ? Color.ORANGE
+                : x.getKey().getY().intValue() == observer.getRowC(5d).intValue()
                     ? Color.CYAN
                     : Color.GREEN);
             // g2d.draw(new Rectangle2D.Double(x.getKey().getX(),x.getKey().getY(),
