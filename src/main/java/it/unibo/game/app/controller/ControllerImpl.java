@@ -196,5 +196,10 @@ public class ControllerImpl implements AppController{
     public void setVictory() {
         this.uiContr.victory();
     }
+
+    @Override
+    public int getLife() {
+        return this.model.getLife();
+    }
     
 }

@@ -56,6 +56,8 @@ public interface AppController {
 
     int getScore();
 
+    int getLife();
+
     void setGameEngine();
 
     void update(long dt);

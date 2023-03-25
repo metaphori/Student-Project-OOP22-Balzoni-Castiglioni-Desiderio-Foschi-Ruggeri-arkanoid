@@ -53,4 +53,5 @@ public interface UIController {
     void movePadRight();
     Pair<Double, Double> windowDim();
     int getScore();
+    int getLife();
 }

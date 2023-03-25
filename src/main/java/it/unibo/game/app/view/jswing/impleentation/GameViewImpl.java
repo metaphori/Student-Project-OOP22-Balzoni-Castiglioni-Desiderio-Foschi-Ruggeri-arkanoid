@@ -73,6 +73,10 @@ public class GameViewImpl extends JPanel implements KeyListener, ActionListener,
         g2d.setFont(new Font("myFont",Font.ITALIC,(int)(20*deltaH)));
         g2d.setColor(Color.RED);
         g2d.drawString("SCORE: "+this.observer.getScore(), (int)(10*deltaW),(int)(20*deltaH));
+
+        g2d.setFont(new Font("myFont",Font.ITALIC,(int)(20*deltaH)));
+        g2d.setColor(Color.RED);
+        g2d.drawString("LIVES: "+this.observer.getLife(), (int)(225*deltaW),(int)(20*deltaH));
         
         g2d.dispose();
 

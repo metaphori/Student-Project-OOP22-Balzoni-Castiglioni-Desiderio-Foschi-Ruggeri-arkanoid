@@ -162,6 +162,11 @@ public class ModelImpl implements Model{
     public List<Ball> getSurprise(){
         return this.level.getRound().getSurprise();
     }
+
+    @Override
+    public int getLife() {
+        return this.level.getLife();
+    }
     
     
 }

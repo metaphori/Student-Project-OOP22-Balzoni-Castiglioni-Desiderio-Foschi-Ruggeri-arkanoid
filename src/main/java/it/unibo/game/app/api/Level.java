@@ -11,4 +11,5 @@ public interface Level {
     Round getRound();
     int getNumRoundPassed();
     void increaseRound();
+    int getLife();
 }
