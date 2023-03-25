@@ -53,4 +53,7 @@ public abstract class AbstractLevel implements Level {
     public void increaseRound() {
         ++this.numRoundPassed;
     }
+    public int getLife() {
+        return this.lives;
+    }
 }
