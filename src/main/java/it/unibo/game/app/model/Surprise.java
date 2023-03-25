@@ -53,6 +53,7 @@ public class Surprise {
 
     //simone
     private Void extraLife() {
+        this.level.increaseLife();
         return null;        
     }
 
