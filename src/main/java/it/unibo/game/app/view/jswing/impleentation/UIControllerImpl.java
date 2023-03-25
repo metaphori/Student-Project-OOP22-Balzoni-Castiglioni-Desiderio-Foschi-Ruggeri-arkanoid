@@ -210,5 +210,9 @@ public class UIControllerImpl implements UIController  {
         // TODO Auto-generated method stub
         return this.controller.getScore();
     }
+
+    public void updatePoints(String name, String passWord){
+        this.controller.updatePoints(name,passWord);
+    }
     
 }
