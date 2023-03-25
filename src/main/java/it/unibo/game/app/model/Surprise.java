@@ -1,9 +1,13 @@
 package it.unibo.game.app.model;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
@@ -125,9 +129,32 @@ public class Surprise {
         }
         return null;
     }
-
     //chiara
     private Void changeHard() {
+        List<Brick> hard = new ArrayList<>();
+        Timer timer = new Timer();
+        for (Brick brick : this.level.getRound().getBrick()) {
+            if (brick.getRes().isPresent() && brick.getRes().get() == 2) {
+                
+                hard.add(brick);
+                brick.decreaseRes(brick.getRes().get());
+            }
+        }
+        TimerTask task = new TimerTask() {
+
+            @Override
+            public void run() {
+                for (Brick brick : hard) {
+                    int indx = level.getRound().getBrick().indexOf(brick);
+                    if(indx != -1) {
+                       level.getRound().getBrick().get(indx).increaseRes(brick.getRes().get()); 
+                    }
+                }
+            }
+            
+        };
+        timer.schedule(task, 10000);
+
         return null;
     }
 
@@ -139,7 +166,7 @@ public class Surprise {
     
     /*Metodo per testare i vari bonus richiamandoli direttamente, non in modo random*/
     public void bonus() {
-        this.changeRow();
+        this.changeHard();
     }
     
 }

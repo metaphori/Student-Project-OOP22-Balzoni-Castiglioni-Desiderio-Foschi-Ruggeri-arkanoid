@@ -33,5 +33,11 @@ public class Obstacle extends AbstractBrick {
     public void increaseRes(int res) {
         // TODO Auto-generated method stub
     }
+
+    @Override
+    public void decreaseRes(int res) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'decreseRes'");
+    }
     
 }
