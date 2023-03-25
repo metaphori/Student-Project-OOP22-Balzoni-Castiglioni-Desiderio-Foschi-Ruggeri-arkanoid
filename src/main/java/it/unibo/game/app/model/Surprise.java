@@ -96,6 +96,7 @@ public class Surprise {
         this.level.getRound().getBrick().replaceAll(x->{
             if(x.getType().equals(BrickType.OBSTACLE)) {
                 Brick brick = new NormalBrick(BrickType.NORMAL, x.getBrickW(), x.getBrickH(), 1);
+                brick.setPos(x.getPos());
                 return brick;
             }
             else {
