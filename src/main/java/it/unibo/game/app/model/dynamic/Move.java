@@ -32,7 +32,9 @@ public class Move {
         if(index.isPresent()){
             this.l.getRound().remove(index.get());
         }
-        coll.CollideWithPad(this.ball, this.pad);
+        if(coll.CollideWithPad(this.ball, this.pad)){
+            this.l.getScore().resetPoints();
+        }
         var newPos = new Pair<Double,Double> (this.ball.getPos().getX() +this.ball.getPhysics().getDir().getDirection().getX() * 3,
                                                  this.ball.getPos().getY() + this.ball.getPhysics().getDir().getDirection().getY() * 3);
         ball.setPos(newPos);
