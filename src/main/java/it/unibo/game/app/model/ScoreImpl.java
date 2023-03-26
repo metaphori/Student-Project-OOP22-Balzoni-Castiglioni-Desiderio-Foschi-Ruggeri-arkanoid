@@ -18,8 +18,8 @@ public class ScoreImpl implements Score {
     }
 
     public void increaseScore(){
-        this.score = (this.score + this.points)*this.bonus;
-        this.points = this.points * 2;
+        this.score = this.score + (this.points*this.bonus);
+        this.points = 2;
     }
     
     public void resetPoints (){
@@ -27,6 +27,7 @@ public class ScoreImpl implements Score {
     }
 
     public void enableBonus(Boolean bool){
+        System.out.println("bonus attivato");
         this.bonus = (bool==true) ? 2 : 1;
     } 
 }
