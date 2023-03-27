@@ -13,6 +13,7 @@ import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.model.brick.NormalBrick;
 
 public class Surprise {
@@ -30,6 +31,8 @@ public class Surprise {
     private final static int ADD_BALLS = 10;
     private final static int CHANGE_ROW = 11;
     private final static int CHANGE_HARD = 12;
+
+    private final static int NUM_BALLS = 3;
 
     private Map<Integer,Runnable> mappa;
     private Random random = new Random();
@@ -119,13 +122,18 @@ public class Surprise {
         }; 
         time.schedule(task,10000);
         this.level.getScore().enableBonus(false);
-        System.out.println();
+        
         
     }
 
     //margherita
     private void addBalls() {
-        System.out.println();
+        List<Ball> extraBalls = new ArrayList<>();
+        for(int i=0; i<NUM_BALLS; i++){
+            extraBalls.add(new Ball());
+            extraBalls.get(i).setPos(this.level.getRound().getBallInitialPosition());
+        }
+        
     }
 
     //chiara
