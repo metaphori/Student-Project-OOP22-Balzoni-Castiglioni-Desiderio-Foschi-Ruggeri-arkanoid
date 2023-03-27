@@ -49,8 +49,8 @@ public class Move {
                 it.remove();
             }
             else if(coll.CollideWithPad(next, this.pad)) {
-                //this.surprise.chooseSurprise();
-                this.surprise.bonus();
+                this.surprise.chooseSurprise();
+                //this.surprise.bonus();
                 it.remove();
             }
             else {

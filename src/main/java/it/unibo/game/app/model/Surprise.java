@@ -31,68 +31,68 @@ public class Surprise {
     private final static int CHANGE_ROW = 11;
     private final static int CHANGE_HARD = 12;
 
-    private Map<Integer,Void> mappa;
+    private Map<Integer,Runnable> mappa;
     private Random random = new Random();
     private Level level;
 
     public Surprise(Level level) {
         this.level = level;
         
-       /* mappa = new HashMap<>(Map.ofEntries(
-            Map.entry(EXTRA_LIFE, this.extraLife()),
-            Map.entry(EXPLOSIVE_BOMB, this.explosiveBomb()),
-            Map.entry(DELETE_RANDOM_BRICKS, this.deleteRandomBricks()),
-            Map.entry(REDUCE_SIZE_PAD, this.reduceSizePad()),
-            Map.entry(ENLARGE_SIZE_PAD, this.enlargeSizePad()),
-            Map.entry(INCREASE_BALL_SPEED, this.increaseBallSpeed()),
-            Map.entry(DECREASE_BALL_SPEED, this.decreaseBallSpeed()),
-            Map.entry(CHANGE_OBSTACLES, this.changeObstacles()),
-            Map.entry(INCREASE_SCORE, this.increaseScore()),
-            Map.entry(ADD_BALLS, this.addBalls()),
-            Map.entry(CHANGE_ROW, this.changeRow()),
-            Map.entry(CHANGE_HARD, this.changeHard())
+       mappa = new HashMap<>(Map.ofEntries(
+            Map.entry(EXTRA_LIFE, ()-> this.extraLife()),
+            Map.entry(EXPLOSIVE_BOMB, ()-> this.explosiveBomb()),
+            Map.entry(DELETE_RANDOM_BRICKS, ()-> this.deleteRandomBricks()),
+            Map.entry(REDUCE_SIZE_PAD, ()-> this.reduceSizePad()),
+            Map.entry(ENLARGE_SIZE_PAD, ()-> this.enlargeSizePad()),
+            Map.entry(INCREASE_BALL_SPEED, ()-> this.increaseBallSpeed()),
+            Map.entry(DECREASE_BALL_SPEED, ()-> this.decreaseBallSpeed()),
+            Map.entry(CHANGE_OBSTACLES, ()-> this.changeObstacles()),
+            Map.entry(INCREASE_SCORE, ()-> this.increaseScore()),
+            Map.entry(ADD_BALLS, ()-> this.addBalls()),
+            Map.entry(CHANGE_ROW, ()-> this.changeRow()),
+            Map.entry(CHANGE_HARD, ()-> this.changeHard())
             )
-        );*/
+        );
     }
 
     //simone
-    private Void extraLife() {
+    private void extraLife() {
         this.level.increaseLife();
-        return null;        
+               
     }
-
+    
     //simone
-    private Void explosiveBomb() {
-        return null;
+    private void explosiveBomb() {
+        System.out.println();
     }
 
     //edoardo
-    private Void deleteRandomBricks() {
-        return null;
+    private void deleteRandomBricks() {
+        System.out.println();
     }
 
     //edoardo
-    private Void reduceSizePad() {
-        return null;
+    private void reduceSizePad() {
+        System.out.println();
     }
 
     //edoardo
-    private Void enlargeSizePad() {
-        return null;
+    private void enlargeSizePad() {
+        System.out.println();
     }
 
     //virginia
-    private Void increaseBallSpeed() {
-        return null;
+    private void increaseBallSpeed() {
+        System.out.println();
     }
 
     //virginia
-    private Void decreaseBallSpeed() {
-        return null;
+    private void decreaseBallSpeed() {
+        System.out.println();
     }
 
     //virginia
-    private Void changeObstacles() {
+    private void changeObstacles() {
         this.level.getRound().getBrick().replaceAll(x->{
             if(x.getType().equals(BrickType.OBSTACLE)) {
                 Brick brick = new NormalBrick(BrickType.NORMAL, x.getBrickW(), x.getBrickH(), 1);
@@ -103,11 +103,11 @@ public class Surprise {
                 return x;
             }
         });
-        return null;
+        System.out.println();
     }
 
     //margherita
-    private Void increaseScore() {
+    private void increaseScore() {
         Timer time = new Timer();
         TimerTask task = new TimerTask() {
 
@@ -119,17 +119,17 @@ public class Surprise {
         }; 
         time.schedule(task,10000);
         this.level.getScore().enableBonus(false);
-
-        return null;
+        System.out.println();
+        
     }
 
     //margherita
-    private Void addBalls() {
-        return null;
+    private void addBalls() {
+        System.out.println();
     }
 
     //chiara
-    private Void changeRow() {
+    private void changeRow() {
         double lastY = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getPos().getY();
         double brickH = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getBrickH();
         double brickW = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getBrickW();
@@ -140,10 +140,10 @@ public class Surprise {
                 brick.setPos(new Pair<>(x, lastY + brickH));
                 this.level.getRound().getBrick().add(brick);
         }
-        return null;
+        System.out.println();
     }
     //chiara
-    private Void changeHard() {
+    private void changeHard() {
         List<Brick> hard = new ArrayList<>();
         Timer timer = new Timer();
         for (Brick brick : this.level.getRound().getBrick()) {
@@ -167,14 +167,12 @@ public class Surprise {
             
         };
         timer.schedule(task, 10000);
-
-        return null;
     }
 
     //simone
     public void chooseSurprise() {
         final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
-        this.mappa.get(method);
+        this.mappa.get(method).run();
     }
     
     /*Metodo per testare i vari bonus richiamandoli direttamente, non in modo random*/
