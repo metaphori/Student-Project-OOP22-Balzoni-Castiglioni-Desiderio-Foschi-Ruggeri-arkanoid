@@ -65,8 +65,7 @@ public abstract class AbstractView extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                new SaveScore(uiCtrl);
             }
             
         });
