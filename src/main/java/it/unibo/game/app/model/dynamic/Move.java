@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Optional;
 
 import it.unibo.game.Pair;
+import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.Surprise;
@@ -30,6 +31,9 @@ public class Move {
         coll.CollideWithEdges(this.ball, SizeCalculation.getWorldSize().getX() , SizeCalculation.getWorldSize().getY());
         index = coll.collideWithBrick(this.ball);
         if(index.isPresent()){
+            if(this.l.getRound().getBrick().get(index.get()).getType().equals(BrickType.SURPRISE)) {
+                this.l.setLastSurpriseBrick(this.l.getRound().getBrick().get(index.get())); 
+            }
             this.l.getRound().remove(index.get());
         }
         if(coll.CollideWithPad(this.ball, this.pad)){
@@ -71,5 +75,4 @@ public class Move {
     public int getScore(){
         return this.coll.getScore();
     }
-
 }
