@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import it.unibo.game.app.view.jswing.api.UIController;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +15,7 @@ import java.awt.event.ActionListener;
  * 
 */
 public abstract class AbstractView extends JPanel{
-    protected UIControllerImpl uiControllerImpl;
+    protected UIController observer;
     protected JLabel titleLabel;
     protected JPanel buttonsPanel;
     protected JButton quitBtn;
@@ -21,7 +23,7 @@ public abstract class AbstractView extends JPanel{
     protected JButton saveBtn;
 
     public AbstractView(UIControllerImpl uiCtrl) {
-        this.uiControllerImpl = uiCtrl;
+        this.observer = uiCtrl;
         titleLabel = new JLabel("Title");
         quitBtn = new CustomBtn(30,"Quit");
         menuBtn = new CustomBtn(30,"Start Menù");
