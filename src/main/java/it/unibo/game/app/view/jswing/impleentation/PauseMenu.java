@@ -5,10 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-
 public class PauseMenu extends AbstractView{
 
+    
     public PauseMenu(UIControllerImpl uiCtrl) {
+        
         super(uiCtrl);
         this.titleLabel.setText("PAUSE");
         buttonsPanel.setLayout(new GridLayout(3,1,0,1));
@@ -25,7 +26,5 @@ public class PauseMenu extends AbstractView{
             }
             
         });
-
     }
-    
 }

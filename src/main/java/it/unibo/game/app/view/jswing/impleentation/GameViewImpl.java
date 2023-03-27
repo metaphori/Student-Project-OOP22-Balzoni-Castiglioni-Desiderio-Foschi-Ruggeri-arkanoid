@@ -95,6 +95,9 @@ public class GameViewImpl extends JPanel implements KeyListener, ActionListener,
         if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
             observer.movePadLeft();
         }
+        else if (arg0.getKeyCode() == KeyEvent.VK_SPACE){
+            observer.pauseMenu();
+        }
     }
 
 
