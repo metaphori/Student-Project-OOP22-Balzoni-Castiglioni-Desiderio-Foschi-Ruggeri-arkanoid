@@ -1,4 +1,5 @@
 package it.unibo.game.app.model.leaderb;
+
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;

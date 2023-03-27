@@ -1,7 +1,6 @@
 package it.unibo.game.app.model.levels;
 
 import it.unibo.game.Pair;
-import it.unibo.game.app.api.Score;
 import it.unibo.game.app.model.ScoreImpl;
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.round.*;

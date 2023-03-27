@@ -10,8 +10,6 @@ import it.unibo.game.app.api.BoundingBox.Side;
 import it.unibo.game.app.model.ball.*;
 import it.unibo.game.app.model.pad.Pad;
 import it.unibo.game.app.model.BoundingBoxImpl;
-import it.unibo.game.app.model.Surprise;
-
 
 public class Collision {
     private Level level;

@@ -1,4 +1,4 @@
-package it.unibo.game.app.view.jswing.impleentation;
+package it.unibo.game.app.view.jswing.implementation;
 
 import javax.swing.*;
 import it.unibo.game.Pair;
