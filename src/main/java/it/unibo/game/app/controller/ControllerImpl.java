@@ -3,16 +3,15 @@ package it.unibo.game.app.controller;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collector;
+
 import java.util.stream.Collectors;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Model;
 import it.unibo.game.app.model.ModelImpl;
 import it.unibo.game.app.model.SizeCalculation;
-import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.view.jswing.api.UIController;
-import it.unibo.game.app.view.jswing.impleentation.UIControllerImpl;
+import it.unibo.game.app.view.jswing.implementation.UIControllerImpl;
 
 public class ControllerImpl implements AppController {
 
@@ -37,9 +36,9 @@ public class ControllerImpl implements AppController {
 
     @Override
     public void setView() {
-        this.uiContr = new UIControllerImpl();
-        this.uiContr.set(this);
-        // uiContr.setController(this);
+        this.uiContr = new UIControllerImpl(); 
+        Thread instanceCaller = new Thread(() -> this.uiContr.set(this));
+        instanceCaller.start();
     }
 
     @Override
