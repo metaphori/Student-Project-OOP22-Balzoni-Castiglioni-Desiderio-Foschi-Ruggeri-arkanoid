@@ -52,7 +52,7 @@ public interface AppController {
     
     List<Pair<String,Integer>> getBestFive();
 
-    List<Ball> getSurprise();
+    List<Pair<Double,Double>> getSurprise();
 
     int getScore();
 
