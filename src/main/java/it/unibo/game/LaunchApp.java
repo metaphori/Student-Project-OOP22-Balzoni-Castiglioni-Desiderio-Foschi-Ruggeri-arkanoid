@@ -18,9 +18,6 @@ public class LaunchApp {
      * @throws IllegalArgumentException in case of reflection issues
      */
     public static void main(final String... args) {
-        // final var model = new AppModelImpl();
-        // final AppController app = new AppControllerImpl(model);
-        // app.addView(new ArkanoidJfxView());
         final AppController app = new ControllerImpl();
         app.setModel();
         app.setView();
