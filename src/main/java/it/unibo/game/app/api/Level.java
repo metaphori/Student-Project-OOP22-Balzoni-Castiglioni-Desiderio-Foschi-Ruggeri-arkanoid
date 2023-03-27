@@ -14,4 +14,6 @@ public interface Level {
     int getLife();
     int getId();
     Score getScore();
+    void setLastSurpriseBrick(Brick suBrick);
+    Brick getLastSurpriseBrick();
 }
