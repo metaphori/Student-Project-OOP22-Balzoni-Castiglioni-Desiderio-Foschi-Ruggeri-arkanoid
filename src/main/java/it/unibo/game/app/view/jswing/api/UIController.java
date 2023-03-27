@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
-import it.unibo.game.app.model.ball.Ball;
 
 public interface UIController {
     enum PAGES {

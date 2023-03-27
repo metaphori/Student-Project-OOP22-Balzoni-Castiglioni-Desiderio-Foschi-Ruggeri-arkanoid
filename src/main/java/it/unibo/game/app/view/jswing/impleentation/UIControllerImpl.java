@@ -13,32 +13,17 @@ import java.awt.*;
 
 public class UIControllerImpl implements UIController  {
     JFrame window = new JFrame("Arkanoid");
-    private AppController controller ;
+    private AppController AppController ;
     private CardLayout layout = new CardLayout();
     private JPanel deck;
-    private JMenuBar navBar = new JMenuBar();
-    private JMenu options = new JMenu("options");
-    private final JMenuItem menu = new JMenuItem(PAGES.START_MENU.toString());
-    private final JMenuItem pause = new JMenuItem(PAGES.PAUSE_MENU.toString());
-    private final JMenuItem leadrBoard = new JMenuItem(PAGES.TOP_5.toString());
     private Map<PAGES, JPanel> views = new HashMap<>();
 
     public void set(AppController control){
-        this.controller=control;
-
-        options.add(menu);
-        options.add(pause);
-        options.add(leadrBoard);
-        navBar.add(options);
-
-        menu.addActionListener(e-> initialView());
-        pause.addActionListener(e-> pauseMenu());
-        leadrBoard.addActionListener(e-> leaderBoardView());
+        this.AppController=control;
 
         var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         
         this.window.setMinimumSize(new Dimension(screenSize.height/2,screenSize.width/3));
-        this.window.setJMenuBar(navBar);
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.window.setVisible(true);
         this.window.requestFocusInWindow();
@@ -71,13 +56,13 @@ public class UIControllerImpl implements UIController  {
     @Override
     public void pauseMenu() {
         chargeView(PAGES.PAUSE_MENU);
-        controller.onPause();
+        AppController.onPause();
     }
 
     @Override
     public void gameView() {
         chargeView(PAGES.GAME);
-        controller.play();
+        AppController.play();
     }
 
     @Override
@@ -86,43 +71,43 @@ public class UIControllerImpl implements UIController  {
     }
 
     public  Map<Pair<Double, Double>, Optional<Integer>> getList() {
-        return controller.getBrickList(); 
+        return AppController.getBrickList(); 
     } 
 
     @Override
     public void level(int numLevel) {
-        controller.chooseLevel(numLevel);
+        AppController.chooseLevel(numLevel);
     }
 
     public Pair<Double, Double> getDimension() {
-        return controller.getWorldDimension();
+        return AppController.getWorldDimension();
     }
 
     public Pair<Double, Double> getDimensionBrick() {
-        return controller.getBrickDimension();
+        return AppController.getBrickDimension();
     }
 
     @Override
     public Pair<Double, Double> getBall() {
-        return controller.getBall();
+        return AppController.getBall();
     }
 
     @Override
     public Pair<Double, Double> getPadPos() {
-        return controller.getPad();
+        return AppController.getPad();
     }
 
 
     public Double getPadWight(){
-        return controller.getPadWight();
+        return AppController.getPadWight();
     }
 
     public Double getPadHeight(){
-        return controller.getPadHeight();
+        return AppController.getPadHeight();
     }
 
     public Double getRBall(){
-        return controller.getRBall();
+        return AppController.getRBall();
     }
 
     @Override
@@ -138,7 +123,7 @@ public class UIControllerImpl implements UIController  {
     @Override
     public void gameOver() {
         chargeView(PAGES.GAME_OVER);
-        controller.onPause();
+        AppController.onPause();
     }
 
     @Override
@@ -147,19 +132,19 @@ public class UIControllerImpl implements UIController  {
     }
     
     public Double getRowC(Double x) {
-        return this.controller.getRow(x);
+        return this.AppController.getRow(x);
     }
 
     public List<Pair<String,Integer>> getBestFive(){
-        return this.controller.getBestFive();
+        return this.AppController.getBestFive();
     }
     
     public void movePadRight() {
-        controller.mvPadR();
+        AppController.mvPadR();
     }
 
     public void movePadLeft() {
-        controller.mvPadL();
+        AppController.mvPadL();
     }
 
 
@@ -173,23 +158,23 @@ public class UIControllerImpl implements UIController  {
 
     @Override
     public List<Pair<Double,Double>> getSurprise() {
-        return this.controller.getSurprise();
+        return this.AppController.getSurprise();
     }
 
 
     @Override
     public int getScore() {
         // TODO Auto-generated method stub
-        return this.controller.getScore();
+        return this.AppController.getScore();
     }
     @Override
     public int getLife() {
         // TODO Auto-generated method stub
-        return this.controller.getLife();
+        return this.AppController.getLife();
     }
 
     public void updatePoints(String name, String passWord){
-        this.controller.updatePoints(name,passWord);
+        this.AppController.updatePoints(name,passWord);
     }
     
 }
