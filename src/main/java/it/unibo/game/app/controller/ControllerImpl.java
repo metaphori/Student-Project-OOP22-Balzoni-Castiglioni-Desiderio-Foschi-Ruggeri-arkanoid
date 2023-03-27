@@ -36,7 +36,7 @@ public class ControllerImpl implements AppController {
 
     @Override
     public void setView() {
-        this.uiContr = new UIControllerImpl(); 
+        this.uiContr = new UIControllerImpl();
         Thread instanceCaller = new Thread(() -> this.uiContr.set(this));
         instanceCaller.start();
     }
@@ -61,36 +61,30 @@ public class ControllerImpl implements AppController {
     /* metodi da utili alla gui */
     @Override
     public Map<Pair<Double, Double>, Optional<Integer>> getBrickList() {
-        return this.model.getBrickList().entrySet().stream().collect(
-                Collectors.toMap(
-                        m -> new Pair<>(
-                                m.getKey().getX() * this.delta().getX(),
-                                m.getKey().getY() * this.delta().getY()),
-                        m -> m.getValue()));
+        return this.model.getBrickList().entrySet().stream().collect(Collectors.toMap(
+                m -> new Pair<>(m.getKey().getX() * this.delta().getX(), m.getKey().getY() * this.delta().getY()),
+                m -> m.getValue()));
     }
 
     @Override
     public Pair<Double, Double> getBrickDimension() {
         /*
-         * nel model le dimensioni sono invertite qundi mi adatto
-         * a quello che mi viene dato
+         * nel model le dimensioni sono invertite qundi mi adatto a quello che mi viene
+         * dato
          */
-        return new Pair<Double, Double>(
-                this.model.getBrickDimension().getX() * this.delta().getY(),
+        return new Pair<Double, Double>(this.model.getBrickDimension().getX() * this.delta().getY(),
                 this.model.getBrickDimension().getY() * this.delta().getX());
     }
 
     @Override
     public Pair<Double, Double> getBall() {
-        return new Pair<Double, Double>(
-                this.model.getBall().getX() * this.delta().getX(),
+        return new Pair<Double, Double>(this.model.getBall().getX() * this.delta().getX(),
                 this.model.getBall().getY() * this.delta().getY());
     }
 
     @Override
     public Pair<Double, Double> getPad() {
-        return new Pair<Double, Double>(
-                this.model.getPad().getX() * this.delta().getX(),
+        return new Pair<Double, Double>(this.model.getPad().getX() * this.delta().getX(),
                 this.model.getPad().getY() * this.delta().getY());
     }
 
@@ -116,15 +110,12 @@ public class ControllerImpl implements AppController {
 
     public List<Pair<Double, Double>> getSurprise() {
         return this.model.getSurprise().stream().map(
-                ball -> new Pair<>(
-                    ball.getPos().getX() * this.delta().getX(), 
-                    ball.getPos().getY() * delta().getX()))
+                ball -> new Pair<>(ball.getPos().getX() * this.delta().getX(), ball.getPos().getY() * delta().getX()))
                 .collect(Collectors.toList());
     }
 
     private Pair<Double, Double> delta() {
-        return new Pair<Double, Double>(
-                uiContr.windowDim().getX() / this.getWorldDimension().getY(),
+        return new Pair<Double, Double>(uiContr.windowDim().getX() / this.getWorldDimension().getY(),
                 uiContr.windowDim().getY() / this.getWorldDimension().getX());
     }
 
