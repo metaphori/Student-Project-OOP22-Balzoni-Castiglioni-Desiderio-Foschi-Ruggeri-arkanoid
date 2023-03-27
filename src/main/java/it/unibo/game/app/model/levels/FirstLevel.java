@@ -26,6 +26,8 @@ public class FirstLevel extends AbstractLevel{
         this.surpriseBricksSecondRound = SURPRISE_SECOND;
         this.surpriseBricksThirdRound = SURPRISE_THIRD;
         this.worldSize = pair;
+        super.levelId = 1;
+        super.score = new ScoreImpl();
         this.setFirstRound();
     }
 
