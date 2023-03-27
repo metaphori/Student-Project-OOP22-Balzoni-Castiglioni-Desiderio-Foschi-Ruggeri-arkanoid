@@ -122,6 +122,8 @@ public abstract class AbstractRound implements Round {
             this.brick.remove(index);
         }
     }
-
+    public Pair<Double, Double> getInitialBallPos(){
+        return this.ballInitialPos;
+    }
     protected abstract void setPosBrick ();
 }
