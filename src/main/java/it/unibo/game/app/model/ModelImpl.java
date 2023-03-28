@@ -172,5 +172,7 @@ public class ModelImpl implements Model{
         return this.level.getLife();
     }
     
-    
+    public List<Ball> getExtraBalls(){
+        return this.level.getRound().getExtraBalls();
+    }
 }

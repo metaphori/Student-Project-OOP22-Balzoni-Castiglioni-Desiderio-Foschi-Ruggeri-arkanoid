@@ -52,4 +52,6 @@ public interface Model{
 
     void restoreInitialPosition();
 
+    List<Ball> getExtraBalls();
+
 }
