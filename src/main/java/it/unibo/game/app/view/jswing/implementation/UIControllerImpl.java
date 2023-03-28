@@ -14,7 +14,7 @@ public class UIControllerImpl implements UIController {
 
     private final static int LONGER_SIDE = 3;
     private final static int SMALLER_SIDE = 2;
-    private final JFrame window = new JFrame("Arkanoid");
+    private JFrame window;
     private AppController AppController;
     private final CardLayout layout = new CardLayout();
     private JPanel deck;
@@ -25,18 +25,28 @@ public class UIControllerImpl implements UIController {
 
         var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
+        /* make dimension like old 4/3 monitor */
         Dimension minDim = screenSize.width > screenSize.height
-                ? new Dimension(screenSize.width / LONGER_SIDE, screenSize.height / SMALLER_SIDE)
-                : new Dimension(screenSize.width / SMALLER_SIDE, screenSize.height / LONGER_SIDE);
-        this.window.setMinimumSize(minDim);
-        this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.window.setVisible(true);
-        this.window.requestFocusInWindow();
+                ? new Dimension(screenSize.height / SMALLER_SIDE, screenSize.width / LONGER_SIDE)
+                : new Dimension(screenSize.height / LONGER_SIDE, screenSize.width / SMALLER_SIDE);
+        /* run jframe on EDT */
+        SwingUtilities.invokeLater(() -> {
+            window = new JFrame("Arkanoid");
+            this.window.setMinimumSize(minDim);
+            this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.window.setVisible(true);
+            this.window.requestFocusInWindow();
+        });
 
         this.deck = new JPanel(layout);
-        views.putAll(Map.of(PAGES.GAME, new GameViewImpl(this), PAGES.START_MENU, new StartMenu(this), PAGES.PAUSE_MENU,
-                new PauseMenu(this), PAGES.TOP_5, new LeaderBoardView(this), PAGES.VICTORY, new Victory(this),
+        views.putAll(Map.of(
+                PAGES.GAME, new GameViewImpl(this),
+                PAGES.START_MENU, new StartMenu(this),
+                PAGES.PAUSE_MENU, new PauseMenu(this),
+                PAGES.TOP_5, new LeaderBoardView(this),
+                PAGES.VICTORY, new Victory(this),
                 PAGES.GAME_OVER, new GameOver(this)));
+
         views.entrySet().stream().forEach(x -> deck.add(x.getValue(), x.getKey().getName()));
         window.add(deck, BorderLayout.CENTER);
         initialView();

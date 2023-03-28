@@ -37,8 +37,7 @@ public class ControllerImpl implements AppController {
     @Override
     public void setView() {
         this.uiContr = new UIControllerImpl();
-        Thread instanceCaller = new Thread(() -> this.uiContr.set(this));
-        instanceCaller.start();
+        this.uiContr.set(this);
     }
 
     @Override
