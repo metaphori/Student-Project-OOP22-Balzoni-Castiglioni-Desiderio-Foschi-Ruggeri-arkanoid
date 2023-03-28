@@ -134,7 +134,7 @@ public class Surprise {
             extraBalls.get(i).setPos(this.level.getRound().getBallInitialPosition());
 
         }
-        this.level.getRound().setExtraBalls(extraBalls);
+        this.level.getRound().addBalls(extraBalls);
         
     }
 
