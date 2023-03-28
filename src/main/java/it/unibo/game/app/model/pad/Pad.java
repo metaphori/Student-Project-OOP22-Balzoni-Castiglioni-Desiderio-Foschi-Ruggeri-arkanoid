@@ -2,16 +2,16 @@ package it.unibo.game.app.model.pad;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Physics;
+import it.unibo.game.app.api.Speed;
 import it.unibo.game.app.model.GameObjectImpl;
+import it.unibo.game.app.model.dynamic.SpeedImpl;
 import it.unibo.game.app.api.MovingObject;
 
 public class Pad extends GameObjectImpl implements MovingObject {
 
     private double width;
     private double hight;
-    /*le dimensioni sono modificabili per rendere resizable la dinestra
-     * 
-     */
+    private Speed speed= new SpeedImpl(10,0); 
 
     //fatto io
     public Pad(Pair<Double,Double> fSize){
@@ -19,6 +19,7 @@ public class Pad extends GameObjectImpl implements MovingObject {
         //ho impostato due valori di w e h di prova
         this.width=fSize.getY()/4;
         this.hight=fSize.getX()/60;
+        
     }
 
 
