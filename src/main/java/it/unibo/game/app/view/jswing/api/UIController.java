@@ -41,6 +41,7 @@ public interface UIController {
     Pair<Double, Double> getBall();
     Pair<Double, Double> getPadPos();
     List<Pair<Double,Double>> getSurprise();
+    List<Pair<Double, Double>> getExtraBalls();
     
     Double getPadWight();
     Double getPadHeight();

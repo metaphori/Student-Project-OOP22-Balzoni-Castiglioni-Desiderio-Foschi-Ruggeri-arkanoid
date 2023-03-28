@@ -37,4 +37,8 @@ public interface Round{
 
     Pair<Double, Double> getBallInitialPosition();
 
+    List<Ball> getExtraBalls ();
+
+    void addBalls(List<Ball> b);
+
 }

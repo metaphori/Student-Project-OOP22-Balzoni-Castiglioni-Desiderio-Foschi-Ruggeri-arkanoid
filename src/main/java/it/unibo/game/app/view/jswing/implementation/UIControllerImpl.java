@@ -168,6 +168,11 @@ public class UIControllerImpl implements UIController {
     }
 
     @Override
+    public List<Pair<Double, Double>> getExtraBalls(){
+        return this.AppController.getNewBalls();
+    }
+
+    @Override
     public int getScore() {
         // TODO Auto-generated method stub
         return this.AppController.getScore();

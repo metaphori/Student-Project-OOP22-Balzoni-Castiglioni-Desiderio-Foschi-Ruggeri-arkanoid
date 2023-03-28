@@ -10,6 +10,7 @@ import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Model;
 import it.unibo.game.app.model.ModelImpl;
 import it.unibo.game.app.model.SizeCalculation;
+import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.view.jswing.api.UIController;
 import it.unibo.game.app.view.jswing.implementation.UIControllerImpl;
 
@@ -107,10 +108,16 @@ public class ControllerImpl implements AppController {
         return this.model.getRBall() * dt;
     }
 
+    private List<Pair<Double, Double>> getPairList(List<Ball> b){
+        return b.stream().map(
+            ball -> new Pair<>(ball.getPos().getX() * this.delta().getX(), ball.getPos().getY() * delta().getX()))
+            .collect(Collectors.toList());
+    }
     public List<Pair<Double, Double>> getSurprise() {
-        return this.model.getSurprise().stream().map(
-                ball -> new Pair<>(ball.getPos().getX() * this.delta().getX(), ball.getPos().getY() * delta().getX()))
-                .collect(Collectors.toList());
+        return getPairList(this.model.getSurprise());
+    }
+    public List<Pair<Double, Double>> getNewBalls() {
+        return getPairList(this.model.getExtraBalls());
     }
 
     private Pair<Double, Double> delta() {
