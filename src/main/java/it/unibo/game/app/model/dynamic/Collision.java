@@ -29,7 +29,7 @@ public class Collision {
         }
     }
 
-    public Optional<Integer> collideWithBrick(Ball b){
+    public Optional<Integer> collideWithBrick(MovingObject b){
 			b.setBoundingBox(new CircleBoundingBox(b));
         for (Brick obj : level.getRound().getBrick()) {
 					obj.setBoundingBox(new RectBoundingBox(b));
