@@ -115,6 +115,7 @@ public class Surprise {
         var i = brickToRm.nextInt(level.getRound().getBrick().size() / 2);
         while (i > 0) {
             level.getRound().getBrick().remove(trash.nextInt(level.getRound().getBrick().size()));
+            System.out.println("bricks to delate: "+i);
             i--;
         }
     }
