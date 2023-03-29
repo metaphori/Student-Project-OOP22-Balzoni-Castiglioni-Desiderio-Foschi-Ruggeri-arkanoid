@@ -10,6 +10,4 @@ public interface Speed {
 
     Speed mul(double num);
 
-    double module();
-
 }
