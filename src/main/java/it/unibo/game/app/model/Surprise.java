@@ -66,7 +66,39 @@ public class Surprise {
     
     //simone
     private void explosiveBomb() {
-        System.out.println();
+        Brick lastBrick = this.level.getLastSurpriseBrick();
+        int index = this.level.getIndex();
+        
+        if(this.isIndexPositive(index - 1) && this.isThereLeftBrick(index-1, lastBrick) && !this.isObstacle(index - 1)) {
+            this.deleteBrick(index - 1);
+            if(this.isIndexNotTheLast(index - 1) && this.isThereRightBrick(index - 1, lastBrick) && !this.isObstacle(index - 1)) {
+                this.deleteBrick(index - 1);                
+            }
+        }
+        if(this.isIndexNotTheLast(index) && this.isThereRightBrick(index, lastBrick) && !this.isObstacle(index - 1)) {
+            this.deleteBrick(index);
+        }
+    }
+    
+    private boolean isThereLeftBrick(int index, Brick lastBrick) {
+        return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick.getPos().getY() && 
+        (lastBrick.getPos().getX() - lastBrick.getBrickW()) - this.level.getRound().getBrick().get(index).getPos().getX() < 0.1);
+    }
+    private boolean isThereRightBrick(int index, Brick lastBrick) {
+        return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick.getPos().getY() && 
+        (this.level.getRound().getBrick().get(index).getPos().getX() - lastBrick.getBrickW()) - lastBrick.getPos().getX() < 0.1);
+    }
+    private boolean isObstacle(int index) {
+        return this.level.getRound().getBrick().get(index).getType().equals(BrickType.OBSTACLE);
+    }
+    private void deleteBrick(int index) {
+        this.level.getRound().getBrick().remove(index);
+    }
+    private boolean isIndexPositive(int index) {
+        return index >= 0;
+    }
+    private boolean isIndexNotTheLast(int index) {
+        return index < this.level.getRound().getBrick().size();
     }
 
     //edoardo
