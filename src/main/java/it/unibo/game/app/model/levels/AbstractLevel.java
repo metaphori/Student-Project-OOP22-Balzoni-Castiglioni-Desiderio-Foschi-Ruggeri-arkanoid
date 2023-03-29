@@ -33,6 +33,7 @@ public abstract class AbstractLevel implements Level {
     protected int numRoundPassed = 0;
     protected int levelId;
     protected Brick lastSurpriseBrick;
+    protected int indexLastSurprise;
 
     /*Posizionano gli oggetti (pad,pallina e blocchi) all'interno di ciascun round*/
     public abstract void setFirstRound();
@@ -67,10 +68,14 @@ public abstract class AbstractLevel implements Level {
     public Score getScore(){
         return this.score;
     }
-    public void setLastSurpriseBrick(Brick surBrick) {
+    public void setLastSurpriseBrick(Brick surBrick, int i) {
         this.lastSurpriseBrick = surBrick;
+        this.indexLastSurprise = i;
     }
     public Brick getLastSurpriseBrick() {
         return this.lastSurpriseBrick;
+    }
+    public int getIndex() {
+        return this.indexLastSurprise;
     }
 }

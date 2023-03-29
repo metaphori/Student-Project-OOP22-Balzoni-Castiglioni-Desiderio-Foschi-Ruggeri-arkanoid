@@ -34,7 +34,7 @@ public class Move {
         index = coll.collideWithBrick(ball);
         if(index.isPresent()){
             if(this.l.getRound().getBrick().get(index.get()).getType().equals(BrickType.SURPRISE)) {
-                this.l.setLastSurpriseBrick(this.l.getRound().getBrick().get(index.get())); 
+                this.l.setLastSurpriseBrick(this.l.getRound().getBrick().get(index.get()), index.get()); 
             }
             this.l.getRound().remove(index.get());
         }
