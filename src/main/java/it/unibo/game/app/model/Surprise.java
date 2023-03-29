@@ -34,163 +34,176 @@ public class Surprise {
 
     private final static int NUM_BALLS = 3;
 
-    private Map<Integer,Runnable> mappa;
+    private Map<Integer, Runnable> mappa;
     private Random random = new Random();
     private Level level;
 
     public Surprise(Level level) {
         this.level = level;
-        
-       mappa = new HashMap<>(Map.ofEntries(
-            Map.entry(EXTRA_LIFE, ()-> this.extraLife()),
-            Map.entry(EXPLOSIVE_BOMB, ()-> this.explosiveBomb()),
-            Map.entry(DELETE_RANDOM_BRICKS, ()-> this.deleteRandomBricks()),
-            Map.entry(REDUCE_SIZE_PAD, ()-> this.reduceSizePad()),
-            Map.entry(ENLARGE_SIZE_PAD, ()-> this.enlargeSizePad()),
-            Map.entry(INCREASE_BALL_SPEED, ()-> this.increaseBallSpeed()),
-            Map.entry(DECREASE_BALL_SPEED, ()-> this.decreaseBallSpeed()),
-            Map.entry(CHANGE_OBSTACLES, ()-> this.changeObstacles()),
-            Map.entry(INCREASE_SCORE, ()-> this.increaseScore()),
-            Map.entry(ADD_BALLS, ()-> this.addBalls()),
-            Map.entry(CHANGE_ROW, ()-> this.changeRow()),
-            Map.entry(CHANGE_HARD, ()-> this.changeHard())
-            )
-        );
+
+        mappa = new HashMap<>(Map.ofEntries(
+                Map.entry(EXTRA_LIFE, () -> this.extraLife()),
+                Map.entry(EXPLOSIVE_BOMB, () -> this.explosiveBomb()),
+                Map.entry(DELETE_RANDOM_BRICKS, () -> this.deleteRandomBricks()),
+                Map.entry(REDUCE_SIZE_PAD, () -> this.reduceSizePad()),
+                Map.entry(ENLARGE_SIZE_PAD, () -> this.enlargeSizePad()),
+                Map.entry(INCREASE_BALL_SPEED, () -> this.increaseBallSpeed()),
+                Map.entry(DECREASE_BALL_SPEED, () -> this.decreaseBallSpeed()),
+                Map.entry(CHANGE_OBSTACLES, () -> this.changeObstacles()),
+                Map.entry(INCREASE_SCORE, () -> this.increaseScore()),
+                Map.entry(ADD_BALLS, () -> this.addBalls()),
+                Map.entry(CHANGE_ROW, () -> this.changeRow()),
+                Map.entry(CHANGE_HARD, () -> this.changeHard())));
     }
 
-    //simone
+    // simone
     private void extraLife() {
         this.level.increaseLife();
-               
+
     }
-    
-    //simone
+
+    // simone
     private void explosiveBomb() {
         Brick lastBrick = this.level.getLastSurpriseBrick();
         int index = this.level.getIndex();
-        
-        if(this.isIndexPositive(index - 1) && this.isThereLeftBrick(index-1, lastBrick) && !this.isObstacle(index - 1)) {
+
+        if (this.isIndexPositive(index - 1) && this.isThereLeftBrick(index - 1, lastBrick)
+                && !this.isObstacle(index - 1)) {
             this.deleteBrick(index - 1);
-            if(this.isIndexNotTheLast(index - 1) && this.isThereRightBrick(index - 1, lastBrick) && !this.isObstacle(index - 1)) {
-                this.deleteBrick(index - 1);                
+            if (this.isIndexNotTheLast(index - 1) && this.isThereRightBrick(index - 1, lastBrick)
+                    && !this.isObstacle(index - 1)) {
+                this.deleteBrick(index - 1);
             }
         }
-        if(this.isIndexNotTheLast(index) && this.isThereRightBrick(index, lastBrick) && !this.isObstacle(index - 1)) {
+        if (this.isIndexNotTheLast(index) && this.isThereRightBrick(index, lastBrick) && !this.isObstacle(index - 1)) {
             this.deleteBrick(index);
         }
     }
-    
+
     private boolean isThereLeftBrick(int index, Brick lastBrick) {
-        return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick.getPos().getY() && 
-        (lastBrick.getPos().getX() - lastBrick.getBrickW()) - this.level.getRound().getBrick().get(index).getPos().getX() < 0.1);
+        return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick.getPos().getY() &&
+                (lastBrick.getPos().getX() - lastBrick.getBrickW())
+                        - this.level.getRound().getBrick().get(index).getPos().getX() < 0.1);
     }
+
     private boolean isThereRightBrick(int index, Brick lastBrick) {
-        return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick.getPos().getY() && 
-        (this.level.getRound().getBrick().get(index).getPos().getX() - lastBrick.getBrickW()) - lastBrick.getPos().getX() < 0.1);
+        return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick.getPos().getY() &&
+                (this.level.getRound().getBrick().get(index).getPos().getX() - lastBrick.getBrickW())
+                        - lastBrick.getPos().getX() < 0.1);
     }
+
     private boolean isObstacle(int index) {
         return this.level.getRound().getBrick().get(index).getType().equals(BrickType.OBSTACLE);
     }
+
     private void deleteBrick(int index) {
         this.level.getRound().getBrick().remove(index);
     }
+
     private boolean isIndexPositive(int index) {
         return index >= 0;
     }
+
     private boolean isIndexNotTheLast(int index) {
         return index < this.level.getRound().getBrick().size();
     }
 
-    //edoardo
+    // edoardo
     private void deleteRandomBricks() {
-        System.out.println();
+        Random brickToRm = new Random();
+        Random trash = new Random();
+        var i = brickToRm.nextInt(level.getRound().getBrick().size() / 2);
+        while (i > 0) {
+            level.getRound().getBrick().remove(trash.nextInt(level.getRound().getBrick().size()));
+            i--;
+        }
     }
 
-    //edoardo
+    // edoardo
     private void reduceSizePad() {
         System.out.println();
     }
 
-    //edoardo
+    // edoardo
     private void enlargeSizePad() {
         System.out.println();
     }
 
-    //virginia
+    // virginia
     private void increaseBallSpeed() {
         System.out.println();
     }
 
-    //virginia
+    // virginia
     private void decreaseBallSpeed() {
         System.out.println();
     }
 
-    //virginia
+    // virginia
     private void changeObstacles() {
-        this.level.getRound().getBrick().replaceAll(x->{
-            if(x.getType().equals(BrickType.OBSTACLE)) {
+        this.level.getRound().getBrick().replaceAll(x -> {
+            if (x.getType().equals(BrickType.OBSTACLE)) {
                 Brick brick = new NormalBrick(BrickType.NORMAL, x.getBrickW(), x.getBrickH(), 1);
                 brick.setPos(x.getPos());
                 return brick;
-            }
-            else {
+            } else {
                 return x;
             }
         });
         System.out.println();
     }
 
-    //margherita
+    // margherita
     private void increaseScore() {
         Timer time = new Timer();
         TimerTask task = new TimerTask() {
 
             @Override
             public void run() {
-              level.getScore().enableBonus(true);
+                level.getScore().enableBonus(true);
             }
-            
-        }; 
-        time.schedule(task,10000);
+
+        };
+        time.schedule(task, 10000);
         this.level.getScore().enableBonus(false);
-        
-        
+
     }
 
-    //margherita
+    // margherita
     private void addBalls() {
         List<Ball> extraBalls = new ArrayList<>();
-        for(int i=0; i<NUM_BALLS; i++){
+        for (int i = 0; i < NUM_BALLS; i++) {
             extraBalls.add(new Ball());
             extraBalls.get(i).setPos(this.level.getRound().getBallInitialPosition());
 
         }
         this.level.getRound().addBalls(extraBalls);
-        
+
     }
 
-    //chiara
+    // chiara
     private void changeRow() {
-        double lastY = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getPos().getY();
+        double lastY = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getPos()
+                .getY();
         double brickH = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getBrickH();
         double brickW = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getBrickW();
         double start = (brickW / 2) - 5;
-        double stop = (SizeCalculation.getWorldSize().getY()) -(3 * (brickW / 2));
+        double stop = (SizeCalculation.getWorldSize().getY()) - (3 * (brickW / 2));
         for (double x = start; x <= stop; x = x + brickW) {
-            NormalBrick brick = new NormalBrick(BrickType.NORMAL, brickW, brickH,2);
-                brick.setPos(new Pair<>(x, lastY + brickH));
-                this.level.getRound().getBrick().add(brick);
+            NormalBrick brick = new NormalBrick(BrickType.NORMAL, brickW, brickH, 2);
+            brick.setPos(new Pair<>(x, lastY + brickH));
+            this.level.getRound().getBrick().add(brick);
         }
         System.out.println();
     }
-    //chiara
+
+    // chiara
     private void changeHard() {
         List<Brick> hard = new ArrayList<>();
         Timer timer = new Timer();
         for (Brick brick : this.level.getRound().getBrick()) {
             if (brick.getRes().isPresent() && brick.getRes().get() == 2) {
-                
+
                 hard.add(brick);
                 brick.decreaseRes(brick.getRes().get());
             }
@@ -201,25 +214,28 @@ public class Surprise {
             public void run() {
                 for (Brick brick : hard) {
                     int indx = level.getRound().getBrick().indexOf(brick);
-                    if(indx != -1) {
-                       level.getRound().getBrick().get(indx).increaseRes(brick.getRes().get()); 
+                    if (indx != -1) {
+                        level.getRound().getBrick().get(indx).increaseRes(brick.getRes().get());
                     }
                 }
             }
-            
+
         };
         timer.schedule(task, 10000);
     }
 
-    //simone
+    // simone
     public void chooseSurprise() {
         final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
         this.mappa.get(method).run();
     }
-    
-    /*Metodo per testare i vari bonus richiamandoli direttamente, non in modo random*/
+
+    /*
+     * Metodo per testare i vari bonus richiamandoli direttamente, non in modo
+     * random
+     */
     public void bonus() {
         this.changeHard();
     }
-    
+
 }
