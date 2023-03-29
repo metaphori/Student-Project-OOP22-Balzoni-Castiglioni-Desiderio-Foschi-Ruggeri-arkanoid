@@ -115,7 +115,7 @@ public class Surprise {
         var i = brickToRm.nextInt(level.getRound().getBrick().size() / 2);
         while (i > 0) {
             level.getRound().getBrick().remove(trash.nextInt(level.getRound().getBrick().size()));
-            System.out.println("bricks to delate: "+i);
+            System.out.println("bricks to delate: " + i);
             i--;
         }
     }
@@ -172,13 +172,13 @@ public class Surprise {
 
     // margherita
     private void addBalls() {
-        List<Ball> extraBalls = new ArrayList<>();
-        for (int i = 0; i < NUM_BALLS; i++) {
-            extraBalls.add(new Ball());
-            extraBalls.get(i).setPos(this.level.getRound().getBallInitialPosition());
+        // List<Ball> extraBalls = new ArrayList<>();
+        // for (int i = 0; i < NUM_BALLS; i++) {
+        //     extraBalls.add(new Ball());
+        //     extraBalls.get(i).setPos(this.level.getRound().getBallInitialPosition());
 
-        }
-        this.level.getRound().addBalls(extraBalls);
+        // }
+        // this.level.getRound().addBalls(extraBalls);
 
     }
 
@@ -229,6 +229,7 @@ public class Surprise {
     public void chooseSurprise() {
         final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
         this.mappa.get(method).run();
+        // this.deleteRandomBricks();
     }
 
     /*
