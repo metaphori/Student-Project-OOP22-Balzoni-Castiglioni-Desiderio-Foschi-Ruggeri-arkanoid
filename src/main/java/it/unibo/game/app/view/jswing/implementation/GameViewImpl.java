@@ -1,11 +1,7 @@
-package it.unibo.game.app.view.jswing.impleentation;
-
-import java.util.Map;
-import java.util.Random;
+package it.unibo.game.app.view.jswing.implementation;
 
 import javax.swing.*;
 import it.unibo.game.Pair;
-import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.view.jswing.api.GameView;
 import it.unibo.game.app.view.jswing.api.UIController;
 
@@ -16,7 +12,7 @@ import java.awt.geom.*;
 public class GameViewImpl extends JPanel implements KeyListener, ActionListener, GameView {
 
     private UIController observer;
-    private boolean play = true;
+    //private boolean play = true;
 
     public GameViewImpl(UIController control) {
         setFocusable(true);
@@ -42,13 +38,13 @@ public class GameViewImpl extends JPanel implements KeyListener, ActionListener,
 
         observer.getList().entrySet().stream().forEach(x -> {
             g2d.setColor(x.getValue().isEmpty() ? Color.BLACK
-                : x.getValue().get() == 2 ? Color.RED
-                : x.getKey().getY() == observer.getRowC(0d) ? Color.RED
-                : x.getKey().getY() == observer.getRowC(1d) ? Color.BLUE
-                : x.getKey().getY() == observer.getRowC(2d) ? Color.YELLOW
-                : x.getKey().getY() == observer.getRowC(3d) ? Color.MAGENTA
-                : x.getKey().getY() == observer.getRowC(4d) ? Color.ORANGE
-                : x.getKey().getY() == observer.getRowC(5d)
+                : x.getValue().get() == 2 ? Color.LIGHT_GRAY
+                : x.getKey().getY().intValue() == observer.getRowC(0d).intValue() ? Color.RED
+                : x.getKey().getY().intValue() == observer.getRowC(1d).intValue() ? Color.BLUE
+                : x.getKey().getY().intValue() == observer.getRowC(2d).intValue() ? Color.YELLOW
+                : x.getKey().getY().intValue() == observer.getRowC(3d).intValue() ? Color.MAGENTA
+                : x.getKey().getY().intValue() == observer.getRowC(4d).intValue() ? Color.ORANGE
+                : x.getKey().getY().intValue() == observer.getRowC(5d).intValue()
                     ? Color.CYAN
                     : Color.GREEN);
             // g2d.draw(new Rectangle2D.Double(x.getKey().getX(),x.getKey().getY(),
@@ -66,13 +62,21 @@ public class GameViewImpl extends JPanel implements KeyListener, ActionListener,
 
         observer.getSurprise().stream().forEach(x->{
             g2d.setColor(Color.RED);
-            g2d.fill(new Ellipse2D.Double(x.getPos().getX() * deltaH, x.getPos().getY() * deltaW,
-                x.getR()* deltaW,x.getR() * deltaH));
+            g2d.fill(new Ellipse2D.Double(x.getX(), x.getY(),
+                observer.getRBall(),observer.getRBall()));
         });
 
         g2d.setColor(Color.BLACK);
         g2d.fill(new Rectangle2D.Double(observer.getPadPos().getX(), observer.getPadPos().getY() ,
                 observer.getPadWight() , observer.getPadHeight()));
+
+        g2d.setFont(new Font("myFont",Font.ITALIC,(int)(20*deltaH)));
+        g2d.setColor(Color.RED);
+        g2d.drawString("SCORE: "+this.observer.getScore(), (int)(10*deltaW),(int)(20*deltaH));
+
+        g2d.setFont(new Font("myFont",Font.ITALIC,(int)(20*deltaH)));
+        g2d.setColor(Color.RED);
+        g2d.drawString("LIVES: "+this.observer.getLife(), (int)(225*deltaW),(int)(20*deltaH));
         
         g2d.dispose();
 
@@ -90,6 +94,9 @@ public class GameViewImpl extends JPanel implements KeyListener, ActionListener,
         }
         if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
             observer.movePadLeft();
+        }
+        else if (arg0.getKeyCode() == KeyEvent.VK_SPACE){
+            observer.pauseMenu();
         }
     }
 

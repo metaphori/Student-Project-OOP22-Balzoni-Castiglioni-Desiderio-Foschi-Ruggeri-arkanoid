@@ -1,4 +1,5 @@
 package it.unibo.game.app.model.leaderb;
+
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,41 +10,32 @@ public class LeaderBoardImpl implements java.io.Serializable, LeaderBoard {
 
     private File file = new File("src/main/Filee.txt");
 
-    public boolean isPresent(String usr){
-        return playersFromFile().stream()
-                            .anyMatch(x->x.getName().equals(usr));
-    }
-
-    public void updatePoints(String name, Integer points, Integer levelId, Integer roundId){
+    public void updatePoints(String name, String passWord, Integer points, Integer levelId){
         List<User> players = playersFromFile();
-        if(!players.stream().anyMatch(x->x.getName().equals(name))) {
-            players.add(new User(name, points, levelId, roundId));
+        if(this.isPresent(name,passWord,players)) {
+            players.stream()
+                    .filter(x->x.getName().equals(name) && x.getPassWord().equals(passWord))
+                    .forEach(x->x.update(points,levelId));
         } else {
-            User usr = players.stream().filter(x->x.getName().equals(name)).findFirst().get();
-            if(!usr.alreadyDone(levelId, roundId)) {
-                players.remove(usr);
-                usr.update(points, levelId, roundId);
-                players.add(usr);
-            }
+            User usr = new User(name, passWord, points, levelId);
+            players.add(usr);
         }
         players.sort((x,y)->y.getPoints().compareTo(x.getPoints()));
         writeOnFile(players);
     }
 
-    public Integer getPosition(String name){
-        List<User> players = playersFromFile();
-        User usr = players.stream().filter(x->x.getName().equals(name)).findFirst().get();
-        return players.indexOf(usr) + 1;
+    
+    private boolean isPresent(String usr, String passWord,List<User> users){
+        return users.stream()
+                    .anyMatch(x->x.getName().equals(usr) && x.getPassWord().equals(passWord));
     }
 
     public List<Pair<String,Integer>> getBestFive(){
         List<User> players = playersFromFile();
-        if(players.size()<5) {
-            return players.stream().map(x->new Pair<>(x.getName(),x.getPoints())).collect(Collectors.toList());
+        if(players.size()>5) {
+            players=players.subList(0, 5);
         }
-        else {
-            return playersFromFile().subList(0, 5).stream().map(x->new Pair<>(x.getName(),x.getPoints())).collect(Collectors.toList());
-        }
+        return players.stream().map(x->new Pair<>(x.getName(),x.getPoints())).collect(Collectors.toList());
     }
 
     private List<User> playersFromFile(){
@@ -63,34 +55,42 @@ public class LeaderBoardImpl implements java.io.Serializable, LeaderBoard {
 
     class User implements java.io.Serializable {
         private String name;
-        private int points=0;
-        private Set<Pair<Integer,Integer>> levelsDone = new HashSet<>();
+        private String password;
+        enum Level{
+            FIRST,
+            SECOND,
+            THIRD;
+        }
+        private Map<Level,Integer> points = new HashMap<>(Map.of(Level.FIRST,0,
+                                                                    Level.SECOND,0,
+                                                                    Level.THIRD,0));
 
-        public User(final String name, final int points, final int levelId, final int roundId){
+        public User(final String name, final String password, final int points, final int levelId){
             this.name = name;
-            this.points=points;
-            this.levelsDone.add(new Pair<>(levelId,roundId));
+            this.password=password;
+            this.update(points, levelId);
+        }
+
+        private Level getLev(int id){
+            if(id==1) return Level.FIRST;
+            else if(id==2) return Level.SECOND;
+            else return Level.THIRD;
         }
 
         public String getName(){
             return this.name;
         }
+
+        public String getPassWord(){
+            return this.password;
+        }
     
         public Integer getPoints(){
-            return this.points;
+            return this.points.entrySet().stream().mapToInt(x->x.getValue()).sum();
         }
 
-        public boolean alreadyDone(final Integer levelId, final Integer roundId) {
-            return this.levelsDone.contains(new Pair<>(levelId,roundId));
-        }
-    
-        public Set<Pair<Integer,Integer>> getLevels(){
-            return Collections.unmodifiableSet(this.levelsDone);
-        }
-
-        public void update(int num, int levelId, int roundId){
-            this.levelsDone.add(new Pair<>(levelId,roundId));
-            this.points = this.points+num;
+        public void update(int points, int levelId){
+            this.points.merge(getLev(levelId), points, (x,y)->y);
         }
     }
 }

@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
-import it.unibo.game.app.model.ball.Ball;
 
 public interface UIController {
     enum PAGES {
@@ -41,16 +40,19 @@ public interface UIController {
     Pair<Double, Double> getDimensionBrick();
     Pair<Double, Double> getBall();
     Pair<Double, Double> getPadPos();
-    List<Ball> getSurprise();
+    List<Pair<Double,Double>> getSurprise();
+    List<Pair<Double, Double>> getExtraBalls();
     
     Double getPadWight();
     Double getPadHeight();
     Double getRBall();
+    void updatePoints(String name, String passWord);
     void rPaint();
     Double getRowC(Double x);
     List<Pair<String,Integer>> getBestFive();
-    boolean isPresent(String name);
     void movePadLeft();
     void movePadRight();
     Pair<Double, Double> windowDim();
+    int getScore();
+    int getLife();
 }

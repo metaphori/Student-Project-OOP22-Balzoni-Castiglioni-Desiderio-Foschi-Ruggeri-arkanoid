@@ -3,18 +3,16 @@ package it.unibo.game.app.model.dynamic;
 import java.util.Optional;
 
 import it.unibo.game.app.api.Brick;
+import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.BoundingBox.Corner;
 import it.unibo.game.app.api.BoundingBox.Side;
 import it.unibo.game.app.model.ball.*;
-import it.unibo.game.app.model.brick.NormalBrick;
 import it.unibo.game.app.model.pad.Pad;
 import it.unibo.game.app.model.BoundingBoxImpl;
-import it.unibo.game.app.model.*;
 
 public class Collision {
     private Level level;
-    private Score score = new Score();
 
     public Collision(Level lev){
         this.level = lev;
@@ -36,9 +34,12 @@ public class Collision {
            var opt = ballBox.collideWith(box);
             
             if(opt.isPresent()){
-                this.score.increaseScore();
+                if(obj.getType()==BrickType.NORMAL){
+                       this.level.getScore().increaseScore();
+                }else{
+                    this.level.getScore().resetPoints();
+                }
                 b.getPhysics().changeDirection(opt.get());
-                System.out.println(opt.get());
                 return Optional.of(level.getRound().getBrick().indexOf(obj));
             }
         }
@@ -49,10 +50,14 @@ public class Collision {
         var ballBox = new BoundingBoxImpl(b);
         var padBox = new BoundingBoxImpl(p);
         if(ballBox.collideWith(padBox).equals(Optional.of(Side.UP_DOWN))) {
-            this.score.resetPoints();
+
             b.getPhysics().changeDirection(Side.UP_DOWN);
             return true;
         }
         return false;
+    }
+   
+    public int getScore(){
+        return this.level.getScore().getScore();
     }
 }

@@ -8,7 +8,6 @@ import it.unibo.game.Pair;
 import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.model.ball.Ball;
-import it.unibo.game.app.model.brick.AbstractBrick;
 import it.unibo.game.app.model.pad.Pad;
 
 public class BoundingBoxImpl implements BoundingBox {

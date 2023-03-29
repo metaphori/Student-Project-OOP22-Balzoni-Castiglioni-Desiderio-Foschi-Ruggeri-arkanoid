@@ -3,8 +3,6 @@ package it.unibo.game.app.api;
 import java.util.*;
 
 import it.unibo.game.Pair;
-import it.unibo.game.app.model.*;
-import it.unibo.game.app.model.ball.Ball;
 
 public interface AppController {
     
@@ -53,11 +51,17 @@ public interface AppController {
     
     List<Pair<String,Integer>> getBestFive();
 
-    boolean isPresent(String name);
+    List<Pair<Double,Double>> getSurprise();
 
-    List<Ball> getSurprise();
+    List<Pair<Double, Double>> getNewBalls();
+
+    int getScore();
+
+    int getLife();
 
     void setGameEngine();
+
+    void updatePoints(String name, String passWord);
 
     void update(long dt);
 

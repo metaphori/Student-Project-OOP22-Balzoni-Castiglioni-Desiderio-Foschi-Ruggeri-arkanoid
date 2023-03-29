@@ -2,7 +2,6 @@ package it.unibo.game.app.model.ball;
 
 
 
-import it.unibo.game.Pair;
 import it.unibo.game.app.api.Physics;
 import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.BoundingBox.Side;

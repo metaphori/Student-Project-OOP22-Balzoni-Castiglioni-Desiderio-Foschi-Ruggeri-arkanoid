@@ -11,4 +11,10 @@ public interface Level {
     Round getRound();
     int getNumRoundPassed();
     void increaseRound();
+    int getLife();
+    int getId();
+    Score getScore();
+    void setLastSurpriseBrick(Brick suBrick, int i);
+    Brick getLastSurpriseBrick();
+    int getIndex();
 }

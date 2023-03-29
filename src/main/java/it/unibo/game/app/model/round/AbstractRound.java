@@ -7,12 +7,10 @@ import java.util.Random;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
-import it.unibo.game.app.api.GameObject;
 import it.unibo.game.app.api.Round;
 
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.ball.Ball;
-import it.unibo.game.app.model.brick.NormalBrick;
 import it.unibo.game.app.model.pad.Pad;
 
 public abstract class AbstractRound implements Round {
@@ -27,6 +25,7 @@ public abstract class AbstractRound implements Round {
     private final Pair<Double, Double> ballInitialPos;
     private final Pair<Double, Double> padInitialPos;
     protected List<Ball> surprise=new ArrayList<>();
+    private List<Ball> extraBalls = new ArrayList<>();
 
 
     public AbstractRound (int jump, int numB, int numS, SizeCalculation size) {
@@ -111,6 +110,15 @@ public abstract class AbstractRound implements Round {
         return this.ball;
     }
 
+    public void addBalls(List<Ball> b){
+        this.extraBalls.addAll(b);
+    }
+
+    public List<Ball> getExtraBalls(){
+        return this.extraBalls;
+    }
+
+
     public void remove(int index){
         Brick brick=this.brick.get(index);
         if(brick.getType().equals(BrickType.SURPRISE)) {
@@ -123,6 +131,9 @@ public abstract class AbstractRound implements Round {
         if(brick.isDestroyed()) {
             this.brick.remove(index);
         }
+    }
+    public Pair<Double, Double> getInitialBallPos(){
+        return this.ballInitialPos;
     }
 
     protected abstract void setPosBrick ();

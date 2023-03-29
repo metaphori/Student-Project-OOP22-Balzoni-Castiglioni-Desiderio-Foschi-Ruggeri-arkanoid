@@ -23,7 +23,7 @@ public class RoundMedium extends AbstractRound {
     public RoundMedium(int jump, int numB, int numS, int numHard, SizeCalculation sizeC ) {
         super(jump, numB, numS, sizeC);
         this.numHard = numHard;  
-        this.startY = sizeC.getStart().getY() + (this.getSizeCalc().getBrickDim().getY() / 2); /*Modificata l'inizio per lasciare spazio dal muro ai blocchi */
+        this.startY = sizeC.getStart().getY() + (this.getSizeCalc().getBrickDim().getY() / 2) - 5; /*Modificata l'inizio per lasciare spazio dal muro ai blocchi */
         this.startX = sizeC.getStart().getX();
         this.stopY = SizeCalculation.getWorldSize().getY() - (3 * (this.getSizeCalc().getBrickDim().getY() / 2)); /*Modificata la fine per lasciare lo spazio tra il muro e i blocchi */
         this.stopX = sizeC.getStop().getX();

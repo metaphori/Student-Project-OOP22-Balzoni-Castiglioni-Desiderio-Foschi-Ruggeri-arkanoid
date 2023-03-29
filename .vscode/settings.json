@@ -1,4 +1,6 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
-    "java.compile.nullAnalysis.mode": "disabled"
+    "java.compile.nullAnalysis.mode": "disabled",
+    "java.format.settings.url": "https://github.com/DanySK/gradle-java-qa/blob/master/src/main/resources/org/danilopianini/javaqa/checkstyle.xml",
+    "java.checkstyle.configuration": "https://github.com/DanySK/gradle-java-qa/blob/master/src/main/resources/org/danilopianini/javaqa/checkstyle.xml"
 }

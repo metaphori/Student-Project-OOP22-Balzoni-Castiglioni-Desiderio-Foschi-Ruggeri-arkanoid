@@ -45,7 +45,7 @@ public class ModelImpl implements Model{
                 this.level = new SecondLevel(control.getWorldDimension());
                 break;
             case 3:
-                this.level = new ThirdLevel(control.getWorldDimension());
+                this.level = new ThirdLevel();
                 break;
         }
         this.move = new Move(level, level.getRound().getBall(), level.getRound().getPad());
@@ -77,6 +77,10 @@ public class ModelImpl implements Model{
         return this.level.getRound().getPad().getWidth();
     }
 
+    public int getScore(){
+        return this.move.getScore();
+    }
+
     @Override
     public Double getPadHeight() {
         return this.level.getRound().getPad().getHight();
@@ -90,6 +94,10 @@ public class ModelImpl implements Model{
     @Override
     public Double getRow(Double x) {
         return this.level.getRound().getSizeCalc().getRowCordinate(x);
+    }
+
+    public void updatePoints(String name, String passWord){
+        this.board.updatePoints(name,passWord,this.getScore(),this.level.getId());
     }
 
     @Override
@@ -116,10 +124,6 @@ public class ModelImpl implements Model{
     }
     public void update(long dt) {
         move.update(dt);
-    }
-
-    public boolean isPresent(String name){
-        return board.isPresent(name);
     }
 
     public List<Pair<String,Integer>> getBestFive(){
@@ -162,6 +166,13 @@ public class ModelImpl implements Model{
     public List<Ball> getSurprise(){
         return this.level.getRound().getSurprise();
     }
+
+    @Override
+    public int getLife() {
+        return this.level.getLife();
+    }
     
-    
+    public List<Ball> getExtraBalls(){
+        return this.level.getRound().getExtraBalls();
+    }
 }

@@ -1,8 +1,10 @@
 package it.unibo.game.app.model.levels;
 
 import it.unibo.game.Pair;
+import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.Round;
+import it.unibo.game.app.api.Score;
 import it.unibo.game.app.model.SizeCalculation;
 
 
@@ -25,9 +27,13 @@ public abstract class AbstractLevel implements Level {
 
     protected Round currentRound;
     protected SizeCalculation sizeCalc;
+    protected Score score;
 
     protected Pair<Double, Double> worldSize;
     protected int numRoundPassed = 0;
+    protected int levelId;
+    protected Brick lastSurpriseBrick;
+    protected int indexLastSurprise;
 
     /*Posizionano gli oggetti (pad,pallina e blocchi) all'interno di ciascun round*/
     public abstract void setFirstRound();
@@ -52,5 +58,24 @@ public abstract class AbstractLevel implements Level {
     }
     public void increaseRound() {
         ++this.numRoundPassed;
+    }
+    public int getLife() {
+        return this.lives;
+    }
+    public int getId(){
+        return this.levelId;
+    }
+    public Score getScore(){
+        return this.score;
+    }
+    public void setLastSurpriseBrick(Brick surBrick, int i) {
+        this.lastSurpriseBrick = surBrick;
+        this.indexLastSurprise = i;
+    }
+    public Brick getLastSurpriseBrick() {
+        return this.lastSurpriseBrick;
+    }
+    public int getIndex() {
+        return this.indexLastSurprise;
     }
 }

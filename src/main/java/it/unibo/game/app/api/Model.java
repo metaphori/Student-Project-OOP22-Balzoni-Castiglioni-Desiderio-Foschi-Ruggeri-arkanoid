@@ -28,17 +28,19 @@ public interface Model{
 
     Double getRBall();
 
+    void updatePoints(String name, String passWord);
+
     Double getRow(Double x);
 
     Pair<Double,Double> getWorldDim();
 
     void update(long dt);
 
+    int getScore();
+
     List<Ball> getSurprise();
 
     List<Pair<String,Integer>> getBestFive();
-
-    boolean isPresent(String name);
 
     boolean checkRound();
 
@@ -46,6 +48,10 @@ public interface Model{
 
     //boolean isLevelFinished();
 
+    int getLife();
+
     void restoreInitialPosition();
+
+    List<Ball> getExtraBalls();
 
 }

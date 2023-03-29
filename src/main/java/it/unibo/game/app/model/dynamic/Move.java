@@ -1,9 +1,12 @@
 package it.unibo.game.app.model.dynamic;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 import it.unibo.game.Pair;
+import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.Surprise;
@@ -13,28 +16,33 @@ import it.unibo.game.app.model.pad.Pad;
 public class Move {
     private Collision coll;
     private Optional<Integer> index ;
-    private Ball ball ;
+    private List<Ball> balls = new ArrayList<>();
     private Pad pad;
     private Level l;
-    //private Surprise surprise;
+    private Surprise surprise;
 
     public Move (Level l, Ball ball, Pad p){
         coll = new Collision(l);
-        this.ball = ball;
+        this.balls= List.of(ball);
         this.pad = p;
         this.l=l;
-        //this.surprise = new Surprise(l);
+        this.surprise = new Surprise(l);
     }
 
-    public void nextBall(long dt){ 
-        coll.CollideWithEdges(this.ball, SizeCalculation.getWorldSize().getX() , SizeCalculation.getWorldSize().getY());
-        index = coll.collideWithBrick(this.ball);
+    public void nextBall(long dt, Ball ball){ 
+        coll.CollideWithEdges(ball, SizeCalculation.getWorldSize().getX() , SizeCalculation.getWorldSize().getY());
+        index = coll.collideWithBrick(ball);
         if(index.isPresent()){
+            if(this.l.getRound().getBrick().get(index.get()).getType().equals(BrickType.SURPRISE)) {
+                this.l.setLastSurpriseBrick(this.l.getRound().getBrick().get(index.get()), index.get()); 
+            }
             this.l.getRound().remove(index.get());
         }
-        coll.CollideWithPad(this.ball, this.pad);
-        var newPos = new Pair<Double,Double> (this.ball.getPos().getX() +this.ball.getPhysics().getDir().getDirection().getX() * 3,
-                                                 this.ball.getPos().getY() + this.ball.getPhysics().getDir().getDirection().getY() * 3);
+        if(coll.CollideWithPad(ball, this.pad)){
+            this.l.getScore().resetPoints();
+        }
+        var newPos = new Pair<Double,Double> (ball.getPos().getX() +ball.getPhysics().getDir().getDirection().getX() * 3,
+                                                 ball.getPos().getY() + ball.getPhysics().getDir().getDirection().getY() * 3);
         ball.setPos(newPos);
         this.checkSurprise();
     }
@@ -47,7 +55,8 @@ public class Move {
                 it.remove();
             }
             else if(coll.CollideWithPad(next, this.pad)) {
-                //this.surprise.chooseSurprise();
+                this.surprise.chooseSurprise();
+                //this.surprise.bonus();
                 it.remove();
             }
             else {
@@ -62,7 +71,16 @@ public class Move {
 
     
     public void update(long dt) {
-        this.nextBall(dt);
+
+        for(var ball : this.balls){
+            nextBall(dt, ball);
+        }
+    }
+    public void setExtraBalls(){
+        this.balls.addAll(l.getRound().getExtraBalls());
+    }
+    public int getScore(){
+        return this.coll.getScore();
     }
 
 }
