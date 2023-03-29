@@ -4,6 +4,8 @@ public interface Dimension {
 
 	double getHeight();
 
+	double getRadius();
+
 	double getWidth();
 
 	void setHeight(double height);
