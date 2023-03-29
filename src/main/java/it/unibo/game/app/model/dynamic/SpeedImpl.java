@@ -28,8 +28,8 @@ public class SpeedImpl implements Speed {
         return new SpeedImpl(this.x*num, this.y*num);
     }
 
-    public double module(){
-        return (double)Math.sqrt(this.x*this.x+this.y*this.y);
-    }
+		public String toString(){
+			return "["+this.x+","+this.y+"]";
+		}
 
 }
