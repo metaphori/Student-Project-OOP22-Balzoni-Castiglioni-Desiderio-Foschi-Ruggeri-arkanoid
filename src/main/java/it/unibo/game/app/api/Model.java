@@ -38,7 +38,7 @@ public interface Model{
 
     int getScore();
 
-    List<Ball> getSurprise();
+    List<MovingObject> getSurprise();
 
     List<Pair<String,Integer>> getBestFive();
 
