@@ -23,15 +23,15 @@ public interface Round{
 
     void setPosPad (Pair<Double,Double> pos);
 
-    List<Ball> getSurprise();
+    List<MovingObject> getSurprise();
 
     Pair<Double,Double> getPosBall();
 
     Pair<Double,Double> getPosPad();
 
-    Pad getPad();
+    MovingObject getPad();
 
-    Ball getBall();
+    MovingObject getBall();
 
     void remove(int index);
 
