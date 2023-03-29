@@ -7,10 +7,12 @@ import java.util.Random;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
+import it.unibo.game.app.api.MovingObject;
 import it.unibo.game.app.api.Round;
 
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.ball.Ball;
+import it.unibo.game.app.model.dynamic.SpeedImpl;
 import it.unibo.game.app.model.pad.Pad;
 
 public abstract class AbstractRound implements Round {
@@ -19,12 +21,12 @@ public abstract class AbstractRound implements Round {
     private int numBrick;
     private int numSurprise;
     protected List<Brick> brick = new ArrayList<>();
-    private Ball ball = new Ball();
-    private Pad pad;
+    private MovingObject ball;
+    private MovingObject pad;
     private SizeCalculation sizeC;
     private final Pair<Double, Double> ballInitialPos;
     private final Pair<Double, Double> padInitialPos;
-    protected List<Ball> surprise=new ArrayList<>();
+    protected List<MovingObject> surprise=new ArrayList<>();
     private List<Ball> extraBalls = new ArrayList<>();
 
 
@@ -33,9 +35,9 @@ public abstract class AbstractRound implements Round {
         this.numBrick = numB;
         this.numSurprise = numS;
         this.sizeC = size;
-        pad = new Pad(SizeCalculation.getWorldSize());
+        pad = new Pad(size.getPadDim());
         this.padInitialPos = pad.getPos();
-        ball.setR(SizeCalculation.getWorldSize().getY()/30);
+        ball=new Ball(size.getBallDim());
         this.ballInitialPos = new Pair<>(padInitialPos.getX(),padInitialPos.getY()-(2*ball.getR())-5);
         ball.setPos(ballInitialPos);
     }
@@ -49,7 +51,7 @@ public abstract class AbstractRound implements Round {
         return this.ballInitialPos;
     }
 
-    public List<Ball> getSurprise(){
+    public List<MovingObject> getSurprise(){
         return this.surprise;
     }
 
@@ -102,11 +104,11 @@ public abstract class AbstractRound implements Round {
         return this.pad.getPos();
     }
 
-    public Pad getPad(){
+    public MovingObject getPad(){
         return this.pad;
     }
 
-    public Ball getBall(){
+    public MovingObject getBall(){
         return this.ball;
     }
 
@@ -122,9 +124,9 @@ public abstract class AbstractRound implements Round {
     public void remove(int index){
         Brick brick=this.brick.get(index);
         if(brick.getType().equals(BrickType.SURPRISE)) {
-            Ball b=new Ball();
+            Ball b=new Ball(sizeC.getBallDim());
             b.setPos(new Pair<>(brick.getPos().getX()+brick.getBrickW()/2,brick.getPos().getY()+brick.getBrickH()));
-            b.setR(10.0);
+            b.setSpeed(new SpeedImpl(0,1));
             this.addSurprise(b);
         }
         brick.hit();
