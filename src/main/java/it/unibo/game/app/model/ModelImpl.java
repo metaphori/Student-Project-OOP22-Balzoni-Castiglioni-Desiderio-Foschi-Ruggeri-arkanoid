@@ -15,6 +15,7 @@ import it.unibo.game.app.model.leaderb.LeaderBoardImpl;
 import it.unibo.game.app.model.levels.*;
 import it.unibo.game.app.model.round.GameOver;
 import it.unibo.game.app.api.Model;
+import it.unibo.game.app.api.MovingObject;
 
 public class ModelImpl implements Model{
 
@@ -74,7 +75,7 @@ public class ModelImpl implements Model{
 
     @Override
     public Double getPadWight() {
-        return this.level.getRound().getPad().getWidth();
+        return this.level.getRound().getPad().getDimension().getWidth();
     }
 
     public int getScore(){
@@ -83,12 +84,12 @@ public class ModelImpl implements Model{
 
     @Override
     public Double getPadHeight() {
-        return this.level.getRound().getPad().getHight();
+        return this.level.getRound().getPad().getDimension().getHeight();
     }
 
     @Override
     public Double getRBall() {
-        return this.level.getRound().getBall().getR();
+        return this.level.getRound().getBall().getDimension().getHeight();
     }
 
     @Override
@@ -163,7 +164,7 @@ public class ModelImpl implements Model{
         this.level.getRound().getBall().getPhysics().getDir().resetDirection();
     }
 
-    public List<Ball> getSurprise(){
+    public List<MovingObject> getSurprise(){
         return this.level.getRound().getSurprise();
     }
 
