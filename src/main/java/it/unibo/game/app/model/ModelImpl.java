@@ -49,7 +49,7 @@ public class ModelImpl implements Model{
                 this.level = new ThirdLevel();
                 break;
         }
-        this.move = new Move(level, level.getRound().getBall(), level.getRound().getPad());
+        this.move = new Move(level);
         this.gameOver = new GameOver(level.getRound());
     }
 
@@ -106,11 +106,11 @@ public class ModelImpl implements Model{
         if(this.level.getNumRoundPassed() <= 2) {
             if(this.level.getNumRoundPassed() == 1) {
                 this.level.setSecondRound();
-                this.move = new Move(level, level.getRound().getBall(), level.getRound().getPad());
+                this.move = new Move(level);
                 this.gameOver = new GameOver(level.getRound());
             } else if(this.level.getNumRoundPassed() == 2) {
                 this.level.setThirdRound();
-                this.move = new Move(level, level.getRound().getBall(), level.getRound().getPad());
+                this.move = new Move(level);
                 this.gameOver = new GameOver(level.getRound());
             }
         }
