@@ -8,9 +8,9 @@ import it.unibo.game.app.api.Brick;
  * 
  */
 import it.unibo.game.app.api.BrickType;
-import it.unibo.game.app.model.GameObjectImpl;
 
-public abstract class AbstractBrick extends GameObjectImpl implements Brick{
+
+public abstract class AbstractBrick  implements Brick{
     
     private BrickType type;
     private Double brickWidth;
