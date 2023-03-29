@@ -4,20 +4,20 @@ import it.unibo.game.Pair;
 
 public interface Direction {
 
-    void setDirectionUp();
+	void setDirectionUp();
 
-    void setDirectionDown();
+	void setDirectionDown();
 
-    void setDirectionLeft();
+	void setDirectionLeft();
 
-    void setDirectionRight();
+	void setDirectionRight();
 
-    boolean isDirectionUp();
+	boolean isDirectionUp();
 
-    boolean isDirectionLeft();
-    
-    void resetDirection();
+	boolean isDirectionLeft();
 
-    Pair<Integer, Integer> getDirection();
+	void resetDirection();
+
+	Pair<Integer, Integer> getDirection();
 
 }
