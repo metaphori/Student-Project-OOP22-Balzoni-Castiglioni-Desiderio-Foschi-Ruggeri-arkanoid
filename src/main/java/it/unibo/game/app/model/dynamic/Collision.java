@@ -21,7 +21,7 @@ public class Collision {
     }
     public void CollideWithEdges(MovingObject b, Double h, Double w){
         b.setBoundingBox(new CircleBoundingBox(b));
-        if(b.getBoundingBox().getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 ||b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w-1){
+        if(b.getBoundingBox().getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 ||b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w-7.5){
             b.getPhysics().changeDirection(Side.LEFT_RIGHT);
         }
          if(b.getBoundingBox().getBox().get(Corner.LEFT_UP).getY() <= 0.5 ){
@@ -32,7 +32,6 @@ public class Collision {
     public Optional<Integer> collideWithBrick(MovingObject b){
 			b.setBoundingBox(new CircleBoundingBox(b));
         for (Brick obj : level.getRound().getBrick()) {
-					obj.setBoundingBox(new RectBoundingBox(b));
            var opt = b.getBoundingBox().collideWith(obj.getBoundingBox());
             
             if(opt.isPresent()){
