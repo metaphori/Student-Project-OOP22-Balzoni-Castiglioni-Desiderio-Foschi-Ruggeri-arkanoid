@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Model;
+import it.unibo.game.app.api.MovingObject;
 import it.unibo.game.app.model.ModelImpl;
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.ball.Ball;
@@ -108,7 +109,7 @@ public class ControllerImpl implements AppController {
         return this.model.getRBall() * dt;
     }
 
-    private List<Pair<Double, Double>> getPairList(List<Ball> b){
+    private List<Pair<Double, Double>> getPairList(List<MovingObject> b){
         return b.stream().map(
             ball -> new Pair<>(ball.getPos().getX() * this.delta().getX(), ball.getPos().getY() * delta().getX()))
             .collect(Collectors.toList());
@@ -116,9 +117,9 @@ public class ControllerImpl implements AppController {
     public List<Pair<Double, Double>> getSurprise() {
         return getPairList(this.model.getSurprise());
     }
-    public List<Pair<Double, Double>> getNewBalls() {
+    /*public List<Pair<Double, Double>> getNewBalls() {
         return getPairList(this.model.getExtraBalls());
-    }
+    } */
 
     private Pair<Double, Double> delta() {
         return new Pair<Double, Double>(uiContr.windowDim().getX() / this.getWorldDimension().getY(),

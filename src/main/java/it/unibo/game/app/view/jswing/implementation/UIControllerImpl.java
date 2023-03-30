@@ -167,10 +167,10 @@ public class UIControllerImpl implements UIController {
         return this.AppController.getSurprise();
     }
 
-    @Override
+   /* @Override
     public List<Pair<Double, Double>> getExtraBalls(){
         return this.AppController.getNewBalls();
-    }
+    } */
 
     @Override
     public int getScore() {

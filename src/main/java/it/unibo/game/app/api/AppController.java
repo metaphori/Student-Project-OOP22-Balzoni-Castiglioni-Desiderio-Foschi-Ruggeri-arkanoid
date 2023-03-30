@@ -53,7 +53,7 @@ public interface AppController {
 
     List<Pair<Double,Double>> getSurprise();
 
-    List<Pair<Double, Double>> getNewBalls();
+    //List<Pair<Double, Double>> getNewBalls();
 
     int getScore();
 
