@@ -1,8 +1,7 @@
 package it.unibo.game.app.model.dynamic;
 
-import java.util.ArrayList;
+
 import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
 
 import it.unibo.game.Pair;
@@ -11,8 +10,7 @@ import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.MovingObject;
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.Surprise;
-import it.unibo.game.app.model.ball.Ball;
-import it.unibo.game.app.model.pad.Pad;
+
 
 public class Move {
     private Collision coll;
@@ -38,8 +36,8 @@ public class Move {
         if(coll.CollideWithPad(ball, this.l.getRound().getPad())){
             this.l.getScore().resetPoints();
         }
-        var newPos = new Pair<Double,Double> (ball.getPos().getX() +ball.getPhysics().getDir().getDirection().getX() * 3,
-                                                 ball.getPos().getY() + ball.getPhysics().getDir().getDirection().getY() * 3);
+        var newPos = new Pair<Double,Double> (ball.getPos().getX() +ball.getPhysics().getDir().getDirection().getX() * ball.getSpeed().getX(),
+                                                 ball.getPos().getY() + ball.getPhysics().getDir().getDirection().getY() * ball.getSpeed().getY());
         ball.setPos(newPos);
         this.checkSurprise();
     }
