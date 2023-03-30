@@ -144,8 +144,7 @@ public class Surprise {
     private void changeObstacles() {
         this.level.getRound().getBrick().replaceAll(x -> {
             if (x.getType().equals(BrickType.OBSTACLE)) {
-                Brick brick = new NormalBrick(BrickType.NORMAL, new DimensionImpl(x.getBrickH(),x.getBrickW()), 1);
-                brick.setPos(x.getPos());
+                Brick brick = new NormalBrick(BrickType.NORMAL, new DimensionImpl(x.getBrickH(),x.getBrickW()),x.getPos(), 1);
                 return brick;
             } else {
                 return x;
@@ -191,8 +190,7 @@ public class Surprise {
         double start = (brickW / 2) - 5;
         double stop = (SizeCalculation.getWorldSize().getY()) - (3 * (brickW / 2));
         for (double x = start; x <= stop; x = x + brickW) {
-            NormalBrick brick = new NormalBrick(BrickType.NORMAL, new DimensionImpl(brickH, brickW), new Pair<>(x, lastY + brickH), 2);
-            brick.setPos(new Pair<>(x, lastY + brickH));
+            NormalBrick brick = new NormalBrick(BrickType.NORMAL, new DimensionImpl(brickH, brickW),new Pair<>(x, lastY + brickH), 2);
             this.level.getRound().getBrick().add(brick);
         }
         System.out.println();
