@@ -9,8 +9,6 @@ import it.unibo.game.app.model.pad.Pad;
 
 public interface Round{
 
-    int getJump ();
-
     SizeCalculation getSizeCalc();
 
     int getNumBrick ();
@@ -36,9 +34,5 @@ public interface Round{
     void remove(int index);
 
     Pair<Double, Double> getBallInitialPosition();
-
-    List<Ball> getExtraBalls ();
-
-    void addBalls(List<Ball> b);
 
 }

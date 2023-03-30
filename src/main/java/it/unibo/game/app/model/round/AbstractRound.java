@@ -17,7 +17,6 @@ import it.unibo.game.app.model.pad.Pad;
 
 public abstract class AbstractRound implements Round {
     
-    private int jump; /*Serve per indicate quanti blocchi saltare se vogliamo fare le colonne */
     private int numBrick;
     private int numSurprise;
     protected List<Brick> brick = new ArrayList<>();
@@ -25,26 +24,20 @@ public abstract class AbstractRound implements Round {
     private MovingObject pad;
     private SizeCalculation sizeC;
     private final Pair<Double, Double> ballInitialPos;
-    private final Pair<Double, Double> padInitialPos;
-    protected List<MovingObject> surprise=new ArrayList<>();
-    private List<Ball> extraBalls = new ArrayList<>();
+    //private final Pair<Double, Double> padInitialPos;
+    protected List<MovingObject> surprise = new ArrayList<>();
 
 
-    public AbstractRound (int jump, int numB, int numS, SizeCalculation size) {
-        this.jump = jump;
+    public AbstractRound (int numB, int numS, SizeCalculation size) {
         this.numBrick = numB;
         this.numSurprise = numS;
         this.sizeC = size;
         pad = new Pad(size.getPadDim());
-        this.padInitialPos = pad.getPos();
-        ball=new Ball(size.getBallDim());
-        this.ballInitialPos = new Pair<>(padInitialPos.getX(),padInitialPos.getY()-(2*ball.getR())-5);
-        ball.setPos(ballInitialPos);
+        //this.padInitialPos = pad.getPos();
+        ball = new Ball(size.getBallDim());
+        this.ballInitialPos = ball.getPos();
     }
 
-    public int getJump () {
-        return this.jump;
-    }
 
     public Pair<Double, Double> getBallInitialPosition() {
         this.surprise.clear();
@@ -112,13 +105,6 @@ public abstract class AbstractRound implements Round {
         return this.ball;
     }
 
-    public void addBalls(List<Ball> b){
-        this.extraBalls.addAll(b);
-    }
-
-    public List<Ball> getExtraBalls(){
-        return this.extraBalls;
-    }
 
 
     public void remove(int index){
