@@ -2,14 +2,16 @@ package it.unibo.game.app.model.brick;
 
 import java.util.Optional;
 
+import it.unibo.game.Pair;
 import it.unibo.game.app.api.BrickType;
+import it.unibo.game.app.api.Dimension;
 
 public class NormalBrick extends AbstractBrick{
 
     private int brickResistence;
 
-    public NormalBrick(BrickType type, Double width, Double hight, int resistence) {
-        super(type, width, hight);
+    public NormalBrick(BrickType type,  Dimension d, Pair<Double,Double> pos, int resistence) {
+        super(type, d, pos);
         this.brickResistence = resistence;
     }
 
