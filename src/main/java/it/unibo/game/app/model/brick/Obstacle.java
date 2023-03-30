@@ -2,12 +2,14 @@ package it.unibo.game.app.model.brick;
 
 import java.util.Optional;
 
+import it.unibo.game.Pair;
 import it.unibo.game.app.api.BrickType;
+import it.unibo.game.app.api.Dimension;
 
 public class Obstacle extends AbstractBrick {
 
-    public Obstacle(BrickType type, Double double1, Double double2) {
-        super(type, double1, double2);
+    public Obstacle(BrickType type, Dimension d , Pair<Double,Double> pos) {
+        super(type, d,pos);
         //TODO Auto-generated constructor stub
     }
 
@@ -37,7 +39,6 @@ public class Obstacle extends AbstractBrick {
     @Override
     public void decreaseRes(int res) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'decreseRes'");
     }
     
 }

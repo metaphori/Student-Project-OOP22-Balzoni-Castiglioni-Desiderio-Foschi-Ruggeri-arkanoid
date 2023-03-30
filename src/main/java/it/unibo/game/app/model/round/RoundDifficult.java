@@ -4,6 +4,7 @@ package it.unibo.game.app.model.round;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
+import it.unibo.game.app.model.DimensionImpl;
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.brick.NormalBrick;
 import it.unibo.game.app.model.brick.Obstacle;
@@ -12,8 +13,8 @@ public class RoundDifficult extends AbstractRound {
 
     private int obstacles;
 
-    public RoundDifficult(int jump, int numB, int numS, SizeCalculation size, int obstacles) {
-        super(jump, numB, numS, size);
+    public RoundDifficult(int numB, int numS, SizeCalculation size, int obstacles) {
+        super(numB, numS, size);
         this.obstacles=obstacles;
         setPosBrick();
     }
@@ -26,8 +27,7 @@ public class RoundDifficult extends AbstractRound {
             num++;
             lines=0;
             for(double j=SizeCalculation.getWorldSize().getY()/2-(num)*(getSizeCalc().getBrickDim().getY()/2)-10; lines<num; j=j+getSizeCalc().getBrickDim().getY()){
-                Brick b = new NormalBrick(BrickType.NORMAL, getSizeCalc().getBrickDim().getY(), getSizeCalc().getBrickDim().getX(),1);
-                b.setPos(new Pair<>(j,i));
+                Brick b = new NormalBrick(BrickType.NORMAL, new DimensionImpl(getSizeCalc().getBrickDim().getX(),getSizeCalc().getBrickDim().getY()),new Pair<>(j,i),1);
                 super.brick.add(b);
                 lines++;
             }
@@ -59,8 +59,7 @@ public class RoundDifficult extends AbstractRound {
 
     private void replace(int val){
         Brick oldB = brick.get(val);
-        Brick newB = new Obstacle(BrickType.OBSTACLE, oldB.getBrickW(), oldB.getBrickH());
-        newB.setPos(oldB.getPos());
+        Brick newB = new Obstacle(BrickType.OBSTACLE, new DimensionImpl(oldB.getBrickH(),oldB.getBrickW()),oldB.getPos());
         brick.set(val,newB);
     }
     

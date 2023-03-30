@@ -27,19 +27,19 @@ public class ThirdLevel extends AbstractLevel {
     @Override
     public void setFirstRound() {
         // TODO Auto-generated method stub
-        super.currentRound=new RoundDifficult(1,NORMAL1,SURPRISE1,new SizeCalculation(4,5,0),OBSTACLE1);
+        super.currentRound=new RoundDifficult(NORMAL1,SURPRISE1,new SizeCalculation(4,5,0),OBSTACLE1);
     }
 
     @Override
     public void setSecondRound() {
         // TODO Auto-generated method stub
-        this.currentRound=new RoundDifficult(1,NORMAL2,SURPRISE2,new SizeCalculation(6,7,0),OBSTACLE2);
+        this.currentRound=new RoundDifficult(NORMAL2,SURPRISE2,new SizeCalculation(6,7,0),OBSTACLE2);
     }
 
     @Override
     public void setThirdRound() {
         // TODO Auto-generated method stub
-        this.currentRound=new RoundDifficult(1,NORMAL3,SURPRISE3,new SizeCalculation(7,8,0),OBSTACLE3);
+        this.currentRound=new RoundDifficult(NORMAL3,SURPRISE3,new SizeCalculation(7,8,0),OBSTACLE3);
     }
 
     
