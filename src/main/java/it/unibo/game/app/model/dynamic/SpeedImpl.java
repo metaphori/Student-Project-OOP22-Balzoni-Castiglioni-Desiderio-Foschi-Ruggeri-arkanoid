@@ -2,34 +2,65 @@ package it.unibo.game.app.model.dynamic;
 
 import it.unibo.game.app.api.Speed;
 
+/**
+ * class that contains informations about objects' speed.
+ */
 public class SpeedImpl implements Speed {
-    
-    private double x;
-    private double y;
 
-    public SpeedImpl(final double x, final double y){
-        this.x=x;
-        this.y=y;
-    }
+	private double x;
+	private double y;
 
-    public double getX(){
-        return this.x;
-    }
+	/**
+	 * constructor of the class.
+	 * 
+	 * @param x coordinate x of speed
+	 * @param y coordinate y of speed
+	 */
+	public SpeedImpl(final double x, final double y) {
+		this.x = x;
+		this.y = y;
+	}
 
-    public double getY(){
-        return this.y;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double getX() {
+		return this.x;
+	}
 
-    public Speed sum(Speed v){
-        return new SpeedImpl(this.x+v.getX(), this.y+v.getY());
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double getY() {
+		return this.y;
+	}
 
-    public Speed mul(double num){
-        return new SpeedImpl(this.x*num, this.y*num);
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void sum(final Speed vel) {
+		this.x += vel.getX();
+		this.y += vel.getY();
+	}
 
-		public String toString(){
-			return "["+this.x+","+this.y+"]";
-		}
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void mul(final double num) {
+		this.x *= num;
+		this.y *= num;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		return "[" + this.x + "," + this.y + "]";
+	}
 
 }
