@@ -191,7 +191,7 @@ public class Surprise {
         double start = (brickW / 2) - 5;
         double stop = (SizeCalculation.getWorldSize().getY()) - (3 * (brickW / 2));
         for (double x = start; x <= stop; x = x + brickW) {
-            NormalBrick brick = new NormalBrick(BrickType.NORMAL, brickW, brickH, 2);
+            NormalBrick brick = new NormalBrick(BrickType.NORMAL, new DimensionImpl(brickH, brickW), new Pair<>(x, lastY + brickH), 2);
             brick.setPos(new Pair<>(x, lastY + brickH));
             this.level.getRound().getBrick().add(brick);
         }
