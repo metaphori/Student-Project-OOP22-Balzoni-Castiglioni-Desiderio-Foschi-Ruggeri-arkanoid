@@ -8,8 +8,6 @@ import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.MovingObject;
 import it.unibo.game.app.api.BoundingBox.Corner;
 import it.unibo.game.app.api.BoundingBox.Side;
-import it.unibo.game.app.model.ball.*;
-import it.unibo.game.app.model.pad.Pad;
 import it.unibo.game.app.model.CircleBoundingBox;
 import it.unibo.game.app.model.RectBoundingBox;
 
