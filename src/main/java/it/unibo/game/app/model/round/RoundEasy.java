@@ -29,7 +29,7 @@ public class RoundEasy extends AbstractRound {
             for(Double j = startY; j < endY; j = j + this.getSizeCalc().getBrickDim().getY()) {
 							NormalBrick brick = new NormalBrick(BrickType.NORMAL, new DimensionImpl(getSizeCalc().getBrickDim().getX(),getSizeCalc().getBrickDim().getY()),new Pair<>(j,i),1);
 							brick.setPos(new Pair<>(j,i));
-                super.brick.add(brick);
+                super.addBrick(brick);
             }
         }
         while (this.numSurpriseBrick < this.getNumSur()) {
