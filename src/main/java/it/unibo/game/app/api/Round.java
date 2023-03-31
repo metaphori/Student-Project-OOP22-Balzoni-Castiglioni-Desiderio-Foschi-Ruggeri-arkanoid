@@ -29,6 +29,11 @@ public interface Round {
 	int getNumSur();
 
 	/**
+	 * returns the ball to its initial position.
+	 */
+	void restart();
+
+	/**
 	 * 
 	 * @return list of all bricks.
 	 */
@@ -89,6 +94,6 @@ public interface Round {
 	 * 
 	 * @return ball position when game starts.
 	 */
-	Pair<Double, Double> getBallInitialPosition();
+	//Pair<Double, Double> getBallInitialPosition();
 
 }

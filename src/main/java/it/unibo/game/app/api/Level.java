@@ -1,22 +1,23 @@
 package it.unibo.game.app.api;
 
 /**
- * interface Level that contains method that can be useful when a new Level starts.
+ * interface Level that contains method that can be useful when a new Level
+ * starts.
  */
 public interface Level {
 
 	/**
-	 * sets first round.
+	 * place items(pad,ball,bricks) within the first round.
 	 */
 	void setFirstRound();
 
 	/**
-	 * sets second round.
+	 * place items(pad,ball,bricks) within the second round.
 	 */
 	void setSecondRound();
 
 	/**
-	 * sets third round.
+	 * place items(pad,ball,bricks) within the third round.
 	 */
 	void setThirdRound();
 
@@ -44,6 +45,7 @@ public interface Level {
 
 	/**
 	 * sets new round.
+	 * 
 	 * @param r
 	 */
 	void setRound(Round r);
