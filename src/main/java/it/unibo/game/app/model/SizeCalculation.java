@@ -4,7 +4,7 @@ import it.unibo.game.Pair;
 import it.unibo.game.app.api.Dimension;
 
 public class SizeCalculation {
-    private final static Double WorldHight = 400d;
+    private final static Double WorldHeight = 400d;
     private final static Double WorldWidth = 300d;
     private int numBrickCol;
     private Double startX;
@@ -16,7 +16,7 @@ public class SizeCalculation {
 
     public SizeCalculation(int numBrickCol, int numBrickRow, int roundPassed) {
         this.numBrickCol = numBrickCol;
-        startX = (WorldHight / 2) / 6;
+        startX = (WorldHeight / 2) / 6;
         stopX = this.getStopX(roundPassed);
         brickL = WorldWidth / numBrickRow;
         brickH = (stopX - startX) / numBrickCol;
@@ -25,18 +25,18 @@ public class SizeCalculation {
 
     private Double getStopX(int numR) {
         if (numBrickCol > 6) {
-            return (((WorldHight / 2) / 3) * 1.75); 
+            return (((WorldHeight / 2) / 3) * 1.75); 
         }
         else if (numBrickCol > 4) {
-            return (((WorldHight / 2) / 3) * 1.5);
+            return (((WorldHeight / 2) / 3) * 1.5);
         }
         else {
-           return ((WorldHight / 2) / 3); 
+           return ((WorldHeight / 2) / 3); 
         }
     }
 
     public static Pair<Double,Double> getWorldSize() {
-        return new Pair<Double,Double>(WorldHight, WorldWidth);
+        return new Pair<Double,Double>(WorldHeight, WorldWidth);
     }
 
     public Pair<Double,Double> getStart() {
@@ -56,7 +56,7 @@ public class SizeCalculation {
     }
 
 		public Dimension getPadDim(){
-			return new DimensionImpl(WorldHight/60,WorldWidth/4);
+			return new DimensionImpl(WorldHeight/60,WorldWidth/4);
 	}
 
 	public Dimension getBallDim(){
