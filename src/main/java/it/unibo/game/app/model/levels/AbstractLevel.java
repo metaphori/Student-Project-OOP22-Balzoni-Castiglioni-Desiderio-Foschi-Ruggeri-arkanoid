@@ -7,12 +7,12 @@ import it.unibo.game.app.api.Score;
 import it.unibo.game.app.model.ScoreImpl;
 
 /**
- * Questa classe astratta dichiara variabili e definisce metodi in comune ai
- * vari livelli.
+ * This abstract class declares variables and defines methods in common with
+ * various levels.
  */
 public abstract class AbstractLevel implements Level {
 
-	private final static int INITIAL_LIVES = 3;
+	private static final int INITIAL_LIVES = 3;
 	private int lives = INITIAL_LIVES;
 	private Round currentRound;
 	private Score score;
@@ -31,13 +31,22 @@ public abstract class AbstractLevel implements Level {
 		this.score = new ScoreImpl();
 	}
 
-	/*
-	 * Posizionano gli oggetti (pad,pallina e blocchi) all'interno di ciascun round
+	/**
+	 * {@inheritDoc}
 	 */
+	@Override
 	public abstract void setFirstRound();
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public abstract void setSecondRound();
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public abstract void setThirdRound();
 
 	/**
@@ -61,7 +70,7 @@ public abstract class AbstractLevel implements Level {
 	 */
 	@Override
 	public boolean isAlive() {
-		return this.lives > 0 ? true : false;
+		return this.lives > 0;
 	}
 
 	/**
@@ -120,19 +129,31 @@ public abstract class AbstractLevel implements Level {
 		return this.score;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void setLastSurpriseBrick(final Brick surBrick, final int i) {
 		this.lastSurpriseBrick = surBrick;
 		this.indexLastSurprise = i;
 	}
 
-	public int getRoundPassed() {
+	/*public int getRoundPassed() {
 		return this.numRoundPassed;
-	}
+	} */
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Brick getLastSurpriseBrick() {
 		return this.lastSurpriseBrick;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public int getIndex() {
 		return this.indexLastSurprise;
 	}
