@@ -1,84 +1,115 @@
 package it.unibo.game.app.model.brick;
-import java.util.Optional;
 
+import java.util.Optional;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
-/*questa classe deve essere estesa da 
- * la classe che rappresenta i mattoni come ostacoli e 
- * mattoni di gioco
- * 
- */
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Dimension;
 import it.unibo.game.app.model.RectBoundingBox;
 
+public abstract class AbstractBrick implements Brick {
 
-public abstract class AbstractBrick  implements Brick{
-    
-    private BrickType type;
-		private BoundingBox box;
-    private Dimension d;
-    private Pair<Double,Double> pos;
-    
-    public AbstractBrick (BrickType type, Dimension d, Pair<Double,Double> pos) {
-        this.type = type;
-				this.pos = pos;
-        this.d = d;
-        this.setBoundingBox(new RectBoundingBox(this));
-        
-    }
+	private BrickType type;
+	private BoundingBox box;
+	private Dimension d;
+	private Pair<Double, Double> pos;
 
-    public BrickType getType() {
-        return this.type;
-    }
+	/**
+	 * 
+	 * @param type type of brick
+	 * @param d    dimension of brick
+	 * @param pos  position of brick
+	 */
+	public AbstractBrick(BrickType type, Dimension d, Pair<Double, Double> pos) {
+		this.type = type;
+		this.pos = pos;
+		this.d = d;
+		this.setBoundingBox(new RectBoundingBox(this));
 
-    public void changeType(BrickType type) {
-        this.type = type;
-    }
+	}
 
-    public Double getBrickH () {
-        return this.d.getHeight();
-    }
+	/**
+	 * return the type of brick
+	 */
+	public BrickType getType() {
+		return this.type;
+	}
 
-    public Double getBrickW () {
-        return this.d.getWidth();
-    }
-		@Override
-    public void setPos(Pair<Double, Double> pos) {
-        this.pos = pos;
-    }
+	/**
+	 * method for changing the type to the brick
+	 */
+	public void changeType(BrickType type) {
+		this.type = type;
+	}
 
-    @Override
-    public Pair<Double, Double> getPos() {
-        return this.pos;
-    }
+	/**
+	 * return the height of brick
+	 */
+	public Double getBrickH() {
+		return this.d.getHeight();
+	}
 
-    @Override
-    public BoundingBox getBoundingBox() {
-        return this.box;
-    }
+	/**
+	 * return the width of brick
+	 */
+	public Double getBrickW() {
+		return this.d.getWidth();
+	}
 
-    @Override
-    public void setBoundingBox(BoundingBox box) {
-        this.box = box;
-    }
+	/**
+	 * @param pos position of brick method to set block position
+	 */
+	@Override
+	public void setPos(Pair<Double, Double> pos) {
+		this.pos = pos;
+	}
 
-    @Override
-    public Dimension getDimension() {
-        return this.d;
-    }
+	/**
+	 * return the brick position
+	 */
+	@Override
+	public Pair<Double, Double> getPos() {
+		return this.pos;
+	}
 
-    public void setDimension(Dimension d){
-        this.d = d;
-    }
+	/**
+	 * return the boundingBox of brick
+	 */
+	@Override
+	public BoundingBox getBoundingBox() {
+		return this.box;
+	}
 
-    public abstract boolean isDestroyed();
+	/**
+	 * @param box boundingBox of the brick
+	 */
+	@Override
+	public void setBoundingBox(BoundingBox box) {
+		this.box = box;
+	}
 
-    public abstract void hit();
+	/**
+	 * return the dimension of brick
+	 */
+	@Override
+	public Dimension getDimension() {
+		return this.d;
+	}
 
-    public abstract Optional<Integer> getRes();
+	/**
+	 * @param d dimension of brick set the dimension of brick
+	 */
+	public void setDimension(Dimension d) {
+		this.d = d;
+	}
 
-    public abstract void increaseRes(int res);
+	public abstract boolean isDestroyed();
+
+	public abstract void hit();
+
+	public abstract Optional<Integer> getRes();
+
+	public abstract void increaseRes(int res);
 
 }
