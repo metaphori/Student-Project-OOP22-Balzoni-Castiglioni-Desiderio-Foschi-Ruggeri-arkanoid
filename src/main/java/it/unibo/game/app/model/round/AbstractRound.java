@@ -22,13 +22,12 @@ public abstract class AbstractRound implements Round {
 
 	private int numBrick;
 	private int numSurprise;
-	protected List<Brick> brick = new ArrayList<>();
+	private List<Brick> brick = new ArrayList<>();
 	private MovingObject ball;
 	private MovingObject pad;
 	private SizeCalculation sizeC;
-	private final Pair<Double, Double> ballInitialPos;
-	// private final Pair<Double, Double> padInitialPos;
-	protected List<MovingObject> surprise = new ArrayList<>();
+	// private final Pair<Double, Double> ballInitialPos;
+	private List<MovingObject> surprise = new ArrayList<>();
 
 	/**
 	 * constructor of the class.
@@ -42,18 +41,23 @@ public abstract class AbstractRound implements Round {
 		this.numSurprise = numS;
 		this.sizeC = size;
 		pad = new Pad(size.getPadDim());
-		// this.padInitialPos = pad.getPos();
 		ball = new Ball(size.getBallDim());
-		this.ballInitialPos = ball.getPos();
+		// this.ballInitialPos = ball.getPos();
 	}
+
+	/*
+	 * @Override public Pair<Double, Double> getBallInitialPosition() {
+	 * this.surprise.clear(); return this.ballInitialPos; }
+	 */
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Pair<Double, Double> getBallInitialPosition() {
+	public void restart() {
+		this.ball = new Ball(sizeC.getBallDim());
+		this.ball.getPhysics().getDir().resetDirection();
 		this.surprise.clear();
-		return this.ballInitialPos;
 	}
 
 	/**
@@ -62,6 +66,19 @@ public abstract class AbstractRound implements Round {
 	@Override
 	public List<MovingObject> getSurprise() {
 		return this.surprise;
+	}
+
+	/*
+	 * public int getRoundPassed() { return this.numRoundPassed; }
+	 */
+
+	/**
+	 * method to add a brick in the list.
+	 * 
+	 * @param brick that we want to add
+	 */
+	protected void addBrick(final Brick brick) {
+		this.brick.add(brick);
 	}
 
 	/**
@@ -107,6 +124,8 @@ public abstract class AbstractRound implements Round {
 
 	/**
 	 * method that to randomly places surprise bricks.
+	 * 
+	 * @return true if a brick to replace is found
 	 */
 	protected boolean setBrickSurprise() {
 		Random random = new Random();
@@ -175,10 +194,7 @@ public abstract class AbstractRound implements Round {
 	public void remove(final int index) {
 		Brick brick = this.brick.get(index);
 		if (brick.getType().equals(BrickType.SURPRISE)) {
-			Ball b = new Ball(sizeC.getBallDim());
-			b.setPos(new Pair<>(brick.getPos().getX() + brick.getBrickW() / 2, brick.getPos().getY() + brick.getBrickH()));
-			b.setSpeed(new SpeedImpl(0, 1));
-			this.addSurprise(b);
+			this.addSurprise(this.addSurprise(brick));
 		}
 		brick.hit();
 		if (brick.isDestroyed()) {
@@ -187,12 +203,29 @@ public abstract class AbstractRound implements Round {
 	}
 
 	/**
+	 * method that sets features of a new BonusBall.
+	 * 
+	 * @param brick the size of the brick is used to set the initial position of the
+	 *              ball
+	 * @return the ball to add to the list of bonus balls
+	 */
+	private MovingObject addSurprise(final Brick brick) {
+		MovingObject b = new Ball(sizeC.getBallDim());
+		b.setPos(new Pair<>(brick.getPos().getX() + brick.getBrickW() / 2,
+				brick.getPos().getY() + brick.getBrickH()));
+		b.setSpeed(new SpeedImpl(0, 1));
+		return b;
+	}
+
+	/**
 	 * method that returns ball initial position.
+	 * 
 	 * @return
 	 */
-	public Pair<Double, Double> getInitialBallPos() {
-		return this.ballInitialPos;
-	}
+	/*
+	 * public Pair<Double, Double> getInitialBallPos() { return this.ballInitialPos;
+	 * }
+	 */
 
 	/**
 	 * method to set position of bricks.
