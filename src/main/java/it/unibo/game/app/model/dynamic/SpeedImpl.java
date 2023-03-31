@@ -42,8 +42,8 @@ public class SpeedImpl implements Speed {
 	 */
 	@Override
 	public void sum(final Speed vel) {
-		this.x += vel.getX();
-		this.y += vel.getY();
+		this.x = this.x + vel.getX();
+		this.y = this.y + vel.getY();
 	}
 
 	/**
@@ -51,8 +51,8 @@ public class SpeedImpl implements Speed {
 	 */
 	@Override
 	public void mul(final double num) {
-		this.x *= num;
-		this.y *= num;
+		this.x = this.x * num;
+		this.y = this.y * num;
 	}
 
 	/**
