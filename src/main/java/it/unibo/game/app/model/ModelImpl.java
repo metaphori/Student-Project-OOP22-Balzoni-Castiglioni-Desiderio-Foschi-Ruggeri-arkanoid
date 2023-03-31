@@ -41,10 +41,10 @@ public class ModelImpl implements Model {
 	public void chooseLevel(int numLevel) {
 		switch (numLevel) {
 		case 1:
-			this.level = new FirstLevel(control.getWorldDimension());
+			this.level = new FirstLevel();
 			break;
 		case 2:
-			this.level = new SecondLevel(control.getWorldDimension());
+			this.level = new SecondLevel();
 			break;
 		case 3:
 			this.level = new ThirdLevel();

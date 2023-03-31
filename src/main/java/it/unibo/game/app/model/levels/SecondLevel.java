@@ -29,7 +29,7 @@ public class SecondLevel extends AbstractLevel {
 	/**
 	 * constructor of this class.
 	 */
-	public SecondLevel(Pair<Double, Double> pair) {
+	public SecondLevel() {
 		super(ID);
 		this.setFirstRound();
 	}
