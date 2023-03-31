@@ -54,7 +54,7 @@ public class RoundMedium extends AbstractRound {
                 if (countBrick != this.jump) {
                     NormalBrick b = new NormalBrick(BrickType.NORMAL, new DimensionImpl(this.getSizeCalc().getBrickDim().getX(),this.getSizeCalc().getBrickDim().getY()), new Pair<>(j, i) , 1);
                     b.setPos(new Pair<Double,Double>(j, i));
-                    super.brick.add(b);
+                    super.addBrick(b);
                     countBrick++;
                 } else {
                     countBrick = 0;
