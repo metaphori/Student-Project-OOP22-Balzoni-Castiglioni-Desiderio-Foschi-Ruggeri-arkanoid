@@ -161,8 +161,8 @@ public class ModelImpl implements Model {
 
 	@Override
 	public void restoreInitialPosition() {
-		this.level.getRound().getBall().setPos(level.getRound().getBallInitialPosition());
-		this.level.getRound().getBall().getPhysics().getDir().resetDirection();
+		this.level.getRound().restart();//getBall().setPos(level.getRound().getBallInitialPosition());
+		//this.level.getRound().getBall().getPhysics().getDir().resetDirection();
 	}
 
 	public List<MovingObject> getSurprise() {

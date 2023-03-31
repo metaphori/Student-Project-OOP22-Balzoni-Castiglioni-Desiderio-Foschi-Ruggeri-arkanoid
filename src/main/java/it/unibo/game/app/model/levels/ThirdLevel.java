@@ -66,7 +66,7 @@ public final class ThirdLevel extends AbstractLevel {
 	}
 
 	/**
-	 * methpod that calculate the height of the pyramid of bricks.
+	 * method that calculates the height of the pyramid of bricks.
 	 * 
 	 * @param normal
 	 * @param surprise

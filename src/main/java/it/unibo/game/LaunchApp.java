@@ -4,7 +4,7 @@ import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.controller.ControllerImpl;
 
 /**
- * class that starts the application
+ * class that starts the application.
  */
 public final class LaunchApp {
 	private LaunchApp() {

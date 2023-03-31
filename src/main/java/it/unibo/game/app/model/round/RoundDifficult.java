@@ -23,7 +23,8 @@ public class RoundDifficult extends AbstractRound {
 	 * @param size      information of where to collocate bricks
 	 * @param obstacles num of obstacles
 	 */
-	public RoundDifficult(final int numB, final int numS, final SizeCalculation size, final int obstacles) {
+	public RoundDifficult(final int numB, final int numS, final SizeCalculation size,
+			final int obstacles) {
 		super(numB, numS, size);
 		this.obstacles = obstacles;
 		setPosBrick();
@@ -36,16 +37,19 @@ public class RoundDifficult extends AbstractRound {
 		// TODO Auto-generated method stub
 		int num = 0;
 		int lines;
-		for (Double i = getSizeCalc().getStart().getX(); super.brick.size() < (this.obstacles + this.getNumBrick()
-				+ this.getNumSur()); i = i + getSizeCalc().getBrickDim().getX()) {
+		for (Double i = getSizeCalc().getStart().getX(); super.getBrick()
+				.size() < (this.obstacles + this.getNumBrick() + this.getNumSur()); i = i
+						+ getSizeCalc().getBrickDim().getX()) {
 			num++;
 			lines = 0;
-			for (double j = SizeCalculation.getWorldSize().getY() / 2 - (num) * (getSizeCalc().getBrickDim().getY() / 2)
-					- 10; lines < num; j = j + getSizeCalc().getBrickDim().getY()) {
+			for (double j = SizeCalculation.getWorldSize().getY() / 2
+					- (num) * (getSizeCalc().getBrickDim().getY() / 2) - 10; lines < num; j = j
+							+ getSizeCalc().getBrickDim().getY()) {
 				Brick b = new NormalBrick(BrickType.NORMAL,
-						new DimensionImpl(getSizeCalc().getBrickDim().getX(), getSizeCalc().getBrickDim().getY()), new Pair<>(j, i),
-						1);
-				super.brick.add(b);
+						new DimensionImpl(getSizeCalc().getBrickDim().getX(),
+								getSizeCalc().getBrickDim().getY()),
+						new Pair<>(j, i), 1);
+				super.addBrick(b);
 				lines++;
 			}
 		}
@@ -69,9 +73,10 @@ public class RoundDifficult extends AbstractRound {
 	 * method that collocates obstacles.
 	 */
 	private void setPosObstacles() {
-		int height = (int) Math.sqrt((double) (2 * (this.obstacles + this.getNumBrick() + this.getNumSur())));
-		int first = brick.size() - height;
-		int last = brick.size() - 1;
+		int height = (int) Math
+				.sqrt((double) (2 * (this.obstacles + this.getNumBrick() + this.getNumSur())));
+		int first = super.getBrick().size() - height;
+		int last = super.getBrick().size() - 1;
 		int num = 0;
 		while (num < (obstacles / 2)) {
 			replace(first++);
@@ -86,9 +91,10 @@ public class RoundDifficult extends AbstractRound {
 	 * @param val position of the brick to replace in the list
 	 */
 	private void replace(final int val) {
-		Brick oldB = brick.get(val);
-		Brick newB = new Obstacle(BrickType.OBSTACLE, new DimensionImpl(oldB.getBrickH(), oldB.getBrickW()), oldB.getPos());
-		brick.set(val, newB);
+		Brick oldB = super.getBrick().get(val);
+		Brick newB = new Obstacle(BrickType.OBSTACLE,
+				new DimensionImpl(oldB.getBrickH(), oldB.getBrickW()), oldB.getPos());
+		super.getBrick().set(val, newB);
 	}
 
 }
