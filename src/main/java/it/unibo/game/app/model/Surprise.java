@@ -52,7 +52,7 @@ public class Surprise {
                 Map.entry(CHANGE_OBSTACLES, () -> this.changeObstacles()),
                 Map.entry(INCREASE_SCORE, () -> this.increaseScore()),
                 Map.entry(ADD_BALLS, () -> this.addBalls()),
-                Map.entry(CHANGE_ROW, () -> this.changeRow()),
+                Map.entry(CHANGE_ROW, () -> this.addHardRow()),
                 Map.entry(CHANGE_HARD, () -> this.changeHard())));
     }
 
@@ -182,7 +182,7 @@ public class Surprise {
     }
 
     // chiara
-    private void changeRow() {
+    private void addHardRow() {
         double lastY = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getPos()
                 .getY();
         double brickH = this.level.getRound().getBrick().get(this.level.getRound().getBrick().size() - 1).getBrickH();
