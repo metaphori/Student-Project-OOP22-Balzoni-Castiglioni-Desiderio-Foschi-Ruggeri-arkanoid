@@ -18,36 +18,31 @@ public class FirstLevel extends AbstractLevel{
     private final static int BRICK_ROWS_SECOND = 11;
     private final static int BRICK_ROWS_THIRD = 13;
 
-    public FirstLevel(Pair<Double, Double> pair) {
-        this.normalBricksFirstRound = NORMAL_FIRST;
-        this.normalBricksSecondRound = NORMAL_SECOND;
-        this.normalBricksThirdRound = NORMAL_THIRD;
-        this.surpriseBricksFirstRound = SURPRISE_FIRST;
-        this.surpriseBricksSecondRound = SURPRISE_SECOND;
-        this.surpriseBricksThirdRound = SURPRISE_THIRD;
-        this.worldSize = pair;
-        super.levelId = 1;
-        super.score = new ScoreImpl();
-        this.setFirstRound();
+		private final static int ID = 1;
+		private SizeCalculation sizeCalc;
+
+    public FirstLevel() {
+			super(ID);
+      this.setFirstRound();
     }
 
 
     @Override
     public void setFirstRound() {
         this.sizeCalc = new SizeCalculation(BRICK_COLUMNS, BRICK_ROWS_FIRST, super.getNumRoundPassed());
-        this.currentRound = new RoundEasy(normalBricksFirstRound, surpriseBricksFirstRound, this.sizeCalc);
+        super.setRound(new RoundEasy(NORMAL_FIRST, SURPRISE_FIRST, this.sizeCalc));
     }
 
     @Override
     public void setSecondRound() {
         this.sizeCalc = new SizeCalculation( BRICK_COLUMNS, BRICK_ROWS_SECOND, super.getNumRoundPassed());
-        this.currentRound = new RoundEasy(normalBricksSecondRound, surpriseBricksSecondRound, this.sizeCalc);
+        super.setRound(new RoundEasy(NORMAL_SECOND, SURPRISE_SECOND, this.sizeCalc));
     }
 
     @Override
     public void setThirdRound() {
         this.sizeCalc = new SizeCalculation(BRICK_COLUMNS, BRICK_ROWS_THIRD, super.getNumRoundPassed());
-        this.currentRound = new RoundEasy(normalBricksThirdRound, surpriseBricksThirdRound, this.sizeCalc);
+        super.setRound(new RoundEasy(NORMAL_THIRD, SURPRISE_THIRD, this.sizeCalc));
     }
     
 }
