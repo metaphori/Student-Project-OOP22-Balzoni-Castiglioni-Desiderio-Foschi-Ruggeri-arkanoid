@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.DelayQueue;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
@@ -31,6 +32,7 @@ public class Surprise {
     private final static int ADD_BALLS = 10;
     private final static int CHANGE_ROW = 11;
     private final static int CHANGE_HARD = 12;
+    private final static int PERCENTUAL = 40;
 
     private final static int NUM_BALLS = 3;
 
@@ -122,12 +124,18 @@ public class Surprise {
 
     // edoardo
     private void reduceSizePad() {
-        System.out.println();
+        var pad = level.getRound().getPad();
+        pad.getDimension().increaseWidth((pad.getDimension().getWidth() * this.delta())*-1);
+        System.out.println("reduce size pad: "+ pad.getDimension().getWidth() * this.delta());
     }
-
+    private double delta(){
+      return (100d-PERCENTUAL)/100d;
+    }
     // edoardo
     private void enlargeSizePad() {
-        System.out.println();
+      var pad = level.getRound().getPad();
+      pad.getDimension().increaseWidth(pad.getDimension().getWidth() * (this.delta()+1));
+      System.out.println("enlarge size pad: "+ pad.getDimension().getWidth() * (this.delta()+1));
     }
 
     // virginia
@@ -225,9 +233,9 @@ public class Surprise {
 
     // simone
     public void chooseSurprise() {
-        final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
-        this.mappa.get(method).run();
-        // this.deleteRandomBricks();
+        //final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
+        //this.mappa.get(method).run();
+        this.reduceSizePad();
     }
 
     /*
