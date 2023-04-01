@@ -97,9 +97,10 @@ public interface Model {
   void updatePoints(String name, String passWord);
 
   /**
+   * method used to know the y of the rows of bricks.
    * 
-   * @param x
-   * @return
+   * @param x number of row
+   * @return y of the row
    */
   Double getRow(Double x);
 
