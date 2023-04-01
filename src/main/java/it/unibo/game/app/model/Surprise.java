@@ -33,11 +33,12 @@ public class Surprise {
   private final static int CHANGE_ROW = 11;
   private final static int CHANGE_HARD = 12;
   private final static int NUM_BALLS = 1;
-  private final static int PERCENTUAL = 40;
+  private final static int PERCENTUAL = 30;
 
   private Map<Integer, Runnable> mappa;
   private Random random = new Random();
   private Level level;
+  private boolean padModified = false;
 
   public Surprise(Level level) {
     this.level = level;
@@ -128,10 +129,23 @@ public class Surprise {
 
   // edoardo
   private void reduceSizePad() {
-    var pad = level.getRound().getPad();
-    pad.getDimension().increaseWidth((pad.getDimension().getWidth() * this.delta()) * -1);
-    System.out
-        .println("reduce size pad: " + pad.getDimension().getWidth() * this.delta());
+    if (!padModified) {
+      padModified = true;
+      var pad = level.getRound().getPad();
+      pad.getDimension()
+          .increaseWidth((pad.getDimension().getWidth() * this.delta()) * -1);
+
+      Timer tm = new Timer();
+      TimerTask tmTask = new TimerTask() {
+
+        @Override
+        public void run() {
+          pad.setDimension(SizeCalculation.getPadDim());
+          padModified = false;
+        }
+      };
+      tm.schedule(tmTask, 10000);
+    }
   }
 
   private double delta() {
@@ -140,10 +154,22 @@ public class Surprise {
 
   // edoardo
   private void enlargeSizePad() {
-    var pad = level.getRound().getPad();
-    pad.getDimension().increaseWidth(pad.getDimension().getWidth() * (this.delta() + 1));
-    System.out.println(
-        "enlarge size pad: " + pad.getDimension().getWidth() * (this.delta() + 1));
+    if (!padModified) {
+      padModified = true;
+      var pad = level.getRound().getPad();
+      pad.getDimension()
+          .increaseWidth(pad.getDimension().getWidth() * (this.delta() + 1));
+      Timer tm = new Timer();
+      TimerTask tmTask = new TimerTask() {
+
+        @Override
+        public void run() {
+          padModified = false;
+          pad.setDimension(SizeCalculation.getPadDim());
+        }
+      };
+      tm.schedule(tmTask, 10000);
+    }
   }
 
   // virginia
@@ -245,7 +271,7 @@ public class Surprise {
   public void chooseSurprise() {
     final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
     this.mappa.get(method).run();
-    // this.deleteRandomBricks();
+    
   }
 
   /*
