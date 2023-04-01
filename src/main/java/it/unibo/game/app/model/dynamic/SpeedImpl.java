@@ -58,15 +58,30 @@ public class SpeedImpl implements Speed {
   /**
    * {@inheritDoc}
    */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + (((Double) x == null) ? 0 : ((Double) x).hashCode());
+    result = prime * result + (((Double) y == null) ? 0 : ((Double) y).hashCode());
+    return result;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   @SuppressWarnings("rawtypes")
   @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
+  public boolean equals(final Object obj) {
+    if (this == obj) {
       return true;
-    if (obj == null)
+    }
+    if (obj == null) {
       return false;
-    if (getClass() != obj.getClass())
+    }
+    if (getClass() != obj.getClass()) {
       return false;
+    }
     Speed other = (Speed) obj;
     if (other.getX() == x && other.getY() == y) {
       return true;
