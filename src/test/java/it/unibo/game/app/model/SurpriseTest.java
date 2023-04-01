@@ -76,7 +76,7 @@ public class SurpriseTest {
       }
     };
     timer.schedule(task, 10000);
-    
+
   }
 
   @Test
@@ -108,8 +108,10 @@ public class SurpriseTest {
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l1 = new FirstLevel();
     Level l2 = new SecondLevel();
+    Level l3 = new ThirdLevel();
     testAddHardRow(l1);
     testAddHardRow(l2);
+    testAddHardRow(l3);
   }
 
   void testAddHardRow(Level l) throws NoSuchMethodException, SecurityException,
@@ -122,9 +124,9 @@ public class SurpriseTest {
 
     reverse.addAll(l.getRound().getBrick());
     Collections.reverse(reverse);
-    Double y = reverse.get(reverse.size() - 1).getPos().getY();
+    Double y = reverse.get(0).getPos().getY();
     for (Brick brick : reverse) {
-      if (brick.getPos().getY() == y) {
+      if (brick.getPos().getY().equals(y)) {
         ++count;
       }
     }
@@ -132,6 +134,8 @@ public class SurpriseTest {
     method.invoke(surprise);
     if (l.getId() == 2) {
       assertEquals(oldSize + count + 2, l.getRound().getBrick().size());
+    } else if (l.getId() == 1) {
+      assertEquals(oldSize + count, l.getRound().getBrick().size());
     } else {
       assertEquals(oldSize + count, l.getRound().getBrick().size());
     }
