@@ -66,7 +66,7 @@ public class ModelImpl implements Model {
 
 	@Override
 	public Pair<Double, Double> getPad() {
-		return this.level.getRound().getPosPad();
+		return this.level.getRound().getPad().getPos();
 	}
 
 	@Override

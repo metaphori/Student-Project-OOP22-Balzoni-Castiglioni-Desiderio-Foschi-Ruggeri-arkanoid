@@ -67,12 +67,6 @@ public interface Round {
 
 	/**
 	 * 
-	 * @return pad position.
-	 */
-	Pair<Double, Double> getPosPad();
-
-	/**
-	 * 
 	 * @return pad.
 	 */
 	MovingObject getPad();
