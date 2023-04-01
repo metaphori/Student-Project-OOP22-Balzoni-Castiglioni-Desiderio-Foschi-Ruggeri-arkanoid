@@ -27,7 +27,7 @@ public abstract class AbstractView extends JPanel {
   private final int sizeTitle = 60;
 
   /**
-   * constructor of the class.
+   * Constructor of the class.
    * 
    * @param uiCtrl is the controller that will change the views
    */
