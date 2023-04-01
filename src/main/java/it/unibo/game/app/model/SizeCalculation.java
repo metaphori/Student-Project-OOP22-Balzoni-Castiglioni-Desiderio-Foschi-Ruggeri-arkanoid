@@ -90,7 +90,7 @@ public class SizeCalculation {
 	 * 
 	 * @return the dimension of pad method that calculates the size of the pad
 	 */
-	public Dimension getPadDim() {
+	public static Dimension getPadDim() {
 		return new DimensionImpl(WorldHeight / 60, WorldWidth / 4);
 	}
 
