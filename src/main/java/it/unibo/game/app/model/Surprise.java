@@ -32,7 +32,7 @@ public class Surprise {
   private final static int ADD_BALLS = 10;
   private final static int CHANGE_ROW = 11;
   private final static int CHANGE_HARD = 12;
-  private final static int NUM_BALLS = 3;
+  private final static int NUM_BALLS = 1;
   private final static int PERCENTUAL = 40;
 
   private Map<Integer, Runnable> mappa;
@@ -253,7 +253,7 @@ public class Surprise {
    * random
    */
   public void bonus() {
-    this.decreaseBallSpeed();
+    this.addBalls();
   }
 
 }
