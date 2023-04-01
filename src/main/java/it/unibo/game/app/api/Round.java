@@ -10,81 +10,78 @@ import it.unibo.game.app.model.SizeCalculation;
  */
 public interface Round {
 
-	/**
-	 * 
-	 * @return object of class SizeCalculation.
-	 */
-	SizeCalculation getSizeCalc();
+  /**
+   * 
+   * @return object of class SizeCalculation.
+   */
+  SizeCalculation getSizeCalc();
 
-	/**
-	 * 
-	 * @return number of normal bricks.
-	 */
-	int getNumBrick();
+  /**
+   * 
+   * @return number of normal bricks.
+   */
+  int getNumBrick();
 
-	/**
-	 * 
-	 * @return number of brick surprise.
-	 */
-	int getNumSur();
+  /**
+   * 
+   * @return number of brick surprise.
+   */
+  int getNumSur();
 
-	/**
-	 * returns the ball to its initial position.
-	 */
-	void restart();
+  /**
+   * returns the ball to its initial position.
+   */
+  void restart();
 
-	/**
-	 * 
-	 * @return list of all bricks.
-	 */
-	List<Brick> getBrick();
-
-	/**
+  /**
+   * 
+   * @return list of all bricks.
+   */
+  List<Brick> getBrick();
+  /**
 	 * method to set ball position.
 	 * 
 	 * @param pos
 	 */
 	void setPosBall(final Pair<Double, Double> pos, int index );
 
-	/**
-	 * method to set pos of pad.
-	 * 
-	 * @param pos
-	 */
-	void setPosPad(Pair<Double, Double> pos);
+  /**
+   * method to set pos of pad.
+   * 
+   * @param pos
+   */
+  void setPosPad(Pair<Double, Double> pos);
 
-	/**
-	 * 
-	 * @return list of surprise balls.
-	 */
-	List<MovingObject> getSurprise();
-
-	/**
+  /**
+   * 
+   * @return list of surprise balls.
+   */
+  List<MovingObject> getSurprise();
+  /**
 	 * 
 	 * @return ball position.
 	 */
-	List<Pair<Double, Double>> getPosBall();
+  List<Pair<Double, Double>> getPosBall();
 
-	/**
-	 * 
-	 * @return pad.
-	 */
-	MovingObject getPad();
-
-	/**
+  /**
+   * 
+   * @return pad.
+   */
+  MovingObject getPad();
+  /**
 	 * 
 	 * @return ball.
 	 */
 	List<MovingObject> getBalls();
 
-	/**
-	 * method to remove a brick when is hitten.
-	 * 
-	 * @param index
-	 */
-	void remove(int index);
-
-  	/**
+  /**
+   * method to remove a brick when is hitten.
+   * 
+   * @param index
+   */
+  void remove(int index);
+  
+  /**
 	 * 
 	 * @return list od extra balls.
 	 */
