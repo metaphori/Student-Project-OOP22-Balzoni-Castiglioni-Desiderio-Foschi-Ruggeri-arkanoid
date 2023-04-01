@@ -62,7 +62,6 @@ public abstract class AbstractView extends JPanel {
        */
       @Override
       public void actionPerformed(final ActionEvent e) {
-        // TODO Auto-generated method stub
         observer.initialView();
       }
 
