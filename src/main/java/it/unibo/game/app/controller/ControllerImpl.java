@@ -1,5 +1,6 @@
 package it.unibo.game.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -79,9 +80,12 @@ public class ControllerImpl implements AppController {
 	}
 
 	@Override
-	public Pair<Double, Double> getBall() {
-		return new Pair<Double, Double>(this.model.getBall().getX() * this.delta().getX(),
-				this.model.getBall().getY() * this.delta().getY());
+	public List<Pair<Double, Double>> getBall() {
+		List<Pair<Double, Double>> list = new ArrayList<>(); 
+		this.model.getBall().stream().forEach(x -> {
+			list.add(new Pair<Double, Double>(x.getX() * this.delta().getX(), x.getY() * this.delta().getY()));
+		});
+		return list;
 	}
 
 	@Override
@@ -119,10 +123,6 @@ public class ControllerImpl implements AppController {
 	public List<Pair<Double, Double>> getSurprise() {
 		return getPairList(this.model.getSurprise());
 	}
-	/*
-	 * public List<Pair<Double, Double>> getNewBalls() { return
-	 * getPairList(this.model.getExtraBalls()); }
-	 */
 
 	private Pair<Double, Double> delta() {
 		return new Pair<Double, Double>(uiContr.windowDim().getX() / this.getWorldDimension().getY(),

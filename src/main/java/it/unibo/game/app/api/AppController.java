@@ -34,7 +34,7 @@ public interface AppController {
 
 	void nextRound();
 
-	Pair<Double, Double> getBall();
+	List<Pair<Double, Double>> getBall();
 
 	Pair<Double, Double> getPad();
 
