@@ -38,12 +38,14 @@ public interface Round {
    * @return list of all bricks.
    */
   List<Brick> getBrick();
+
   /**
-	 * method to set ball position.
-	 * 
-	 * @param pos
-	 */
-	void setPosBall(final Pair<Double, Double> pos, int index );
+   * method to set ball position.
+   * 
+   * @param pos
+   * @param index index of the ball
+   */
+  void setPosBall(Pair<Double, Double> pos, int index);
 
   /**
    * method to set pos of pad.
@@ -57,10 +59,11 @@ public interface Round {
    * @return list of surprise balls.
    */
   List<MovingObject> getSurprise();
+
   /**
-	 * 
-	 * @return ball position.
-	 */
+   * 
+   * @return ball position.
+   */
   List<Pair<Double, Double>> getPosBall();
 
   /**
@@ -68,11 +71,12 @@ public interface Round {
    * @return pad.
    */
   MovingObject getPad();
+
   /**
-	 * 
-	 * @return ball.
-	 */
-	List<MovingObject> getBalls();
+   * 
+   * @return ball.
+   */
+  List<MovingObject> getBalls();
 
   /**
    * method to remove a brick when is hitten.
@@ -80,16 +84,16 @@ public interface Round {
    * @param index
    */
   void remove(int index);
-  
+
   /**
-	 * 
-	 * @return list od extra balls.
-	 */
+   * 
+   * @return list od extra balls.
+   */
   List<MovingObject> getExtraBalls();
-	/**
-	 * 
-	 * @return ball position when game starts.
-	 */
-	//Pair<Double, Double> getBallInitialPosition();
+  /**
+   * 
+   * @return ball position when game starts.
+   */
+  // Pair<Double, Double> getBallInitialPosition();
 
 }

@@ -22,40 +22,40 @@ import it.unibo.game.app.model.pad.Pad;
 public abstract class AbstractRound implements Round {
 
   private int numBrick;
-	private int numSurprise;
-	private List<Brick> brick = new ArrayList<>();
+  private int numSurprise;
+  private List<Brick> brick = new ArrayList<>();
   private List<MovingObject> balls = new ArrayList<>();
-	private List<MovingObject> extraBalls = new ArrayList<>();
-	private MovingObject pad;
-	private SizeCalculation sizeC;
-	// private final Pair<Double, Double> ballInitialPos;
-	private List<MovingObject> surprise = new ArrayList<>();
+  private List<MovingObject> extraBalls = new ArrayList<>();
+  private MovingObject pad;
+  private SizeCalculation sizeC;
+  // private final Pair<Double, Double> ballInitialPos;
+  private List<MovingObject> surprise = new ArrayList<>();
 
-	/**
-	 * constructor of the class.
-	 * 
-	 * @param numB number of normal bricks
-	 * @param numS number of surprise bricks
-	 * @param size objects that contains information of where collocate bricks
-	 */
-	public AbstractRound(final int numB, final int numS, final SizeCalculation size) {
-		this.numBrick = numB;
-		this.numSurprise = numS;
-		this.sizeC = size;
-		pad = new Pad(size.getPadDim());
+  /**
+   * constructor of the class.
+   * 
+   * @param numB number of normal bricks
+   * @param numS number of surprise bricks
+   * @param size objects that contains information of where collocate bricks
+   */
+  public AbstractRound(final int numB, final int numS, final SizeCalculation size) {
+    this.numBrick = numB;
+    this.numSurprise = numS;
+    this.sizeC = size;
+    pad = new Pad(size.getPadDim());
     balls.add(new Ball(size.getBallDim()));
-	}
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
+  /**
+   * {@inheritDoc}
+   */
   @Override
-	public void restart() {
+  public void restart() {
     MovingObject ball = new Ball(sizeC.getBallDim());
     ball.getPhysics().getDir().resetDirection();
-		this.balls.add(ball);
-		this.surprise.clear();
-	}
+    this.balls.add(ball);
+    this.surprise.clear();
+  }
 
   /**
    * {@inheritDoc}
@@ -66,13 +66,13 @@ public abstract class AbstractRound implements Round {
   }
 
   /**
-	 * method to add a brick in the list.
-	 * 
-	 * @param brick that we want to add
-	 */
-	protected void addBrick(final Brick brick) {
-		this.brick.add(brick);
-	}
+   * method to add a brick in the list.
+   * 
+   * @param brick that we want to add
+   */
+  protected void addBrick(final Brick brick) {
+    this.brick.add(brick);
+  }
 
   /**
    * method that add a surprise a new ball to the list.
@@ -131,13 +131,14 @@ public abstract class AbstractRound implements Round {
       return false;
     }
   }
+
   /**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setPosBall(final Pair<Double, Double> pos,final int index ) {
-		this.balls.get(index).setPos(pos);
-	}
+   * {@inheritDoc}
+   */
+  @Override
+  public void setPosBall(final Pair<Double, Double> pos, final int index) {
+    this.balls.get(index).setPos(pos);
+  }
 
   /**
    * {@inheritDoc}
@@ -147,13 +148,13 @@ public abstract class AbstractRound implements Round {
     pad.setPos(pos);
   }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public List<Pair<Double, Double>> getPosBall() {
-		return this.balls.stream().map(ball -> ball.getPos()).collect(Collectors.toList());
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<Pair<Double, Double>> getPosBall() {
+    return this.balls.stream().map(ball -> ball.getPos()).collect(Collectors.toList());
+  }
 
   /**
    * {@inheritDoc}
@@ -163,13 +164,13 @@ public abstract class AbstractRound implements Round {
     return this.pad;
   }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public List<MovingObject> getBalls() {
-		return this.balls;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<MovingObject> getBalls() {
+    return this.balls;
+  }
 
   /**
    * {@inheritDoc}
@@ -185,28 +186,30 @@ public abstract class AbstractRound implements Round {
       this.brick.remove(index);
     }
   }
+
   /**
-	 * method that sets features of a new BonusBall.
-	 * 
-	 * @param brick the size of the brick is used to set the initial position of the
-	 *              ball
-	 * @return the ball to add to the list of bonus balls
-	 */
-	private MovingObject addSurprise(final Brick brick) {
-		MovingObject b = new Ball(sizeC.getBallDim());
-		b.setPos(new Pair<>(brick.getPos().getX() + brick.getBrickW() / 2,
-				brick.getPos().getY() + brick.getBrickH()));
-		b.setSpeed(new SpeedImpl(0, 1));
-		return b;
-	}
+   * method that sets features of a new BonusBall.
+   * 
+   * @param brick the size of the brick is used to set the initial position of the
+   *              ball
+   * @return the ball to add to the list of bonus balls
+   */
+  private MovingObject addSurprise(final Brick brick) {
+    MovingObject b = new Ball(sizeC.getBallDim());
+    b.setPos(new Pair<>(brick.getPos().getX() + brick.getBrickW() / 2,
+        brick.getPos().getY() + brick.getBrickH()));
+    b.setSpeed(new SpeedImpl(0, 1));
+    return b;
+  }
+
   /**
-	 * method that returns list of extra balls.
-	 * 
-	 * @return
-	 */
-  public List<MovingObject> getExtraBalls(){
-		return this.extraBalls;
-	}
+   * {@inheritDoc}
+   * 
+   * @return returns list of extra balls.
+   */
+  public List<MovingObject> getExtraBalls() {
+    return this.extraBalls;
+  }
 
   /**
    * method to set position of bricks.
