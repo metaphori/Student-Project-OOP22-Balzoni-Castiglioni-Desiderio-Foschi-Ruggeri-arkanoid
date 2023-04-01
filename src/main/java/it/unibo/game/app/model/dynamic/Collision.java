@@ -5,11 +5,11 @@ import java.util.Optional;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.api.MovingObject;
 import it.unibo.game.app.api.BoundingBox.Corner;
 import it.unibo.game.app.api.BoundingBox.Side;
-import it.unibo.game.app.model.ball.*;
-import it.unibo.game.app.model.pad.Pad;
-import it.unibo.game.app.model.BoundingBoxImpl;
+import it.unibo.game.app.model.CircleBoundingBox;
+import it.unibo.game.app.model.RectBoundingBox;
 
 public class Collision {
     private Level level;
@@ -17,21 +17,20 @@ public class Collision {
     public Collision(Level lev){
         this.level = lev;
     }
-    public void CollideWithEdges(Ball b, Double h, Double w){
-        var ballBox = new BoundingBoxImpl(b);
-        if(ballBox.getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 ||ballBox.getBox().get(Corner.RIGHT_DOWN).getX() >= w-1){
+    public void CollideWithEdges(MovingObject b, Double h, Double w){
+        b.setBoundingBox(new CircleBoundingBox(b));
+        if(b.getBoundingBox().getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 ||b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w-7.5){
             b.getPhysics().changeDirection(Side.LEFT_RIGHT);
         }
-         if(ballBox.getBox().get(Corner.LEFT_UP).getY() <= 0.5 ){
+         if(b.getBoundingBox().getBox().get(Corner.LEFT_UP).getY() <= 0.5 ){
             b.getPhysics().changeDirection(Side.UP_DOWN);
         }
     }
 
-    public Optional<Integer> collideWithBrick(Ball b){
-        var ballBox = new BoundingBoxImpl(b);
+    public Optional<Integer> collideWithBrick(MovingObject b){
+			b.setBoundingBox(new CircleBoundingBox(b));
         for (Brick obj : level.getRound().getBrick()) {
-           var box = new BoundingBoxImpl(obj); 
-           var opt = ballBox.collideWith(box);
+           var opt = b.getBoundingBox().collideWith(obj.getBoundingBox());
             
             if(opt.isPresent()){
                 if(obj.getType()==BrickType.NORMAL){
@@ -46,10 +45,10 @@ public class Collision {
         return Optional.empty();
     }
 
-    public boolean CollideWithPad (Ball b, Pad p){
-        var ballBox = new BoundingBoxImpl(b);
-        var padBox = new BoundingBoxImpl(p);
-        if(ballBox.collideWith(padBox).equals(Optional.of(Side.UP_DOWN))) {
+    public boolean CollideWithPad (MovingObject b, MovingObject p){
+			b.setBoundingBox(new CircleBoundingBox(b));
+        p.setBoundingBox(new RectBoundingBox(p));
+        if(b.getBoundingBox().collideWith(p.getBoundingBox()).equals(Optional.of(Side.UP_DOWN))) {
 
             b.getPhysics().changeDirection(Side.UP_DOWN);
             return true;

@@ -1,57 +1,58 @@
 package it.unibo.game.app.api;
+
 import java.util.*;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.model.ball.Ball;
 
-public interface Model{
-    
-    void setController(AppController c);
+public interface Model {
 
-    Map<Pair<Double,Double>, Optional<Integer>> getBrickList();
+	void setController(AppController c);
 
-    void chooseLevel(int numLevel);
+	Map<Pair<Double, Double>, Optional<Integer>> getBrickList();
 
-    Pair<Double,Double> getBrickDimension();
+	void chooseLevel(int numLevel);
 
-    Pair<Double,Double> getBall();
+	Pair<Double, Double> getBrickDimension();
 
-    Pair<Double,Double> getPad();
-    
-    void setPadPos(Pair<Double, Double> pos);
+	Pair<Double, Double> getBall();
 
-    void nextRound();
+	Pair<Double, Double> getPad();
 
-    Double getPadWight();
+	void setPadPos(Pair<Double, Double> pos);
 
-    Double getPadHeight();
+	void nextRound();
 
-    Double getRBall();
+	Double getPadWight();
 
-    void updatePoints(String name, String passWord);
+	Double getPadHeight();
 
-    Double getRow(Double x);
+	Double getRBall();
 
-    Pair<Double,Double> getWorldDim();
+	void updatePoints(String name, String passWord);
 
-    void update(long dt);
+	Double getRow(Double x);
 
-    int getScore();
+	Pair<Double, Double> getWorldDim();
 
-    List<Ball> getSurprise();
+	void update(long dt);
 
-    List<Pair<String,Integer>> getBestFive();
+	int getScore();
 
-    boolean checkRound();
+	List<MovingObject> getSurprise();
 
-    boolean updateLife();
+	List<Pair<String, Integer>> getBestFive();
 
-    //boolean isLevelFinished();
+	boolean checkRound();
 
-    int getLife();
+	boolean updateLife();
 
-    void restoreInitialPosition();
+	// boolean isLevelFinished();
 
-    List<Ball> getExtraBalls();
+	int getLife();
+
+	void restoreInitialPosition();
+
+	// List<Ball> getExtraBalls();
 
 }

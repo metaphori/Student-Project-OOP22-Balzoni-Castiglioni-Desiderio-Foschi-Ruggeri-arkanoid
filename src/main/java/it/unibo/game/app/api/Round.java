@@ -3,42 +3,97 @@ package it.unibo.game.app.api;
 import java.util.List;
 
 import it.unibo.game.Pair;
-import it.unibo.game.app.model.*;
-import it.unibo.game.app.model.ball.Ball;
-import it.unibo.game.app.model.pad.Pad;
+import it.unibo.game.app.model.SizeCalculation;
 
-public interface Round{
+/**
+ * interface that contains useful methods to manage different rounds in a game.
+ */
+public interface Round {
 
-    int getJump ();
+	/**
+	 * 
+	 * @return object of class SizeCalculation.
+	 */
+	SizeCalculation getSizeCalc();
 
-    SizeCalculation getSizeCalc();
+	/**
+	 * 
+	 * @return number of normal bricks.
+	 */
+	int getNumBrick();
 
-    int getNumBrick ();
+	/**
+	 * 
+	 * @return number of brick surprise.
+	 */
+	int getNumSur();
 
-    int getNumSur ();
+	/**
+	 * returns the ball to its initial position.
+	 */
+	void restart();
 
-    List<Brick> getBrick ();
+	/**
+	 * 
+	 * @return list of all bricks.
+	 */
+	List<Brick> getBrick();
 
-    void setPosBall (Pair<Double,Double> pos);
+	/**
+	 * method to set ball position.
+	 * 
+	 * @param pos
+	 */
+	void setPosBall(Pair<Double, Double> pos);
 
-    void setPosPad (Pair<Double,Double> pos);
+	/**
+	 * method to set pos of pad.
+	 * 
+	 * @param pos
+	 */
+	void setPosPad(Pair<Double, Double> pos);
 
-    List<Ball> getSurprise();
+	/**
+	 * 
+	 * @return list of surprise balls.
+	 */
+	List<MovingObject> getSurprise();
 
-    Pair<Double,Double> getPosBall();
+	/**
+	 * 
+	 * @return ball position.
+	 */
+	Pair<Double, Double> getPosBall();
 
-    Pair<Double,Double> getPosPad();
+	/**
+	 * 
+	 * @return pad position.
+	 */
+	Pair<Double, Double> getPosPad();
 
-    Pad getPad();
+	/**
+	 * 
+	 * @return pad.
+	 */
+	MovingObject getPad();
 
-    Ball getBall();
+	/**
+	 * 
+	 * @return ball.
+	 */
+	MovingObject getBall();
 
-    void remove(int index);
+	/**
+	 * method to remove a brick when is hitten.
+	 * 
+	 * @param index
+	 */
+	void remove(int index);
 
-    Pair<Double, Double> getBallInitialPosition();
-
-    List<Ball> getExtraBalls ();
-
-    void addBalls(List<Ball> b);
+	/**
+	 * 
+	 * @return ball position when game starts.
+	 */
+	//Pair<Double, Double> getBallInitialPosition();
 
 }

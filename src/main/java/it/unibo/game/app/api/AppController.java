@@ -5,78 +5,79 @@ import java.util.*;
 import it.unibo.game.Pair;
 
 public interface AppController {
-    
-    /*chiama il metodo della view che mostra la  
-     * situazione di gioco
-    */
 
-    void play();
+	/*
+	 * chiama il metodo della view che mostra la situazione di gioco
+	 */
 
-    /*richiamato dalla view per mettere
-    in pausa il gioco
-     */
-    void onPause();
+	void play();
 
-    /*termina l'applicazione */
-    void quit();
+	/*
+	 * richiamato dalla view per mettere in pausa il gioco
+	 */
+	void onPause();
 
-    void setView();
+	/* termina l'applicazione */
+	void quit();
 
-    void setModel();
+	void setView();
 
-    Map<Pair<Double, Double>, Optional<Integer>> getBrickList();
+	void setModel();
 
-    void chooseLevel(int numLevel);
+	Map<Pair<Double, Double>, Optional<Integer>> getBrickList();
 
-    Pair<Double, Double> getBrickDimension();
+	void chooseLevel(int numLevel);
 
-    Pair<Double, Double> getWorldDimension();
+	Pair<Double, Double> getBrickDimension();
 
-    void nextRound();
+	Pair<Double, Double> getWorldDimension();
 
-    Pair<Double, Double> getBall();
+	void nextRound();
 
-    Pair<Double, Double> getPad();
-    void changePadPos(Pair<Double, Double> newPos);
-    
-    Double getPadWight();
-    
-    Double getPadHeight();
+	Pair<Double, Double> getBall();
 
-    Double getRBall();
+	Pair<Double, Double> getPad();
 
-    void rPaint();
-    
-    Double getRow(Double x);
-    
-    List<Pair<String,Integer>> getBestFive();
+	void changePadPos(Pair<Double, Double> newPos);
 
-    List<Pair<Double,Double>> getSurprise();
+	Double getPadWight();
 
-    List<Pair<Double, Double>> getNewBalls();
+	Double getPadHeight();
 
-    int getScore();
+	Double getRBall();
 
-    int getLife();
+	void rPaint();
 
-    void setGameEngine();
+	Double getRow(Double x);
 
-    void updatePoints(String name, String passWord);
+	List<Pair<String, Integer>> getBestFive();
 
-    void update(long dt);
+	List<Pair<Double, Double>> getSurprise();
 
-    void setGameOver();
+	// List<Pair<Double, Double>> getNewBalls();
 
-    boolean updateLife();
+	int getScore();
 
-    void restoreBall();
+	int getLife();
 
-    void mvPadR();
+	void setGameEngine();
 
-    void mvPadL();
+	void updatePoints(String name, String passWord);
 
-    boolean checkRound();
+	void update(long dt);
 
-    void setVictory();
+	void setGameOver();
+
+	boolean updateLife();
+
+	void restoreBall();
+
+	void mvPadR();
+
+	void mvPadL();
+
+	boolean checkRound();
+
+	void setVictory();
 
 }

@@ -5,6 +5,7 @@ import java.util.Random;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.BrickType;
+import it.unibo.game.app.model.DimensionImpl;
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.brick.NormalBrick;
 
@@ -18,10 +19,12 @@ public class RoundMedium extends AbstractRound {
     private Double startX;
     private Double stopY;
     private Double stopX; 
+		private int jump;
 
 
     public RoundMedium(int jump, int numB, int numS, int numHard, SizeCalculation sizeC ) {
-        super(jump, numB, numS, sizeC);
+        super(numB, numS, sizeC);
+				this.jump = jump;
         this.numHard = numHard;  
         this.startY = sizeC.getStart().getY() + (this.getSizeCalc().getBrickDim().getY() / 2) - 5; /*Modificata l'inizio per lasciare spazio dal muro ai blocchi */
         this.startX = sizeC.getStart().getX();
@@ -30,7 +33,7 @@ public class RoundMedium extends AbstractRound {
         this.setPosBrick();
     }
 
-    public boolean setBrickHard () {
+    private boolean setBrickHard () {
         Random random = new Random();
         int idx = random.nextInt(this.getBrick().size());
         
@@ -48,10 +51,10 @@ public class RoundMedium extends AbstractRound {
         for (Double i = this.startX; i < this.stopX; i = i + this.getSizeCalc().getBrickDim().getX()) {
             countBrick = 0;
             for (Double j = this.startY; j <= this.stopY; j = j + this.getSizeCalc().getBrickDim().getY()) {
-                if (countBrick != this.getJump()) {
-                    NormalBrick b = new NormalBrick(BrickType.NORMAL, this.getSizeCalc().getBrickDim().getY(), this.getSizeCalc().getBrickDim().getX(), 1);
+                if (countBrick != this.jump) {
+                    NormalBrick b = new NormalBrick(BrickType.NORMAL, new DimensionImpl(this.getSizeCalc().getBrickDim().getX(),this.getSizeCalc().getBrickDim().getY()), new Pair<>(j, i) , 1);
                     b.setPos(new Pair<Double,Double>(j, i));
-                    super.brick.add(b);
+                    super.addBrick(b);
                     countBrick++;
                 } else {
                     countBrick = 0;

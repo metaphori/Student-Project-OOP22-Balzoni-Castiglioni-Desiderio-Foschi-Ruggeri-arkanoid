@@ -6,71 +6,130 @@ import javax.swing.JPanel;
 
 import it.unibo.game.app.view.jswing.api.UIController;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/*Implements a common JPanel for Pause, GameOver and Victory */
-/* 
- * 
-*/
-public abstract class AbstractView extends JPanel{
-    protected UIController observer;
-    protected JLabel titleLabel;
-    protected JPanel buttonsPanel;
-    protected JButton quitBtn;
-    protected JButton menuBtn;
-    protected JButton saveBtn;
+/**
+ * Implements a common JPanel for Pause, GameOver and Victory.
+ */
+public abstract class AbstractView extends JPanel {
+  private UIController observer;
+  private JLabel titleLabel;
+  private JPanel buttonsPanel;
+  private JButton quitBtn;
+  private JButton menuBtn;
+  private JButton saveBtn;
+  private final int sizeBtn = 30;
+  private final int sizeTitle = 60;
 
-    public AbstractView(UIControllerImpl uiCtrl) {
-        this.observer = uiCtrl;
-        titleLabel = new JLabel("Title");
-        quitBtn = new CustomBtn(30,"Quit");
-        menuBtn = new CustomBtn(30,"Start Menù");
-        saveBtn = new CustomBtn(30, "Save");
-        JPanel titlePanel = new JPanel();
-        buttonsPanel = new JPanel();
+  /**
+   * Constructor of the class.
+   * 
+   * @param uiCtrl is the controller that will change the views
+   */
+  public AbstractView(final UIControllerImpl uiCtrl) {
+    this.observer = uiCtrl;
+    this.titleLabel = new JLabel();
+    this.saveBtn = new CustomBtn(sizeBtn, "Save");
+    this.menuBtn = new CustomBtn(sizeBtn, "Start Menu");
+    this.quitBtn = new CustomBtn(sizeBtn, "Quit");
 
-        this.setLayout(new BorderLayout());
-        buttonsPanel.setLayout(new GridLayout(2,1,0,1));
-        titleLabel.setFont(new Font("Serif",  Font.BOLD, 60));
-        titleLabel.setForeground(Color.WHITE);
+    JPanel titlePanel = new JPanel();
+    buttonsPanel = new JPanel();
 
-        titlePanel.add(titleLabel);
+    this.setLayout(new BorderLayout());
+    buttonsPanel.setLayout(new GridLayout(2, 1, 0, 1));
+    titleLabel.setFont(new Font("Serif", Font.BOLD, sizeTitle));
+    titleLabel.setForeground(Color.WHITE);
 
-        titlePanel.setBackground(Color.BLACK);
-        buttonsPanel.setBackground(Color.BLACK);
-        this.setBackground(Color.BLACK);
+    titlePanel.add(titleLabel);
 
-        this.add(titlePanel, BorderLayout.NORTH);
-        this.add(buttonsPanel, BorderLayout.SOUTH);
+    titlePanel.setBackground(Color.BLACK);
+    buttonsPanel.setBackground(Color.BLACK);
+    this.setBackground(Color.BLACK);
 
-        menuBtn.addActionListener(new ActionListener() {
+    this.add(titlePanel, BorderLayout.NORTH);
+    this.add(buttonsPanel, BorderLayout.SOUTH);
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                uiCtrl.initialView();
-            }
+    this.menuBtn.addActionListener(new ActionListener() {
 
-        });
-        quitBtn.addActionListener(new ActionListener() {
+      /**
+       * {@inheritDoc}
+       */
+      @Override
+      public void actionPerformed(final ActionEvent e) {
+        observer.initialView();
+      }
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-            
-        });
+    });
+    this.quitBtn.addActionListener(new ActionListener() {
 
-        saveBtn.addActionListener(new ActionListener() {
+      /**
+       * {@inheritDoc}
+       */
+      @Override
+      public void actionPerformed(final ActionEvent e) {
+        System.exit(0);
+      }
 
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                new SaveScore(uiCtrl);
-            }
-            
-        });
-    }
-    
+    });
+
+    this.saveBtn.addActionListener(new ActionListener() {
+
+      /**
+       * {@inheritDoc}
+       */
+      @Override
+      public void actionPerformed(final ActionEvent arg0) {
+        new SaveScore(observer);
+      }
+
+    });
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  protected JLabel getTitle() {
+    return this.titleLabel;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  protected JButton getSaveBtn() {
+    return this.saveBtn;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  protected JButton getQuitBtn() {
+    return this.quitBtn;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  protected JButton getMenuBtn() {
+    return this.menuBtn;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  protected JPanel getButtonsPanel() {
+    return this.buttonsPanel;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  protected int getSizeBtn() {
+    return this.sizeBtn;
+  }
 }
