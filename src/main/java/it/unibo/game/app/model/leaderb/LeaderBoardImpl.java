@@ -63,6 +63,16 @@ public class LeaderBoardImpl implements Serializable, LeaderBoard {
    * {@inheritDoc}
    */
   @Override
+  public Optional<Integer> getPoints(final String usr, final String pass) {
+    return playersFromFile().stream()
+        .filter(x -> x.getName().equals(usr) && x.getPassWord().equals(pass))
+        .map(x -> x.getPoints()).findFirst();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public List<Pair<String, Integer>> getBestFive() {
     List<User> players = playersFromFile();
     if (players.size() > MAX) {
