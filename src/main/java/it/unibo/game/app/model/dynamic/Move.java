@@ -39,7 +39,6 @@ public class Move {
         var newPos = new Pair<Double,Double> (ball.getPos().getX() +ball.getPhysics().getDir().getDirection().getX() * ball.getSpeed().getX(),
                                                  ball.getPos().getY() + ball.getPhysics().getDir().getDirection().getY() * ball.getSpeed().getY());
         ball.setPos(newPos);
-        this.checkSurprise();
     }
 
     private void checkSurprise(){
@@ -70,6 +69,7 @@ public class Move {
 				for (var ball : this.l.getRound().getBalls()){
 					nextBall(dt, ball);
 				}
+        this.checkSurprise();
 				this.l.getRound().getBalls().addAll(this.l.getRound().getExtraBalls());
 				this.l.getRound().getExtraBalls().clear();
     }
