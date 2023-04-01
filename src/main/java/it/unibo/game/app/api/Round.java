@@ -10,90 +10,90 @@ import it.unibo.game.app.model.SizeCalculation;
  */
 public interface Round {
 
-	/**
-	 * 
-	 * @return object of class SizeCalculation.
-	 */
-	SizeCalculation getSizeCalc();
+  /**
+   * 
+   * @return object of class SizeCalculation.
+   */
+  SizeCalculation getSizeCalc();
 
-	/**
-	 * 
-	 * @return number of normal bricks.
-	 */
-	int getNumBrick();
+  /**
+   * 
+   * @return number of normal bricks.
+   */
+  int getNumBrick();
 
-	/**
-	 * 
-	 * @return number of brick surprise.
-	 */
-	int getNumSur();
+  /**
+   * 
+   * @return number of brick surprise.
+   */
+  int getNumSur();
 
-	/**
-	 * returns the ball to its initial position.
-	 */
-	void restart();
+  /**
+   * returns the ball to its initial position.
+   */
+  void restart();
 
-	/**
-	 * 
-	 * @return list of all bricks.
-	 */
-	List<Brick> getBrick();
+  /**
+   * 
+   * @return list of all bricks.
+   */
+  List<Brick> getBrick();
 
-	/**
-	 * method to set ball position.
-	 * 
-	 * @param pos
-	 */
-	void setPosBall(Pair<Double, Double> pos);
+  /**
+   * method to set ball position.
+   * 
+   * @param pos
+   */
+  void setPosBall(Pair<Double, Double> pos);
 
-	/**
-	 * method to set pos of pad.
-	 * 
-	 * @param pos
-	 */
-	void setPosPad(Pair<Double, Double> pos);
+  /**
+   * method to set pos of pad.
+   * 
+   * @param pos
+   */
+  void setPosPad(Pair<Double, Double> pos);
 
-	/**
-	 * 
-	 * @return list of surprise balls.
-	 */
-	List<MovingObject> getSurprise();
+  /**
+   * 
+   * @return list of surprise balls.
+   */
+  List<MovingObject> getSurprise();
 
-	/**
-	 * 
-	 * @return ball position.
-	 */
-	Pair<Double, Double> getPosBall();
+  /**
+   * 
+   * @return ball position.
+   */
+  Pair<Double, Double> getPosBall();
 
-	/**
-	 * 
-	 * @return pad position.
-	 */
-	Pair<Double, Double> getPosPad();
+  /**
+   * 
+   * @return pad position.
+   */
+  Pair<Double, Double> getPosPad();
 
-	/**
-	 * 
-	 * @return pad.
-	 */
-	MovingObject getPad();
+  /**
+   * 
+   * @return pad.
+   */
+  MovingObject getPad();
 
-	/**
-	 * 
-	 * @return ball.
-	 */
-	MovingObject getBall();
+  /**
+   * 
+   * @return ball.
+   */
+  MovingObject getBall();
 
-	/**
-	 * method to remove a brick when is hitten.
-	 * 
-	 * @param index
-	 */
-	void remove(int index);
+  /**
+   * method to remove a brick when is hitten.
+   * 
+   * @param index
+   */
+  void remove(int index);
 
-	/**
-	 * 
-	 * @return ball position when game starts.
-	 */
-	//Pair<Double, Double> getBallInitialPosition();
+  /**
+   * 
+   * @return ball position when game starts.
+   */
+  // Pair<Double, Double> getBallInitialPosition();
 
 }
