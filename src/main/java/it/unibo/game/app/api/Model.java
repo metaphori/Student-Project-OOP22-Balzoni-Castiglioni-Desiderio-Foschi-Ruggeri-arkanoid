@@ -15,7 +15,7 @@ public interface Model {
 
 	Pair<Double, Double> getBrickDimension();
 
-	Pair<Double, Double> getBall();
+	List<Pair<Double, Double>> getBall();
 
 	Pair<Double, Double> getPad();
 

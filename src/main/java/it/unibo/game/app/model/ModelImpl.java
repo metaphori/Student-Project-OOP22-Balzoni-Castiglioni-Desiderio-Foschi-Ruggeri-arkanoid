@@ -60,7 +60,7 @@ public class ModelImpl implements Model {
 	}
 
 	@Override
-	public Pair<Double, Double> getBall() {
+	public List<Pair<Double, Double>> getBall() {
 		return this.level.getRound().getPosBall();
 	}
 
@@ -89,10 +89,9 @@ public class ModelImpl implements Model {
 	}
 
 	@Override
-	public Double getRBall() {
-		return this.level.getRound().getBall().getDimension().getHeight();
-	}
-
+  public Double getRBall() {
+    return this.level.getRound().getBalls().get(0).getDimension().getHeight();
+  }
 	@Override
 	public Double getRow(Double x) {
 		return this.level.getRound().getSizeCalc().getRowCordinate(x);
@@ -154,15 +153,9 @@ public class ModelImpl implements Model {
 		return false;
 	}
 
-	// @Override
-	// public boolean isLevelFinished() {
-	// return this.level.getNumRoundPassed() > 2 ? true : false;
-	// }
-
 	@Override
 	public void restoreInitialPosition() {
-		this.level.getRound().restart();//getBall().setPos(level.getRound().getBallInitialPosition());
-		//this.level.getRound().getBall().getPhysics().getDir().resetDirection();
+		this.level.getRound().restart();
 	}
 
 	public List<MovingObject> getSurprise() {
@@ -173,9 +166,4 @@ public class ModelImpl implements Model {
 	public int getLife() {
 		return this.level.getLife();
 	}
-
-	/*
-	 * public List<Ball> getExtraBalls(){ return
-	 * this.level.getRound().getExtraBalls(); }
-	 */
 }
