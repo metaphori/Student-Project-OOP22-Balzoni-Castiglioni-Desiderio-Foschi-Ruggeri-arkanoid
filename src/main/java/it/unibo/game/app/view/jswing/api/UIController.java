@@ -25,7 +25,6 @@ public interface UIController {
 
 	void set(AppController control);
 
-	// void setController(AppController observer);
 	void initialView();
 
 	void pauseMenu();
@@ -46,12 +45,11 @@ public interface UIController {
 
 	Pair<Double, Double> getDimensionBrick();
 
-	Pair<Double, Double> getBall();
+	List<Pair<Double, Double>> getBall();
 
 	Pair<Double, Double> getPadPos();
 
 	List<Pair<Double, Double>> getSurprise();
-	// List<Pair<Double, Double>> getExtraBalls();
 
 	Double getPadWight();
 
