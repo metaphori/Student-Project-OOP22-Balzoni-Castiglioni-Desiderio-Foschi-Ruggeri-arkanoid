@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.api.Speed;
+import it.unibo.game.app.model.dynamic.SpeedImpl;
 import it.unibo.game.app.model.levels.FirstLevel;
 import it.unibo.game.app.model.levels.SecondLevel;
 import it.unibo.game.app.model.levels.ThirdLevel;
@@ -131,4 +133,39 @@ public class SurpriseTest {
         l.getRound().getBrick().get(l.getRound().getBrick().size() - 1).getPos().getX(),
         reverse.get(0).getPos().getX());
   }
+
+  @Test
+  void testIncreaseBallSpeed() throws IllegalAccessException, IllegalArgumentException,
+      InvocationTargetException, NoSuchMethodException, SecurityException {
+    Level level = new ThirdLevel();
+    Surprise surprise = new Surprise(level);
+    Speed initial = new SpeedImpl(level.getRound().getBall().getSpeed().getX(),
+        level.getRound().getBall().getSpeed().getY());
+    int num = 10;
+    Method method = Surprise.class.getDeclaredMethod("increaseBallSpeed");
+    method.setAccessible(true);
+    for (int i = 0; i < num; i++) {
+      method.invoke(surprise);
+      initial.sum(new SpeedImpl(0.5, 0.2));
+      assertEquals(level.getRound().getBall().getSpeed(), initial);
+    }
+  }
+
+  @Test
+  void testDecreaseBallSpeed() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level level = new ThirdLevel();
+    Surprise surprise = new Surprise(level);
+    Speed initial = new SpeedImpl(level.getRound().getBall().getSpeed().getX(),
+        level.getRound().getBall().getSpeed().getY());
+    int num = 10;
+    Method method = Surprise.class.getDeclaredMethod("decreaseBallSpeed");
+    method.setAccessible(true);
+    for (int i = 0; i < num; i++) {
+      method.invoke(surprise);
+      initial.sum(new SpeedImpl(-0.5, -0.2));
+      assertEquals(level.getRound().getBall().getSpeed(), initial);
+    }
+  }
+
 }
