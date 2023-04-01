@@ -44,7 +44,7 @@ public interface Round {
 	 * 
 	 * @param pos
 	 */
-	void setPosBall(Pair<Double, Double> pos);
+	void setPosBall(final Pair<Double, Double> pos, int index );
 
 	/**
 	 * method to set pos of pad.
@@ -63,7 +63,7 @@ public interface Round {
 	 * 
 	 * @return ball position.
 	 */
-	Pair<Double, Double> getPosBall();
+	List<Pair<Double, Double>> getPosBall();
 
 	/**
 	 * 
@@ -81,7 +81,7 @@ public interface Round {
 	 * 
 	 * @return ball.
 	 */
-	MovingObject getBall();
+	List<MovingObject> getBalls();
 
 	/**
 	 * method to remove a brick when is hitten.
@@ -90,6 +90,11 @@ public interface Round {
 	 */
 	void remove(int index);
 
+  	/**
+	 * 
+	 * @return list od extra balls.
+	 */
+  List<MovingObject> getExtraBalls();
 	/**
 	 * 
 	 * @return ball position when game starts.

@@ -12,6 +12,8 @@ import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.api.MovingObject;
+import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.model.brick.NormalBrick;
 import it.unibo.game.app.model.dynamic.SpeedImpl;
 
@@ -182,13 +184,11 @@ public class Surprise {
 
 	// margherita
 	private void addBalls() {
-		// List<Ball> extraBalls = new ArrayList<>();
-		// for (int i = 0; i < NUM_BALLS; i++) {
-		// extraBalls.add(new Ball());
-		// extraBalls.get(i).setPos(this.level.getRound().getBallInitialPosition());
-
-		// }
-		// this.level.getRound().addBalls(extraBalls);
+		 for (int i = 0; i < NUM_BALLS; i++) {
+      MovingObject ball = new Ball(this.level.getRound().getSizeCalc().getBallDim());
+		   this.level.getRound().getExtraBalls().add(ball);
+		 }
+	
 
 	}
 

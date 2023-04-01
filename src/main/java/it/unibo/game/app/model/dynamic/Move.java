@@ -50,8 +50,8 @@ public class Move {
                 it.remove();
             }
             else if(coll.CollideWithPad(next, this.l.getRound().getPad())) {
-                this.surprise.chooseSurprise();
-                //this.surprise.bonus();
+                //this.surprise.chooseSurprise();
+                this.surprise.bonus();
                 it.remove();
             }
             else {
@@ -67,7 +67,11 @@ public class Move {
     
     public void update(long dt) {
 				/*ora solo per una palla  */
-				nextBall(dt, this.l.getRound().getBall());
+				for (var ball : this.l.getRound().getBalls()){
+					nextBall(dt, ball);
+				}
+				this.l.getRound().getBalls().addAll(this.l.getRound().getExtraBalls());
+				this.l.getRound().getExtraBalls().clear();
     }
   
     public int getScore(){
