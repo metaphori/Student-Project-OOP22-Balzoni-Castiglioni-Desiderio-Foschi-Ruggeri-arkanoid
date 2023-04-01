@@ -203,9 +203,9 @@ public abstract class AbstractRound implements Round {
   }
 
   /**
-   * {@inheritDoc}
+   * method that returns list of extra balls.
    * 
-   * @return returns list of extra balls.
+   * @return a list of extra balls
    */
   public List<MovingObject> getExtraBalls() {
     return this.extraBalls;

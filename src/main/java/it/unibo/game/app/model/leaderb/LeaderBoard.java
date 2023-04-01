@@ -20,6 +20,7 @@ public interface LeaderBoard {
   void updatePoints(String name, String passWord, Integer points, Integer levelId);
 
   /**
+   * method to get best five players.
    * 
    * @return an ordered list that contains name and points of best five players
    */
