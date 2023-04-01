@@ -74,7 +74,7 @@ public class Surprise {
 				this.deleteBrick(index - 1);
 			}
 		}
-		if (this.isIndexNotTheLast(index) && this.isThereRightBrick(index, lastBrick)
+		if (this.isIndexPositive(index - 1) && this.isIndexNotTheLast(index) && this.isThereRightBrick(index, lastBrick)
 				&& !this.isObstacle(index - 1)) {
 			this.deleteBrick(index);
 		}

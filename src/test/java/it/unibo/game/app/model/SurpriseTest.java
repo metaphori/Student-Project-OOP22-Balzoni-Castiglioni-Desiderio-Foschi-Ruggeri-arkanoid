@@ -90,8 +90,7 @@ public class SurpriseTest {
       level.setLastSurpriseBrick(element.getKey(), element.getValue());
       method.invoke(surprise);
       int newSize = level.getRound().getBrick().size();
-      assertTrue(oldSize == newSize + 1 || oldSize == newSize + 2
-          || oldSize == newSize + 3 || oldSize == newSize + 4);
+      assertTrue(oldSize >= newSize + 1 && oldSize <= newSize + 4);
       assertNotEquals(oldSize, newSize);
     }
   }
