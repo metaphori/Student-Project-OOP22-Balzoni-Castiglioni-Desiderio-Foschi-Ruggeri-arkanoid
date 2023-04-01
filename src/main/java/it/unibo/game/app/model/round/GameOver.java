@@ -13,7 +13,7 @@ public class GameOver {
     } 
     public boolean hasMissedBall() {
         for (var ball : this.round.getBalls()) {
-          if(!(ball.getPos().getY() > this.round.getPosPad().getY())){
+          if(!(ball.getPos().getY() > this.round.getPad().getPos().getY())){
             return false;
           }
         }
