@@ -3,6 +3,7 @@ package it.unibo.game.app.model.round;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
@@ -23,7 +24,8 @@ public abstract class AbstractRound implements Round {
 	private int numBrick;
 	private int numSurprise;
 	private List<Brick> brick = new ArrayList<>();
-	private MovingObject ball;
+  private List<MovingObject> balls = new ArrayList<>();
+	private List<MovingObject> extraBalls = new ArrayList<>();
 	private MovingObject pad;
 	private SizeCalculation sizeC;
 	// private final Pair<Double, Double> ballInitialPos;
@@ -41,8 +43,9 @@ public abstract class AbstractRound implements Round {
 		this.numSurprise = numS;
 		this.sizeC = size;
 		pad = new Pad(size.getPadDim());
-		ball = new Ball(size.getBallDim());
-		// this.ballInitialPos = ball.getPos();
+		balls.add(new Ball(size.getBallDim()));
+		//this.ballInitialPos = balls.get(0).getPos();
+	
 	}
 
 	/*
@@ -143,8 +146,8 @@ public abstract class AbstractRound implements Round {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setPosBall(final Pair<Double, Double> pos) {
-		this.ball.setPos(pos);
+	public void setPosBall(final Pair<Double, Double> pos, int index ) {
+		this.balls.get(index).setPos(pos);
 	}
 
 	/**
@@ -159,16 +162,8 @@ public abstract class AbstractRound implements Round {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Pair<Double, Double> getPosBall() {
-		return this.ball.getPos();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Pair<Double, Double> getPosPad() {
-		return this.pad.getPos();
+	public List<Pair<Double, Double>> getPosBall() {
+		return this.balls.stream().map(ball -> ball.getPos()).collect(Collectors.toList());
 	}
 
 	/**
@@ -183,8 +178,8 @@ public abstract class AbstractRound implements Round {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public MovingObject getBall() {
-		return this.ball;
+	public List<MovingObject> getBalls() {
+		return this.balls;
 	}
 
 	/**
@@ -215,6 +210,14 @@ public abstract class AbstractRound implements Round {
 				brick.getPos().getY() + brick.getBrickH()));
 		b.setSpeed(new SpeedImpl(0, 1));
 		return b;
+	}
+/**
+	 * method that returns list of extra balls.
+	 * 
+	 * @return
+	 */
+  public List<MovingObject> getExtraBalls(){
+		return this.extraBalls;
 	}
 
 	/**
