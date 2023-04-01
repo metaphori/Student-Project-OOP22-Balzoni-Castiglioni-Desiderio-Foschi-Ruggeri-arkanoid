@@ -142,12 +142,12 @@ public class Surprise {
 
 	// virginia
 	private void increaseBallSpeed() {
-		this.level.getRound().getBall().getSpeed().sum(new SpeedImpl(0.5, 0.5));
+		this.level.getRound().getBall().getSpeed().sum(new SpeedImpl(0.5, 0.2));
 	}
 
 	// virginia
 	private void decreaseBallSpeed() {
-		this.level.getRound().getBall().getSpeed().sum(new SpeedImpl(-0.5, -0.5));
+		this.level.getRound().getBall().getSpeed().sum(new SpeedImpl(-0.5, -0.2));
 	}
 
 	// virginia
