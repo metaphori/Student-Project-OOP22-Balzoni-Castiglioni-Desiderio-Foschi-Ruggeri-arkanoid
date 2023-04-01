@@ -6,95 +6,95 @@ package it.unibo.game.app.api;
  */
 public interface Level {
 
-	/**
-	 * place items(pad,ball,bricks) within the first round.
-	 */
-	void setFirstRound();
+  /**
+   * place items(pad,ball,bricks) within the first round.
+   */
+  void setFirstRound();
 
-	/**
-	 * place items(pad,ball,bricks) within the second round.
-	 */
-	void setSecondRound();
+  /**
+   * place items(pad,ball,bricks) within the second round.
+   */
+  void setSecondRound();
 
-	/**
-	 * place items(pad,ball,bricks) within the third round.
-	 */
-	void setThirdRound();
+  /**
+   * place items(pad,ball,bricks) within the third round.
+   */
+  void setThirdRound();
 
-	/**
-	 * increment lives.
-	 */
-	void increaseLife();
+  /**
+   * increment lives.
+   */
+  void increaseLife();
 
-	/**
-	 * decrement lives.
-	 */
-	void decreaseLife();
+  /**
+   * decrement lives.
+   */
+  void decreaseLife();
 
-	/**
-	 * 
-	 * @return true if has other lives.
-	 */
-	boolean isAlive();
+  /**
+   * 
+   * @return true if has other lives.
+   */
+  boolean isAlive();
 
-	/**
-	 * 
-	 * @return current round.
-	 */
-	Round getRound();
+  /**
+   * 
+   * @return current round.
+   */
+  Round getRound();
 
-	/**
-	 * sets new round.
-	 * 
-	 * @param r
-	 */
-	void setRound(Round r);
+  /**
+   * sets new round.
+   * 
+   * @param r
+   */
+  void setRound(Round r);
 
-	/**
-	 * 
-	 * @return number of rounds passed.
-	 */
-	int getNumRoundPassed();
+  /**
+   * 
+   * @return number of rounds passed.
+   */
+  int getNumRoundPassed();
 
-	/**
-	 * pass to next round.
-	 */
-	void increaseRound();
+  /**
+   * pass to next round.
+   */
+  void increaseRound();
 
-	/**
-	 * 
-	 * @return number of lives.
-	 */
-	int getLife();
+  /**
+   * 
+   * @return number of lives.
+   */
+  int getLife();
 
-	/**
-	 * 
-	 * @return level identifier.
-	 */
-	int getId();
+  /**
+   * 
+   * @return level identifier.
+   */
+  int getId();
 
-	/**
-	 * 
-	 * @return player current score.
-	 */
-	Score getScore();
+  /**
+   * 
+   * @return player current score.
+   */
+  Score getScore();
 
-	/**
-	 * 
-	 * @param suBrick
-	 * @param i
-	 */
-	void setLastSurpriseBrick(Brick suBrick, int i);
+  /**
+   * 
+   * @param suBrick
+   * @param i
+   */
+  void setLastSurpriseBrick(Brick suBrick, int i);
 
-	/**
-	 * 
-	 * @return
-	 */
-	Brick getLastSurpriseBrick();
+  /**
+   * 
+   * @return the last surprise brick destroyed.
+   */
+  Brick getLastSurpriseBrick();
 
-	/**
-	 * 
-	 * @return
-	 */
-	int getIndex();
+  /**
+   * 
+   * @return the index of the last surprise brick destroyed.
+   */
+  int getIndex();
 }
