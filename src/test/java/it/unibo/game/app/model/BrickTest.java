@@ -47,12 +47,20 @@ public class BrickTest {
   @Test
   void testHardBrick() {
     Level l = new SecondLevel();
-    List<Integer> indexHardBrick = new ArrayList<>();
+    List<Brick> indexHardBrick = new ArrayList<>();
+    int oldSize = l.getRound().getBrick().size();
     indexHardBrick = l.getRound().getBrick().stream().filter(b -> b.getRes().get() == 2)
-        .map(b -> l.getRound().getBrick().indexOf(b)).collect(Collectors.toList());
-    for (var i : indexHardBrick) {
-      l.getRound().getBrick().get(i).hit();
-      assertEquals(1, l.getRound().getBrick().get(i).getRes().get());
+        .toList();
+    for (var b : indexHardBrick) {
+      l.getRound().remove(l.getRound().getBrick().indexOf(b));
+      assertEquals(1,
+          l.getRound().getBrick().get(l.getRound().getBrick().indexOf(b)).getRes().get());
+      assertEquals(oldSize, l.getRound().getBrick().size());
     }
+    for (var b : indexHardBrick) {
+      l.getRound().remove(l.getRound().getBrick().indexOf(b));
+      assertEquals(-1, l.getRound().getBrick().indexOf(b));
+    }
+    assertEquals(oldSize - indexHardBrick.size(), l.getRound().getBrick().size());
   }
 }
