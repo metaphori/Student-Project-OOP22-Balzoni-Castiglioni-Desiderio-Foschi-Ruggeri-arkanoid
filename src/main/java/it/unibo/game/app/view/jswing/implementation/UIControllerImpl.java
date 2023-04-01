@@ -95,7 +95,7 @@ public class UIControllerImpl implements UIController {
 	}
 
 	@Override
-	public Pair<Double, Double> getBall() {
+	public List<Pair<Double, Double>> getBall() {
 		return AppController.getBall();
 	}
 
