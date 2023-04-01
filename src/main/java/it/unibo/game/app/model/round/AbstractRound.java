@@ -147,7 +147,7 @@ public abstract class AbstractRound implements Round {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setPosBall(final Pair<Double, Double> pos, int index ) {
+	public void setPosBall(final Pair<Double, Double> pos,final int index ) {
 		this.balls.get(index).setPos(pos);
 	}
 
