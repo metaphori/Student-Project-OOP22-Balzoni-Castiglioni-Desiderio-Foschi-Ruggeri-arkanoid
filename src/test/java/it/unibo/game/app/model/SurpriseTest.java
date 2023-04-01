@@ -16,6 +16,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.model.levels.FirstLevel;
@@ -47,15 +49,12 @@ public class SurpriseTest {
       IllegalArgumentException, InvocationTargetException, InterruptedException {
     Level level = new SecondLevel();
     Surprise surprise = new Surprise(level);
+    Timer timer = new Timer();
 
     Method method = Surprise.class.getDeclaredMethod("changeHard");
     method.setAccessible(true);
 
     List<Integer> oldHardIndex = new ArrayList<>();
-    /*
-     * level.getRound().getBrick().stream().filter(b -> b.getRes().get().equals(2))
-     * .map(b -> oldHardIndex.add(level.getRound().getBrick().indexOf(b)));
-     */
     for (var brick : level.getRound().getBrick()) {
       if (brick.getRes().get() == 2) {
         oldHardIndex.add(level.getRound().getBrick().indexOf(brick));
@@ -65,10 +64,17 @@ public class SurpriseTest {
     for (var i : oldHardIndex) {
       assertEquals(1, level.getRound().getBrick().get(i).getRes().get());
     }
-    Thread.sleep(10100);
-    for (var i : oldHardIndex) {
-      assertEquals(2, level.getRound().getBrick().get(i).getRes().get());
-    }
+    TimerTask task = new TimerTask() {
+
+      @Override
+      public void run() {
+        for (var i : oldHardIndex) {
+          assertEquals(2, level.getRound().getBrick().get(i).getRes().get());
+        }
+      }
+    };
+    timer.schedule(task, 10000);
+    
   }
 
   @Test
