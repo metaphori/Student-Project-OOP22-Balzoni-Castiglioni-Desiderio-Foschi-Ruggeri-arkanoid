@@ -145,15 +145,15 @@ public class SurpriseTest {
       InvocationTargetException, NoSuchMethodException, SecurityException {
     Level level = new ThirdLevel();
     Surprise surprise = new Surprise(level);
-    Speed initial = new SpeedImpl(level.getRound().getBall().getSpeed().getX(),
-        level.getRound().getBall().getSpeed().getY());
+    Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
+        level.getRound().getBalls().get(0).getSpeed().getY());
     int num = 10;
     Method method = Surprise.class.getDeclaredMethod("increaseBallSpeed");
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
       method.invoke(surprise);
       initial.sum(new SpeedImpl(0.5, 0.2));
-      assertEquals(level.getRound().getBall().getSpeed(), initial);
+      assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
     }
   }
 
@@ -162,15 +162,15 @@ public class SurpriseTest {
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new ThirdLevel();
     Surprise surprise = new Surprise(level);
-    Speed initial = new SpeedImpl(level.getRound().getBall().getSpeed().getX(),
-        level.getRound().getBall().getSpeed().getY());
+    Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
+        level.getRound().getBalls().get(0).getSpeed().getY());
     int num = 10;
     Method method = Surprise.class.getDeclaredMethod("decreaseBallSpeed");
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
       method.invoke(surprise);
       initial.sum(new SpeedImpl(-0.5, -0.2));
-      assertEquals(level.getRound().getBall().getSpeed(), initial);
+      assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
     }
   }
 
