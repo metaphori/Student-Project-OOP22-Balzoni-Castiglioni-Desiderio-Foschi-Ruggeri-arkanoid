@@ -1,23 +1,64 @@
 package it.unibo.game.app.api;
-import java.util.*;
 
-public interface Brick extends GameObject{
-    
-    BrickType getType();
+import java.util.Optional;
 
-    void changeType(BrickType type);
+/**
+ * Brick entity interface.
+ */
+public interface Brick extends GameObject {
+  /**
+   * 
+   * @return return the type of brick.
+   */
+  BrickType getType();
 
-    Double getBrickH ();
+  /**
+   * method for changing the type to the brick.
+   * 
+   * @param type
+   */
+  void changeType(BrickType type);
 
-    Double getBrickW ();
+  /**
+   * 
+   * @return the height of brick.
+   */
+  Double getBrickH();
 
-    Optional<Integer> getRes();
+  /**
+   * 
+   * @return the width of brick.
+   */
+  Double getBrickW();
 
-    boolean isDestroyed();
+  /**
+   * 
+   * @return the resistence of the brick.
+   */
+  Optional<Integer> getRes();
 
-    void hit();
+  /**
+   * 
+   * @return if a brick is destructible.
+   */
+  boolean isDestroyed();
 
-    void increaseRes(int res);
+  /**
+   * method that decrease the resistence if is present of brick when hit.
+   */
+  void hit();
 
-    void decreaseRes(int res);
+  /**
+   * method to increase resistence of brick.
+   * 
+   * @param res resistence of brick
+   */
+  void increaseRes(int res);
+
+  /**
+   * method to decrease the resistence of brick.
+   * 
+   * @param res resistence of brick
+   */
+  void decreaseRes(int res);
 }
