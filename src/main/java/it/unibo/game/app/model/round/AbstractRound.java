@@ -44,14 +44,7 @@ public abstract class AbstractRound implements Round {
 		this.sizeC = size;
 		pad = new Pad(size.getPadDim());
 		balls.add(new Ball(size.getBallDim()));
-		//this.ballInitialPos = balls.get(0).getPos();
-	
 	}
-
-	/*
-	 * @Override public Pair<Double, Double> getBallInitialPosition() {
-	 * this.surprise.clear(); return this.ballInitialPos; }
-	 */
 
 	/**
 	 * {@inheritDoc}
@@ -71,10 +64,6 @@ public abstract class AbstractRound implements Round {
 	public List<MovingObject> getSurprise() {
 		return this.surprise;
 	}
-
-	/*
-	 * public int getRoundPassed() { return this.numRoundPassed; }
-	 */
 
 	/**
 	 * method to add a brick in the list.
@@ -225,10 +214,6 @@ public abstract class AbstractRound implements Round {
 	 * method that returns ball initial position.
 	 * 
 	 * @return
-	 */
-	/*
-	 * public Pair<Double, Double> getInitialBallPos() { return this.ballInitialPos;
-	 * }
 	 */
 
 	/**
