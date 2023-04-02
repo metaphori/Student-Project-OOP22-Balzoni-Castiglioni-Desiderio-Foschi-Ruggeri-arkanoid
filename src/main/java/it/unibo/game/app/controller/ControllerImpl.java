@@ -220,11 +220,17 @@ public class ControllerImpl implements AppController {
     this.gameEngine = new GameEngine(this);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public int getFontSize() {
     return FONT_SIZE;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public List<Pair<Double, Double>> getLabelPos() {
     return List.of(new Pair<>(10 * delta().getX(), 20 * delta().getY()),

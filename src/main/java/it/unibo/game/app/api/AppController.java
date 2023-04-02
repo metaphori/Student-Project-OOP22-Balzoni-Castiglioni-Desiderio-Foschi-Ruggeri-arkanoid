@@ -193,8 +193,16 @@ public interface AppController {
    */
   void setVictory();
 
+  /**
+   * 
+   * @return font size must have GUI font
+   */
   int getFontSize();
 
+  /**
+   * 
+   * @return where draw labels in GUI
+   */
   List<Pair<Double, Double>> getLabelPos();
 
 }
