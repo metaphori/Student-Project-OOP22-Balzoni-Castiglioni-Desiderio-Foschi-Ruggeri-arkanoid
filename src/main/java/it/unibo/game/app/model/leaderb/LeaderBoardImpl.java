@@ -96,11 +96,11 @@ public class LeaderBoardImpl implements Serializable, LeaderBoard {
           new BufferedInputStream(new FileInputStream(file.getPath())))) {
         return (List<User>) oos.readObject();
       } catch (FileNotFoundException ex) {
-        ex.toString();
+        System.out.println(ex.toString());
       } catch (IOException ex) {
-        ex.toString();
+        System.out.println(ex.toString());
       } catch (ClassNotFoundException ex) {
-        ex.toString();
+        System.out.println(ex.toString());
       }
     }
     return new ArrayList<>();
@@ -116,9 +116,9 @@ public class LeaderBoardImpl implements Serializable, LeaderBoard {
         new BufferedOutputStream(new FileOutputStream(file.getPath())))) {
       oos.writeObject(users);
     } catch (FileNotFoundException ex) {
-      ex.toString();
+      System.out.println(ex.toString());
     } catch (IOException ex) {
-      ex.toString();
+      System.out.println(ex.toString());
     }
   }
 
