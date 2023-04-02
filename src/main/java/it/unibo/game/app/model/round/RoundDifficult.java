@@ -45,7 +45,7 @@ public class RoundDifficult extends AbstractRound {
    * method that set position of bricks from bottom.
    */
   protected void setPosBrick() {
-    // TODO Auto-generated method stub
+
     int lines = 0;
     int insert = 0;
     int num = height;

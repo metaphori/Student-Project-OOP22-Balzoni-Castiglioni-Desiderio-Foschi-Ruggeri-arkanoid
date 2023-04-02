@@ -78,13 +78,6 @@ public interface AppController {
   Pair<Double, Double> getPad();
 
   /**
-   * method to change pad position.
-   * 
-   * @param newPos new pad position
-   */
-  void changePadPos(Pair<Double, Double> newPos);
-
-  /**
    * 
    * @return pad width update relative to frame size.
    */
@@ -179,12 +172,12 @@ public interface AppController {
   void restoreBall();
 
   /**
-   * method to update the pad position by going right.
+   * move pad right
    */
   void mvPadR();
 
   /**
-   * method to update the pad position by going left.
+   * move pad Left
    */
   void mvPadL();
 
@@ -199,5 +192,17 @@ public interface AppController {
    * method to invoke the victory frame change in the view.
    */
   void setVictory();
+
+  /**
+   * 
+   * @return font size must have GUI font
+   */
+  int getFontSize();
+
+  /**
+   * 
+   * @return where draw labels in GUI
+   */
+  List<Pair<Double, Double>> getLabelPos();
 
 }

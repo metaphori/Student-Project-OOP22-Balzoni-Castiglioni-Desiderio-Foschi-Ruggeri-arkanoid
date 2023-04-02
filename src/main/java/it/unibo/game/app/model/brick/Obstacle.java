@@ -21,7 +21,6 @@ public class Obstacle extends AbstractBrick {
   public Obstacle(final BrickType type, final Dimension d,
       final Pair<Double, Double> pos) {
     super(type, d, pos);
-    // TODO Auto-generated constructor stub
   }
 
   /**
@@ -29,7 +28,6 @@ public class Obstacle extends AbstractBrick {
    */
   @Override
   public boolean isDestroyed() {
-    // TODO Auto-generated method stub
     return false;
   }
 
@@ -38,7 +36,6 @@ public class Obstacle extends AbstractBrick {
    */
   @Override
   public void hit() {
-    // TODO Auto-generated method stub
 
   }
 
@@ -47,7 +44,6 @@ public class Obstacle extends AbstractBrick {
    */
   @Override
   public Optional<Integer> getRes() {
-    // TODO Auto-generated method stub
     return Optional.empty();
   }
 
@@ -56,7 +52,6 @@ public class Obstacle extends AbstractBrick {
    */
   @Override
   public void increaseRes(final int res) {
-    // TODO Auto-generated method stub
   }
 
   /**
@@ -64,7 +59,6 @@ public class Obstacle extends AbstractBrick {
    */
   @Override
   public void decreaseRes(final int res) {
-    // TODO Auto-generated method stub
   }
 
 }

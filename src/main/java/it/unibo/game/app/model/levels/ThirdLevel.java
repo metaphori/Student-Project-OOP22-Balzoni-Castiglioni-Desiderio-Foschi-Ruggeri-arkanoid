@@ -37,7 +37,7 @@ public final class ThirdLevel extends AbstractLevel {
    */
   @Override
   public void setFirstRound() {
-    // TODO Auto-generated method stub
+
     int h = getCol(NORMAL1, SURPRISE1, OBSTACLE1);
     this.sizeC = new SizeCalculation(h, h + 1, super.getNumRoundPassed());
     super.setRound(new RoundDifficult(NORMAL1, SURPRISE1, sizeC, OBSTACLE1));
@@ -48,7 +48,7 @@ public final class ThirdLevel extends AbstractLevel {
    */
   @Override
   public void setSecondRound() {
-    // TODO Auto-generated method stub
+
     int h = getCol(NORMAL2, SURPRISE2, OBSTACLE2);
     this.sizeC = new SizeCalculation(h, h + 1, super.getNumRoundPassed());
     super.setRound(new RoundDifficult(NORMAL2, SURPRISE2, sizeC, OBSTACLE2));
@@ -59,7 +59,7 @@ public final class ThirdLevel extends AbstractLevel {
    */
   @Override
   public void setThirdRound() {
-    // TODO Auto-generated method stub
+
     int h = getCol(NORMAL3, SURPRISE3, OBSTACLE3);
     this.sizeC = new SizeCalculation(h, h + 1, super.getNumRoundPassed());
     super.setRound(new RoundDifficult(NORMAL3, SURPRISE3, sizeC, OBSTACLE3));

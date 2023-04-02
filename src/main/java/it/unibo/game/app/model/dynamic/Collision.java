@@ -2,6 +2,7 @@ package it.unibo.game.app.model.dynamic;
 
 import java.util.Optional;
 
+import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
@@ -10,8 +11,10 @@ import it.unibo.game.app.api.BoundingBox.Corner;
 import it.unibo.game.app.api.BoundingBox.Side;
 import it.unibo.game.app.model.CircleBoundingBox;
 import it.unibo.game.app.model.RectBoundingBox;
+import it.unibo.game.app.model.SizeCalculation;
 
 public class Collision {
+  private static final double DELTA = 7.5;
   private Level level;
 
   public Collision(Level lev) {
@@ -27,6 +30,19 @@ public class Collision {
     if (b.getBoundingBox().getBox().get(Corner.LEFT_UP).getY() <= 0.5) {
       b.getPhysics().changeDirection(Side.UP_DOWN);
     }
+  }
+
+  /**
+   * 
+   * @param b boundingbox
+   * @return true if collide with border
+   */
+  public boolean collideWithBorder(BoundingBox b) {
+    if (b.getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 || b.getBox()
+        .get(Corner.RIGHT_DOWN).getX() >= SizeCalculation.getWorldSize().getY() - DELTA) {
+      return true;
+    }
+    return false;
   }
 
   public Optional<Integer> collideWithBrick(MovingObject b) {
@@ -61,4 +77,5 @@ public class Collision {
   public int getScore() {
     return this.level.getScore().getScore();
   }
+
 }

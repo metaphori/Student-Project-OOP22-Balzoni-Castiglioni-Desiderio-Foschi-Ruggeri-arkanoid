@@ -213,4 +213,15 @@ public interface UIController {
    * @return life of the player.
    */
   int getLife();
+
+  /**
+   * @return all label pos to print in a resizable GUI
+   */
+  List<Pair<Double, Double>> getLabelPos();
+
+  /**
+   * 
+   * @return size of a resizable font
+   */
+  int getSizeFont();
 }

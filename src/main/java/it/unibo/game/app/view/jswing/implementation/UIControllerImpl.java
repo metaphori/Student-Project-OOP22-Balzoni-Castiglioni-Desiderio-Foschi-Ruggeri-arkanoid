@@ -72,6 +72,9 @@ public class UIControllerImpl implements UIController {
     layout.show(deck, p.getName());
     window.setTitle(p.getName());
     views.get(p).requestFocusInWindow();
+    if (p.equals(PAGES.GAME)) {
+      this.appController.play();
+    }
   }
 
   /**
@@ -97,7 +100,7 @@ public class UIControllerImpl implements UIController {
   @Override
   public void gameView() {
     chargeView(PAGES.GAME);
-    appController.play();
+
   }
 
   /**
@@ -277,5 +280,21 @@ public class UIControllerImpl implements UIController {
   @Override
   public void updatePoints(final String name, final String passWord) {
     this.appController.updatePoints(name, passWord);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<Pair<Double, Double>> getLabelPos() {
+    return this.appController.getLabelPos();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getSizeFont() {
+    return this.appController.getFontSize();
   }
 }
