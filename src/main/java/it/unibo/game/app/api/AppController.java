@@ -78,13 +78,6 @@ public interface AppController {
   Pair<Double, Double> getPad();
 
   /**
-   * method to change pad position.
-   * 
-   * @param newPos new pad position
-   */
-  void changePadPos(Pair<Double, Double> newPos);
-
-  /**
    * 
    * @return pad width update relative to frame size.
    */
