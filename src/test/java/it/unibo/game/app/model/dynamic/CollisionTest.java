@@ -133,6 +133,7 @@ public class CollisionTest {
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
   }
 
+  @Test
   void testPadInsideShene() {
     Level l = new FirstLevel();
     this.colls = new Collision(l);
