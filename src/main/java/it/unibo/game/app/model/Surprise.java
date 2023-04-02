@@ -17,30 +17,39 @@ import it.unibo.game.app.model.ball.Ball;
 import it.unibo.game.app.model.brick.NormalBrick;
 import it.unibo.game.app.model.dynamic.SpeedImpl;
 
+/**
+ * class that contains methods for bonuses or maluses.
+ */
 public class Surprise {
 
-  private final static int NUM_TOT_SURSPRISE = 12;
-  private final static int EXTRA_LIFE = 1;
-  private final static int EXPLOSIVE_BOMB = 2;
-  private final static int DELETE_RANDOM_BRICKS = 3;
-  private final static int REDUCE_SIZE_PAD = 4;
-  private final static int ENLARGE_SIZE_PAD = 5;
-  private final static int INCREASE_BALL_SPEED = 6;
-  private final static int DECREASE_BALL_SPEED = 7;
-  private final static int CHANGE_OBSTACLES = 8;
-  private final static int INCREASE_SCORE = 9;
-  private final static int ADD_BALLS = 10;
-  private final static int CHANGE_ROW = 11;
-  private final static int CHANGE_HARD = 12;
-  private final static int NUM_BALLS = 1;
-  private final static int PERCENTUAL = 30;
+  private static final int NUM_TOT_SURSPRISE = 12;
+  private static final int EXTRA_LIFE = 1;
+  private static final int EXPLOSIVE_BOMB = 2;
+  private static final int DELETE_RANDOM_BRICKS = 3;
+  private static final int REDUCE_SIZE_PAD = 4;
+  private static final int ENLARGE_SIZE_PAD = 5;
+  private static final int INCREASE_BALL_SPEED = 6;
+  private static final int DECREASE_BALL_SPEED = 7;
+  private static final int CHANGE_OBSTACLES = 8;
+  private static final int INCREASE_SCORE = 9;
+  private static final int ADD_BALLS = 10;
+  private static final int CHANGE_ROW = 11;
+  private static final int CHANGE_HARD = 12;
+  private static final int NUM_BALLS = 1;
+  private static final int PERCENTUAL = 30;
+  private static final int BONUS_DURATION = 10000;
 
   private Map<Integer, Runnable> mappa;
   private Random random = new Random();
   private Level level;
   private boolean padModified = false;
 
-  public Surprise(Level level) {
+  /**
+   * costructor of this class.
+   * 
+   * @param level current level
+   */
+  public Surprise(final Level level) {
     this.level = level;
 
     mappa = new HashMap<>(Map.ofEntries(Map.entry(EXTRA_LIFE, () -> this.extraLife()),
@@ -57,13 +66,18 @@ public class Surprise {
         Map.entry(CHANGE_HARD, () -> this.changeHard())));
   }
 
-  // simone
+  /**
+   * method that adds a life. Simone Ruggeri
+   */
   private void extraLife() {
     this.level.increaseLife();
 
   }
 
-  // simone
+  /**
+   * explosive bomb method that eliminates the two blocks next to it. Simone
+   * Ruggeri
+   */
   private void explosiveBomb() {
     Brick lastBrick = this.level.getLastSurpriseBrick();
     int index = this.level.getIndex();
@@ -83,6 +97,13 @@ public class Surprise {
     }
   }
 
+  /**
+   * method that checks if there is a brick to the left of the bomb.
+   * 
+   * @param index
+   * @param lastBrick
+   * @return
+   */
   private boolean isThereLeftBrick(int index, Brick lastBrick) {
     return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick
         .getPos().getY()
@@ -90,6 +111,13 @@ public class Surprise {
             - this.level.getRound().getBrick().get(index).getPos().getX() < 0.1);
   }
 
+  /**
+   * method that checks if there is a brick to the right of the bomb.
+   * 
+   * @param index
+   * @param lastBrick
+   * @return
+   */
   private boolean isThereRightBrick(int index, Brick lastBrick) {
     return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick
         .getPos().getY()
@@ -97,24 +125,49 @@ public class Surprise {
             - lastBrick.getBrickW()) - lastBrick.getPos().getX() < 0.1);
   }
 
+  /**
+   * method that checks if the brick is an obstacle.
+   * 
+   * @param index
+   * @return true if it is an obstacle.
+   */
   private boolean isObstacle(int index) {
     return this.level.getRound().getBrick().get(index).getType()
         .equals(BrickType.OBSTACLE);
   }
 
+  /**
+   * method that removes a brick.
+   * 
+   * @param index
+   */
   private void deleteBrick(int index) {
     this.level.getRound().getBrick().remove(index);
   }
 
+  /**
+   * method that checks if the index is positive.
+   * 
+   * @param index
+   * @return true if index is greater equals than zero
+   */
   private boolean isIndexPositive(int index) {
     return index >= 0;
   }
 
+  /**
+   * method that checks if the index is less than the size of the list.
+   * 
+   * @param index
+   * @return true if index minor than the size of the list
+   */
   private boolean isIndexNotTheLast(int index) {
     return index < this.level.getRound().getBrick().size();
   }
 
-  // edoardo
+  /**
+   * method that randomly deletes bricks. Edoardo Desiderio
+   */
   private void deleteRandomBricks() {
     Random brickToRm = new Random();
     Random trash = new Random();
@@ -127,7 +180,9 @@ public class Surprise {
     }
   }
 
-  // edoardo
+  /**
+   * method that reduces the size of the pad for a certain time. Edoardo Desiderio
+   */
   private void reduceSizePad() {
     if (!padModified) {
       padModified = true;
@@ -144,7 +199,7 @@ public class Surprise {
           padModified = false;
         }
       };
-      tm.schedule(tmTask, 10000);
+      tm.schedule(tmTask, BONUS_DURATION);
     }
   }
 
@@ -152,7 +207,9 @@ public class Surprise {
     return (100d - PERCENTUAL) / 100d;
   }
 
-  // edoardo
+  /**
+   * method that enlarge the size of the pad for a certain time. Edoardo Desiderio
+   */
   private void enlargeSizePad() {
     if (!padModified) {
       padModified = true;
@@ -168,23 +225,29 @@ public class Surprise {
           pad.setDimension(SizeCalculation.getPadDim());
         }
       };
-      tm.schedule(tmTask, 10000);
+      tm.schedule(tmTask, BONUS_DURATION);
     }
   }
 
-  // virginia
+  /**
+   * method that increases the speed of the ball. Virginia Foschi
+   */
   private void increaseBallSpeed() {
     this.level.getRound().getBalls()
         .forEach(x -> x.getSpeed().sum(new SpeedImpl(0.5, 0.2)));
   }
 
-  // virginia
+  /**
+   * method that decrease the speed of the ball. Virginia Foschi
+   */
   private void decreaseBallSpeed() {
     this.level.getRound().getBalls()
         .forEach(x -> x.getSpeed().sum(new SpeedImpl(-0.5, -0.2)));
   }
 
-  // virginia
+  /**
+   * method that replaces obstacles with normal bricks. Virginia Foschi
+   */
   private void changeObstacles() {
     this.level.getRound().getBrick().replaceAll(x -> {
       if (x.getType().equals(BrickType.OBSTACLE)) {
@@ -198,7 +261,10 @@ public class Surprise {
     System.out.println();
   }
 
-  // margherita
+  /**
+   * method that increases the score for each individual brick for a certain time.
+   * Margherita Balzoni
+   */
   private void increaseScore() {
     Timer time = new Timer();
     TimerTask task = new TimerTask() {
@@ -209,12 +275,14 @@ public class Surprise {
       }
 
     };
-    time.schedule(task, 10000);
+    time.schedule(task, BONUS_DURATION);
     this.level.getScore().enableBonus(false);
 
   }
 
-  // margherita
+  /**
+   * method that increases the number of balls in play. Margherita Balzoni
+   */
   private void addBalls() {
     for (int i = 0; i < NUM_BALLS; i++) {
       MovingObject ball = new Ball(this.level.getRound().getSizeCalc().getBallDim());
@@ -223,7 +291,9 @@ public class Surprise {
 
   }
 
-  // chiara
+  /**
+   * method that adds a row of hard bricks. Chiara Castiglioni
+   */
   private void addHardRow() {
     double lastY = this.level.getRound().getBrick()
         .get(this.level.getRound().getBrick().size() - 1).getPos().getY();
@@ -241,7 +311,10 @@ public class Surprise {
     System.out.println();
   }
 
-  // chiara
+  /**
+   * method that replaces hard bricks with normal ones for a certain time. Chiara
+   * Castiglioni
+   */
   private void changeHard() {
     List<Brick> hard = new ArrayList<>();
     Timer timer = new Timer();
@@ -264,14 +337,16 @@ public class Surprise {
         }
       }
     };
-    timer.schedule(task, 10000);
+    timer.schedule(task, BONUS_DURATION);
   }
 
-  // simone
+  /**
+   * method that randomly chooses which bonus or malus to invoke.
+   */
   public void chooseSurprise() {
     final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
     this.mappa.get(method).run();
-    
+
   }
 
   /*
