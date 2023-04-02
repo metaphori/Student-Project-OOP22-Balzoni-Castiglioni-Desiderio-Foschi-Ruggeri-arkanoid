@@ -22,7 +22,6 @@ public class RoundMedium extends AbstractRound {
   private Double stopY;
   private Double stopX;
   private int jump;
-  private static final int FIX_START_Y = 5;
 
   /**
    * Constructor of this class.
@@ -38,11 +37,9 @@ public class RoundMedium extends AbstractRound {
     super(numB, numS, sizeC);
     this.jump = jump;
     this.numHard = numHard;
-    this.startY = sizeC.getStart().getY() + (this.getSizeCalc().getBrickDim().getY() / 2)
-        - FIX_START_Y;
+    this.startY = sizeC.getStart().getY();
     this.startX = sizeC.getStart().getX();
-    this.stopY = SizeCalculation.getWorldSize().getY()
-        - (3 * (this.getSizeCalc().getBrickDim().getY() / 2));
+    this.stopY = sizeC.getStop().getY();
     this.stopX = sizeC.getStop().getX();
     this.setPosBrick();
   }

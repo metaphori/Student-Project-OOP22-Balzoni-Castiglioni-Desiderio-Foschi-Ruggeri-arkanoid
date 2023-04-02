@@ -154,7 +154,7 @@ public abstract class AbstractLevel implements Level {
    * {@inheritDoc}
    */
   @Override
-  public int getIndex() {
+  public int getIndexLastSurprise() {
     return this.indexLastSurprise;
   }
 }

@@ -39,7 +39,7 @@ public class NormalBrick extends AbstractBrick {
    */
   @Override
   public void hit() {
-    this.brickResistence--;
+    --this.brickResistence;
   }
 
   /**

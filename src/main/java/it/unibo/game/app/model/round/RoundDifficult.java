@@ -1,5 +1,7 @@
 package it.unibo.game.app.model.round;
 
+import java.util.Collections;
+
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
@@ -14,6 +16,10 @@ import it.unibo.game.app.model.brick.Obstacle;
 public class RoundDifficult extends AbstractRound {
 
   private int obstacles;
+  private double stopX;
+  private double stopY;
+  private static final int FIX_START_Y = 5;
+  private final int height;
 
   /**
    * constructor of this class.
@@ -27,32 +33,38 @@ public class RoundDifficult extends AbstractRound {
       final int obstacles) {
     super(numB, numS, size);
     this.obstacles = obstacles;
+    this.stopY = SizeCalculation.getWorldSize().getY()
+        - (3 * (this.getSizeCalc().getBrickDim().getY() / 2)) - FIX_START_Y;
+    this.stopX = size.getStop().getX();
+    this.height = (int) Math
+        .sqrt((double) (2 * (this.obstacles + this.getNumBrick() + this.getNumSur())));
     setPosBrick();
   }
 
   /**
-   * method that set position of bricks.
+   * method that set position of bricks from bottom.
    */
   protected void setPosBrick() {
     // TODO Auto-generated method stub
-    int num = 0;
-    int lines;
-    for (Double i = getSizeCalc().getStart().getX(); super.getBrick()
-        .size() < (this.obstacles + this.getNumBrick() + this.getNumSur()); i = i
-            + getSizeCalc().getBrickDim().getX()) {
-      num++;
-      lines = 0;
-      for (double j = SizeCalculation.getWorldSize().getY() / 2
-          - (num) * (getSizeCalc().getBrickDim().getY() / 2) - 10; lines < num; j = j
-              + getSizeCalc().getBrickDim().getY()) {
+    int lines = 0;
+    int insert = 0;
+    int num = height;
+    for (double i = stopX; lines < height; lines++, i = i
+        - getSizeCalc().getBrickDim().getX()) {
+      insert = 0;
+      for (double j = stopY
+          - (lines * (getSizeCalc().getBrickDim().getY() / 2)); insert < num; j = j
+              - getSizeCalc().getBrickDim().getY()) {
         Brick b = new NormalBrick(BrickType.NORMAL,
             new DimensionImpl(getSizeCalc().getBrickDim().getX(),
                 getSizeCalc().getBrickDim().getY()),
             new Pair<>(j, i), 1);
         super.addBrick(b);
-        lines++;
+        insert++;
       }
+      num--;
     }
+    Collections.reverse(super.getBrick());
     setPosObstacles();
     setSurprise();
   }
@@ -70,11 +82,9 @@ public class RoundDifficult extends AbstractRound {
   }
 
   /**
-   * method that collocates obstacles.
+   * method that collocates obstacles symmetrically in the last line of bricks.
    */
   private void setPosObstacles() {
-    int height = (int) Math
-        .sqrt((double) (2 * (this.obstacles + this.getNumBrick() + this.getNumSur())));
     int first = super.getBrick().size() - height;
     int last = super.getBrick().size() - 1;
     int num = 0;

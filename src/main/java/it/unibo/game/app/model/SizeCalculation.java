@@ -14,16 +14,16 @@ public class SizeCalculation {
                                                    * Width of the world inside the model
                                                    */
   private static final int DIVIDER_X = 6;
-  private static final double SPACE_Y = 7.5;
   private static final int NUMCOL = 6;
   private static final double MUL_X1 = 1.75;
   private static final double MUL_X2 = 1.5;
   private static final double DIVEDER_PAD_X = 60;
   private static final double DIVEDER_BALL = 30;
+  private static final int FIX_START_Y = 5;
 
   private int numBrickCol;
   private Double startX;
-  private Double startY = 0d;
+  private Double startY;
   private Double stopX;
   private Double stopY;
   private Double brickL;
@@ -39,19 +39,19 @@ public class SizeCalculation {
   public SizeCalculation(final int numBrickCol, final int numBrickRow,
       final int roundPassed) {
     this.numBrickCol = numBrickCol;
-    startX = (WORLD_HEIGHT / 2) / DIVIDER_X;
-    stopX = this.getStopX(roundPassed);
-    brickL = WORLD_WIDTH / numBrickRow;
-    brickH = (stopX - startX) / numBrickCol;
-    stopY = WORLD_WIDTH - SPACE_Y;
+    this.startX = (WORLD_HEIGHT / 2) / DIVIDER_X;
+    this.stopX = this.getStopX();
+    this.brickL = WORLD_WIDTH / numBrickRow;
+    this.brickH = (stopX - startX) / numBrickCol;
+    this.stopY = WORLD_WIDTH - (3 * (this.brickL / 2));
+    this.startY = (this.brickL / 2) - FIX_START_Y;
   }
 
   /**
    * 
-   * @param numR number of rounds passed.
    * @return returns the height at which to stop the placement of the bricks.
    */
-  private Double getStopX(final int numR) {
+  private Double getStopX() {
     if (numBrickCol > NUMCOL) {
       return (((WORLD_HEIGHT / 2) / 3) * MUL_X1);
     } else if (numBrickCol > 4) {

@@ -51,6 +51,7 @@ public abstract class AbstractRound implements Round {
    */
   @Override
   public void restart() {
+    this.balls.clear();
     MovingObject ball = new Ball(sizeC.getBallDim());
     ball.getPhysics().getDir().resetDirection();
     this.balls.add(ball);
