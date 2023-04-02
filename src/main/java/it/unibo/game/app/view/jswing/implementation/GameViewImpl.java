@@ -35,10 +35,6 @@ public class GameViewImpl extends JPanel
     g.setColor(Color.WHITE);
     g.fillRect(0, 0, panelWidth, panelHeight);
 
-    // delta di trasformazione
-    double deltaH = ((double) panelHeight / observer.getDimension().getX());
-    double deltaW = ((double) panelWidth / observer.getDimension().getY());
-
     observer.getList().entrySet().stream().forEach(x -> {
       g2d.setColor(peekColor(x));
       // g2d.draw(new Rectangle2D.Double(x.getKey().getX(),x.getKey().getY(),
@@ -123,14 +119,14 @@ public class GameViewImpl extends JPanel
 
   @Override
   public void keyReleased(KeyEvent arg0) {
-    // TODO Auto-generated method stub
+
     // throw new UnsupportedOperationException("Unimplemented method
     // 'keyReleased'");
   }
 
   @Override
   public void keyTyped(KeyEvent arg0) {
-    // TODO Auto-generated method stub
+
     throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
   }
 
