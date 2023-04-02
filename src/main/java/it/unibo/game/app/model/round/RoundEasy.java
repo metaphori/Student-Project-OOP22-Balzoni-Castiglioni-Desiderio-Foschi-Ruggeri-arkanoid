@@ -16,8 +16,6 @@ public class RoundEasy extends AbstractRound {
   private Double endX;
   private Double endY;
   private int numSurpriseBrick = 0;
-  private static final int FIX_START_Y = 5;
-  private static final int FIX_END_Y = 3;
 
   /**
    * Constructor of this class.
@@ -28,11 +26,9 @@ public class RoundEasy extends AbstractRound {
    */
   public RoundEasy(final int numB, final int numS, final SizeCalculation size) {
     super(numB, numS, size);
-    this.startY = size.getStart().getY() + (this.getSizeCalc().getBrickDim().getY() / 2)
-        - FIX_START_Y;
+    this.startY = size.getStart().getY();
     this.startX = size.getStart().getX();
-    this.endY = SizeCalculation.getWorldSize().getY()
-        - (FIX_END_Y * (this.getSizeCalc().getBrickDim().getY() / 2));
+    this.endY = size.getStop().getY();
     this.endX = size.getStop().getX();
     this.setPosBrick();
   }
