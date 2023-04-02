@@ -9,11 +9,6 @@ import it.unibo.game.app.api.Dimension;
 
 public class Pad extends AbstractMovingObject {
 
-  /*
-   * le dimensioni sono modificabili per rendere resizable la dinestra
-   * 
-   */
-
   public Pad(Dimension d) {
     super(new Pair<>(SizeCalculation.getWorldSize().getY() / 2 - d.getWidth() / 2,
         SizeCalculation.getWorldSize().getX() - 100), d);
