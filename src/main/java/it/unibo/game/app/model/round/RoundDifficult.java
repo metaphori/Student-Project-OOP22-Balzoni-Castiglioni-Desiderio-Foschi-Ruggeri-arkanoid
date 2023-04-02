@@ -1,8 +1,5 @@
 package it.unibo.game.app.model.round;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 import it.unibo.game.Pair;
@@ -24,6 +21,7 @@ public class RoundDifficult extends AbstractRound {
   private double startY;
   private double stopY;
   private static final int FIX_START_Y = 5;
+  private final int height;
 
   /**
    * constructor of this class.
@@ -43,28 +41,16 @@ public class RoundDifficult extends AbstractRound {
     this.stopY = SizeCalculation.getWorldSize().getY()
         - (3 * (this.getSizeCalc().getBrickDim().getY() / 2)) - FIX_START_Y;
     this.stopX = size.getStop().getX();
+    this.height = (int) Math
+        .sqrt((double) (2 * (this.obstacles + this.getNumBrick() + this.getNumSur())));
     setPosBrick();
   }
 
   /**
-   * method that set position of bricks.
+   * method that set position of bricks from bottom.
    */
   protected void setPosBrick() {
     // TODO Auto-generated method stub
-    /*
-     * int lines; int num=0; for (Double i = getSizeCalc().getStart().getX();
-     * super.getBrick() .size() < (this.obstacles + this.getNumBrick() +
-     * this.getNumSur()); i = i + getSizeCalc().getBrickDim().getX()) { num++; lines
-     * = 0; for (double j = SizeCalculation.getWorldSize().getY() / 2 - (num) *
-     * (getSizeCalc().getBrickDim().getY() / 2) - 10; lines < num; j = j +
-     * getSizeCalc().getBrickDim().getY()) { Brick b = new
-     * NormalBrick(BrickType.NORMAL, new
-     * DimensionImpl(getSizeCalc().getBrickDim().getX(),
-     * getSizeCalc().getBrickDim().getY()), new Pair<>(j, i), 1); super.addBrick(b);
-     * lines++; } }
-     */
-    int height = (int) Math
-        .sqrt((double) (2 * (this.obstacles + this.getNumBrick() + this.getNumSur())));
     int lines = 0;
     int insert = 0;
     int num = height;
@@ -101,11 +87,9 @@ public class RoundDifficult extends AbstractRound {
   }
 
   /**
-   * method that collocates obstacles.
+   * method that collocates obstacles symmetrically in the last line of bricks.
    */
   private void setPosObstacles() {
-    int height = (int) Math
-        .sqrt((double) (2 * (this.obstacles + this.getNumBrick() + this.getNumSur())));
     int first = super.getBrick().size() - height;
     int last = super.getBrick().size() - 1;
     int num = 0;
