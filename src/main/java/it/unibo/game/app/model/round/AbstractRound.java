@@ -42,7 +42,7 @@ public abstract class AbstractRound implements Round {
     this.numBrick = numB;
     this.numSurprise = numS;
     this.sizeC = size;
-    pad = new Pad(size.getPadDim());
+    pad = new Pad(SizeCalculation.getPadDim());
     balls.add(new Ball(size.getBallDim()));
   }
 
