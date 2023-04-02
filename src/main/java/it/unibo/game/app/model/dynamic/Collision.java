@@ -14,6 +14,7 @@ import it.unibo.game.app.model.RectBoundingBox;
 import it.unibo.game.app.model.SizeCalculation;
 
 public class Collision {
+  private static final double DELTA = 7.5;
   private Level level;
 
   public Collision(Level lev) {
@@ -38,7 +39,7 @@ public class Collision {
    */
   public boolean collideWithBorder(BoundingBox b) {
     if (b.getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 || b.getBox()
-        .get(Corner.RIGHT_DOWN).getX() >= SizeCalculation.getWorldSize().getY() - 7.5) {
+        .get(Corner.RIGHT_DOWN).getX() >= SizeCalculation.getWorldSize().getY() - DELTA) {
       return true;
     }
     return false;
