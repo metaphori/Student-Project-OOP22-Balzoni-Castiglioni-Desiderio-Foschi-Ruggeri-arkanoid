@@ -20,6 +20,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.api.Score;
 import it.unibo.game.app.api.Speed;
 import it.unibo.game.app.model.dynamic.Move;
 import it.unibo.game.app.model.dynamic.SpeedImpl;
@@ -197,4 +198,33 @@ public class SurpriseTest {
 
   }
 
+  @Test
+  void testIncreaseScore() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level level = new ThirdLevel();
+    Score score = new ScoreImpl();
+    int s = 0;
+    Surprise surprise = new Surprise(level);
+    /* controllo che il punteggio parta da 0 */
+    assertEquals(0, score.getScore());
+    score.increaseScore();
+    /* controllo che lo score sia aumentato di 1 */
+    assertEquals(1, score.getScore());
+    Method method = Surprise.class.getDeclaredMethod("increaseScore");
+    method.setAccessible(true);
+    method.invoke(surprise);
+    Timer timer = new Timer();
+
+    TimerTask task = new TimerTask() {
+
+      @Override
+      public void run() {
+        Integer s = score.getScore();
+        score.increaseScore();
+        assertEquals(s + 4, score.getScore());
+      }
+    };
+    timer.schedule(task, 10000);
+
+  }
 }
