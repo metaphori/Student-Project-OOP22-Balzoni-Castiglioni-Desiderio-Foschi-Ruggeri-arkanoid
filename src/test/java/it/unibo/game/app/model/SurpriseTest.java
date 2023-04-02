@@ -21,6 +21,7 @@ import java.util.TimerTask;
 
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.Speed;
+import it.unibo.game.app.model.dynamic.Move;
 import it.unibo.game.app.model.dynamic.SpeedImpl;
 import it.unibo.game.app.model.levels.FirstLevel;
 import it.unibo.game.app.model.levels.SecondLevel;
@@ -176,6 +177,24 @@ public class SurpriseTest {
       initial.sum(new SpeedImpl(-0.5, -0.2));
       assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
     }
+  }
+
+  @Test
+  void testAddBalls() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level level = new ThirdLevel();
+    Surprise surprise = new Surprise(level);
+    Move move = new Move(level);
+    Method method = Surprise.class.getDeclaredMethod("addBalls");
+    Method method2 = Move.class.getDeclaredMethod("update");
+    method.setAccessible(true);
+    method2.setAccessible(true);
+    assertEquals(1, level.getRound().getBalls().size());
+    method.invoke(surprise);
+    method2.invoke(move);
+    Boolean bool = level.getRound().getBalls().size() > 1;
+    assertTrue(bool);
+
   }
 
 }
