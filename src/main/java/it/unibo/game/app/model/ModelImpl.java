@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
+import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.model.dynamic.Move;
 import it.unibo.game.app.model.leaderb.LeaderBoard;
@@ -99,8 +100,8 @@ public class ModelImpl implements Model {
    * {@inheritDoc}
    */
   @Override
-  public void setPadPos(final Pair<Double, Double> pos) {
-    this.level.getRound().setPosPad(pos);
+  public void setPadPos(final Direction dir) {
+    this.move.nextPad(dir);
   }
 
   /**
