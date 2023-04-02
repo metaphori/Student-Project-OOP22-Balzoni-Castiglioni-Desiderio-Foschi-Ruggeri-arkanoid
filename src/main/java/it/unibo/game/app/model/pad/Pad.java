@@ -1,14 +1,11 @@
 package it.unibo.game.app.model.pad;
 
 import it.unibo.game.Pair;
-import it.unibo.game.app.api.Physics;
 import it.unibo.game.app.model.AbstractMovingObject;
 import it.unibo.game.app.model.RectBoundingBox;
 import it.unibo.game.app.model.SizeCalculation;
-import it.unibo.game.app.model.ball.BallPhysicsImpl;
 import it.unibo.game.app.model.dynamic.SpeedImpl;
 import it.unibo.game.app.api.Dimension;
-import it.unibo.game.app.api.MovingObject;
 
 public class Pad extends AbstractMovingObject {
 
