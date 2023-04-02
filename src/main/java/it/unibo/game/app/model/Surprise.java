@@ -38,6 +38,7 @@ public class Surprise {
   private static final int NUM_BALLS = 1;
   private static final int PERCENTUAL = 30;
   private static final int BONUS_DURATION = 10000;
+  private static final int FIX_START_Y = 5;
 
   private Map<Integer, Runnable> mappa;
   private Random random = new Random();
@@ -301,7 +302,7 @@ public class Surprise {
         .get(this.level.getRound().getBrick().size() - 1).getBrickH();
     double brickW = this.level.getRound().getBrick()
         .get(this.level.getRound().getBrick().size() - 1).getBrickW();
-    double start = (brickW / 2) - 5;
+    double start = (brickW / 2) - FIX_START_Y;
     double stop = (SizeCalculation.getWorldSize().getY()) - (3 * (brickW / 2));
     for (double x = start; x <= stop; x = x + brickW) {
       NormalBrick brick = new NormalBrick(BrickType.NORMAL,
