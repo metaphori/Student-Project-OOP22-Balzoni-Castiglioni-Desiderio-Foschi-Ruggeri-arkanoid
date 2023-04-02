@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.Optional;
 
 import it.unibo.game.Pair;
-import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.Level;
@@ -12,7 +11,6 @@ import it.unibo.game.app.api.MovingObject;
 import it.unibo.game.app.model.RectBoundingBox;
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.Surprise;
-import it.unibo.game.app.model.pad.Pad;
 
 public class Move {
   private Collision coll;
@@ -84,6 +82,11 @@ public class Move {
     return this.coll.getScore();
   }
 
+  /**
+   * moves the pad inside the game scene
+   * 
+   * @param dir direction selected by the user
+   */
   public void nextPad(Direction dir) {
     var pad = this.l.getRound().getPad();
     var oldPos = pad.getPos();
