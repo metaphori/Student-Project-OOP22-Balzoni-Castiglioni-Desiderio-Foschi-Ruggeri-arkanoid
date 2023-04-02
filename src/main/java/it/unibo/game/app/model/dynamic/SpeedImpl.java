@@ -9,6 +9,7 @@ public class SpeedImpl implements Speed {
 
   private double x;
   private double y;
+  private static final double EPSILON = 0.00000001;
 
   /**
    * constructor of the class.
@@ -62,15 +63,14 @@ public class SpeedImpl implements Speed {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + (((Double) x == null) ? 0 : ((Double) x).hashCode());
-    result = prime * result + (((Double) y == null) ? 0 : ((Double) y).hashCode());
+    result = prime * result + ((Double) x).hashCode();
+    result = prime * result + ((Double) y).hashCode();
     return result;
   }
 
   /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("rawtypes")
   @Override
   public boolean equals(final Object obj) {
     if (this == obj) {
@@ -83,7 +83,7 @@ public class SpeedImpl implements Speed {
       return false;
     }
     Speed other = (Speed) obj;
-    if (other.getX() == x && other.getY() == y) {
+    if (Math.abs(other.getX() - x) < EPSILON && Math.abs(other.getY() - y) < EPSILON) {
       return true;
     }
     return false;
