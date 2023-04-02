@@ -9,6 +9,7 @@ public class SpeedImpl implements Speed {
 
   private double x;
   private double y;
+  private static final double EPSILON = 0.00000001;
 
   /**
    * constructor of the class.
@@ -82,7 +83,7 @@ public class SpeedImpl implements Speed {
       return false;
     }
     Speed other = (Speed) obj;
-    if (other.getX() == x && other.getY() == y) {
+    if (Math.abs(other.getX() - x) < EPSILON && Math.abs(other.getY() - y) < EPSILON) {
       return true;
     }
     return false;
