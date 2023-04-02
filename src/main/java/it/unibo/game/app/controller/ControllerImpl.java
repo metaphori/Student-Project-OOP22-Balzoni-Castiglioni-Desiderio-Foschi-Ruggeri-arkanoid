@@ -22,6 +22,7 @@ import it.unibo.game.app.view.jswing.implementation.UIControllerImpl;
  */
 public class ControllerImpl implements AppController {
 
+  private static final int FONT_SIZE = 20;
   private UIController uiContr;
   private Model model;
   private GameEngine gameEngine;
@@ -217,6 +218,17 @@ public class ControllerImpl implements AppController {
   @Override
   public void setGameEngine() {
     this.gameEngine = new GameEngine(this);
+  }
+
+  @Override
+  public int getFontSize() {
+    return FONT_SIZE;
+  }
+
+  @Override
+  public List<Pair<Double, Double>> getLabelPos() {
+    return List.of(new Pair<>(10 * delta().getX(), 20 * delta().getY()),
+        new Pair<>(225 * delta().getX(), 20 * delta().getY()));
   }
 
   /**

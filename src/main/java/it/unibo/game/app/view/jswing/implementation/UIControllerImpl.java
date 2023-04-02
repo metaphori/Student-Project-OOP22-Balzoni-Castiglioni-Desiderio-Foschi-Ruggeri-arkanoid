@@ -187,4 +187,14 @@ public class UIControllerImpl implements UIController {
   public void updatePoints(String name, String passWord) {
     this.AppController.updatePoints(name, passWord);
   }
+
+  @Override
+  public List<Pair<Double, Double>> getLabelPos() {
+    return this.AppController.getLabelPos();
+  }
+
+  @Override
+  public int getSizeFont() {
+    return this.AppController.getFontSize();
+  }
 }

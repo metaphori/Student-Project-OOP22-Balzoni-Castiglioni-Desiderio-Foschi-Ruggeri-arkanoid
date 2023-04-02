@@ -66,18 +66,23 @@ public class GameViewImpl extends JPanel
     g2d.fill(new Rectangle2D.Double(observer.getPadPos().getX(),
         observer.getPadPos().getY(), observer.getPadWight(), observer.getPadHeight()));
 
-    g2d.setFont(new Font("myFont", Font.ITALIC, (int) (20 * deltaH)));
+    g2d.setFont(new Font("myFont", Font.ITALIC, observer.getSizeFont()));
     g2d.setColor(Color.RED);
-    g2d.drawString("SCORE: " + this.observer.getScore(), (int) (10 * deltaW),
-        (int) (20 * deltaH));
+    g2d.drawString("SCORE: " + this.observer.getScore(),
+        observer.getLabelPos().get(0).getX().intValue(),
+        observer.getLabelPos().get(0).getY().intValue());
 
-    g2d.setFont(new Font("myFont", Font.ITALIC, (int) (20 * deltaH)));
+    g2d.setFont(new Font("myFont", Font.ITALIC, observer.getSizeFont()));
     g2d.setColor(Color.RED);
-    g2d.drawString("LIVES: " + this.observer.getLife(), (int) (225 * deltaW),
-        (int) (20 * deltaH));
+    g2d.drawString("LIVES: " + this.observer.getLife(),
+        observer.getLabelPos().get(1).getX().intValue(),
+        observer.getLabelPos().get(1).getY().intValue());
 
     g2d.dispose();
 
+    // size font 20
+    // score 10,20
+    // lives 225,20
   }
 
   private Color peekColor(Entry<Pair<Double, Double>, Optional<Integer>> x) {

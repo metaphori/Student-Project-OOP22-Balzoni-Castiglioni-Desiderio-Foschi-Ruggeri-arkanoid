@@ -193,4 +193,8 @@ public interface AppController {
    */
   void setVictory();
 
+  int getFontSize();
+
+  List<Pair<Double, Double>> getLabelPos();
+
 }
