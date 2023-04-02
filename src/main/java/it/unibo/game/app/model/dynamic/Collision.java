@@ -31,6 +31,11 @@ public class Collision {
     }
   }
 
+  /**
+   * 
+   * @param b boundingbox
+   * @return true if collide with border
+   */
   public boolean collideWithBorder(BoundingBox b) {
     if (b.getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 || b.getBox()
         .get(Corner.RIGHT_DOWN).getX() >= SizeCalculation.getWorldSize().getY() - 7.5) {
