@@ -49,7 +49,6 @@ public class SizeCalculation {
 
   /**
    * 
-   * @param numR number of rounds passed.
    * @return returns the height at which to stop the placement of the bricks.
    */
   private Double getStopX() {
