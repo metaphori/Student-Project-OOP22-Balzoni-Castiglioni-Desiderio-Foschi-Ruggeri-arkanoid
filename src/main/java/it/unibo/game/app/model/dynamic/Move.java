@@ -87,7 +87,7 @@ public class Move {
    * 
    * @param dir direction selected by the user
    */
-  public void nextPad(Direction dir) {
+  public void nextPad(final Direction dir) {
     var pad = this.l.getRound().getPad();
     var oldPos = pad.getPos();
     var newPos = new Pair<>(
