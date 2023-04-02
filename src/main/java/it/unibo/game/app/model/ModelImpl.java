@@ -184,7 +184,7 @@ public class ModelImpl implements Model {
    */
   @Override
   public void update(final long dt) {
-    move.update(dt);
+    move.update();
   }
 
   /**

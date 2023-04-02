@@ -22,8 +22,8 @@ public class Move {
     this.surprise = new Surprise(l);
   }
 
-  public void nextBall(long dt, MovingObject ball) {
-    coll.CollideWithEdges(ball, SizeCalculation.getWorldSize().getX(),
+  public void nextBall(MovingObject ball) {
+    coll.collideWithEdges(ball, SizeCalculation.getWorldSize().getX(),
         SizeCalculation.getWorldSize().getY());
     index = coll.collideWithBrick(ball);
     if (index.isPresent()) {
@@ -34,7 +34,7 @@ public class Move {
       }
       this.l.getRound().remove(index.get());
     }
-    if (coll.CollideWithPad(ball, this.l.getRound().getPad())) {
+    if (coll.collideWithPad(ball, this.l.getRound().getPad())) {
       this.l.getScore().resetPoints();
     }
     var newPos = new Pair<Double, Double>(
@@ -51,7 +51,7 @@ public class Move {
       MovingObject next = it.next();
       if (next.getPos().getY() >= SizeCalculation.getWorldSize().getX()) {
         it.remove();
-      } else if (coll.CollideWithPad(next, this.l.getRound().getPad())) {
+      } else if (coll.collideWithPad(next, this.l.getRound().getPad())) {
         this.surprise.chooseSurprise();
         // this.surprise.bonus();
         it.remove();
@@ -66,10 +66,10 @@ public class Move {
     return index;
   }
 
-  public void update(long dt) {
+  public void update() {
     /* ora solo per una palla */
     for (var ball : this.l.getRound().getBalls()) {
-      nextBall(dt, ball);
+      nextBall(ball);
     }
     this.checkSurprise();
     this.l.getRound().getBalls().addAll(this.l.getRound().getExtraBalls());

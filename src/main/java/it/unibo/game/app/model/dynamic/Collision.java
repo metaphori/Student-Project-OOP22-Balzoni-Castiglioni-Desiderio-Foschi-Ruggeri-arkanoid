@@ -18,7 +18,7 @@ public class Collision {
     this.level = lev;
   }
 
-  public void CollideWithEdges(MovingObject b, Double h, Double w) {
+  public void collideWithEdges(MovingObject b, Double h, Double w) {
     b.setBoundingBox(new CircleBoundingBox(b));
     if (b.getBoundingBox().getBox().get(Corner.LEFT_DOWN).getX() <= 0.5
         || b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w - 7.5) {
@@ -47,7 +47,7 @@ public class Collision {
     return Optional.empty();
   }
 
-  public boolean CollideWithPad(MovingObject b, MovingObject p) {
+  public boolean collideWithPad(MovingObject b, MovingObject p) {
     b.setBoundingBox(new CircleBoundingBox(b));
     p.setBoundingBox(new RectBoundingBox(p));
     var opt = b.getBoundingBox().collideWith(p.getBoundingBox());
