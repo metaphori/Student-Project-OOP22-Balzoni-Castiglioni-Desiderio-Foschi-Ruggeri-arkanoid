@@ -174,13 +174,13 @@ public class UIControllerImpl implements UIController {
 
   @Override
   public int getScore() {
-    // TODO Auto-generated method stub
+
     return this.AppController.getScore();
   }
 
   @Override
   public int getLife() {
-    // TODO Auto-generated method stub
+
     return this.AppController.getLife();
   }
 
