@@ -60,7 +60,7 @@ public interface Model {
    * 
    * @param pos new pad position
    */
-  void setPadPos(Pair<Double, Double> pos);
+  void setPadPos(Direction dir);
 
   /**
    * method that allows to change round.
