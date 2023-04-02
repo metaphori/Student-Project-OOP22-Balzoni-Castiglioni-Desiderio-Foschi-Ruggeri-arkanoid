@@ -81,7 +81,7 @@ public class Surprise {
    */
   private void explosiveBomb() {
     Brick lastBrick = this.level.getLastSurpriseBrick();
-    int index = this.level.getIndex();
+    int index = this.level.getIndexLastSurprise();
 
     if (this.isIndexPositive(index - 1) && this.isThereLeftBrick(index - 1, lastBrick)
         && !this.isObstacle(index - 1)) {
