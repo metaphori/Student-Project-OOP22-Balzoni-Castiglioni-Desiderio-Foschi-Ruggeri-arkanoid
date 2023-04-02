@@ -67,14 +67,12 @@ public class GameEngine {
    * method used to make the gameLoop take the same time on different PC.
    * 
    * @param cycleStartTime
+   * @throws InterruptedException
    */
-  private void waitForNextFrame(final long cycleStartTime) {
+  private void waitForNextFrame(final long cycleStartTime) throws InterruptedException {
     long dt = System.currentTimeMillis() - cycleStartTime;
     if (dt < period) {
-      try {
-        Thread.sleep(period - dt);
-      } catch (Exception ex) {
-      }
+      Thread.sleep(period - dt);
     }
   }
 
