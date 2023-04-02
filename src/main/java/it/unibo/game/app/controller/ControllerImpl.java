@@ -8,10 +8,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
+import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.Model;
 import it.unibo.game.app.api.MovingObject;
 import it.unibo.game.app.model.ModelImpl;
 import it.unibo.game.app.model.SizeCalculation;
+import it.unibo.game.app.model.dynamic.DirectionImpl;
 import it.unibo.game.app.view.jswing.api.UIController;
 import it.unibo.game.app.view.jswing.implementation.UIControllerImpl;
 
@@ -205,14 +207,6 @@ public class ControllerImpl implements AppController {
    * {@inheritDoc}
    */
   @Override
-  public void changePadPos(final Pair<Double, Double> pos) {
-    this.model.setPadPos(pos);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
   public Double getRow(final Double x) {
     return this.model.getRow(x) * this.delta().getY();
   }
@@ -271,12 +265,12 @@ public class ControllerImpl implements AppController {
   }
 
   /**
-   * method to set new pad position.
+   * method to change pad position.
    * 
-   * @param p positon of pad.
+   * @param newPos new pad direction
    */
-  private void movePad(final Pair<Double, Double> p) {
-    this.model.setPadPos(p);
+  private void movePad(final Direction d) {
+    this.model.setPadPos(d);
   }
 
   /**
@@ -284,8 +278,9 @@ public class ControllerImpl implements AppController {
    */
   @Override
   public void mvPadR() {
-    movePad(new Pair<Double, Double>(this.model.getPad().getX() + 1 * 10,
-        this.model.getPad().getY()));
+    var d = new DirectionImpl();
+    d.setDirectionRight();
+    movePad(d);
   }
 
   /**
@@ -293,8 +288,9 @@ public class ControllerImpl implements AppController {
    */
   @Override
   public void mvPadL() {
-    movePad(new Pair<Double, Double>(this.model.getPad().getX() - 1 * 10,
-        this.model.getPad().getY()));
+    var d = new DirectionImpl();
+    d.setDirectionLeft();
+    movePad(d);
   }
 
   /**
@@ -318,6 +314,7 @@ public class ControllerImpl implements AppController {
    */
   @Override
   public int getLife() {
+
     return this.model.getLife();
   }
 
