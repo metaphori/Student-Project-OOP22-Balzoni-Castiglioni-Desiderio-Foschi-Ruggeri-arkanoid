@@ -2,22 +2,57 @@ package it.unibo.game.app.api;
 
 import it.unibo.game.Pair;
 
+/**
+ * Interface that manages the direction of MovingObject
+ */
 public interface Direction {
+  /**
+   * Set the direction of the MovingObject Up.
+   */
+  void setDirectionUp();
 
-	void setDirectionUp();
+  /**
+   * Set the direction of the MovingObject Down.
+   */
+  void setDirectionDown();
 
-	void setDirectionDown();
+  /**
+   * Set the direction of the MovingObject Left.
+   */
+  void setDirectionLeft();
 
-	void setDirectionLeft();
+  /**
+   * Set the direction of the MovingObject Right.
+   */
+  void setDirectionRight();
 
-	void setDirectionRight();
+  /**
+   * 
+   * @return true if the direction of the Object is Up.
+   */
+  boolean isDirectionUp();
 
-	boolean isDirectionUp();
+  /**
+   * 
+   * @return true if the direction of the Object is Left.
+   */
+  boolean isDirectionLeft();
 
-	boolean isDirectionLeft();
+  /**
+   * Set the direction of the ball to the initial one.
+   */
+  void resetDirection();
 
-	void resetDirection();
+  /**
+   * 
+   * @return the direction.
+   */
+  Pair<Integer, Integer> getDirection();
 
-	Pair<Integer, Integer> getDirection();
+  /**
+   * 
+   * @param newD set the direction.
+   */
+  public void setDirection(Pair<Integer, Integer> newD);
 
 }
