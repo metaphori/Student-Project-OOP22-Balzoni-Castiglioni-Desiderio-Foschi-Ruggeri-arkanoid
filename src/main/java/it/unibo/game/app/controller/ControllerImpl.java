@@ -325,6 +325,7 @@ public class ControllerImpl implements AppController {
   @Override
   public void setVictory() {
     this.uiContr.victory();
+    this.gameEngine.setWin();
   }
 
   /**
@@ -334,6 +335,11 @@ public class ControllerImpl implements AppController {
   public int getLife() {
 
     return this.model.getLife();
+  }
+
+  @Override
+  public void restartWin() {
+    this.gameEngine.resetWin();
   }
 
 }

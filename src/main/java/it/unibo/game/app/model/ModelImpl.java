@@ -70,6 +70,7 @@ public class ModelImpl implements Model {
     }
     this.move = new Move(level);
     this.gameOver = new GameOver(level.getRound());
+    this.control.restartWin();
   }
 
   /**

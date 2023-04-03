@@ -205,4 +205,6 @@ public interface AppController {
    */
   List<Pair<Double, Double>> getLabelPos();
 
+  void restartWin();
+
 }
