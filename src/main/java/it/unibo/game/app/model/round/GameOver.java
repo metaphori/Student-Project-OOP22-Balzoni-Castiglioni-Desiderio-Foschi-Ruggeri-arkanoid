@@ -42,7 +42,7 @@ public class GameOver {
   /**
    * @return boolean value that indicates if remains only obstacles in round.
    */
-  public boolean remainsOnlyObstacles() {
+  private boolean remainsOnlyObstacles() {
     for (Brick element : this.round.getBrick()) {
       if (element.getType() != BrickType.OBSTACLE) {
         return false;
