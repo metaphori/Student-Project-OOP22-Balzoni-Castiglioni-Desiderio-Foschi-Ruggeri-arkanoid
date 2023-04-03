@@ -75,7 +75,7 @@ classDiagram
         OBSTACLES3 int = 6
     }
 
-    ##AbstractView
+    ## AbstractView
 
     classDiagram
     JPanel <|-- AbstractView
@@ -101,4 +101,15 @@ classDiagram
     }
     class Victory{
     
+    }
+
+    ## GameOver
+
+    classDiagram
+    GameOver o-- Round
+
+    class GameOver {
+        +hasMissedBall() boolean
+        +isRoundFinished() boolean
+        -remainsOnlyObstacles() boolean
     }
