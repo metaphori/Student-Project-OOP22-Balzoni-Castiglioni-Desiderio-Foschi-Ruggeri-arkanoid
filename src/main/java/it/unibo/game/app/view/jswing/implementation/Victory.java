@@ -1,6 +1,7 @@
 package it.unibo.game.app.view.jswing.implementation;
 
-import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Implements the panel for GameOver view.
@@ -13,12 +14,11 @@ public class Victory extends AbstractView {
    * @param uiCtrl is the controller that will change the views
    */
   public Victory(final UIControllerImpl uiCtrl) {
-    super(uiCtrl);
-    this.getTitle().setText("YOU WIN");
-    this.getButtonsPanel().setLayout(new GridLayout(3, 1, 0, 1));
-    this.getButtonsPanel().add(this.getSaveBtn());
-    this.getButtonsPanel().add(this.getMenuBtn());
-    this.getButtonsPanel().add(this.getQuitBtn());
+    super(uiCtrl, "YOU WIN", new CustomBtn(30, "Save"), new ActionListener() {
+      @Override
+      public void actionPerformed(final ActionEvent arg0) {
+        new SaveScore(uiCtrl);
+      }
+    });
   }
-
 }

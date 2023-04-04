@@ -10,90 +10,94 @@ import it.unibo.game.app.model.SizeCalculation;
  */
 public interface Round {
 
-	/**
-	 * 
-	 * @return object of class SizeCalculation.
-	 */
-	SizeCalculation getSizeCalc();
+  /**
+   * 
+   * @return object of class SizeCalculation.
+   */
+  SizeCalculation getSizeCalc();
 
-	/**
-	 * 
-	 * @return number of normal bricks.
-	 */
-	int getNumBrick();
+  /**
+   * 
+   * @return number of normal bricks.
+   */
+  int getNumBrick();
 
-	/**
-	 * 
-	 * @return number of brick surprise.
-	 */
-	int getNumSur();
+  /**
+   * 
+   * @return number of brick surprise.
+   */
+  int getNumSur();
 
-	/**
-	 * returns the ball to its initial position.
-	 */
-	void restart();
+  /**
+   * returns the ball to its initial position.
+   */
+  void restart();
 
-	/**
-	 * 
-	 * @return list of all bricks.
-	 */
-	List<Brick> getBrick();
+  /**
+   * method to get all the bricks in the game.
+   * 
+   * @return list of all bricks.
+   */
+  List<Brick> getBrick();
 
-	/**
-	 * method to set ball position.
-	 * 
-	 * @param pos
-	 */
-	void setPosBall(Pair<Double, Double> pos);
+  /**
+   * method to set ball position.
+   * 
+   * @param pos   new position of ball
+   * @param index ball position in the list
+   */
+  void setPosBall(Pair<Double, Double> pos, int index);
 
-	/**
-	 * method to set pos of pad.
-	 * 
-	 * @param pos
-	 */
-	void setPosPad(Pair<Double, Double> pos);
+  /**
+   * method to set pos of pad.
+   * 
+   * @param pos new position of pad
+   */
+  void setPosPad(Pair<Double, Double> pos);
 
-	/**
-	 * 
-	 * @return list of surprise balls.
-	 */
-	List<MovingObject> getSurprise();
+  /**
+   * method to get all bonus ball in the game.
+   * 
+   * @return list of surprise balls.
+   */
+  List<MovingObject> getSurprise();
 
-	/**
-	 * 
-	 * @return ball position.
-	 */
-	Pair<Double, Double> getPosBall();
+  /**
+   * method to get positions of all balls in the game.
+   * 
+   * @return a list that contains positions of all balls
+   */
+  List<Pair<Double, Double>> getPosBall();
 
-	/**
-	 * 
-	 * @return pad position.
-	 */
-	Pair<Double, Double> getPosPad();
+  /**
+   * 
+   * @return pad.
+   */
+  MovingObject getPad();
 
-	/**
-	 * 
-	 * @return pad.
-	 */
-	MovingObject getPad();
+  /**
+   * 
+   * @return balls.
+   */
+  List<MovingObject> getBalls();
 
-	/**
-	 * 
-	 * @return ball.
-	 */
-	MovingObject getBall();
+  /**
+   * method to remove a brick when is hitten.
+   * 
+   * @param index position of brick in the list
+   */
+  void remove(int index);
 
-	/**
-	 * method to remove a brick when is hitten.
-	 * 
-	 * @param index
-	 */
-	void remove(int index);
+  /**
+   * 
+   * @return list of extra balls.
+   */
+  List<MovingObject> getExtraBalls();
 
-	/**
-	 * 
-	 * @return ball position when game starts.
-	 */
-	//Pair<Double, Double> getBallInitialPosition();
+  /**
+   * 
+   * @return ball position when game starts.
+   */
+  // Pair<Double, Double> getBallInitialPosition();
 
 }

@@ -1,187 +1,300 @@
 package it.unibo.game.app.view.jswing.implementation;
 
-import java.util.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
-import it.unibo.game.app.view.jswing.api.*;
+import it.unibo.game.app.view.jswing.api.UIController;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
+/**
+ * class that interacts between the Controller and the GameView.
+ */
 public class UIControllerImpl implements UIController {
 
-	private final static int LONGER_SIDE = 3;
-	private final static int SMALLER_SIDE = 2;
-	private JFrame window;
-	private AppController AppController;
-	private final CardLayout layout = new CardLayout();
-	private JPanel deck;
-	private final Map<PAGES, JPanel> views = new HashMap<>();
+  private static final int LONGER_SIDE = 3;
+  private static final int SMALLER_SIDE = 2;
+  private JFrame window;
+  private AppController appController;
+  private final CardLayout layout = new CardLayout();
+  private JPanel deck;
+  private final Map<PAGES, JPanel> views = new HashMap<>();
 
-	public void set(AppController control) {
-		this.AppController = control;
+  /**
+   * {@inheritDoc}
+   */
+  public void set(final AppController control) {
+    this.appController = control;
 
-		var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-		/* make dimension like old 4/3 monitor */
-		Dimension minDim = screenSize.width > screenSize.height
-				? new Dimension(screenSize.height / SMALLER_SIDE, screenSize.width / LONGER_SIDE)
-				: new Dimension(screenSize.height / LONGER_SIDE, screenSize.width / SMALLER_SIDE);
-		/* run jframe on EDT */
-		SwingUtilities.invokeLater(() -> {
-			window = new JFrame("Arkanoid");
-			this.window.setMinimumSize(minDim);
-			this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			this.window.setVisible(true);
-			this.window.requestFocusInWindow();
-		});
+    /* make dimension like old 4/3 monitor */
+    Dimension minDim = screenSize.width > screenSize.height
+        ? new Dimension(screenSize.height / SMALLER_SIDE, screenSize.width / LONGER_SIDE)
+        : new Dimension(screenSize.height / LONGER_SIDE, screenSize.width / SMALLER_SIDE);
+    /* run jframe on EDT */
+    SwingUtilities.invokeLater(() -> {
+      window = new JFrame("Arkanoid");
+      this.window.setMinimumSize(minDim);
+      this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.window.setVisible(true);
+      this.window.requestFocusInWindow();
+    });
 
-		this.deck = new JPanel(layout);
-		views.putAll(
-				Map.of(PAGES.GAME, new GameViewImpl(this), PAGES.START_MENU, new StartMenu(this),
-						PAGES.PAUSE_MENU, new PauseMenu(this), PAGES.TOP_5, new LeaderBoardView(this),
-						PAGES.VICTORY, new Victory(this), PAGES.GAME_OVER, new GameOver(this)));
+    this.deck = new JPanel(layout);
+    views.putAll(
+        Map.of(PAGES.GAME, new GameViewImpl(this), PAGES.START_MENU, new StartMenu(this),
+            PAGES.PAUSE_MENU, new PauseMenu(this), PAGES.TOP_5, new LeaderBoardView(this),
+            PAGES.VICTORY, new Victory(this), PAGES.GAME_OVER, new GameOver(this)));
 
-		views.entrySet().stream().forEach(x -> deck.add(x.getValue(), x.getKey().getName()));
-		window.add(deck, BorderLayout.CENTER);
-		initialView();
-	}
+    views.entrySet().stream().forEach(x -> deck.add(x.getValue(), x.getKey().getName()));
+    window.add(deck, BorderLayout.CENTER);
+    initialView();
+  }
 
-	private void chargeView(PAGES p) {
-		layout.show(deck, p.getName());
-		window.setTitle(p.getName());
-		views.get(p).requestFocusInWindow();
-	}
+  /**
+   * method that changes the view.
+   * 
+   * @param p pages
+   */
+  private void chargeView(final PAGES p) {
+    layout.show(deck, p.getName());
+    window.setTitle(p.getName());
+    views.get(p).requestFocusInWindow();
+    if (p.equals(PAGES.GAME)) {
+      this.appController.play();
+    }
+  }
 
-	@Override
-	public void initialView() {
-		chargeView(PAGES.START_MENU);
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void initialView() {
+    chargeView(PAGES.START_MENU);
+  }
 
-	@Override
-	public void pauseMenu() {
-		chargeView(PAGES.PAUSE_MENU);
-		AppController.onPause();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void pauseMenu() {
+    chargeView(PAGES.PAUSE_MENU);
+    appController.onPause();
+  }
 
-	@Override
-	public void gameView() {
-		chargeView(PAGES.GAME);
-		AppController.play();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void gameView() {
+    chargeView(PAGES.GAME);
 
-	@Override
-	public void leaderBoardView() {
-		chargeView(PAGES.TOP_5);
-	}
+  }
 
-	public Map<Pair<Double, Double>, Optional<Integer>> getList() {
-		return AppController.getBrickList();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void leaderBoardView() {
+    chargeView(PAGES.TOP_5);
+  }
 
-	@Override
-	public void level(int numLevel) {
-		AppController.chooseLevel(numLevel);
-	}
+  /**
+   * {@inheritDoc}
+   */
+  public Map<Pair<Double, Double>, Optional<Integer>> getList() {
+    return appController.getBrickList();
+  }
 
-	public Pair<Double, Double> getDimension() {
-		return AppController.getWorldDimension();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void level(final int numLevel) {
+    appController.chooseLevel(numLevel);
+  }
 
-	public Pair<Double, Double> getDimensionBrick() {
-		return AppController.getBrickDimension();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  public Pair<Double, Double> getDimension() {
+    return appController.getWorldDimension();
+  }
 
-	@Override
-	public Pair<Double, Double> getBall() {
-		return AppController.getBall();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  public Pair<Double, Double> getDimensionBrick() {
+    return appController.getBrickDimension();
+  }
 
-	@Override
-	public Pair<Double, Double> getPadPos() {
-		return AppController.getPad();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<Pair<Double, Double>> getBall() {
+    return appController.getBall();
+  }
 
-	public Double getPadWight() {
-		return AppController.getPadWight();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Pair<Double, Double> getPadPos() {
+    return appController.getPad();
+  }
 
-	public Double getPadHeight() {
-		return AppController.getPadHeight();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Double getPadWight() {
+    return appController.getPadWight();
+  }
 
-	public Double getRBall() {
-		return AppController.getRBall();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Double getPadHeight() {
+    return appController.getPadHeight();
+  }
 
-	@Override
-	public void rPaint() {
-		this.window.repaint();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Double getRBall() {
+    return appController.getRBall();
+  }
 
-	/*
-	 * @Override public void setController(AppController observer) { controller =
-	 * observer; }
-	 */
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void rPaint() {
+    this.window.repaint();
+  }
 
-	@Override
-	public void gameOver() {
-		chargeView(PAGES.GAME_OVER);
-		AppController.onPause();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void gameOver() {
+    chargeView(PAGES.GAME_OVER);
+    appController.onPause();
+  }
 
-	@Override
-	public void victory() {
-		chargeView(PAGES.VICTORY);
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void victory() {
+    chargeView(PAGES.VICTORY);
+  }
 
-	public Double getRowC(Double x) {
-		return this.AppController.getRow(x);
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Double getRowC(final Double x) {
+    return this.appController.getRow(x);
+  }
 
-	public List<Pair<String, Integer>> getBestFive() {
-		return this.AppController.getBestFive();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<Pair<String, Integer>> getBestFive() {
+    return this.appController.getBestFive();
+  }
 
-	public void movePadRight() {
-		AppController.mvPadR();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void movePadRight() {
+    appController.mvPadR();
+  }
 
-	public void movePadLeft() {
-		AppController.mvPadL();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void movePadLeft() {
+    appController.mvPadL();
+  }
 
-	@Override
-	public Pair<Double, Double> windowDim() {
-		return new Pair<Double, Double>(Integer.valueOf(this.window.getWidth()).doubleValue(),
-				Integer.valueOf(this.window.getHeight()).doubleValue());
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Pair<Double, Double> windowDim() {
+    return new Pair<Double, Double>(Integer.valueOf(this.window.getWidth()).doubleValue(),
+        Integer.valueOf(this.window.getHeight()).doubleValue());
+  }
 
-	@Override
-	public List<Pair<Double, Double>> getSurprise() {
-		return this.AppController.getSurprise();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<Pair<Double, Double>> getSurprise() {
+    return this.appController.getSurprise();
+  }
 
-	// @Override
-	// public List<Pair<Double, Double>> getExtraBalls(){
-	// return this.AppController.getNewBalls();
-	// }
+  // @Override
+  // public List<Pair<Double, Double>> getExtraBalls(){
+  // return this.AppController.getNewBalls();
+  // }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getScore() {
+    return this.appController.getScore();
+  }
 
-	@Override
-	public int getScore() {
-		// TODO Auto-generated method stub
-		return this.AppController.getScore();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getLife() {
+    return this.appController.getLife();
+  }
 
-	@Override
-	public int getLife() {
-		// TODO Auto-generated method stub
-		return this.AppController.getLife();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void updatePoints(final String name, final String passWord) {
+    this.appController.updatePoints(name, passWord);
+  }
 
-	public void updatePoints(String name, String passWord) {
-		this.AppController.updatePoints(name, passWord);
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<Pair<Double, Double>> getLabelPos() {
+    return this.appController.getLabelPos();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getSizeFont() {
+    return this.appController.getFontSize();
+  }
 }

@@ -1,83 +1,210 @@
 package it.unibo.game.app.api;
 
-import java.util.*;
-
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import it.unibo.game.Pair;
 
+/**
+ * Controller interface that handles communication between model and view.
+ */
 public interface AppController {
 
-	/*
-	 * chiama il metodo della view che mostra la situazione di gioco
-	 */
+  /**
+   * calls the method of the view which shows the game situation.
+   */
+  void play();
 
-	void play();
+  /**
+   * invoked from the view to pause the game.
+   */
+  void onPause();
 
-	/*
-	 * richiamato dalla view per mettere in pausa il gioco
-	 */
-	void onPause();
+  /**
+   * terminate the application.
+   */
+  void quit();
 
-	/* termina l'applicazione */
-	void quit();
+  /**
+   * method that initializes the view.
+   */
+  void setView();
 
-	void setView();
+  /**
+   * method that initializes the model.
+   */
+  void setModel();
 
-	void setModel();
+  /**
+   * 
+   * @return the position of the blocks with the relative resistance.
+   */
+  Map<Pair<Double, Double>, Optional<Integer>> getBrickList();
 
-	Map<Pair<Double, Double>, Optional<Integer>> getBrickList();
+  /**
+   * method that is called from the view when the level is chosen.
+   * 
+   * @param numLevel selected level number
+   */
+  void chooseLevel(int numLevel);
 
-	void chooseLevel(int numLevel);
+  /**
+   * 
+   * @return brick dimension.
+   */
+  Pair<Double, Double> getBrickDimension();
 
-	Pair<Double, Double> getBrickDimension();
+  /**
+   * 
+   * @return model dimension.
+   */
+  Pair<Double, Double> getWorldDimension();
 
-	Pair<Double, Double> getWorldDimension();
+  /**
+   * method for changing rounds or claiming victory.
+   */
+  void nextRound();
 
-	void nextRound();
+  /**
+   * 
+   * @return list of balls
+   */
+  List<Pair<Double, Double>> getBall();
 
-	Pair<Double, Double> getBall();
+  /**
+   * 
+   * @return pad position update relative to frame size.
+   */
+  Pair<Double, Double> getPad();
 
-	Pair<Double, Double> getPad();
+  /**
+   * 
+   * @return pad width update relative to frame size.
+   */
+  Double getPadWight();
 
-	void changePadPos(Pair<Double, Double> newPos);
+  /**
+   * 
+   * @return pad height update relative to frame size.
+   */
+  Double getPadHeight();
 
-	Double getPadWight();
+  /**
+   * 
+   * @return ball radius update relative to frame size.
+   */
+  Double getRBall();
 
-	Double getPadHeight();
+  /**
+   * method to invoke the repaint on the frame.
+   */
+  void rPaint();
 
-	Double getRBall();
+  /**
+   * method used to know the y of the rows of bricks update relative to frame
+   * size.
+   * 
+   * @param x number of row
+   * @return y of the row
+   */
+  Double getRow(Double x);
 
-	void rPaint();
+  /**
+   * 
+   * @return list of best five.
+   */
+  List<Pair<String, Integer>> getBestFive();
 
-	Double getRow(Double x);
+  /**
+   * 
+   * @return list of position of surprise ball.
+   */
+  List<Pair<Double, Double>> getSurprise();
 
-	List<Pair<String, Integer>> getBestFive();
+  // List<Pair<Double, Double>> getNewBalls();
+  /**
+   * 
+   * @return the score
+   */
+  int getScore();
 
-	List<Pair<Double, Double>> getSurprise();
+  /**
+   * 
+   * @return the life of the player.
+   */
+  int getLife();
 
-	// List<Pair<Double, Double>> getNewBalls();
+  /**
+   * method that initializes the game engine.
+   */
+  void setGameEngine();
 
-	int getScore();
+  /**
+   * method for update points.
+   * 
+   * @param name     name of the player
+   * @param passWord password of the player
+   */
+  void updatePoints(String name, String passWord);
 
-	int getLife();
+  /**
+   * method to invoke update in model.
+   * 
+   * @param dt time
+   */
+  void update(long dt);
 
-	void setGameEngine();
+  /**
+   * method to invoke the game over frame change in the view.
+   */
+  void setGameOver();
 
-	void updatePoints(String name, String passWord);
+  /**
+   * method that controls whether to decrease lives and set game over.
+   * 
+   * @return true if the player missed the ball
+   */
+  boolean updateLife();
 
-	void update(long dt);
+  /**
+   * method for returning the ball to the starting point.
+   */
+  void restoreBall();
 
-	void setGameOver();
+  /**
+   * move pad right
+   */
+  void mvPadR();
 
-	boolean updateLife();
+  /**
+   * move pad Left
+   */
+  void mvPadL();
 
-	void restoreBall();
+  /**
+   * method that informs if the round has been changed.
+   * 
+   * @return true if the round has been changed
+   */
+  boolean checkRound();
 
-	void mvPadR();
+  /**
+   * method to invoke the victory frame change in the view.
+   */
+  void setVictory();
 
-	void mvPadL();
+  /**
+   * 
+   * @return font size must have GUI font
+   */
+  int getFontSize();
 
-	boolean checkRound();
+  /**
+   * 
+   * @return where draw labels in GUI
+   */
+  List<Pair<Double, Double>> getLabelPos();
 
-	void setVictory();
+  void restartWin();
 
 }

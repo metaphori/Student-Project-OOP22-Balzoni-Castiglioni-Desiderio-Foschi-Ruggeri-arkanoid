@@ -3,77 +3,225 @@ package it.unibo.game.app.view.jswing.api;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 
+/**
+ * interface that interacts between the Controller and the GameView.
+ */
 public interface UIController {
-	enum PAGES {
-		START_MENU("START MENU"), PAUSE_MENU("PAUSE MENU"), GAME("ARKANOID"),
-		TOP_5("TOP FIVE"), VICTORY("VICTORY"), GAME_OVER("GAME_OVER");
+  /**
+   * types of pages that may appear while the application is running.
+   */
+  enum PAGES {
+    /**
+     * start menu.
+     */
+    START_MENU("START MENU"),
+    /**
+     * pause menu.
+     */
+    PAUSE_MENU("PAUSE MENU"),
+    /**
+     * game view.
+     */
+    GAME("ARKANOID"),
+    /**
+     * leaderboard.
+     */
+    TOP_5("TOP FIVE"),
+    /**
+     * victory.
+     */
+    VICTORY("VICTORY"),
+    /**
+     * game over.
+     */
+    GAME_OVER("GAME_OVER");
 
-		String name;
+    private final String name;
 
-		PAGES(String name) {
-			this.name = name;
-		}
+    /**
+     * method that names the page.
+     * 
+     * @param name name of the page.
+     */
+    PAGES(final String name) {
+      this.name = name;
+    }
 
-		public String getName() {
-			return this.name;
-		}
-	};
+    /**
+     * method that get names of the page.
+     * 
+     * @return name of the page.
+     */
+    public String getName() {
+      return this.name;
+    }
+  };
 
-	void set(AppController control);
+  /**
+   * method that sets the controller and creates a new Frame, also initializes the
+   * page map and calls the initialView method.
+   * 
+   * @param control controller of the application.
+   */
+  void set(AppController control);
 
-	// void setController(AppController observer);
-	void initialView();
+  /**
+   * method that brings up the main menu page.
+   */
+  void initialView();
 
-	void pauseMenu();
+  /**
+   * method that brings up the pause menu page and stops the gameLoop.
+   */
+  void pauseMenu();
 
-	void gameView();
+  /**
+   * method that brings up the game page and starts the gameLoop.
+   */
+  void gameView();
 
-	void leaderBoardView();
+  /**
+   * method that brings up the leaderboard page.
+   */
+  void leaderBoardView();
 
-	void gameOver();
+  /**
+   * method that brings up the game over page and stops the gameLoop.
+   */
+  void gameOver();
 
-	void victory();
+  /**
+   * method that brings up the victory page and stops the gameLoop.
+   */
+  void victory();
 
-	void level(int numLevel);
+  /**
+   * method that is called when the user chooses the level.
+   * 
+   * @param numLevel level identification number
+   */
+  void level(int numLevel);
 
-	Map<Pair<Double, Double>, Optional<Integer>> getList();
+  /**
+   * 
+   * @return map of the positions of the bricks and their relative resistance.
+   */
+  Map<Pair<Double, Double>, Optional<Integer>> getList();
 
-	Pair<Double, Double> getDimension();
+  /**
+   * 
+   * @return dimensions of the world in the model.
+   */
+  Pair<Double, Double> getDimension();
 
-	Pair<Double, Double> getDimensionBrick();
+  /**
+   * 
+   * @return dimension of brick.
+   */
+  Pair<Double, Double> getDimensionBrick();
 
-	Pair<Double, Double> getBall();
+  /**
+   * 
+   * @return list of ball positions.
+   */
+  List<Pair<Double, Double>> getBall();
 
-	Pair<Double, Double> getPadPos();
+  /**
+   * 
+   * @return pad position.
+   */
+  Pair<Double, Double> getPadPos();
 
-	List<Pair<Double, Double>> getSurprise();
-	// List<Pair<Double, Double>> getExtraBalls();
+  /**
+   * 
+   * @return list of surprise ball positions.
+   */
+  List<Pair<Double, Double>> getSurprise();
 
-	Double getPadWight();
+  /**
+   * 
+   * @return width of pad.
+   */
+  Double getPadWight();
 
-	Double getPadHeight();
+  /**
+   * 
+   * @return height of pad.
+   */
+  Double getPadHeight();
 
-	Double getRBall();
+  /**
+   * 
+   * @return radius of ball.
+   */
+  Double getRBall();
 
-	void updatePoints(String name, String passWord);
+  /**
+   * method for update points.
+   * 
+   * @param name     of the player
+   * @param passWord of the player
+   */
+  void updatePoints(String name, String passWord);
 
-	void rPaint();
+  /**
+   * method that calls the repaint on the frame.
+   */
+  void rPaint();
 
-	Double getRowC(Double x);
+  /**
+   * method used to know the y of the row of bricks.
+   * 
+   * @param x number of row
+   * @return y of the row
+   */
+  Double getRowC(Double x);
 
-	List<Pair<String, Integer>> getBestFive();
+  /**
+   * 
+   * @return list of best five.
+   */
+  List<Pair<String, Integer>> getBestFive();
 
-	void movePadLeft();
+  /**
+   * method to update the pad position by going left.
+   */
+  void movePadLeft();
 
-	void movePadRight();
+  /**
+   * method to update the pad position by going right.
+   */
+  void movePadRight();
 
-	Pair<Double, Double> windowDim();
+  /**
+   * 
+   * @return dimension of the frame.
+   */
+  Pair<Double, Double> windowDim();
 
-	int getScore();
+  /**
+   * 
+   * @return score.
+   */
+  int getScore();
 
-	int getLife();
+  /**
+   * 
+   * @return life of the player.
+   */
+  int getLife();
+
+  /**
+   * @return all label pos to print in a resizable GUI
+   */
+  List<Pair<Double, Double>> getLabelPos();
+
+  /**
+   * 
+   * @return size of a resizable font
+   */
+  int getSizeFont();
 }

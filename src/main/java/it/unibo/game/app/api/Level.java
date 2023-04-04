@@ -96,5 +96,5 @@ public interface Level {
    * 
    * @return the index of the last surprise brick destroyed.
    */
-  int getIndex();
+  int getIndexLastSurprise();
 }

@@ -1,0 +1,115 @@
+## Level 
+
+classDiagram
+    Level <|-- AbstractLevel
+    AbstractLevel <|-- FirstLevel
+    AbstractLevel <|-- SecondLevel
+    AbstractLevel <|-- ThirdLevel
+    
+    class Level {
+        <<Interface>>
+        setFirstRound() void
+        setSecondRound() void
+        setThirdRound() void
+        increaseLife() void
+        decreaseLife() void
+        isAlive() boolean
+        getRound() Round
+        setRound(Round) void
+        getNumRoundPassed() int
+        increaseRound() void
+        getLife() void
+        getId() int
+        getScore() Score
+        setLastSurpriseBrick(Brick, int) void
+        getLastSurpriseBrick() void
+        getIndexLastSurprise() int
+    }
+    class AbstractLevel{
+        <<Abstract>>
+        INITIAL_LIVES int = 3
+        setFirstRound() void
+        setSecondRound() void
+        setThirdRound() void
+    }
+    class FirstLevel{
+      ID int = 1  
+      NORMAL_FIRST int = 19
+      NORMAL_SECOND int =27
+      NORMAL_THIRD int = 35
+      SURPRISE_FIRST int = 2
+      SURPRISE_SECOND int = 3
+      SURPRISE_THIRD int = 4
+      BRICK_COLUMNS int = 3
+      BRICK_ROWS_FIRST int = 8
+      BRICK_ROWS_SECOND int = 11
+      BRICK_ROWS_THIRD int = 13
+    }
+    class SecondLevel{
+      ID int = 2
+      NORMAL1 int = 37
+      NORMAL2 int = 56
+      NORMAL3 int = 65
+      SURPRISE1 int = 3
+      SURPRISE2 int = 4
+      SURPRISE3 int = 5
+      GRAY1 int = 8
+      GRAY2 int = 12
+      GRAY3 int = 14
+      BRICKCOL1 int = 4
+      BRICKCOL2 int = 6
+      BRICKCOL3 int = 7
+      BRICKROW int = 15
+      JUMP int = 4
+    }
+    class ThirdLevel{
+        ID int = 3
+        NORMAL1 int = 6
+        NORMAL2 int = 13
+        NORMAL3 int = 16
+        SURPRISE1 int = 2
+        SURPRISE2 int = 4
+        SURPRISE3 int = 6
+        OBSTACLES1 int = 2
+        OBSTACLES2 int = 4
+        OBSTACLES3 int = 6
+    }
+
+    ## AbstractView
+
+    classDiagram
+    JPanel <|-- AbstractView
+    AbstractView o-- UIController
+    AbstractView <|-- PauseMenu
+    AbstractView <|-- GameOver
+    AbstractView <|-- Victory
+    
+    class AbstractView {
+        <<Abstract>>
+       +getTitle() JLabel
+       +getSaveBtn() JButton
+       +getQuitBtn() JButton
+       +getMenuBtn() JButton
+       +getButtonsPanel() JPanel
+       +getSizeBtn() int
+    }
+    class PauseMenu{
+        
+    }
+    class GameOver{
+      
+    }
+    class Victory{
+    
+    }
+
+    ## GameOver
+
+    classDiagram
+    GameOver o-- Round
+
+    class GameOver {
+        +hasMissedBall() boolean
+        +isRoundFinished() boolean
+        -remainsOnlyObstacles() boolean
+    }

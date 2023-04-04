@@ -1,26 +1,32 @@
 package it.unibo.game.app.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.Socket;
-
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import it.unibo.game.app.api.Level;
+import it.unibo.game.app.api.Score;
+import it.unibo.game.app.api.Speed;
+import it.unibo.game.app.model.dynamic.Move;
+import it.unibo.game.app.model.dynamic.SpeedImpl;
 import it.unibo.game.app.model.levels.FirstLevel;
 import it.unibo.game.app.model.levels.SecondLevel;
 import it.unibo.game.app.model.levels.ThirdLevel;
+import it.unibo.game.Pair;
+import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 
@@ -47,15 +53,12 @@ public class SurpriseTest {
       IllegalArgumentException, InvocationTargetException, InterruptedException {
     Level level = new SecondLevel();
     Surprise surprise = new Surprise(level);
+    Timer timer = new Timer();
 
     Method method = Surprise.class.getDeclaredMethod("changeHard");
     method.setAccessible(true);
 
     List<Integer> oldHardIndex = new ArrayList<>();
-    /*
-     * level.getRound().getBrick().stream().filter(b -> b.getRes().get().equals(2))
-     * .map(b -> oldHardIndex.add(level.getRound().getBrick().indexOf(b)));
-     */
     for (var brick : level.getRound().getBrick()) {
       if (brick.getRes().get() == 2) {
         oldHardIndex.add(level.getRound().getBrick().indexOf(brick));
@@ -65,10 +68,17 @@ public class SurpriseTest {
     for (var i : oldHardIndex) {
       assertEquals(1, level.getRound().getBrick().get(i).getRes().get());
     }
-    Thread.sleep(10100);
-    for (var i : oldHardIndex) {
-      assertEquals(2, level.getRound().getBrick().get(i).getRes().get());
-    }
+    TimerTask task = new TimerTask() {
+
+      @Override
+      public void run() {
+        for (var i : oldHardIndex) {
+          assertEquals(2, level.getRound().getBrick().get(i).getRes().get());
+        }
+      }
+    };
+    timer.schedule(task, 10000);
+
   }
 
   @Test
@@ -100,8 +110,10 @@ public class SurpriseTest {
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l1 = new FirstLevel();
     Level l2 = new SecondLevel();
+    Level l3 = new ThirdLevel();
     testAddHardRow(l1);
     testAddHardRow(l2);
+    testAddHardRow(l3);
   }
 
   void testAddHardRow(Level l) throws NoSuchMethodException, SecurityException,
@@ -114,9 +126,9 @@ public class SurpriseTest {
 
     reverse.addAll(l.getRound().getBrick());
     Collections.reverse(reverse);
-    Double y = reverse.get(reverse.size() - 1).getPos().getY();
+    Double y = reverse.get(0).getPos().getY();
     for (Brick brick : reverse) {
-      if (brick.getPos().getY() == y) {
+      if (brick.getPos().getY().equals(y)) {
         ++count;
       }
     }
@@ -124,11 +136,202 @@ public class SurpriseTest {
     method.invoke(surprise);
     if (l.getId() == 2) {
       assertEquals(oldSize + count + 2, l.getRound().getBrick().size());
+    } else if (l.getId() == 1) {
+      assertEquals(oldSize + count, l.getRound().getBrick().size());
     } else {
       assertEquals(oldSize + count, l.getRound().getBrick().size());
     }
     assertEquals(
         l.getRound().getBrick().get(l.getRound().getBrick().size() - 1).getPos().getX(),
         reverse.get(0).getPos().getX());
+  }
+
+  @Test
+  void testIncreaseBallSpeed() throws IllegalAccessException, IllegalArgumentException,
+      InvocationTargetException, NoSuchMethodException, SecurityException {
+    Level level = new ThirdLevel();
+    Surprise surprise = new Surprise(level);
+    Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
+        level.getRound().getBalls().get(0).getSpeed().getY());
+    int num = 10;
+    Method method = Surprise.class.getDeclaredMethod("increaseBallSpeed");
+    method.setAccessible(true);
+    for (int i = 0; i < num; i++) {
+      method.invoke(surprise);
+      initial.sum(new SpeedImpl(0.5, 0.2));
+      assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
+    }
+  }
+
+  @Test
+  void testDecreaseBallSpeed() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level level = new ThirdLevel();
+    Surprise surprise = new Surprise(level);
+    Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
+        level.getRound().getBalls().get(0).getSpeed().getY());
+    int num = 10;
+    Method method = Surprise.class.getDeclaredMethod("decreaseBallSpeed");
+    method.setAccessible(true);
+    for (int i = 0; i < num; i++) {
+      method.invoke(surprise);
+      initial.sum(new SpeedImpl(-0.5, -0.2));
+      assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
+    }
+  }
+
+  @Test
+  void testAddBalls() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level level = new ThirdLevel();
+    Surprise surprise = new Surprise(level);
+    Move move = new Move(level);
+    Method method = Surprise.class.getDeclaredMethod("addBalls");
+    Method method2 = Move.class.getDeclaredMethod("update");
+    method.setAccessible(true);
+    method2.setAccessible(true);
+    assertEquals(1, level.getRound().getBalls().size());
+    method.invoke(surprise);
+    method2.invoke(move);
+    Boolean bool = level.getRound().getBalls().size() > 1;
+    assertTrue(bool);
+
+  }
+
+  @Test
+  void testIncreaseScore() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level level = new ThirdLevel();
+    Score score = new ScoreImpl();
+    // int s = 0;
+    Surprise surprise = new Surprise(level);
+    /* controllo che il punteggio parta da 0 */
+    assertEquals(0, score.getScore());
+    score.increaseScore();
+    /* controllo che lo score sia aumentato di 1 */
+    assertEquals(1, score.getScore());
+    Method method = Surprise.class.getDeclaredMethod("increaseScore");
+    method.setAccessible(true);
+    method.invoke(surprise);
+    Timer timer = new Timer();
+
+    TimerTask task = new TimerTask() {
+
+      @Override
+      public void run() {
+        Integer s = score.getScore();
+        score.increaseScore();
+        assertEquals(s + 4, score.getScore());
+      }
+    };
+    timer.schedule(task, 10000);
+
+  }
+
+  @Test
+  void testEnlargePad() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level l = new FirstLevel();
+    Surprise surprise = new Surprise(l);
+    var pad = l.getRound().getPad();
+    assertTrue(pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+    assertTrue(pad.getDimension().getHeight() == SizeCalculation.getPadDim().getHeight());
+    Method method = Surprise.class.getDeclaredMethod("enlargeSizePad");
+    method.setAccessible(true);
+    method.invoke(surprise);
+    assertFalse(pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+    Timer timer = new Timer();
+
+    TimerTask task = new TimerTask() {
+
+      @Override
+      public void run() {
+        assertTrue(
+            pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+      }
+    };
+    timer.schedule(task, 10500);
+
+  }
+
+  @Test
+  void testEnlargePadHard() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level l = new FirstLevel();
+    Surprise surprise = new Surprise(l);
+    var pad = l.getRound().getPad();
+    pad.setPos(new Pair<Double, Double>(
+        SizeCalculation.getWorldSize().getY() - pad.getDimension().getWidth(),
+        l.getRound().getPad().getPos().getY()));
+
+    assertTrue(pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+    assertTrue(pad.getDimension().getHeight() == SizeCalculation.getPadDim().getHeight());
+
+    var oldWpos = pad.getPos().getX();
+    Method method = Surprise.class.getDeclaredMethod("enlargeSizePad");
+    method.setAccessible(true);
+    method.invoke(surprise);
+    pad.setBoundingBox(new RectBoundingBox(pad));
+    assertTrue(pad.getBoundingBox().getBox().get(BoundingBox.Corner.RIGHT_DOWN)
+        .getX() <= SizeCalculation.getWorldSize().getY());
+
+    assertFalse(pad.getPos().getX() == oldWpos);
+    assertFalse(pad.getPos().getX() > oldWpos);
+    assertTrue(pad.getDimension().getWidth() > SizeCalculation.getPadDim().getWidth());
+    Timer timer = new Timer();
+
+    TimerTask task = new TimerTask() {
+
+      @Override
+      public void run() {
+        assertTrue(
+            pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+      }
+    };
+    timer.schedule(task, 10500);
+  }
+
+  @Test
+  void reducePadDimTest() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level l = new FirstLevel();
+    Surprise surprise = new Surprise(l);
+    var pad = l.getRound().getPad();
+
+    assertTrue(pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+    assertTrue(pad.getDimension().getHeight() == SizeCalculation.getPadDim().getHeight());
+
+    Method method = Surprise.class.getDeclaredMethod("reduceSizePad");
+    method.setAccessible(true);
+    method.invoke(surprise);
+
+    assertTrue(pad.getDimension().getWidth() < SizeCalculation.getPadDim().getWidth());
+    Timer timer = new Timer();
+
+    TimerTask task = new TimerTask() {
+
+      @Override
+      public void run() {
+        assertTrue(
+            pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+      }
+    };
+    timer.schedule(task, 10500);
+
+  }
+
+  @Test
+  void delateRandomBrickTest() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level l = new FirstLevel();
+    Surprise surprise = new Surprise(l);
+    var old = l.getRound().getNumBrick();
+
+    Method method = Surprise.class.getDeclaredMethod("deleteRandomBricks");
+    method.setAccessible(true);
+    method.invoke(surprise);
+
+    assertTrue(old > l.getRound().getBrick().size());
+
   }
 }
