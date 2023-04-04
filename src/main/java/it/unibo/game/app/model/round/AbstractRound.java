@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
@@ -61,6 +62,7 @@ public abstract class AbstractRound implements Round {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public List<MovingObject> getSurprise() {
     return this.surprise;
@@ -111,6 +113,7 @@ public abstract class AbstractRound implements Round {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public List<Brick> getBrick() {
     return this.brick;
@@ -160,6 +163,7 @@ public abstract class AbstractRound implements Round {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public MovingObject getPad() {
     return this.pad;
@@ -168,6 +172,7 @@ public abstract class AbstractRound implements Round {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public List<MovingObject> getBalls() {
     return this.balls;
@@ -208,6 +213,7 @@ public abstract class AbstractRound implements Round {
    * 
    * @return a list of extra balls
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   public List<MovingObject> getExtraBalls() {
     return this.extraBalls;
   }
