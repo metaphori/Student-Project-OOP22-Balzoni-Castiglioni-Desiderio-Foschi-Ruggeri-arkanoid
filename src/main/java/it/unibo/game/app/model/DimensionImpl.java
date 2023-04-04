@@ -43,7 +43,7 @@ public class DimensionImpl implements Dimension {
    * {@inheritDoc}
    */
   @Override
-  public void setHeight(double height) {
+  public void setHeight(final double height) {
 
     this.height = height;
   }
@@ -52,7 +52,7 @@ public class DimensionImpl implements Dimension {
    * {@inheritDoc}
    */
   @Override
-  public void setWidth(double width) {
+  public void setWidth(final double width) {
 
     this.width = width;
   }
@@ -61,7 +61,7 @@ public class DimensionImpl implements Dimension {
    * {@inheritDoc}
    */
   @Override
-  public void increaseWidth(double width) {
+  public void increaseWidth(final double width) {
 
     this.width += width;
   }
