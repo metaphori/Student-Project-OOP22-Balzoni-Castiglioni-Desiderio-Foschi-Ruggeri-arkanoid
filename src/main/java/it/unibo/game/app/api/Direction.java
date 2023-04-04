@@ -2,22 +2,31 @@ package it.unibo.game.app.api;
 
 import it.unibo.game.Pair;
 
+/**
+ * Descrive direction o an obj that can move
+ */
 public interface Direction {
 
-	void setDirectionUp();
+  void setDirectionUp();
 
-	void setDirectionDown();
+  void setDirectionDown();
 
-	void setDirectionLeft();
+  void setDirectionLeft();
 
-	void setDirectionRight();
+  void setDirectionRight();
 
-	boolean isDirectionUp();
+  boolean isDirectionUp();
 
-	boolean isDirectionLeft();
+  boolean isDirectionLeft();
 
-	void resetDirection();
+  /**
+   * 
+   * @return true if the obj go to the right
+   */
+  boolean isDirectionRight();
 
-	Pair<Integer, Integer> getDirection();
+  void resetDirection();
+
+  Pair<Integer, Integer> getDirection();
 
 }
