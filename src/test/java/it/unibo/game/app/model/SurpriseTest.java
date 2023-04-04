@@ -1,17 +1,15 @@
 package it.unibo.game.app.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.Socket;
-
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +25,8 @@ import it.unibo.game.app.model.dynamic.SpeedImpl;
 import it.unibo.game.app.model.levels.FirstLevel;
 import it.unibo.game.app.model.levels.SecondLevel;
 import it.unibo.game.app.model.levels.ThirdLevel;
+import it.unibo.game.Pair;
+import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 
@@ -203,7 +203,7 @@ public class SurpriseTest {
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new ThirdLevel();
     Score score = new ScoreImpl();
-    int s = 0;
+    // int s = 0;
     Surprise surprise = new Surprise(level);
     /* controllo che il punteggio parta da 0 */
     assertEquals(0, score.getScore());
@@ -225,6 +225,113 @@ public class SurpriseTest {
       }
     };
     timer.schedule(task, 10000);
+
+  }
+
+  @Test
+  void testEnlargePad() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level l = new FirstLevel();
+    Surprise surprise = new Surprise(l);
+    var pad = l.getRound().getPad();
+    assertTrue(pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+    assertTrue(pad.getDimension().getHeight() == SizeCalculation.getPadDim().getHeight());
+    Method method = Surprise.class.getDeclaredMethod("enlargeSizePad");
+    method.setAccessible(true);
+    method.invoke(surprise);
+    assertFalse(pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+    Timer timer = new Timer();
+
+    TimerTask task = new TimerTask() {
+
+      @Override
+      public void run() {
+        assertTrue(
+            pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+      }
+    };
+    timer.schedule(task, 10500);
+
+  }
+
+  @Test
+  void testEnlargePadHard() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level l = new FirstLevel();
+    Surprise surprise = new Surprise(l);
+    var pad = l.getRound().getPad();
+    pad.setPos(new Pair<Double, Double>(
+        SizeCalculation.getWorldSize().getY() - pad.getDimension().getWidth(),
+        l.getRound().getPad().getPos().getY()));
+
+    assertTrue(pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+    assertTrue(pad.getDimension().getHeight() == SizeCalculation.getPadDim().getHeight());
+
+    var oldWpos = pad.getPos().getX();
+    Method method = Surprise.class.getDeclaredMethod("enlargeSizePad");
+    method.setAccessible(true);
+    method.invoke(surprise);
+    pad.setBoundingBox(new RectBoundingBox(pad));
+    assertTrue(pad.getBoundingBox().getBox().get(BoundingBox.Corner.RIGHT_DOWN)
+        .getX() <= SizeCalculation.getWorldSize().getY());
+
+    assertFalse(pad.getPos().getX() == oldWpos);
+    assertFalse(pad.getPos().getX() > oldWpos);
+    assertTrue(pad.getDimension().getWidth() > SizeCalculation.getPadDim().getWidth());
+    Timer timer = new Timer();
+
+    TimerTask task = new TimerTask() {
+
+      @Override
+      public void run() {
+        assertTrue(
+            pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+      }
+    };
+    timer.schedule(task, 10500);
+  }
+
+  @Test
+  void reducePadDimTest() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level l = new FirstLevel();
+    Surprise surprise = new Surprise(l);
+    var pad = l.getRound().getPad();
+
+    assertTrue(pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+    assertTrue(pad.getDimension().getHeight() == SizeCalculation.getPadDim().getHeight());
+
+    Method method = Surprise.class.getDeclaredMethod("reduceSizePad");
+    method.setAccessible(true);
+    method.invoke(surprise);
+
+    assertTrue(pad.getDimension().getWidth() < SizeCalculation.getPadDim().getWidth());
+    Timer timer = new Timer();
+
+    TimerTask task = new TimerTask() {
+
+      @Override
+      public void run() {
+        assertTrue(
+            pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
+      }
+    };
+    timer.schedule(task, 10500);
+
+  }
+
+  @Test
+  void delateRandomBrickTest() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level l = new FirstLevel();
+    Surprise surprise = new Surprise(l);
+    var old = l.getRound().getNumBrick();
+
+    Method method = Surprise.class.getDeclaredMethod("deleteRandomBricks");
+    method.setAccessible(true);
+    method.invoke(surprise);
+
+    assertTrue(old > l.getRound().getBrick().size());
 
   }
 }

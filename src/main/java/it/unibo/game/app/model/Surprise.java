@@ -173,9 +173,8 @@ public class Surprise {
     Random brickToRm = new Random();
     Random trash = new Random();
     var i = brickToRm.nextInt(level.getRound().getBrick().size() / 2);
-    while (i > 0) {
-      level.getRound().getBrick()
-          .remove(trash.nextInt(level.getRound().getBrick().size()));
+    while (i >= 0) {
+      level.getRound().remove(trash.nextInt(level.getRound().getBrick().size()));
       System.out.println("bricks to delate: " + i);
       i--;
     }
@@ -361,7 +360,7 @@ public class Surprise {
    * random
    */
   public void bonus() {
-    this.reduceSizePad();
+    this.deleteRandomBricks();
   }
 
 }
