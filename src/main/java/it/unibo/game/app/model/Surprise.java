@@ -59,7 +59,7 @@ public class Surprise {
    */
   private void extraLife() {
     this.level.increaseLife();
-
+    System.out.println("extraLife");
   }
 
   /**
@@ -83,6 +83,7 @@ public class Surprise {
         && this.isThereRightBrick(index, lastBrick) && !this.isObstacle(index - 1)) {
       this.deleteBrick(index);
     }
+    System.out.println("explosiveBomb");
   }
 
   /**
@@ -163,6 +164,7 @@ public class Surprise {
       System.out.println("bricks to delate: " + i);
       i--;
     }
+    System.out.println("deleteRandomBricks");
   }
 
   /**
@@ -185,6 +187,7 @@ public class Surprise {
       };
       tm.schedule(tmTask, BONUS_DURATION);
     }
+    System.out.println("reduceSizePad");
   }
 
   private double delta() {
@@ -218,6 +221,7 @@ public class Surprise {
       };
       tm.schedule(tmTask, BONUS_DURATION);
     }
+    System.out.println("enlargeSizePad");
   }
 
   /**
@@ -226,6 +230,7 @@ public class Surprise {
   private void increaseBallSpeed() {
     this.level.getRound().getBalls()
         .forEach(x -> x.getSpeed().sum(new SpeedImpl(0.5, 0.2)));
+    System.out.println("increaseBallSpeed");
   }
 
   /**
@@ -234,6 +239,7 @@ public class Surprise {
   private void decreaseBallSpeed() {
     this.level.getRound().getBalls()
         .forEach(x -> x.getSpeed().sum(new SpeedImpl(-0.5, -0.2)));
+    System.out.println("decreaseBallSpeed");
   }
 
   /**
@@ -249,7 +255,7 @@ public class Surprise {
         return x;
       }
     });
-    System.out.println();
+    System.out.println("changeObstacles");
   }
 
   /**
@@ -268,7 +274,7 @@ public class Surprise {
     };
     time.schedule(task, BONUS_DURATION);
     this.level.getScore().enableBonus(false);
-
+    System.out.println("increaseScore");
   }
 
   /**
@@ -279,7 +285,7 @@ public class Surprise {
       MovingObject ball = new Ball(this.level.getRound().getSizeCalc().getBallDim());
       this.level.getRound().getExtraBalls().add(ball);
     }
-
+    System.out.println("addBalls");
   }
 
   /**
@@ -299,7 +305,7 @@ public class Surprise {
           new DimensionImpl(brickH, brickW), new Pair<>(x, lastY + brickH), 2);
       this.level.getRound().getBrick().add(brick);
     }
-    System.out.println();
+    System.out.println("addHardRow");
   }
 
   /**
@@ -329,6 +335,7 @@ public class Surprise {
       }
     };
     timer.schedule(task, BONUS_DURATION);
+    System.out.println("changeHard");
   }
 
   /**
