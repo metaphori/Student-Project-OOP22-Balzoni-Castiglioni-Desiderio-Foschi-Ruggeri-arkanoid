@@ -29,7 +29,6 @@ public final class ThirdLevel extends AbstractLevel {
    */
   public ThirdLevel() {
     super(ID);
-    this.setFirstRound();
   }
 
   /**
@@ -38,9 +37,7 @@ public final class ThirdLevel extends AbstractLevel {
   @Override
   public void setFirstRound() {
 
-    int h = getCol(NORMAL1, SURPRISE1, OBSTACLE1);
-    this.sizeC = new SizeCalculation(h, h + 1, super.getNumRoundPassed());
-    super.setRound(new RoundDifficult(NORMAL1, SURPRISE1, sizeC, OBSTACLE1));
+    this.set(NORMAL1, SURPRISE1, OBSTACLE1);
   }
 
   /**
@@ -49,9 +46,7 @@ public final class ThirdLevel extends AbstractLevel {
   @Override
   public void setSecondRound() {
 
-    int h = getCol(NORMAL2, SURPRISE2, OBSTACLE2);
-    this.sizeC = new SizeCalculation(h, h + 1, super.getNumRoundPassed());
-    super.setRound(new RoundDifficult(NORMAL2, SURPRISE2, sizeC, OBSTACLE2));
+    this.set(NORMAL2, SURPRISE2, OBSTACLE2);
   }
 
   /**
@@ -60,9 +55,7 @@ public final class ThirdLevel extends AbstractLevel {
   @Override
   public void setThirdRound() {
 
-    int h = getCol(NORMAL3, SURPRISE3, OBSTACLE3);
-    this.sizeC = new SizeCalculation(h, h + 1, super.getNumRoundPassed());
-    super.setRound(new RoundDifficult(NORMAL3, SURPRISE3, sizeC, OBSTACLE3));
+    this.set(NORMAL3, SURPRISE3, OBSTACLE3);
   }
 
   /**
@@ -75,6 +68,19 @@ public final class ThirdLevel extends AbstractLevel {
    */
   private int getCol(final int normal, final int surprise, final int obstacles) {
     return (int) Math.sqrt((double) (2 * (normal + surprise + obstacles)));
+  }
+
+  /**
+   * method that sets a new round.
+   * 
+   * @param normal    number of normal bricks in the round
+   * @param surprise  number of surprise brick in the round
+   * @param obstacles number of obstacle in the round
+   */
+  private void set(final int normal, final int surprise, final int obstacles) {
+    int h = getCol(normal, surprise, obstacles);
+    this.sizeC = new SizeCalculation(h, h + 1, super.getNumRoundPassed());
+    super.setRound(new RoundDifficult(normal, surprise, sizeC, obstacles));
   }
 
 }
