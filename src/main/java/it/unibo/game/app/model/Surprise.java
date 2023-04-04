@@ -36,7 +36,7 @@ public class Surprise {
   private static final int CHANGE_ROW = 11;
   private static final int CHANGE_HARD = 12;
   private static final int NUM_BALLS = 1;
-  private static final int PERCENTUAL = 30;
+  private static final int PERCENTUAL = 50;
   private static final int BONUS_DURATION = 10000;
   private static final int FIX_START_Y = 5;
 
@@ -188,8 +188,7 @@ public class Surprise {
     if (!padModified) {
       padModified = true;
       var pad = level.getRound().getPad();
-      pad.getDimension()
-          .increaseWidth((pad.getDimension().getWidth() * this.delta()) * -1);
+      pad.getDimension().setWidth((pad.getDimension().getWidth() * this.delta()));
 
       Timer tm = new Timer();
       TimerTask tmTask = new TimerTask() {
@@ -209,14 +208,21 @@ public class Surprise {
   }
 
   /**
+   * 
    * method that enlarge the size of the pad for a certain time. Edoardo Desiderio
    */
   private void enlargeSizePad() {
     if (!padModified) {
       padModified = true;
       var pad = level.getRound().getPad();
-      pad.getDimension()
-          .increaseWidth(pad.getDimension().getWidth() * (this.delta() + 1));
+      pad.getDimension().setWidth(pad.getDimension().getWidth() * (this.delta() + 1));
+      var rightBorder = pad.getPos().getX() + pad.getDimension().getWidth();
+      if (rightBorder > SizeCalculation.getWorldSize().getY()) {
+        pad.setPos(new Pair<Double, Double>(
+            pad.getPos().getX() - (rightBorder - SizeCalculation.getWorldSize().getY()),
+            pad.getPos().getY()));
+      }
+
       Timer tm = new Timer();
       TimerTask tmTask = new TimerTask() {
 
@@ -355,7 +361,7 @@ public class Surprise {
    * random
    */
   public void bonus() {
-    this.addBalls();
+    this.reduceSizePad();
   }
 
 }
