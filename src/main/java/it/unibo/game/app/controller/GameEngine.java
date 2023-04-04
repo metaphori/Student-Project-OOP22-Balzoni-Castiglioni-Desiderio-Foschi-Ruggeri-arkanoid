@@ -14,6 +14,7 @@ public class GameEngine {
   private long period = PERIOD;
   private AppController controller;
   private boolean thread = false;
+  private boolean winCondition = false;
 
   /**
    * Constructor of the class.
@@ -33,7 +34,7 @@ public class GameEngine {
       @Override
       protected Void doInBackground() throws Exception {
         long previousCycleStartTime = System.currentTimeMillis();
-        while (thread) {
+        while (thread && !winCondition) {
           long currentCycleStartTime = System.currentTimeMillis();
           long elapsed = currentCycleStartTime - previousCycleStartTime;
           update(elapsed);
@@ -74,6 +75,14 @@ public class GameEngine {
     if (dt < period) {
       Thread.sleep(period - dt);
     }
+  }
+
+  public void setWin() {
+    this.winCondition = true;
+  }
+
+  public void resetWin() {
+    this.winCondition = false;
   }
 
   /**

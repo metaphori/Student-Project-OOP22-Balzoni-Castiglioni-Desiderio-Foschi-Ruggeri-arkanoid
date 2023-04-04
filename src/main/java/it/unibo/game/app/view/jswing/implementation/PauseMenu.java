@@ -22,7 +22,6 @@ public class PauseMenu extends AbstractView {
 
     super(uiCtrl);
     this.getTitle().setText("PAUSE");
-    this.getButtonsPanel().setLayout(new GridLayout(3, 1, 0, 1));
     resumeBtn = new CustomBtn(this.getSizeBtn(), "Resume");
     this.getButtonsPanel().add(resumeBtn);
     this.getButtonsPanel().add(this.getMenuBtn());

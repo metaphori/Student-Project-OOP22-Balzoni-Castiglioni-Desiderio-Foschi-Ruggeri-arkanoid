@@ -42,7 +42,7 @@ public abstract class AbstractView extends JPanel {
     buttonsPanel = new JPanel();
 
     this.setLayout(new BorderLayout());
-    buttonsPanel.setLayout(new GridLayout(2, 1, 0, 1));
+    buttonsPanel.setLayout(new GridLayout(3, 1, 0, 1));
     titleLabel.setFont(new Font("Serif", Font.BOLD, sizeTitle));
     titleLabel.setForeground(Color.WHITE);
 

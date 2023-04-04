@@ -74,3 +74,42 @@ classDiagram
         OBSTACLES2 int = 4
         OBSTACLES3 int = 6
     }
+
+    ## AbstractView
+
+    classDiagram
+    JPanel <|-- AbstractView
+    AbstractView o-- UIController
+    AbstractView <|-- PauseMenu
+    AbstractView <|-- GameOver
+    AbstractView <|-- Victory
+    
+    class AbstractView {
+        <<Abstract>>
+       +getTitle() JLabel
+       +getSaveBtn() JButton
+       +getQuitBtn() JButton
+       +getMenuBtn() JButton
+       +getButtonsPanel() JPanel
+       +getSizeBtn() int
+    }
+    class PauseMenu{
+        
+    }
+    class GameOver{
+      
+    }
+    class Victory{
+    
+    }
+
+    ## GameOver
+
+    classDiagram
+    GameOver o-- Round
+
+    class GameOver {
+        +hasMissedBall() boolean
+        +isRoundFinished() boolean
+        -remainsOnlyObstacles() boolean
+    }
