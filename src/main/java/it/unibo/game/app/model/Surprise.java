@@ -71,16 +71,17 @@ public class Surprise {
     int index = this.level.getIndexLastSurprise();
 
     if (this.isIndexPositive(index - 1) && this.isThereLeftBrick(index - 1, lastBrick)
-        && !this.isObstacle(index - 1)) {
+        && !this.isObstacle(index - 1) && !this.isSursprise(index - 1)) {
       this.deleteBrick(index - 1);
       if (this.isIndexNotTheLast(index - 1)
-          && this.isThereRightBrick(index - 1, lastBrick)
-          && !this.isObstacle(index - 1)) {
+          && this.isThereRightBrick(index - 1, lastBrick) && !this.isObstacle(index - 1)
+          && !this.isSursprise(index - 1)) {
         this.deleteBrick(index - 1);
       }
     }
     if (this.isIndexPositive(index - 1) && this.isIndexNotTheLast(index)
-        && this.isThereRightBrick(index, lastBrick) && !this.isObstacle(index - 1)) {
+        && this.isThereRightBrick(index, lastBrick) && !this.isObstacle(index - 1)
+        && !this.isSursprise(index - 1)) {
       this.deleteBrick(index);
     }
     System.out.println("explosiveBomb");
@@ -123,6 +124,17 @@ public class Surprise {
   private boolean isObstacle(int index) {
     return this.level.getRound().getBrick().get(index).getType()
         .equals(BrickType.OBSTACLE);
+  }
+
+  /**
+   * method that checks if the brick is a Surprise.
+   * 
+   * @param index
+   * @return true if it is a surprise.
+   */
+  private boolean isSursprise(int index) {
+    return this.level.getRound().getBrick().get(index).getType()
+        .equals(BrickType.SURPRISE);
   }
 
   /**
