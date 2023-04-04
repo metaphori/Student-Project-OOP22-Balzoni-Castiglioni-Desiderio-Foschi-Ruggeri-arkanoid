@@ -22,7 +22,7 @@ public abstract class AbstractView extends JPanel {
   private JPanel buttonsPanel;
   private JButton quitBtn;
   private JButton menuBtn;
-  private JButton saveBtn;
+  private JButton button;
   private final int sizeBtn = 30;
   private final int sizeTitle = 60;
 
@@ -31,10 +31,13 @@ public abstract class AbstractView extends JPanel {
    * 
    * @param uiCtrl is the controller that will change the views
    */
-  public AbstractView(final UIControllerImpl uiCtrl) {
+  public AbstractView(final UIControllerImpl uiCtrl, final String title,
+      final JButton button, final ActionListener actionListener) {
     this.observer = uiCtrl;
     this.titleLabel = new JLabel();
-    this.saveBtn = new CustomBtn(sizeBtn, "Save");
+    this.titleLabel.setText(title);
+    this.button = button;
+    this.button.addActionListener(actionListener);
     this.menuBtn = new CustomBtn(sizeBtn, "Start Menu");
     this.quitBtn = new CustomBtn(sizeBtn, "Quit");
 
@@ -43,6 +46,9 @@ public abstract class AbstractView extends JPanel {
 
     this.setLayout(new BorderLayout());
     buttonsPanel.setLayout(new GridLayout(3, 1, 0, 1));
+    buttonsPanel.add(this.button);
+    buttonsPanel.add(this.menuBtn);
+    buttonsPanel.add(this.quitBtn);
     titleLabel.setFont(new Font("Serif", Font.BOLD, sizeTitle));
     titleLabel.setForeground(Color.WHITE);
 
@@ -77,18 +83,6 @@ public abstract class AbstractView extends JPanel {
       }
 
     });
-
-    this.saveBtn.addActionListener(new ActionListener() {
-
-      /**
-       * {@inheritDoc}
-       */
-      @Override
-      public void actionPerformed(final ActionEvent arg0) {
-        new SaveScore(observer);
-      }
-
-    });
   }
 
   /**
@@ -96,13 +90,6 @@ public abstract class AbstractView extends JPanel {
    */
   protected JLabel getTitle() {
     return this.titleLabel;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  protected JButton getSaveBtn() {
-    return this.saveBtn;
   }
 
   /**

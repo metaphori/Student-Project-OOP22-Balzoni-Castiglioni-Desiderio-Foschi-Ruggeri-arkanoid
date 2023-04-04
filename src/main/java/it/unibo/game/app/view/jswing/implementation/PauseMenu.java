@@ -1,17 +1,12 @@
 package it.unibo.game.app.view.jswing.implementation;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 
 /**
  * Implements the panel for Pause view.
  */
 public class PauseMenu extends AbstractView {
-
-  private JButton resumeBtn;
 
   /**
    * Constructor of the class.
@@ -19,21 +14,11 @@ public class PauseMenu extends AbstractView {
    * @param uiCtrl is the controller that will change the views
    */
   public PauseMenu(final UIControllerImpl uiCtrl) {
-
-    super(uiCtrl);
-    this.getTitle().setText("PAUSE");
-    resumeBtn = new CustomBtn(this.getSizeBtn(), "Resume");
-    this.getButtonsPanel().add(resumeBtn);
-    this.getButtonsPanel().add(this.getMenuBtn());
-    this.getButtonsPanel().add(this.getQuitBtn());
-
-    resumeBtn.addActionListener(new ActionListener() {
-
+    super(uiCtrl, "PAUSE", new CustomBtn(30, "Resume"), new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
         uiCtrl.gameView();
       }
-
     });
   }
 }
