@@ -12,20 +12,32 @@ import it.unibo.game.app.model.RectBoundingBox;
 import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.Surprise;
 
+/**
+ * Class that controls the movement of the ball and pad.
+ */
 public class Move {
   private Collision coll;
   private Optional<Integer> index;
   private Level l;
   private Surprise surprise;
 
-  public Move(Level l) {
+  /**
+   * 
+   * @param l level.
+   */
+  public Move(final Level l) {
     coll = new Collision(l);
     this.l = l;
     this.surprise = new Surprise(l);
     this.surprise.setMap();
   }
 
-  public void nextBall(MovingObject ball) {
+  /**
+   * moves the ball inside the game scene.
+   * 
+   * @param ball
+   */
+  public void nextBall(final MovingObject ball) {
     coll.collideWithEdges(ball, SizeCalculation.getWorldSize().getX(),
         SizeCalculation.getWorldSize().getY());
     index = coll.collideWithBrick(ball);
@@ -48,6 +60,9 @@ public class Move {
     ball.setPos(newPos);
   }
 
+  /**
+   * moves surprise balls inside the game scene.
+   */
   private void checkSurprise() {
     Iterator<MovingObject> it = this.l.getRound().getSurprise().iterator();
     while (it.hasNext()) {
@@ -65,12 +80,19 @@ public class Move {
     }
   }
 
+  /**
+   * 
+   * @return if there was a collision between the ball and a brick an Optional of
+   *         the index of the brick, otherwise an Optional.empty.
+   */
   public Optional<Integer> indexBrick() {
     return index;
   }
 
+  /**
+   * update the position foreach ball in the list.
+   */
   public void update() {
-    /* ora solo per una palla */
     for (var ball : this.l.getRound().getBalls()) {
       nextBall(ball);
     }
@@ -79,14 +101,18 @@ public class Move {
     this.l.getRound().getExtraBalls().clear();
   }
 
+  /**
+   * 
+   * @return the score of the game.
+   */
   public int getScore() {
     return this.coll.getScore();
   }
 
   /**
-   * moves the pad inside the game scene
+   * moves the pad inside the game scene.
    * 
-   * @param dir direction selected by the user
+   * @param dir direction selected by the user.
    */
   public void nextPad(final Direction dir) {
     var pad = this.l.getRound().getPad();
