@@ -23,8 +23,8 @@ public abstract class AbstractView extends JPanel {
   private JButton quitBtn;
   private JButton menuBtn;
   private JButton button;
-  private final int sizeBtn = 30;
-  private final int sizeTitle = 60;
+  private static final int sizeBtn = 30;
+  private static final int sizeTitle = 60;
 
   /**
    * Constructor of the class.
@@ -83,40 +83,5 @@ public abstract class AbstractView extends JPanel {
       }
 
     });
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  protected JLabel getTitle() {
-    return this.titleLabel;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  protected JButton getQuitBtn() {
-    return this.quitBtn;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  protected JButton getMenuBtn() {
-    return this.menuBtn;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  protected JPanel getButtonsPanel() {
-    return this.buttonsPanel;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  protected int getSizeBtn() {
-    return this.sizeBtn;
   }
 }

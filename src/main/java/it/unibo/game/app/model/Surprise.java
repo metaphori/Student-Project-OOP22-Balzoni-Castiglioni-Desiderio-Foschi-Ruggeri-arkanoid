@@ -52,19 +52,6 @@ public class Surprise {
    */
   public Surprise(final Level level) {
     this.level = level;
-
-    mappa = new HashMap<>(Map.ofEntries(Map.entry(EXTRA_LIFE, () -> this.extraLife()),
-        Map.entry(EXPLOSIVE_BOMB, () -> this.explosiveBomb()),
-        Map.entry(DELETE_RANDOM_BRICKS, () -> this.deleteRandomBricks()),
-        Map.entry(REDUCE_SIZE_PAD, () -> this.reduceSizePad()),
-        Map.entry(ENLARGE_SIZE_PAD, () -> this.enlargeSizePad()),
-        Map.entry(INCREASE_BALL_SPEED, () -> this.increaseBallSpeed()),
-        Map.entry(DECREASE_BALL_SPEED, () -> this.decreaseBallSpeed()),
-        Map.entry(CHANGE_OBSTACLES, () -> this.changeObstacles()),
-        Map.entry(INCREASE_SCORE, () -> this.increaseScore()),
-        Map.entry(ADD_BALLS, () -> this.addBalls()),
-        Map.entry(CHANGE_ROW, () -> this.addHardRow()),
-        Map.entry(CHANGE_HARD, () -> this.changeHard())));
   }
 
   /**
@@ -170,11 +157,9 @@ public class Surprise {
    * method that randomly deletes bricks. Edoardo Desiderio
    */
   private void deleteRandomBricks() {
-    Random brickToRm = new Random();
-    Random trash = new Random();
-    var i = brickToRm.nextInt(level.getRound().getBrick().size() / 2);
+    var i = random.nextInt(level.getRound().getBrick().size() / 2);
     while (i >= 0) {
-      level.getRound().remove(trash.nextInt(level.getRound().getBrick().size()));
+      level.getRound().remove(random.nextInt(level.getRound().getBrick().size()));
       System.out.println("bricks to delate: " + i);
       i--;
     }
@@ -347,6 +332,25 @@ public class Surprise {
   }
 
   /**
+   * method that sets up the map by numbering the methods.
+   */
+  public void setMap() {
+    this.mappa = new HashMap<>(
+        Map.ofEntries(Map.entry(EXTRA_LIFE, () -> this.extraLife()),
+            Map.entry(EXPLOSIVE_BOMB, () -> this.explosiveBomb()),
+            Map.entry(DELETE_RANDOM_BRICKS, () -> this.deleteRandomBricks()),
+            Map.entry(REDUCE_SIZE_PAD, () -> this.reduceSizePad()),
+            Map.entry(ENLARGE_SIZE_PAD, () -> this.enlargeSizePad()),
+            Map.entry(INCREASE_BALL_SPEED, () -> this.increaseBallSpeed()),
+            Map.entry(DECREASE_BALL_SPEED, () -> this.decreaseBallSpeed()),
+            Map.entry(CHANGE_OBSTACLES, () -> this.changeObstacles()),
+            Map.entry(INCREASE_SCORE, () -> this.increaseScore()),
+            Map.entry(ADD_BALLS, () -> this.addBalls()),
+            Map.entry(CHANGE_ROW, () -> this.addHardRow()),
+            Map.entry(CHANGE_HARD, () -> this.changeHard())));
+  }
+
+  /**
    * method that randomly chooses which bonus or malus to invoke.
    */
   public void chooseSurprise() {
@@ -354,13 +358,4 @@ public class Surprise {
     this.mappa.get(method).run();
 
   }
-
-  /*
-   * Metodo per testare i vari bonus richiamandoli direttamente, non in modo
-   * random
-   */
-  public void bonus() {
-    this.deleteRandomBricks();
-  }
-
 }

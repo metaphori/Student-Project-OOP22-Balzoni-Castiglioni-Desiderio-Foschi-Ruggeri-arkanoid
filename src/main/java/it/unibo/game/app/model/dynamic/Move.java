@@ -22,6 +22,7 @@ public class Move {
     coll = new Collision(l);
     this.l = l;
     this.surprise = new Surprise(l);
+    this.surprise.setMap();
   }
 
   public void nextBall(MovingObject ball) {

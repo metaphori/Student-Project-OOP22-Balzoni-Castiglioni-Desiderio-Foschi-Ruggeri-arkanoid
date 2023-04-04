@@ -5,6 +5,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -39,6 +41,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
    * @param control UIcontroller to get information about who are best five
    *                players
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   public LeaderBoardView(final UIController control) {
     this.control = control;
     this.best = control.getBestFive();
