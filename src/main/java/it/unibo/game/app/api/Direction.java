@@ -13,6 +13,11 @@ public interface Direction {
   void setDirectionDown();
 
   /**
+   * Set the direction of the MovingObject Up.
+   */
+  void setDirectionUp();
+
+  /**
    * Set the direction of the MovingObject Left.
    */
   void setDirectionLeft();
