@@ -119,15 +119,10 @@ public class GameViewImpl extends JPanel
 
   @Override
   public void keyReleased(KeyEvent arg0) {
-
-    // throw new UnsupportedOperationException("Unimplemented method
-    // 'keyReleased'");
   }
 
   @Override
   public void keyTyped(KeyEvent arg0) {
-
-    throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
   }
 
   @Override
