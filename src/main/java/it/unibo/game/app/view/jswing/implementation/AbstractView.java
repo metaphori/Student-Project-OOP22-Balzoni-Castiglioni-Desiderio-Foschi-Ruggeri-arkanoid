@@ -4,6 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.app.view.jswing.api.UIController;
 
 import java.awt.BorderLayout;
@@ -31,6 +32,7 @@ public abstract class AbstractView extends JPanel {
    * 
    * @param uiCtrl is the controller that will change the views
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public AbstractView(final UIControllerImpl uiCtrl, final String title,
       final JButton button, final ActionListener actionListener) {
     this.observer = uiCtrl;
