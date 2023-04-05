@@ -14,7 +14,7 @@ public class PauseMenu extends AbstractView {
    * @param uiCtrl is the controller that will change the views
    */
   public PauseMenu(final UIControllerImpl uiCtrl) {
-    super(uiCtrl, "PAUSE", new CustomBtn(30, "Resume"), new ActionListener() {
+    super(uiCtrl, "PAUSE", new CustomBtn(SIZE_BTN, "Resume"), new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
         uiCtrl.gameView();
