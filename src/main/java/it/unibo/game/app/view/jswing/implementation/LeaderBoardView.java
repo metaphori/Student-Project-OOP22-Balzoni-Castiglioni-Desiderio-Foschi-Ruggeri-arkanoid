@@ -50,7 +50,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
     this.setBorder(BorderFactory.createEmptyBorder(DIM * 2, DIM, DIM * 2, DIM));
     this.setBackground(Color.decode(COLOR));
 
-    JLabel title = new JLabel("BEST FIVE: ");
+    JLabel title = new JLabel("LEADERBOARD: ");
     title.setFont(
         new Font("myFont", Font.ITALIC, (int) (this.control.windowDim().getY() / GAP)));
     title.setBackground(Color.decode(COLOR));
