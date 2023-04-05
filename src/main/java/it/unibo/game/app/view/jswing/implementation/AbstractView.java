@@ -24,13 +24,19 @@ public abstract class AbstractView extends JPanel {
   private JButton quitBtn;
   private JButton menuBtn;
   private JButton button;
-  private static final int SIZE_BTN = 30;
+  /**
+   * Use SIZE_BTN for new CustomBtn size in the subclasses.
+   */
+  protected static final int SIZE_BTN = 30;
   private static final int SIZE_TITLE = 60;
 
   /**
    * Constructor of the class.
    * 
-   * @param uiCtrl is the controller that will change the views
+   * @param uiCtrl         is the controller that will change the views
+   * @param title          the text that will appear in the panel
+   * @param button         the button that will appear in the panel
+   * @param actionListener the action that will implement this button
    */
   @SuppressFBWarnings("EI_EXPOSE_REP2")
   public AbstractView(final UIControllerImpl uiCtrl, final String title,

@@ -14,7 +14,7 @@ public class Victory extends AbstractView {
    * @param uiCtrl is the controller that will change the views
    */
   public Victory(final UIControllerImpl uiCtrl) {
-    super(uiCtrl, "YOU WIN", new CustomBtn(30, "Save"), new ActionListener() {
+    super(uiCtrl, "YOU WIN", new CustomBtn(SIZE_BTN, "Save"), new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent arg0) {
         new SaveScore(uiCtrl);
