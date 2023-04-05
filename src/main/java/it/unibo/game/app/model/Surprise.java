@@ -170,8 +170,8 @@ public class Surprise {
    * method that randomly deletes bricks. Edoardo Desiderio
    */
   private void deleteRandomBricks() {
-    var i = random.nextInt(level.getRound().getBrick().size() / 2);
-    while (i >= 0) {
+    var i = random.nextInt(1, level.getRound().getBrick().size() / 2) + 1;
+    while (i > 0) {
       level.getRound().remove(random.nextInt(level.getRound().getBrick().size()));
       System.out.println("bricks to delate: " + i);
       i--;
@@ -373,8 +373,9 @@ public class Surprise {
    * method that randomly chooses which bonus or malus to invoke.
    */
   public void chooseSurprise() {
-    final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
-    this.mappa.get(method).run();
+    // final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
+    // this.mappa.get(method).run();
+    this.deleteRandomBricks();
 
   }
 }

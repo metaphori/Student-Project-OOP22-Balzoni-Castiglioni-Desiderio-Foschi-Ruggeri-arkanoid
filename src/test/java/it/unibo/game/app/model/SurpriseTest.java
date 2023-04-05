@@ -324,7 +324,7 @@ public class SurpriseTest {
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l = new FirstLevel();
     Surprise surprise = new Surprise(l);
-    var old = l.getRound().getNumBrick();
+    var old = l.getRound().getBrick().size();
 
     Method method = Surprise.class.getDeclaredMethod("deleteRandomBricks");
     method.setAccessible(true);
