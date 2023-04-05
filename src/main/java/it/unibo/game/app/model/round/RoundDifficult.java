@@ -34,13 +34,12 @@ public class RoundDifficult extends AbstractRound {
     super(numB, numS, size);
     this.obstacles = obstacles;
     this.height = (int) Math.sqrt((double) (2 * (obstacles + numB + numS)));
-    setPosBrick();
   }
 
   /**
    * method that set position of bricks from bottom.
    */
-  protected void setPosBrick() {
+  public void setPosBrick() {
     int lines = 0;
     int insert = 0;
     int num = height;
