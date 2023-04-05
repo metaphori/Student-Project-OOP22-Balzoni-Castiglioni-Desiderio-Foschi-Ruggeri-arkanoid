@@ -21,7 +21,7 @@ public class StartMenu extends JPanel {
   private UIController uiControllerImpl;
   private static final int EASY_LEVEL = 1;
   private static final int MEDIUM_LEVEL = 2;
-  private static final int ROWS = 2;
+  private static final int ROWS = 3;
   private static final int COLUMS = 1;
   private static final int HARD_LEVEL = 3;
   private static final int ROWS_BUTTONS = 4;
@@ -47,6 +47,7 @@ public class StartMenu extends JPanel {
     JButton hard = new CustomBtn(BTN_SIZE, "HARD");
     JButton top5 = new CustomBtn(BTN_SIZE, "CLASSIFICA");
     JLabel title = new JLabel("ARKANOID");
+    JLabel allert = new JLabel("to return to this menu during the game press space key");
     JPanel buttonContainer = new JPanel();
 
     buttonContainer.setLayout(new GridLayout(ROWS_BUTTONS, COLUMNS_BUTTONS, HGAP, VGAP));
@@ -58,14 +59,16 @@ public class StartMenu extends JPanel {
     title.setFont(f);
     title.setForeground(Color.WHITE);
     title.setHorizontalAlignment(SwingConstants.CENTER);
+    allert.setFont(new Font("Serif", Font.ITALIC, FONT_SIZE / 4));
+    allert.setForeground(Color.WHITE);
 
     this.setLayout(new GridLayout(ROWS, COLUMS, HGAP, VGAP));
     this.setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, LEFT_BORDER, BOTTOM_BORDER,
         RIGHT_BORDER));
 
-    this.add(title, BorderLayout.NORTH);
-    this.add(buttonContainer, BorderLayout.CENTER);
-
+    this.add(allert, 1, 0);
+    this.add(buttonContainer, 0, 0);
+    this.add(title, 2, 0);
     buttonContainer.add(easy);
     buttonContainer.add(medium);
     buttonContainer.add(hard);
