@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Optional;
 
 import java.util.stream.Collectors;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Direction;
@@ -42,14 +44,6 @@ public class ControllerImpl implements AppController {
   @Override
   public void onPause() {
     this.gameEngine.pause();
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void quit() {
-    System.exit(0);
   }
 
   /**
