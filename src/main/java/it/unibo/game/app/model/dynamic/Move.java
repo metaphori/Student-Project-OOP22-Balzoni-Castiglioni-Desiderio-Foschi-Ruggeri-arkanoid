@@ -71,7 +71,6 @@ public class Move {
         it.remove();
       } else if (coll.collideWithPad(next, this.l.getRound().getPad())) {
         this.surprise.chooseSurprise();
-        // this.surprise.bonus();
         it.remove();
       } else {
         next.setPos(
