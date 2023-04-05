@@ -2,7 +2,6 @@ package it.unibo.game.app.view.jswing.implementation;
 
 import it.unibo.game.app.view.jswing.api.UIController;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
