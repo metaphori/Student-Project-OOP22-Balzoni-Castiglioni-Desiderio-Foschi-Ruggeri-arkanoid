@@ -13,69 +13,97 @@ import it.unibo.game.app.model.CircleBoundingBox;
 import it.unibo.game.app.model.RectBoundingBox;
 import it.unibo.game.app.model.SizeCalculation;
 
+/**
+ * Class that handles collisions.
+ */
 public class Collision {
-  private static final double DELTA = 7.5;
-  private Level level;
+	private static final double DELTA = 7.5;
+	private Level level;
 
-  public Collision(Level lev) {
-    this.level = lev;
-  }
+	/**
+	 * 
+	 * @param lev
+	 */
+	public Collision(final Level lev) {
+		this.level = lev;
+	}
 
-  public void collideWithEdges(MovingObject b, Double h, Double w) {
-    b.setBoundingBox(new CircleBoundingBox(b));
-    if (b.getBoundingBox().getBox().get(Corner.LEFT_DOWN).getX() <= 0.5
-        || b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w - 7.5) {
-      b.getPhysics().changeDirection(Side.LEFT_RIGHT);
-    }
-    if (b.getBoundingBox().getBox().get(Corner.LEFT_UP).getY() <= 0.5) {
-      b.getPhysics().changeDirection(Side.UP_DOWN);
-    }
-  }
+	/**
+	 * 
+	 * @param b Ball.
+	 * @param h Height of the Model world.
+	 * @param w Width of the Model World.
+	 */
+	public void collideWithEdges(final MovingObject b, final Double h, final Double w) {
+		b.setBoundingBox(new CircleBoundingBox(b));
+		if (b.getBoundingBox().getBox().get(Corner.LEFT_DOWN).getX() <= 0.5
+				|| b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w - DELTA) {
+			b.getPhysics().changeDirection(Side.LEFT_RIGHT);
+		}
+		if (b.getBoundingBox().getBox().get(Corner.LEFT_UP).getY() <= 0.5) {
+			b.getPhysics().changeDirection(Side.UP_DOWN);
+		}
+	}
 
-  /**
-   * 
-   * @param b boundingbox
-   * @return true if collide with border
-   */
-  public boolean collideWithBorder(BoundingBox b) {
-    if (b.getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 || b.getBox()
-        .get(Corner.RIGHT_DOWN).getX() >= SizeCalculation.getWorldSize().getY() - DELTA) {
-      return true;
-    }
-    return false;
-  }
+	/**
+	 * 
+	 * @param b boundingbox
+	 * @return true if collide with border
+	 */
+	public boolean collideWithBorder(final BoundingBox b) {
+		if (b.getBox().get(Corner.LEFT_DOWN).getX() <= 0.5
+				|| b.getBox().get(Corner.RIGHT_DOWN).getX() >= SizeCalculation.getWorldSize().getY() - DELTA) {
+			return true;
+		}
+		return false;
+	}
 
-  public Optional<Integer> collideWithBrick(MovingObject b) {
-    b.setBoundingBox(new CircleBoundingBox(b));
-    for (Brick obj : level.getRound().getBrick()) {
-      var opt = b.getBoundingBox().collideWith(obj.getBoundingBox());
+	/**
+	 * 
+	 * @param b Ball.
+	 * @return the index of the block that is hit by the ball.
+	 */
+	public Optional<Integer> collideWithBrick(final MovingObject b) {
+		b.setBoundingBox(new CircleBoundingBox(b));
+		for (Brick obj : level.getRound().getBrick()) {
+			var opt = b.getBoundingBox().collideWith(obj.getBoundingBox());
 
-      if (opt.isPresent()) {
-        if (obj.getType() == BrickType.NORMAL) {
-          this.level.getScore().increaseScore();
-        } else {
-          this.level.getScore().resetPoints();
-        }
-        b.getPhysics().changeDirection(opt.get());
-        return Optional.of(level.getRound().getBrick().indexOf(obj));
-      }
-    }
-    return Optional.empty();
-  }
+			if (opt.isPresent()) {
+				if (obj.getType() == BrickType.NORMAL) {
+					this.level.getScore().increaseScore();
+				} else {
+					this.level.getScore().resetPoints();
+				}
+				b.getPhysics().changeDirection(opt.get());
+				return Optional.of(level.getRound().getBrick().indexOf(obj));
+			}
+		}
+		return Optional.empty();
+	}
 
-  public boolean collideWithPad(MovingObject b, MovingObject p) {
-    b.setBoundingBox(new CircleBoundingBox(b));
-    p.setBoundingBox(new RectBoundingBox(p));
-    var opt = b.getBoundingBox().collideWith(p.getBoundingBox());
-    if (opt.isPresent()) {
-      b.getPhysics().changeDirection(opt.get());
-      return true;
-    }
-    return false;
-  }
+	/**
+	 * 
+	 * @param b Ball.
+	 * @param p Pad.
+	 * @return true if the ball collide with the pad.
+	 */
+	public boolean collideWithPad(final MovingObject b, final MovingObject p) {
+		b.setBoundingBox(new CircleBoundingBox(b));
+		p.setBoundingBox(new RectBoundingBox(p));
+		var opt = b.getBoundingBox().collideWith(p.getBoundingBox());
+		if (opt.isPresent()) {
+			b.getPhysics().changeDirection(opt.get());
+			return true;
+		}
+		return false;
+	}
 
-  public int getScore() {
-    return this.level.getScore().getScore();
-  }
+	/**
+	 * 
+	 * @return the score.
+	 */
+	public int getScore() {
+		return this.level.getScore().getScore();
+	}
 
 }
