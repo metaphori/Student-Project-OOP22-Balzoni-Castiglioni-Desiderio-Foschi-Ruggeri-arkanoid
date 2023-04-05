@@ -14,7 +14,7 @@ public class GameOver extends AbstractView {
    * @param uiCtrl is the controller that will change the views
    */
   public GameOver(final UIControllerImpl uiCtrl) {
-    super(uiCtrl, "GAME OVER", new CustomBtn(30, "Save"), new ActionListener() {
+    super(uiCtrl, "GAME OVER", new CustomBtn(SIZE_BTN, "Save"), new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent arg0) {
         new SaveScore(uiCtrl);
