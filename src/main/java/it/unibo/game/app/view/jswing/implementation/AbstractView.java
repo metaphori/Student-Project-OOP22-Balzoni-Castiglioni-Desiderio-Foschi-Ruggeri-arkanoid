@@ -24,8 +24,8 @@ public abstract class AbstractView extends JPanel {
   private JButton quitBtn;
   private JButton menuBtn;
   private JButton button;
-  private static final int sizeBtn = 30;
-  private static final int sizeTitle = 60;
+  private static final int SIZE_BTN = 30;
+  private static final int SIZE_TITLE = 60;
 
   /**
    * Constructor of the class.
@@ -40,8 +40,8 @@ public abstract class AbstractView extends JPanel {
     this.titleLabel.setText(title);
     this.button = button;
     this.button.addActionListener(actionListener);
-    this.menuBtn = new CustomBtn(sizeBtn, "Start Menu");
-    this.quitBtn = new CustomBtn(sizeBtn, "Quit");
+    this.menuBtn = new CustomBtn(SIZE_BTN, "Start Menu");
+    this.quitBtn = new CustomBtn(SIZE_BTN, "Quit");
 
     JPanel titlePanel = new JPanel();
     buttonsPanel = new JPanel();
@@ -51,7 +51,7 @@ public abstract class AbstractView extends JPanel {
     buttonsPanel.add(this.button);
     buttonsPanel.add(this.menuBtn);
     buttonsPanel.add(this.quitBtn);
-    titleLabel.setFont(new Font("Serif", Font.BOLD, sizeTitle));
+    titleLabel.setFont(new Font("Serif", Font.BOLD, SIZE_TITLE));
     titleLabel.setForeground(Color.WHITE);
 
     titlePanel.add(titleLabel);
