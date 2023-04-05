@@ -17,7 +17,7 @@ public class DirectionImpl implements Direction {
 	 * constructor of this class.
 	 */
 	public DirectionImpl() {
-		this.resetDirection();
+		this.d = new Pair<Integer, Integer>(LEFT, UP);
 	}
 
 	/**
