@@ -85,6 +85,7 @@ public abstract class AbstractView extends JPanel {
       /**
        * {@inheritDoc}
        */
+      @SuppressFBWarnings("DM_EXIT")
       @Override
       public void actionPerformed(final ActionEvent e) {
         System.exit(0);
