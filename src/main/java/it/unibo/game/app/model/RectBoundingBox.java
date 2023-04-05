@@ -11,7 +11,7 @@ public class RectBoundingBox extends AbstractBoundingBox {
 	 * 
 	 * @param obj
 	 */
-	public RectBoundingBox(GameObject obj) {
+	public RectBoundingBox(final GameObject obj) {
 		super(obj.getDimension().getWidth(), obj.getDimension().getHeight(), obj.getPos());
 	}
 

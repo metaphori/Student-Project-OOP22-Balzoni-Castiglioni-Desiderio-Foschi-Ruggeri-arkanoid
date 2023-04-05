@@ -11,7 +11,7 @@ public class CircleBoundingBox extends AbstractBoundingBox {
 	 * 
 	 * @param obj
 	 */
-	public CircleBoundingBox(MovingObject obj) {
+	public CircleBoundingBox(final MovingObject obj) {
 		super(obj.getDimension().getWidth(), obj.getDimension().getHeight(), obj.getPos());
 
 	}

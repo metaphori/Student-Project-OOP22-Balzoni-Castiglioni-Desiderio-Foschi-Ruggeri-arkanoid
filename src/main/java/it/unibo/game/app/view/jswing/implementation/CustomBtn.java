@@ -17,7 +17,7 @@ public class CustomBtn extends JButton {
 	 * @param size size of the button.
 	 * @param text text of the button.
 	 */
-	public CustomBtn(int size, String text) {
+	public CustomBtn(final int size, final String text) {
 		setText(text);
 		btnFont = new Font("arial", Font.BOLD, size);
 		setFont(btnFont);
