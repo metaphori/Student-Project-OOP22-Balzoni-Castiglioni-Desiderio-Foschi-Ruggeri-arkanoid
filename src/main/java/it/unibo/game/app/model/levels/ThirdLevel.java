@@ -36,7 +36,6 @@ public final class ThirdLevel extends AbstractLevel {
    */
   @Override
   public void setFirstRound() {
-
     this.set(NORMAL1, SURPRISE1, OBSTACLE1);
   }
 
@@ -45,7 +44,6 @@ public final class ThirdLevel extends AbstractLevel {
    */
   @Override
   public void setSecondRound() {
-
     this.set(NORMAL2, SURPRISE2, OBSTACLE2);
   }
 
@@ -54,7 +52,6 @@ public final class ThirdLevel extends AbstractLevel {
    */
   @Override
   public void setThirdRound() {
-
     this.set(NORMAL3, SURPRISE3, OBSTACLE3);
   }
 
@@ -81,6 +78,7 @@ public final class ThirdLevel extends AbstractLevel {
     int h = getCol(normal, surprise, obstacles);
     this.sizeC = new SizeCalculation(h, h + 1, super.getNumRoundPassed());
     super.setRound(new RoundDifficult(normal, surprise, sizeC, obstacles));
+    super.getRound().setPosBrick();
   }
 
 }
