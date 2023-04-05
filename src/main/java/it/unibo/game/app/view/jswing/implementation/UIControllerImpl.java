@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.view.jswing.api.UIController;
@@ -34,6 +35,7 @@ public class UIControllerImpl implements UIController {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public void set(final AppController control) {
     this.appController = control;
 

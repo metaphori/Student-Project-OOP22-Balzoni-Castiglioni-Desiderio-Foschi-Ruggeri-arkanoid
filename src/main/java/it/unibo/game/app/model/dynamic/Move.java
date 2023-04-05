@@ -3,6 +3,7 @@ package it.unibo.game.app.model.dynamic;
 import java.util.Iterator;
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Direction;
@@ -25,6 +26,7 @@ public class Move {
    * 
    * @param l level.
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public Move(final Level l) {
     coll = new Collision(l);
     this.l = l;

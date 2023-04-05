@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
@@ -50,6 +52,7 @@ public class Surprise {
    * 
    * @param level current level
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public Surprise(final Level level) {
     this.level = level;
   }

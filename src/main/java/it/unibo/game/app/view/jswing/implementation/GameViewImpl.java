@@ -1,6 +1,8 @@
 package it.unibo.game.app.view.jswing.implementation;
 
 import javax.swing.*;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.view.jswing.api.GameView;
 import it.unibo.game.app.view.jswing.api.UIController;
@@ -17,6 +19,7 @@ public class GameViewImpl extends JPanel
   private UIController observer;
   // private boolean play = true;
 
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public GameViewImpl(UIController control) {
     setFocusable(true);
     addKeyListener(this);

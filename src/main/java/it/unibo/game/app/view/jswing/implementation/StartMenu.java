@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * Implements the panel for StartMenu view.
  */
@@ -39,6 +41,7 @@ public class StartMenu extends JPanel {
    * 
    * @param ui is the controller that will change the views
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public StartMenu(final UIControllerImpl ui) {
     this.uiControllerImpl = ui;
     JButton easy = new CustomBtn(BTN_SIZE, "EASY");
