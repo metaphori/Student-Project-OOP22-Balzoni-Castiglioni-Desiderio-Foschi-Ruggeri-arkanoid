@@ -22,6 +22,7 @@ public class RoundMedium extends AbstractRound {
   private Double stopY;
   private Double stopX;
   private int jump;
+  private Random random = new Random();
 
   /**
    * Constructor of this class.
@@ -50,8 +51,8 @@ public class RoundMedium extends AbstractRound {
    * @return true if a brick to replace is found
    */
   private boolean setBrickHard() {
-    Random random = new Random();
-    int idx = random.nextInt(this.getBrick().size());
+
+    int idx = this.random.nextInt(this.getBrick().size());
 
     if (this.getBrick().get(idx).getType() == BrickType.NORMAL
         && this.getBrick().get(idx).getRes().get() == 1) {
