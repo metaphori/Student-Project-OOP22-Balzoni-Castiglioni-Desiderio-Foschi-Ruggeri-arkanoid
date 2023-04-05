@@ -30,7 +30,6 @@ public class RoundEasy extends AbstractRound {
     this.startX = size.getStart().getX();
     this.endY = size.getStop().getY();
     this.endX = size.getStop().getX();
-    this.setPosBrick();
   }
 
   /**

@@ -58,6 +58,7 @@ public class ModelImpl implements Model {
     switch (numLevel) {
     case 1:
       this.level = new FirstLevel();
+      this.level.setFirstRound();
       break;
     case 2:
       this.level = new SecondLevel();
