@@ -242,8 +242,8 @@ public class UIControllerImpl implements UIController {
    */
   @Override
   public Pair<Double, Double> windowDim() {
-    return new Pair<Double, Double>(Integer.valueOf(this.window.getWidth()).doubleValue(),
-        Integer.valueOf(this.window.getHeight()).doubleValue());
+    return new Pair<Double, Double>(Integer.valueOf(this.deck.getWidth()).doubleValue(),
+        Integer.valueOf(this.deck.getHeight()).doubleValue());
   }
 
   /**
