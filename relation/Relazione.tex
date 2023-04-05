@@ -58,6 +58,11 @@ Ulteriori dettagli circa le entità presenti possono essere consultati attravers
 \end{figure}
 \chapter{Design}
 \section{Architettura}
+Si è optato per un pattern architetturale ispirato a un MVC(Model , View, Controller) in cui ci siamo impegnati il più
+possibile a mantenere separati gli aspetti logici, di controllo e di grafica. Tuttavia non ne rispetta tutti i principi poiché nella classe GameEngine ci siamo
+serviti di una funzionalità di una libreria grafica (SwingWorker).
+\\La nostra strategia ha comunque il vantaggio che qualora fosse necessario cambiare l'interfaccia grafica
+questo non causerebbe modifiche nelle classi di Model e Controller.
 \section{Desing dettagliato}
 \chapter{Sviluppo}
 \section{Testing automatizzato}
