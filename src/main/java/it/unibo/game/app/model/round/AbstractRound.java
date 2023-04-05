@@ -31,6 +31,7 @@ public abstract class AbstractRound implements Round {
   private SizeCalculation sizeC;
   // private final Pair<Double, Double> ballInitialPos;
   private List<MovingObject> surprise = new ArrayList<>();
+  private Random random = new Random();
 
   /**
    * constructor of the class.
@@ -125,8 +126,7 @@ public abstract class AbstractRound implements Round {
    * @return true if a brick to replace is found
    */
   protected boolean setBrickSurprise() {
-    Random random = new Random();
-    int idx = random.nextInt(brick.size());
+    int idx = this.random.nextInt(brick.size());
 
     if (brick.get(idx).getType() == BrickType.NORMAL) {
       brick.get(idx).changeType(BrickType.SURPRISE);
