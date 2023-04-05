@@ -1,5 +1,6 @@
 package it.unibo.game.app.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -38,8 +39,6 @@ public class ModelImpl implements Model {
   @Override
   public void setController(final AppController c) {
     this.control = c;
-    // this.level = new FirstLevel(this.control.getWorldDimension()); In teora va lo
-    // stesso
   }
 
   /**
@@ -47,8 +46,8 @@ public class ModelImpl implements Model {
    */
   @Override
   public Map<Pair<Double, Double>, Optional<Integer>> getBrickList() {
-    return this.level.getRound().getBrick().stream()
-        .collect(Collectors.toMap(b -> b.getPos(), b -> b.getRes()));
+    return Collections.unmodifiableMap(this.level.getRound().getBrick().stream()
+        .collect(Collectors.toMap(b -> b.getPos(), b -> b.getRes(), (x, y) -> y)));
   }
 
   /**
@@ -65,6 +64,7 @@ public class ModelImpl implements Model {
       break;
     case 3:
       this.level = new ThirdLevel();
+      this.level.setFirstRound();
       break;
     default:
       break;
@@ -87,7 +87,7 @@ public class ModelImpl implements Model {
    */
   @Override
   public List<Pair<Double, Double>> getBall() {
-    return this.level.getRound().getPosBall();
+    return Collections.unmodifiableList(this.level.getRound().getPosBall());
   }
 
   /**
@@ -195,7 +195,7 @@ public class ModelImpl implements Model {
    */
   @Override
   public List<Pair<String, Integer>> getBestFive() {
-    return board.getBestFive();
+    return Collections.unmodifiableList(board.getBestFive());
   }
 
   /**
@@ -240,7 +240,7 @@ public class ModelImpl implements Model {
    */
   @Override
   public List<MovingObject> getSurprise() {
-    return this.level.getRound().getSurprise();
+    return Collections.unmodifiableList(this.level.getRound().getSurprise());
   }
 
   /**
