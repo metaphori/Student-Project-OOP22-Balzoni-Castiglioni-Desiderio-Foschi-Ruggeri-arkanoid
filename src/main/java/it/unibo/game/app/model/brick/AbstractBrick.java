@@ -1,11 +1,14 @@
 package it.unibo.game.app.model.brick;
 
 import java.util.Optional;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Dimension;
+import it.unibo.game.app.model.DimensionImpl;
 import it.unibo.game.app.model.RectBoundingBox;
 
 /**
@@ -28,8 +31,8 @@ public abstract class AbstractBrick implements Brick {
   public AbstractBrick(final BrickType type, final Dimension d,
       final Pair<Double, Double> pos) {
     this.type = type;
-    this.pos = pos;
-    this.d = d;
+    this.pos = new Pair<Double, Double>(pos.getX(), pos.getY());
+    this.d = new DimensionImpl(d.getHeight(), d.getWidth());
     this.setBoundingBox(new RectBoundingBox(this));
 
   }
@@ -101,6 +104,7 @@ public abstract class AbstractBrick implements Brick {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public Dimension getDimension() {
     return this.d;
@@ -112,7 +116,7 @@ public abstract class AbstractBrick implements Brick {
    * @param d dimension of brick set the dimension of brick
    */
   public void setDimension(final Dimension d) {
-    this.d = d;
+    this.d = new DimensionImpl(d.getHeight(), d.getWidth());
   }
 
   /**

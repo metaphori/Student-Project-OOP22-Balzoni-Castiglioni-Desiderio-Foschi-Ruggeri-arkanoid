@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.SwingWorker;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.app.api.AppController;
 
 /**
@@ -21,6 +22,7 @@ public class GameEngine {
    * 
    * @param contr controller interacting with the model
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public GameEngine(final AppController contr) {
     this.controller = contr;
   }

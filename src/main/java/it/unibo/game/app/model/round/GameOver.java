@@ -1,5 +1,6 @@
 package it.unibo.game.app.model.round;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Round;
@@ -16,6 +17,7 @@ public class GameOver {
    * 
    * @param round represents the playing round
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public GameOver(final Round round) {
     this.round = round;
   }

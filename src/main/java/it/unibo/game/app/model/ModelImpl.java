@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Direction;
@@ -33,6 +34,7 @@ public class ModelImpl implements Model {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public void setController(final AppController c) {
     this.control = c;
@@ -65,7 +67,6 @@ public class ModelImpl implements Model {
       this.level = new ThirdLevel();
       break;
     default:
-      this.level = new FirstLevel();
       break;
     }
     this.move = new Move(level);
