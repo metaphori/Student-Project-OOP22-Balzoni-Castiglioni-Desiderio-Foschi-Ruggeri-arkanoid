@@ -373,9 +373,9 @@ public class Surprise {
    * method that randomly chooses which bonus or malus to invoke.
    */
   public void chooseSurprise() {
-    // final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
-    // this.mappa.get(method).run();
-    this.deleteRandomBricks();
+    final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
+    this.mappa.get(method).run();
+    // this.deleteRandomBricks();
 
   }
 }
