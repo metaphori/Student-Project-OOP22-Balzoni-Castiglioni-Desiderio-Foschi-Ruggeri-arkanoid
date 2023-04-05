@@ -21,11 +21,6 @@ public interface AppController {
   void onPause();
 
   /**
-   * terminate the application.
-   */
-  void quit();
-
-  /**
    * method that initializes the view.
    */
   void setView();
