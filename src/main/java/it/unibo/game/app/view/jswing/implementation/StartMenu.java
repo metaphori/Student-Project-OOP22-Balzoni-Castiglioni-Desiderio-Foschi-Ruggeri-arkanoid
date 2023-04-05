@@ -19,7 +19,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * Implements the panel for StartMenu view.
  */
 public class StartMenu extends JPanel {
-  private UIController uiControllerImpl;
+  private transient UIController uiControllerImpl;
   private static final int EASY_LEVEL = 1;
   private static final int MEDIUM_LEVEL = 2;
   private static final int ROWS = 3;
