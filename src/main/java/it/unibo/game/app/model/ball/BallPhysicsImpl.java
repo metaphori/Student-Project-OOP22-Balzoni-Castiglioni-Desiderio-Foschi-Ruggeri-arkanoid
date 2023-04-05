@@ -1,6 +1,7 @@
 package it.unibo.game.app.model.ball;
 
 import it.unibo.game.app.api.Physics;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.BoundingBox.Side;
 import it.unibo.game.app.model.dynamic.DirectionImpl;
@@ -35,6 +36,7 @@ public class BallPhysicsImpl implements Physics {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public Direction getDir() {
     return this.d;
