@@ -44,7 +44,7 @@ public class GameEngine {
             pause();
             controller.nextRound();
             render();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
             restart();
           }
 
