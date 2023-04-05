@@ -61,8 +61,9 @@ public class Surprise {
    * method that adds a life. Simone Ruggeri
    */
   private void extraLife() {
-    this.level.increaseLife();
     System.out.println("extraLife");
+    this.level.increaseLife();
+
   }
 
   /**
@@ -70,6 +71,7 @@ public class Surprise {
    * Ruggeri
    */
   private void explosiveBomb() {
+    System.out.println("explosiveBomb");
     Brick lastBrick = this.level.getLastSurpriseBrick();
     int index = this.level.getIndexLastSurprise();
 
@@ -87,7 +89,7 @@ public class Surprise {
         && !this.isSursprise(index - 1)) {
       this.deleteBrick(index);
     }
-    System.out.println("explosiveBomb");
+
   }
 
   /**
@@ -173,19 +175,21 @@ public class Surprise {
    * method that randomly deletes bricks. Edoardo Desiderio
    */
   private void deleteRandomBricks() {
+    System.out.println("deleteRandomBricks");
     var i = random.nextInt(1, level.getRound().getBrick().size() / 2) + 1;
     while (i > 0) {
       level.getRound().remove(random.nextInt(level.getRound().getBrick().size()));
-      System.out.println("bricks to delate: " + i);
+      // System.out.println("bricks to delate: " + i);
       i--;
     }
-    System.out.println("deleteRandomBricks");
+
   }
 
   /**
    * method that reduces the size of the pad for a certain time. Edoardo Desiderio
    */
   private void reduceSizePad() {
+    System.out.println("reduceSizePad");
     if (!padModified) {
       padModified = true;
       var pad = level.getRound().getPad();
@@ -202,7 +206,7 @@ public class Surprise {
       };
       tm.schedule(tmTask, BONUS_DURATION);
     }
-    System.out.println("reduceSizePad");
+
   }
 
   private double delta() {
@@ -214,6 +218,7 @@ public class Surprise {
    * method that enlarge the size of the pad for a certain time. Edoardo Desiderio
    */
   private void enlargeSizePad() {
+    System.out.println("enlargeSizePad");
     if (!padModified) {
       padModified = true;
       var pad = level.getRound().getPad();
@@ -236,31 +241,33 @@ public class Surprise {
       };
       tm.schedule(tmTask, BONUS_DURATION);
     }
-    System.out.println("enlargeSizePad");
   }
 
   /**
    * method that increases the speed of the ball. Virginia Foschi
    */
   private void increaseBallSpeed() {
+    System.out.println("increaseBallSpeed");
     this.level.getRound().getBalls()
         .forEach(x -> x.getSpeed().sum(new SpeedImpl(0.5, 0.2)));
-    System.out.println("increaseBallSpeed");
+
   }
 
   /**
    * method that decrease the speed of the ball. Virginia Foschi
    */
   private void decreaseBallSpeed() {
+    System.out.println("decreaseBallSpeed");
     this.level.getRound().getBalls()
         .forEach(x -> x.getSpeed().sum(new SpeedImpl(-0.5, -0.2)));
-    System.out.println("decreaseBallSpeed");
+
   }
 
   /**
    * method that replaces obstacles with normal bricks. Virginia Foschi
    */
   private void changeObstacles() {
+    System.out.println("changeObstacles");
     this.level.getRound().getBrick().replaceAll(x -> {
       if (x.getType().equals(BrickType.OBSTACLE)) {
         Brick brick = new NormalBrick(BrickType.NORMAL,
@@ -270,7 +277,6 @@ public class Surprise {
         return x;
       }
     });
-    System.out.println("changeObstacles");
   }
 
   /**
@@ -278,6 +284,7 @@ public class Surprise {
    * Margherita Balzoni
    */
   private void increaseScore() {
+    System.out.println("increaseScore");
     Timer time = new Timer();
     TimerTask task = new TimerTask() {
 
@@ -289,24 +296,24 @@ public class Surprise {
     };
     time.schedule(task, BONUS_DURATION);
     this.level.getScore().enableBonus(false);
-    System.out.println("increaseScore");
   }
 
   /**
    * method that increases the number of balls in play. Margherita Balzoni
    */
   private void addBalls() {
+    System.out.println("addBalls");
     for (int i = 0; i < NUM_BALLS; i++) {
       MovingObject ball = new Ball(this.level.getRound().getSizeCalc().getBallDim());
       this.level.getRound().getExtraBalls().add(ball);
     }
-    System.out.println("addBalls");
   }
 
   /**
    * method that adds a row of hard bricks. Chiara Castiglioni
    */
   private void addHardRow() {
+    System.out.println("addHardRow");
     double lastY = this.level.getRound().getBrick()
         .get(this.level.getRound().getBrick().size() - 1).getPos().getY();
     double brickH = this.level.getRound().getBrick()
@@ -320,7 +327,6 @@ public class Surprise {
           new DimensionImpl(brickH, brickW), new Pair<>(x, lastY + brickH), 2);
       this.level.getRound().getBrick().add(brick);
     }
-    System.out.println("addHardRow");
   }
 
   /**
@@ -328,6 +334,7 @@ public class Surprise {
    * Castiglioni
    */
   private void changeHard() {
+    System.out.println("changeHard");
     List<Brick> hard = new ArrayList<>();
     Timer timer = new Timer();
     for (Brick brick : this.level.getRound().getBrick()) {
@@ -350,7 +357,6 @@ public class Surprise {
       }
     };
     timer.schedule(task, BONUS_DURATION);
-    System.out.println("changeHard");
   }
 
   /**
