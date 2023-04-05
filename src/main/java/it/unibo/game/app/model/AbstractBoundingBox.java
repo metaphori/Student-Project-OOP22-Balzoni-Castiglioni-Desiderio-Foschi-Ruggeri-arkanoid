@@ -1,5 +1,6 @@
 package it.unibo.game.app.model;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -76,7 +77,7 @@ public class AbstractBoundingBox implements BoundingBox {
    */
   @Override
   public Map<Corner, Pair<Double, Double>> getBox() {
-    return this.corners;
+    return Collections.unmodifiableMap(this.corners);
   }
 
 }
