@@ -2,6 +2,7 @@ package it.unibo.game.app.view.jswing.implementation;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -29,7 +30,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
 
   private static final String COLOR = "#293132";
   private List<Pair<String, Integer>> best = new ArrayList<>();
-  private List<JTextArea> tx = new ArrayList<>();
+  private List<JLabel> tx = new ArrayList<>();
   private static final int MAX = 5;
   private static final int DIM = 25;
   private static final int GAP = 15;
@@ -49,7 +50,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
     this.setBorder(BorderFactory.createEmptyBorder(DIM * 2, DIM, DIM * 2, DIM));
     this.setBackground(Color.decode(COLOR));
 
-    JTextArea title = new JTextArea("BEST FIVE: ");
+    JLabel title = new JLabel("LEADERBOARD: ");
     title.setFont(
         new Font("myFont", Font.ITALIC, (int) (this.control.windowDim().getY() / GAP)));
     title.setBackground(Color.decode(COLOR));
@@ -57,7 +58,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
     this.add(title);
 
     for (int i = 0; i < MAX; i++) {
-      JTextArea text = new JTextArea();
+      JLabel text = new JLabel();
       text.setFont(new Font("myFont", Font.ITALIC, DIM));
       text.setBackground(Color.decode(COLOR));
       text.setForeground(Color.WHITE);

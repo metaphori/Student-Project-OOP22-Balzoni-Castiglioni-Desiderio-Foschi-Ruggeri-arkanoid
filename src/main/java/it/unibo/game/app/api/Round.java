@@ -100,4 +100,6 @@ public interface Round {
    */
   // Pair<Double, Double> getBallInitialPosition();
 
+  void setPosBrick();
+
 }

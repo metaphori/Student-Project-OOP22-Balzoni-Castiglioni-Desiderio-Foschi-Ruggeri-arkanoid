@@ -47,7 +47,7 @@ public class StartMenu extends JPanel {
     JButton easy = new CustomBtn(BTN_SIZE, "EASY");
     JButton medium = new CustomBtn(BTN_SIZE, "MEDIUM");
     JButton hard = new CustomBtn(BTN_SIZE, "HARD");
-    JButton top5 = new CustomBtn(BTN_SIZE, "CLASSIFICA");
+    JButton top5 = new CustomBtn(BTN_SIZE, "LEADERBOARD");
     JLabel title = new JLabel("ARKANOID");
     JLabel allert = new JLabel("to return to this menu during the game press space key");
     JPanel buttonContainer = new JPanel();

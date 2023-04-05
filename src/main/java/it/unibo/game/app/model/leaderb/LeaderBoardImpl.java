@@ -24,7 +24,7 @@ import it.unibo.game.Pair;
  */
 public class LeaderBoardImpl implements Serializable, LeaderBoard {
 
-  private final File file = new File("src/main/Filee.txt");
+  private final File file = new File("src/main/resources/File.txt");
   private static final int MAX = 5;
 
   /**

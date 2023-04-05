@@ -9,6 +9,7 @@ package it.unibo.game;
  */
 public class Pair<X, Y> implements java.io.Serializable {
 
+  private static final long serialVersionUID = 567742502623265945L;
   private final X x;
   private final Y y;
 

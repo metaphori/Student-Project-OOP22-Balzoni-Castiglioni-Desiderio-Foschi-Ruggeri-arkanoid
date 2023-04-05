@@ -221,5 +221,5 @@ public abstract class AbstractRound implements Round {
   /**
    * method to set position of bricks.
    */
-  protected abstract void setPosBrick();
+  public abstract void setPosBrick();
 }
