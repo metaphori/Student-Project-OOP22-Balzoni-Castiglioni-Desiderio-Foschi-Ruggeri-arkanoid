@@ -62,6 +62,7 @@ public class ModelImpl implements Model {
       break;
     case 2:
       this.level = new SecondLevel();
+      this.level.setFirstRound();
       break;
     case 3:
       this.level = new ThirdLevel();

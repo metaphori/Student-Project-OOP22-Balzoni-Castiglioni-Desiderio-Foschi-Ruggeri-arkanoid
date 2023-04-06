@@ -34,7 +34,6 @@ public class SecondLevel extends AbstractLevel {
    */
   public SecondLevel() {
     super(ID);
-    this.setFirstRound();
   }
 
   /**
@@ -42,8 +41,7 @@ public class SecondLevel extends AbstractLevel {
    */
   @Override
   public void setFirstRound() {
-    this.sizeC = new SizeCalculation(BRICKCOL1, BRICKROW, super.getNumRoundPassed());
-    super.setRound(new RoundMedium(JUMP, NORMAL1, SURPRISE1, GRAY1, this.sizeC));
+    this.set(NORMAL1, SURPRISE1, GRAY1);
   }
 
   /**
@@ -51,8 +49,7 @@ public class SecondLevel extends AbstractLevel {
    */
   @Override
   public void setSecondRound() {
-    this.sizeC = new SizeCalculation(BRICKCOL2, BRICKROW, super.getNumRoundPassed());
-    super.setRound(new RoundMedium(JUMP, NORMAL2, SURPRISE2, GRAY2, this.sizeC));
+    this.set(NORMAL2, SURPRISE2, GRAY2);
   }
 
   /**
@@ -60,8 +57,35 @@ public class SecondLevel extends AbstractLevel {
    */
   @Override
   public void setThirdRound() {
-    this.sizeC = new SizeCalculation(BRICKCOL3, BRICKROW, super.getNumRoundPassed());
-    super.setRound(new RoundMedium(JUMP, NORMAL3, SURPRISE3, GRAY3, this.sizeC));
+    this.set(NORMAL3, SURPRISE3, GRAY3);
   }
 
+  /**
+   * method that return the number of column for the specific round.
+   *
+   * @return rows
+   */
+  private int getCol() {
+    if (this.getNumRoundPassed() == 0) {
+      return BRICKCOL1;
+    } else if (this.getNumRoundPassed() == 1) {
+      return BRICKCOL2;
+    } else {
+      return BRICKCOL3;
+    }
+  }
+
+  /**
+   * method that sets a new round.
+   * 
+   * @param normal    number of normal bricks in the round
+   * @param surprise  number of surprise brick in the round
+   * @param hardBrick number of hard brick in the round
+   */
+  private void set(final int normal, final int surprise, final int hardBrick) {
+    int col = this.getCol();
+    this.sizeC = new SizeCalculation(col, BRICKROW, super.getNumRoundPassed());
+    super.setRound(new RoundMedium(JUMP, normal, surprise, hardBrick, sizeC));
+    super.getRound().setPosBrick();
+  }
 }

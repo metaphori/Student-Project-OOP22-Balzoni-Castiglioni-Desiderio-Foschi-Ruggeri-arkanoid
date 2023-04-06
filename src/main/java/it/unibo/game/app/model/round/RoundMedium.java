@@ -42,7 +42,6 @@ public class RoundMedium extends AbstractRound {
     this.startX = sizeC.getStart().getX();
     this.stopY = sizeC.getStop().getY();
     this.stopX = sizeC.getStop().getX();
-    this.setPosBrick();
   }
 
   /**
