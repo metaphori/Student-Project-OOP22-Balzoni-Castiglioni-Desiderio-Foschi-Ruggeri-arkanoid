@@ -189,8 +189,8 @@ public class Surprise {
    * method that reduces the size of the pad for a certain time. Edoardo Desiderio
    */
   private void reduceSizePad() {
-    System.out.println("reduceSizePad");
     if (!padModified) {
+      System.out.println("reduceSizePad");
       padModified = true;
       var pad = level.getRound().getPad();
       pad.getDimension().setWidth((pad.getDimension().getWidth() * this.delta()));
@@ -218,15 +218,16 @@ public class Surprise {
    * method that enlarge the size of the pad for a certain time. Edoardo Desiderio
    */
   private void enlargeSizePad() {
-    System.out.println("enlargeSizePad");
     if (!padModified) {
+      System.out.println("enlargeSizePad");
       padModified = true;
       var pad = level.getRound().getPad();
       pad.getDimension().setWidth(pad.getDimension().getWidth() * (this.delta() + 1));
       var rightBorder = pad.getPos().getX() + pad.getDimension().getWidth();
       if (rightBorder > SizeCalculation.getWorldSize().getY()) {
         pad.setPos(new Pair<Double, Double>(
-            pad.getPos().getX() - (rightBorder - SizeCalculation.getWorldSize().getY()),
+            pad.getPos().getX()
+                - ((rightBorder - SizeCalculation.getWorldSize().getY()) - 0.5),
             pad.getPos().getY()));
       }
 
@@ -381,7 +382,8 @@ public class Surprise {
    * method that randomly chooses which bonus or malus to invoke.
    */
   public void chooseSurprise() {
-    final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
-    this.map.get(method).run();
+    // final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
+    // this.map.get(method).run();
+    this.enlargeSizePad();
   }
 }
