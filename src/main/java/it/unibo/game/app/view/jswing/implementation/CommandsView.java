@@ -22,14 +22,15 @@ public class CommandsView extends JPanel {
   private static final int MAX = 3;
   private static final int GAP = 15;
   private static final int DIM = 40;
+  private static final int FONT_SIZE=26;
 
   public CommandsView(final UIController control) {
     this.setLayout(new GridLayout(MAX + 2, 1, GAP, GAP));
-    this.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+    this.setBorder(BorderFactory.createEmptyBorder(0, GAP, 0, GAP));
     this.setBackground(Color.decode(COLOR));
 
     JLabel title = new JLabel("   PRINCIPAL COMMANDS: ");
-    title.setFont(new Font("myFont", Font.ITALIC, 26));
+    title.setFont(new Font("myFont", Font.ITALIC, FONT_SIZE));
     title.setBackground(Color.decode(COLOR));
     title.setForeground(Color.YELLOW);
     this.add(title);
