@@ -72,9 +72,8 @@ public class FirstLevel extends AbstractLevel {
   /**
    * method that sets a new round.
    * 
-   * @param normal    number of normal bricks in the round
-   * @param surprise  number of surprise brick in the round
-   * @param obstacles number of obstacle in the round
+   * @param normal   number of normal bricks in the round
+   * @param surprise number of surprise brick in the round
    */
   private void setRound(final int normal, final int surprise) {
     int rows = this.getRows();
