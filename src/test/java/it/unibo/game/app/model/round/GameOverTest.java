@@ -16,6 +16,7 @@ public class GameOverTest {
   void testIsRoundFinished() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new FirstLevel();
+    level.setFirstRound();
     GameOver gameover = new GameOver(level.getRound());
     Method method = GameOver.class.getDeclaredMethod("isRoundFinished");
 
