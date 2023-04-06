@@ -21,11 +21,14 @@ import it.unibo.game.Pair;
 /**
  * class that save and load information of the leaderboard in a file.
  */
-final public class LeaderBoardImpl implements LeaderBoard {
+public final class LeaderBoardImpl implements LeaderBoard {
 
   private final File file; // = new File("src/main/resources/File.txt");
   private static final int MAX = 5;
 
+  /**
+   * constructor of this class.
+   */
   public LeaderBoardImpl() {
     this.file = new File(System.getProperty("user.home")
         + System.getProperty("file.separator") + "aRkAnOiD.txt");

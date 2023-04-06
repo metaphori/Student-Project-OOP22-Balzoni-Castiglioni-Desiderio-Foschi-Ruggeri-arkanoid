@@ -58,7 +58,7 @@ public interface Model {
   /**
    * method to change pad position.
    * 
-   * @param pos new direction called from user
+   * @param dir new direction called from user
    */
   void setPadPos(Direction dir);
 
