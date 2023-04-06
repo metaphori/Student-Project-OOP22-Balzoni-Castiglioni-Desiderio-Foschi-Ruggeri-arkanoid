@@ -206,6 +206,7 @@ public class SurpriseTest {
   void testAddBalls() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new ThirdLevel();
+    level.setFirstRound();
     Surprise surprise = new Surprise(level);
     Move move = new Move(level);
     Method method = Surprise.class.getDeclaredMethod("addBalls");
@@ -224,6 +225,7 @@ public class SurpriseTest {
   void testIncreaseScore() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new ThirdLevel();
+    level.setFirstRound();
     Score score = new ScoreImpl();
     // int s = 0;
     Surprise surprise = new Surprise(level);
