@@ -52,8 +52,8 @@ Le tre tipologie di mattoncini sono:
 Ulteriori dettagli circa le entità presenti possono essere consultati attraverso la \Cref{images:analysis} inserita di seguito.
 \begin{figure}[H]
     \centering{}
-    \includegraphics{images/analysis.png}
-    \caption{Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro}
+    \includegraphics[scale=0.8]{images/analysis.png}
+    \caption{Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro.}
     \label{images:analysis}
 \end{figure}
 \chapter{Design}
@@ -63,14 +63,26 @@ possibile a mantenere separati gli aspetti logici, di controllo e di grafica. Tu
 serviti di una funzionalità di una libreria grafica (SwingWorker).
 \\La nostra strategia ha comunque il vantaggio che qualora fosse necessario cambiare l'interfaccia grafica
 questo non causerebbe modifiche nelle classi di Model e Controller.
-Nello specifico il pattern prevede comunque la suddivisione dei compiti in 3 parti:
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.6]{images/MVC.png}
+    \caption{Schema UML del pattern.}
+    \label{images:MVC}
+\end{figure}
+Il pattern prevede comunque la suddivisione dei compiti in 3 parti:
 \begin{itemize}
     \item Model gestisce i dati, la logica e le regole dell'applicazione.
     \item View responsabile della visualizzazione del dominio applicativo e dell'interazione con l'utente.
     \item Controller è l'elemento che si interporre tra il Model e la View.
 \end{itemize}
-Il Model è composto da varie classi e interfaccie che rappresentano i priincipali elementi applicativi (Level, Round, MovingObject, Brick, Pad, Surprise, SizeCalculation).
-Di seguito nella \Cref{images:} si può vedere una rappresentazione generale del Model.
+Il Model è composto da varie classi e interfaccie che rappresentano i principali elementi applicativi (Level, Round, MovingObject, Brick, Pad, Surprise, SizeCalculation).
+Di seguito nella \Cref{images:Model} seguente si può vedere una rappresentazione generale del Model.
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.8]{images/Model.png}
+    \caption{Schema UML del Model.}
+    \label{images:Model}
+\end{figure}
 \section{Desing dettagliato}
 \textbf{Ruggeri Simone}\\
 Le parti di lavoro da me svolte hanno riguardato: la progettazione della struttura dei vari livelli,
@@ -96,7 +108,7 @@ mentuBtn andare alla schermata iniziale di gioco).
 \section{Testing automatizzato}
 \section{Metodologia di lavoro}
 Per lavorare
-a questo progetto abbiamo cercato strutturare il lavoro seguendo queste macro domande:
+a questo progetto abbiamo cercato di strutturare il lavoro seguendo queste macro domande:
 \subsection{Qual'è la missione del progetto e con quali risorse si intende perseguirla?}
 La missione del progetto è ampiamente descritta nei paragrafi precedenti.
 Le risorse da noi scelte in fase di pianificazione e progettazione sono varie tra cui:
