@@ -24,8 +24,24 @@ import it.unibo.game.Pair;
  */
 public class LeaderBoardImpl implements LeaderBoard {
 
-  private final File file = new File("src/main/resources/File.txt");
+  private final File file; // = new File("src/main/resources/File.txt");
   private static final int MAX = 5;
+
+  public LeaderBoardImpl() {
+    this.file = new File(System.getProperty("user.home")
+        + System.getProperty("file.separator") + "aRkAnOiD.txt");
+    try {
+      List<User> list = new ArrayList<>();
+      if (this.file.createNewFile()) {
+        list.addAll(this.loadFromResources());
+      } else {
+        list.addAll(this.playersFromFile());
+      }
+      this.writeOnFile(list);
+    } catch (IOException e) {
+      System.out.println(e.toString());
+    }
+  }
 
   /**
    * {@inheritDoc}
@@ -120,6 +136,20 @@ public class LeaderBoardImpl implements LeaderBoard {
     } catch (IOException ex) {
       System.out.println(ex.toString());
     }
+  }
+
+  private List<User> loadFromResources() {
+    try (ObjectInputStream oos = new ObjectInputStream(
+        new BufferedInputStream(this.getClass().getResourceAsStream("/File.txt")))) {
+      return (List<User>) oos.readObject();
+    } catch (FileNotFoundException ex) {
+      System.out.println(ex.toString());
+    } catch (IOException ex) {
+      System.out.println(ex.toString());
+    } catch (ClassNotFoundException ex) {
+      System.out.println(ex.toString());
+    }
+    return new ArrayList<>();
   }
 
   class User implements java.io.Serializable {
