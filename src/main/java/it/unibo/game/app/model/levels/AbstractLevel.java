@@ -21,6 +21,7 @@ public abstract class AbstractLevel implements Level {
   private int levelId;
   private Brick lastSurpriseBrick;
   private int indexLastSurprise;
+  private String bonus = " ";
 
   /**
    * constructor of this class.
@@ -159,5 +160,29 @@ public abstract class AbstractLevel implements Level {
   @Override
   public int getIndexLastSurprise() {
     return this.indexLastSurprise;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setSurpriseString(String bonus) {
+    this.bonus = bonus;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getSurpriseString() {
+    return this.bonus;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void resetBonus() {
+    this.bonus = " ";
   }
 }
