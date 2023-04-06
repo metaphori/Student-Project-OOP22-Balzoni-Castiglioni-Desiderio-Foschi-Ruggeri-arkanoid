@@ -35,6 +35,7 @@ public class SurpriseTest {
   void testExtraLife() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new FirstLevel();
+    level.setFirstRound();
     Surprise surprise = new Surprise(level);
 
     Method method = Surprise.class.getDeclaredMethod("extraLife");
@@ -84,6 +85,7 @@ public class SurpriseTest {
   void testExplosiveBomb() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new FirstLevel();
+    level.setFirstRound();
     Surprise surprise = new Surprise(level);
     Method method = Surprise.class.getDeclaredMethod("explosiveBomb");
     method.setAccessible(true);
