@@ -21,11 +21,6 @@ public interface AppController {
   void onPause();
 
   /**
-   * terminate the application.
-   */
-  void quit();
-
-  /**
    * method that initializes the view.
    */
   void setView();
@@ -205,6 +200,20 @@ public interface AppController {
    */
   List<Pair<Double, Double>> getLabelPos();
 
+  /**
+   * method that resets the win.
+   */
   void restartWin();
+
+  /**
+   * 
+   * @return the name of the surprise.
+   */
+  String getStringSur();
+
+  /**
+   * delete the name of the surprise.
+   */
+  void deleteString();
 
 }

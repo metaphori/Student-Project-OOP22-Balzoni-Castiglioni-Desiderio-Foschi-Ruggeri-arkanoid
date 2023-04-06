@@ -30,7 +30,6 @@ public class RoundEasy extends AbstractRound {
     this.startX = size.getStart().getX();
     this.endY = size.getStop().getY();
     this.endX = size.getStop().getX();
-    this.setPosBrick();
   }
 
   /**
@@ -39,7 +38,8 @@ public class RoundEasy extends AbstractRound {
   @Override
   public void setPosBrick() {
     for (Double i = startX; i < endX; i = i + this.getSizeCalc().getBrickDim().getX()) {
-      for (Double j = startY; j < endY; j = j + this.getSizeCalc().getBrickDim().getY()) {
+      for (Double j = startY; j <= endY; j = j
+          + this.getSizeCalc().getBrickDim().getY()) {
         NormalBrick brick = new NormalBrick(BrickType.NORMAL,
             new DimensionImpl(getSizeCalc().getBrickDim().getX(),
                 getSizeCalc().getBrickDim().getY()),

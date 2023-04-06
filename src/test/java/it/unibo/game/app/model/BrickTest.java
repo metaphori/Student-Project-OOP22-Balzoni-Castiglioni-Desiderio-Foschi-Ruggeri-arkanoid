@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,11 +15,15 @@ import it.unibo.game.app.api.Level;
 import it.unibo.game.app.model.levels.SecondLevel;
 import it.unibo.game.app.model.levels.ThirdLevel;
 
+/**
+ * class that contains tests to test obstacles and hard bricks.
+ */
 public class BrickTest {
 
   @Test
   void testObstacle() {
     Level l = new ThirdLevel();
+    l.setFirstRound();
     int maxRes = l.getRound().getBrick().stream().filter(x -> x.getRes().isPresent())
         .mapToInt(x -> x.getRes().get()).max().getAsInt();
     long obstacles = l.getRound().getBrick().stream()
@@ -47,6 +49,7 @@ public class BrickTest {
   @Test
   void testHardBrick() {
     Level l = new SecondLevel();
+    l.setFirstRound();
     List<Brick> indexHardBrick = new ArrayList<>();
     int oldSize = l.getRound().getBrick().size();
     indexHardBrick = l.getRound().getBrick().stream().filter(b -> b.getRes().get() == 2)

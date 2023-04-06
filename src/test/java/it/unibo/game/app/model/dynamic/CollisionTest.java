@@ -2,7 +2,6 @@ package it.unibo.game.app.model.dynamic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
@@ -26,7 +25,7 @@ public class CollisionTest {
     this.colls = new Collision(level);
     Direction dir = new DirectionImpl();
 
-    /* la pallina collide con il bordo a sinistra */
+    /* the ball collides with the edge on the left */
     level.getRound().getBalls().get(0).setPos(new Pair<>(0.0, 100.0));
     level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionLeft();
     dir.setDirectionRight();
@@ -35,7 +34,7 @@ public class CollisionTest {
     assertEquals(dir.getDirection(),
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
 
-    /* la pallina collide con il bordo superiore */
+    /* the ball collides with the top edge */
     level.getRound().getBalls().get(0).setPos(new Pair<>(100.0, 0.0));
     level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionUp();
     dir.setDirectionDown();
@@ -44,7 +43,7 @@ public class CollisionTest {
     assertEquals(dir.getDirection(),
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
 
-    /* la pallina collide con il bordo a destra */
+    /* the ball collides with the edge on the right */
     level.getRound().getBalls().get(0)
         .setPos(new Pair<>(SizeCalculation.getWorldSize().getY(), 100.0));
     level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionRight();
@@ -62,7 +61,7 @@ public class CollisionTest {
     var posPad = level.getRound().getPad().getPos();
     var dir = new DirectionImpl();
 
-    /* collisione con il pad dall'alto */
+    /* collision with the pad from above */
     level.getRound().getBalls().get(0).setPos(new Pair<Double, Double>(posPad.getX() + 1,
         posPad.getY() - level.getRound().getBalls().get(0).getDimension().getHeight()));
     level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionDown();
@@ -72,7 +71,7 @@ public class CollisionTest {
     assertEquals(dir.getDirection(),
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
 
-    /* collisione con il pad da lato */
+    /* collision with the pad from the side */
     level.getRound().getBalls().get(0)
         .setPos(new Pair<Double, Double>(
             posPad.getX() - level.getRound().getBalls().get(0).getDimension().getWidth(),
@@ -84,7 +83,7 @@ public class CollisionTest {
     assertEquals(dir.getDirection(),
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
 
-    /* collisione nell'angolo */
+    /* collision in the corner */
     level.getRound().getBalls().get(0).setPos(new Pair<Double, Double>(
         posPad.getX() - level.getRound().getBalls().get(0).getDimension().getWidth(),
         posPad.getY() - level.getRound().getBalls().get(0).getDimension().getHeight()));
@@ -105,7 +104,6 @@ public class CollisionTest {
     this.colls = new Collision(level);
     var brick = level.getRound().getBrick().get(level.getRound().getBrick().size() - 1);
 
-    /* la pallina colpisce il blocco da sotto */
     level.getRound().getBalls().get(0)
         .setPos(new Pair<Double, Double>(
             brick.getPos().getX() + (brick.getDimension().getWidth() / 2),
@@ -137,6 +135,7 @@ public class CollisionTest {
   void testPadInsideShene() {
     Level l = new FirstLevel();
     this.colls = new Collision(l);
+    l.setFirstRound();
     /* set pad on right side */
     var pad = new Pad(SizeCalculation.getPadDim());
     pad.setPos(new Pair<Double, Double>(

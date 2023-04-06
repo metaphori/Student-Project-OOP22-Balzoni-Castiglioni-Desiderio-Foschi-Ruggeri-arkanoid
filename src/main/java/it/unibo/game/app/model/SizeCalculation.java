@@ -19,7 +19,7 @@ public class SizeCalculation {
   private static final double MUL_X2 = 1.5;
   private static final double DIVEDER_PAD_X = 60;
   private static final double DIVEDER_BALL = 30;
-  private static final int FIX_START_Y = 5;
+  // private static final int FIX_START_Y = 5;
 
   private int numBrickCol;
   private Double startX;
@@ -44,7 +44,7 @@ public class SizeCalculation {
     this.brickL = WORLD_WIDTH / numBrickRow;
     this.brickH = (stopX - startX) / numBrickCol;
     this.stopY = WORLD_WIDTH - (3 * (this.brickL / 2));
-    this.startY = (this.brickL / 2) - FIX_START_Y;
+    this.startY = (this.brickL / 2);
   }
 
   /**

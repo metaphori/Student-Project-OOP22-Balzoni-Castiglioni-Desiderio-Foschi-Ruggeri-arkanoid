@@ -2,6 +2,7 @@ package it.unibo.game.app.model.dynamic;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
@@ -13,18 +14,32 @@ import it.unibo.game.app.model.CircleBoundingBox;
 import it.unibo.game.app.model.RectBoundingBox;
 import it.unibo.game.app.model.SizeCalculation;
 
+/**
+ * Class that handles collisions.
+ */
 public class Collision {
-  private static final double DELTA = 7.5;
+  // private static final double DELTA = 7.5;
   private Level level;
 
-  public Collision(Level lev) {
+  /**
+   * 
+   * @param lev
+   */
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
+  public Collision(final Level lev) {
     this.level = lev;
   }
 
-  public void collideWithEdges(MovingObject b, Double h, Double w) {
+  /**
+   * 
+   * @param b Ball.
+   * @param h Height of the Model world.
+   * @param w Width of the Model World.
+   */
+  public void collideWithEdges(final MovingObject b, final Double h, final Double w) {
     b.setBoundingBox(new CircleBoundingBox(b));
     if (b.getBoundingBox().getBox().get(Corner.LEFT_DOWN).getX() <= 0.5
-        || b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w - 7.5) {
+        || b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w) {
       b.getPhysics().changeDirection(Side.LEFT_RIGHT);
     }
     if (b.getBoundingBox().getBox().get(Corner.LEFT_UP).getY() <= 0.5) {
@@ -37,15 +52,20 @@ public class Collision {
    * @param b boundingbox
    * @return true if collide with border
    */
-  public boolean collideWithBorder(BoundingBox b) {
+  public boolean collideWithBorder(final BoundingBox b) {
     if (b.getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 || b.getBox()
-        .get(Corner.RIGHT_DOWN).getX() >= SizeCalculation.getWorldSize().getY() - DELTA) {
+        .get(Corner.RIGHT_DOWN).getX() >= SizeCalculation.getWorldSize().getY()) {
       return true;
     }
     return false;
   }
 
-  public Optional<Integer> collideWithBrick(MovingObject b) {
+  /**
+   * 
+   * @param b Ball.
+   * @return the index of the block that is hit by the ball.
+   */
+  public Optional<Integer> collideWithBrick(final MovingObject b) {
     b.setBoundingBox(new CircleBoundingBox(b));
     for (Brick obj : level.getRound().getBrick()) {
       var opt = b.getBoundingBox().collideWith(obj.getBoundingBox());
@@ -63,7 +83,13 @@ public class Collision {
     return Optional.empty();
   }
 
-  public boolean collideWithPad(MovingObject b, MovingObject p) {
+  /**
+   * 
+   * @param b Ball.
+   * @param p Pad.
+   * @return true if the ball collide with the pad.
+   */
+  public boolean collideWithPad(final MovingObject b, final MovingObject p) {
     b.setBoundingBox(new CircleBoundingBox(b));
     p.setBoundingBox(new RectBoundingBox(p));
     var opt = b.getBoundingBox().collideWith(p.getBoundingBox());
@@ -74,6 +100,10 @@ public class Collision {
     return false;
   }
 
+  /**
+   * 
+   * @return the score.
+   */
   public int getScore() {
     return this.level.getScore().getScore();
   }

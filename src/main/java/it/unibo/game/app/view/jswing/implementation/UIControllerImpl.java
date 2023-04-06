@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.view.jswing.api.UIController;
@@ -34,6 +35,7 @@ public class UIControllerImpl implements UIController {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public void set(final AppController control) {
     this.appController = control;
 
@@ -53,10 +55,10 @@ public class UIControllerImpl implements UIController {
     });
 
     this.deck = new JPanel(layout);
-    views.putAll(
-        Map.of(PAGES.GAME, new GameViewImpl(this), PAGES.START_MENU, new StartMenu(this),
-            PAGES.PAUSE_MENU, new PauseMenu(this), PAGES.TOP_5, new LeaderBoardView(this),
-            PAGES.VICTORY, new Victory(this), PAGES.GAME_OVER, new GameOver(this)));
+    views.putAll(Map.of(PAGES.GAME, new GameViewImpl(this), PAGES.START_MENU,
+        new StartMenu(this), PAGES.PAUSE_MENU, new PauseMenu(this), PAGES.TOP_5,
+        new LeaderBoardView(this), PAGES.VICTORY, new Victory(this), PAGES.GAME_OVER,
+        new GameOver(this), PAGES.GAME_COMMANDS, new CommandsView(this)));
 
     views.entrySet().stream().forEach(x -> deck.add(x.getValue(), x.getKey().getName()));
     window.add(deck, BorderLayout.CENTER);
@@ -204,6 +206,14 @@ public class UIControllerImpl implements UIController {
    * {@inheritDoc}
    */
   @Override
+  public void gameCommands() {
+    chargeView(PAGES.GAME_COMMANDS);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public void victory() {
     chargeView(PAGES.VICTORY);
   }
@@ -300,4 +310,21 @@ public class UIControllerImpl implements UIController {
   public int getSizeFont() {
     return this.appController.getFontSize();
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getStringSur() {
+    return this.appController.getStringSur();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void deleteString() {
+    this.appController.deleteString();
+  }
+
 }

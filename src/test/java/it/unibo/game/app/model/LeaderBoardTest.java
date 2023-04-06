@@ -8,33 +8,39 @@ import it.unibo.game.app.model.leaderb.LeaderBoardImpl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * class to test if the saving and loading of the points effected by the player
+ * take place correctly.
+ */
 public class LeaderBoardTest {
+  private static final int NUM = 10;
+  private static final int VAL = 6;
+  private static final int TOT = 38;
 
   @Test
   void leaderBoardTest() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     String name = getString();
     String pass = getString();
-    System.out.println(name+" "+pass);
+    System.out.println(name + " " + pass);
     LeaderBoard l = new LeaderBoardImpl();
-    l.updatePoints(name, pass, 10, 1);
-    assertEquals(l.getPoints(name, pass), Optional.of(10));
-    l.updatePoints(name, pass, 20, 1);
-    assertEquals(l.getPoints(name, pass), Optional.of(20));
-    l.updatePoints(name, pass, 40, 2);
-    assertEquals(l.getPoints(name, pass), Optional.of(60));
-    l.updatePoints(name, pass, 6, 2);
-    assertEquals(l.getPoints(name, pass), Optional.of(26));
-    l.updatePoints(name, pass, 32, 1);
-    assertEquals(l.getPoints(name, pass), Optional.of(38));
+    l.updatePoints(name, pass, NUM, 1);
+    assertEquals(l.getPoints(name, pass), Optional.of(NUM));
+    l.updatePoints(name, pass, NUM * 2, 1);
+    assertEquals(l.getPoints(name, pass), Optional.of(NUM * 2));
+    l.updatePoints(name, pass, NUM * 4, 2);
+    assertEquals(l.getPoints(name, pass), Optional.of(NUM * VAL));
+    l.updatePoints(name, pass, VAL, 2);
+    assertEquals(l.getPoints(name, pass), Optional.of(NUM * 2 + VAL));
+    l.updatePoints(name, pass, NUM * 3 + 2, 1);
+    assertEquals(l.getPoints(name, pass), Optional.of(TOT));
   }
 
   private String getString() {
     UUID rand = UUID.randomUUID();
-    return rand.toString().replaceAll("_", "").substring(0, 5);
+    return rand.toString().replaceAll("_", "").substring(0, NUM / 2);
   }
 }

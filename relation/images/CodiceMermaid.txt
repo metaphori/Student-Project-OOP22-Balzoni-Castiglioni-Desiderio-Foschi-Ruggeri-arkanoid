@@ -86,12 +86,8 @@ classDiagram
     
     class AbstractView {
         <<Abstract>>
-       +getTitle() JLabel
-       +getSaveBtn() JButton
-       +getQuitBtn() JButton
-       +getMenuBtn() JButton
-       +getButtonsPanel() JPanel
-       +getSizeBtn() int
+        SIZE_BTN int = 30   
+        SIZE_TITLE int = 60
     }
     class PauseMenu{
         

@@ -37,7 +37,11 @@ public interface UIController {
     /**
      * game over.
      */
-    GAME_OVER("GAME_OVER");
+    GAME_OVER("GAME_OVER"),
+    /**
+     * game commands
+     */
+    GAME_COMMANDS("GAME_COMMANDS");
 
     private final String name;
 
@@ -72,6 +76,11 @@ public interface UIController {
    * method that brings up the main menu page.
    */
   void initialView();
+
+  /**
+   * method that brings up the game commands page
+   */
+  void gameCommands();
 
   /**
    * method that brings up the pause menu page and stops the gameLoop.
@@ -202,6 +211,8 @@ public interface UIController {
    */
   Pair<Double, Double> windowDim();
 
+  Pair<Integer, Integer> frameDim();
+
   /**
    * 
    * @return score.
@@ -224,4 +235,15 @@ public interface UIController {
    * @return size of a resizable font
    */
   int getSizeFont();
+
+  /**
+   * 
+   * @return the name of the surprise.
+   */
+  String getStringSur();
+
+  /**
+   * delete the name of the surprise.
+   */
+  void deleteString();
 }

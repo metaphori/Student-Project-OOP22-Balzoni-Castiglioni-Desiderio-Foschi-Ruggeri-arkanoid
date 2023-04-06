@@ -27,7 +27,6 @@ public class FirstLevel extends AbstractLevel {
    */
   public FirstLevel() {
     super(ID);
-    this.setFirstRound();
   }
 
   /**
@@ -35,9 +34,7 @@ public class FirstLevel extends AbstractLevel {
    */
   @Override
   public void setFirstRound() {
-    this.sizeCalc = new SizeCalculation(BRICK_COLUMNS, BRICK_ROWS_FIRST,
-        super.getNumRoundPassed());
-    super.setRound(new RoundEasy(NORMAL_FIRST, SURPRISE_FIRST, this.sizeCalc));
+    this.setRound(NORMAL_FIRST, SURPRISE_FIRST);
   }
 
   /**
@@ -45,9 +42,7 @@ public class FirstLevel extends AbstractLevel {
    */
   @Override
   public void setSecondRound() {
-    this.sizeCalc = new SizeCalculation(BRICK_COLUMNS, BRICK_ROWS_SECOND,
-        super.getNumRoundPassed());
-    super.setRound(new RoundEasy(NORMAL_SECOND, SURPRISE_SECOND, this.sizeCalc));
+    this.setRound(NORMAL_SECOND, SURPRISE_SECOND);
   }
 
   /**
@@ -55,9 +50,35 @@ public class FirstLevel extends AbstractLevel {
    */
   @Override
   public void setThirdRound() {
-    this.sizeCalc = new SizeCalculation(BRICK_COLUMNS, BRICK_ROWS_THIRD,
-        super.getNumRoundPassed());
-    super.setRound(new RoundEasy(NORMAL_THIRD, SURPRISE_THIRD, this.sizeCalc));
+    this.setRound(NORMAL_THIRD, SURPRISE_THIRD);
+  }
+
+  /**
+   * method that return the number of rows for the specific round.
+   *
+   * @return rows
+   */
+  private int getRows() {
+    if (this.getNumRoundPassed() == 0) {
+      return BRICK_ROWS_FIRST;
+    } else if (this.getNumRoundPassed() == 1) {
+      return BRICK_ROWS_SECOND;
+    } else {
+      return BRICK_ROWS_THIRD;
+    }
+  }
+
+  /**
+   * method that sets a new round.
+   * 
+   * @param normal   number of normal bricks in the round
+   * @param surprise number of surprise brick in the round
+   */
+  private void setRound(final int normal, final int surprise) {
+    int rows = this.getRows();
+    this.sizeCalc = new SizeCalculation(BRICK_COLUMNS, rows, super.getNumRoundPassed());
+    super.setRound(new RoundEasy(normal, surprise, sizeCalc));
+    super.getRound().setPosBrick();
   }
 
 }

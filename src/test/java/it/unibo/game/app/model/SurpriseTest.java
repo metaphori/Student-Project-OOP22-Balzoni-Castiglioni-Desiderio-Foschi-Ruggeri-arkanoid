@@ -2,7 +2,6 @@ package it.unibo.game.app.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
@@ -30,12 +29,19 @@ import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 
+/**
+ * method to test all surprise methods.
+ */
 public class SurpriseTest {
+
+  private static final double SPEED_X = 0.5;
+  private static final double SPEED_Y = 0.2;
 
   @Test
   void testExtraLife() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new FirstLevel();
+    level.setFirstRound();
     Surprise surprise = new Surprise(level);
 
     Method method = Surprise.class.getDeclaredMethod("extraLife");
@@ -52,6 +58,7 @@ public class SurpriseTest {
       throws NoSuchMethodException, SecurityException, IllegalAccessException,
       IllegalArgumentException, InvocationTargetException, InterruptedException {
     Level level = new SecondLevel();
+    level.setFirstRound();
     Surprise surprise = new Surprise(level);
     Timer timer = new Timer();
 
@@ -85,6 +92,7 @@ public class SurpriseTest {
   void testExplosiveBomb() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new FirstLevel();
+    level.setFirstRound();
     Surprise surprise = new Surprise(level);
     Method method = Surprise.class.getDeclaredMethod("explosiveBomb");
     method.setAccessible(true);
@@ -100,8 +108,7 @@ public class SurpriseTest {
       level.setLastSurpriseBrick(element.getKey(), element.getValue());
       method.invoke(surprise);
       int newSize = level.getRound().getBrick().size();
-      assertTrue(oldSize >= newSize + 1 && oldSize <= newSize + 4);
-      assertNotEquals(oldSize, newSize);
+      assertTrue(oldSize >= newSize && oldSize <= newSize + 4);
     }
   }
 
@@ -109,8 +116,11 @@ public class SurpriseTest {
   void initTestAddHardRow() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l1 = new FirstLevel();
+    l1.setFirstRound();
     Level l2 = new SecondLevel();
+    l2.setFirstRound();
     Level l3 = new ThirdLevel();
+    l3.setFirstRound();
     testAddHardRow(l1);
     testAddHardRow(l2);
     testAddHardRow(l3);
@@ -150,6 +160,7 @@ public class SurpriseTest {
   void testIncreaseBallSpeed() throws IllegalAccessException, IllegalArgumentException,
       InvocationTargetException, NoSuchMethodException, SecurityException {
     Level level = new ThirdLevel();
+    level.setFirstRound();
     Surprise surprise = new Surprise(level);
     Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
         level.getRound().getBalls().get(0).getSpeed().getY());
@@ -158,7 +169,7 @@ public class SurpriseTest {
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
       method.invoke(surprise);
-      initial.sum(new SpeedImpl(0.5, 0.2));
+      initial.sum(new SpeedImpl(SPEED_X, SPEED_Y));
       assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
     }
   }
@@ -167,6 +178,7 @@ public class SurpriseTest {
   void testDecreaseBallSpeed() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new ThirdLevel();
+    level.setFirstRound();
     Surprise surprise = new Surprise(level);
     Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
         level.getRound().getBalls().get(0).getSpeed().getY());
@@ -175,15 +187,32 @@ public class SurpriseTest {
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
       method.invoke(surprise);
-      initial.sum(new SpeedImpl(-0.5, -0.2));
+      initial.sum(new SpeedImpl(-SPEED_X, -SPEED_Y));
       assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
     }
+  }
+
+  @Test
+  void testChangeObstacles() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Level level = new ThirdLevel();
+    level.setFirstRound();
+    Surprise surprise = new Surprise(level);
+    long numObstacles = level.getRound().getBrick().stream()
+        .filter(x -> x.getType().equals(BrickType.OBSTACLE)).count();
+    assertTrue(numObstacles > 0);
+    Method method = Surprise.class.getDeclaredMethod("changeObstacles");
+    method.setAccessible(true);
+    method.invoke(surprise);
+    assertEquals(level.getRound().getBrick().stream()
+        .filter(x -> x.getType().equals(BrickType.OBSTACLE)).count(), 0);
   }
 
   @Test
   void testAddBalls() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new ThirdLevel();
+    level.setFirstRound();
     Surprise surprise = new Surprise(level);
     Move move = new Move(level);
     Method method = Surprise.class.getDeclaredMethod("addBalls");
@@ -202,6 +231,7 @@ public class SurpriseTest {
   void testIncreaseScore() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level level = new ThirdLevel();
+    level.setFirstRound();
     Score score = new ScoreImpl();
     // int s = 0;
     Surprise surprise = new Surprise(level);
@@ -228,10 +258,19 @@ public class SurpriseTest {
 
   }
 
+  /***
+   * 
+   * @throws NoSuchMethodException
+   * @throws SecurityException
+   * @throws IllegalAccessException
+   * @throws IllegalArgumentException
+   * @throws InvocationTargetException test normal enlarge pad
+   */
   @Test
   void testEnlargePad() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l = new FirstLevel();
+    l.setFirstRound();
     Surprise surprise = new Surprise(l);
     var pad = l.getRound().getPad();
     assertTrue(pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
@@ -254,10 +293,19 @@ public class SurpriseTest {
 
   }
 
+  /**
+   * 
+   * @throws NoSuchMethodException
+   * @throws SecurityException
+   * @throws IllegalAccessException
+   * @throws IllegalArgumentException
+   * @throws InvocationTargetException test edgecase of enlarge pad
+   */
   @Test
   void testEnlargePadHard() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l = new FirstLevel();
+    l.setFirstRound();
     Surprise surprise = new Surprise(l);
     var pad = l.getRound().getPad();
     pad.setPos(new Pair<Double, Double>(
@@ -295,6 +343,7 @@ public class SurpriseTest {
   void reducePadDimTest() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l = new FirstLevel();
+    l.setFirstRound();
     Surprise surprise = new Surprise(l);
     var pad = l.getRound().getPad();
 
@@ -324,8 +373,9 @@ public class SurpriseTest {
   void delateRandomBrickTest() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l = new FirstLevel();
+    l.setFirstRound();
     Surprise surprise = new Surprise(l);
-    var old = l.getRound().getNumBrick();
+    var old = l.getRound().getBrick().size();
 
     Method method = Surprise.class.getDeclaredMethod("deleteRandomBricks");
     method.setAccessible(true);

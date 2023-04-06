@@ -95,9 +95,8 @@ public interface Round {
   List<MovingObject> getExtraBalls();
 
   /**
-   * 
-   * @return ball position when game starts.
+   * methodto set brick in right position.
    */
-  // Pair<Double, Double> getBallInitialPosition();
+  void setPosBrick();
 
 }

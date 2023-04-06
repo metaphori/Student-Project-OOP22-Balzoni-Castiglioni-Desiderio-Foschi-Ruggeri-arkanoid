@@ -1,5 +1,6 @@
 package it.unibo.game.app.model.levels;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.Round;
@@ -20,6 +21,7 @@ public abstract class AbstractLevel implements Level {
   private int levelId;
   private Brick lastSurpriseBrick;
   private int indexLastSurprise;
+  private String bonus = " ";
 
   /**
    * constructor of this class.
@@ -76,6 +78,7 @@ public abstract class AbstractLevel implements Level {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public Round getRound() {
     return this.currentRound;
@@ -84,6 +87,7 @@ public abstract class AbstractLevel implements Level {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public void setRound(final Round r) {
     this.currentRound = r;
@@ -156,5 +160,29 @@ public abstract class AbstractLevel implements Level {
   @Override
   public int getIndexLastSurprise() {
     return this.indexLastSurprise;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setSurpriseString(String bonus) {
+    this.bonus = bonus;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getSurpriseString() {
+    return this.bonus;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void resetBonus() {
+    this.bonus = " ";
   }
 }

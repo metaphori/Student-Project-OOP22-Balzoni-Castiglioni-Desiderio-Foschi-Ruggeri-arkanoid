@@ -1,11 +1,14 @@
 package it.unibo.game.app.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import java.util.stream.Collectors;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Direction;
@@ -47,14 +50,6 @@ public class ControllerImpl implements AppController {
    * {@inheritDoc}
    */
   @Override
-  public void quit() {
-    System.exit(0);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
   public void setView() {
     this.uiContr = new UIControllerImpl();
     this.uiContr.set(this);
@@ -90,9 +85,14 @@ public class ControllerImpl implements AppController {
    */
   @Override
   public Map<Pair<Double, Double>, Optional<Integer>> getBrickList() {
-    return this.model.getBrickList().entrySet().stream()
-        .collect(Collectors.toMap(m -> new Pair<>(m.getKey().getX() * this.delta().getX(),
-            m.getKey().getY() * this.delta().getY()), m -> m.getValue()));
+    return Collections
+        .unmodifiableMap(
+            this.model.getBrickList().entrySet().stream()
+                .collect(
+                    Collectors.toMap(
+                        m -> new Pair<>(m.getKey().getX() * this.delta().getX(),
+                            m.getKey().getY() * this.delta().getY()),
+                        m -> m.getValue())));
   }
 
   /**
@@ -115,7 +115,7 @@ public class ControllerImpl implements AppController {
       list.add(new Pair<Double, Double>(x.getX() * this.delta().getX(),
           x.getY() * this.delta().getY()));
     });
-    return list;
+    return Collections.unmodifiableList(list);
   }
 
   /**
@@ -166,8 +166,9 @@ public class ControllerImpl implements AppController {
    * @return list of position of ball update relative to frame size.
    */
   private List<Pair<Double, Double>> getPairList(final List<MovingObject> b) {
-    return b.stream().map(ball -> new Pair<>(ball.getPos().getX() * this.delta().getX(),
-        ball.getPos().getY() * delta().getX())).collect(Collectors.toList());
+    return Collections.unmodifiableList(
+        b.stream().map(ball -> new Pair<>(ball.getPos().getX() * this.delta().getX(),
+            ball.getPos().getY() * delta().getY())).collect(Collectors.toList()));
   }
 
   /**
@@ -175,7 +176,7 @@ public class ControllerImpl implements AppController {
    */
   @Override
   public List<Pair<Double, Double>> getSurprise() {
-    return getPairList(this.model.getSurprise());
+    return Collections.unmodifiableList(getPairList(this.model.getSurprise()));
   }
 
   /**
@@ -234,7 +235,8 @@ public class ControllerImpl implements AppController {
   @Override
   public List<Pair<Double, Double>> getLabelPos() {
     return List.of(new Pair<>(10 * delta().getX(), 20 * delta().getY()),
-        new Pair<>(225 * delta().getX(), 20 * delta().getY()));
+        new Pair<>(225 * delta().getX(), 20 * delta().getY()),
+        new Pair<>(100 * delta().getX(), 150 * delta().getY()));
   }
 
   /**
@@ -248,7 +250,7 @@ public class ControllerImpl implements AppController {
    * {@inheritDoc}
    */
   public List<Pair<String, Integer>> getBestFive() {
-    return this.model.getBestFive();
+    return Collections.unmodifiableList(this.model.getBestFive());
   }
 
   /**
@@ -333,13 +335,31 @@ public class ControllerImpl implements AppController {
    */
   @Override
   public int getLife() {
-
     return this.model.getLife();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void restartWin() {
     this.gameEngine.resetWin();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getStringSur() {
+    return model.getString();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void deleteString() {
+    this.model.deleteString();
   }
 
 }

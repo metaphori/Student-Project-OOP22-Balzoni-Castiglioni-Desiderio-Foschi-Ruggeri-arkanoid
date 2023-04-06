@@ -58,7 +58,7 @@ public interface Model {
   /**
    * method to change pad position.
    * 
-   * @param pos new direction called from user
+   * @param dir new direction called from user
    */
   void setPadPos(Direction dir);
 
@@ -168,6 +168,17 @@ public interface Model {
    * method that allows to put ball in its initial pos.
    */
   void restoreInitialPosition();
+
+  /**
+   * 
+   * @return the name of the surprise.
+   */
+  String getString();
+
+  /**
+   * delete the name of the surprise.
+   */
+  void deleteString();
 
   // List<Ball> getExtraBalls();
 

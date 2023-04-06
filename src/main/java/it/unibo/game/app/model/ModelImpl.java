@@ -1,10 +1,12 @@
 package it.unibo.game.app.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Direction;
@@ -33,11 +35,10 @@ public class ModelImpl implements Model {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public void setController(final AppController c) {
     this.control = c;
-    // this.level = new FirstLevel(this.control.getWorldDimension()); In teora va lo
-    // stesso
   }
 
   /**
@@ -45,8 +46,8 @@ public class ModelImpl implements Model {
    */
   @Override
   public Map<Pair<Double, Double>, Optional<Integer>> getBrickList() {
-    return this.level.getRound().getBrick().stream()
-        .collect(Collectors.toMap(b -> b.getPos(), b -> b.getRes()));
+    return Collections.unmodifiableMap(this.level.getRound().getBrick().stream()
+        .collect(Collectors.toMap(b -> b.getPos(), b -> b.getRes(), (x, y) -> y)));
   }
 
   /**
@@ -57,15 +58,17 @@ public class ModelImpl implements Model {
     switch (numLevel) {
     case 1:
       this.level = new FirstLevel();
+      this.level.setFirstRound();
       break;
     case 2:
       this.level = new SecondLevel();
+      this.level.setFirstRound();
       break;
     case 3:
       this.level = new ThirdLevel();
+      this.level.setFirstRound();
       break;
     default:
-      this.level = new FirstLevel();
       break;
     }
     this.move = new Move(level);
@@ -86,7 +89,7 @@ public class ModelImpl implements Model {
    */
   @Override
   public List<Pair<Double, Double>> getBall() {
-    return this.level.getRound().getPosBall();
+    return Collections.unmodifiableList(this.level.getRound().getPosBall());
   }
 
   /**
@@ -194,7 +197,7 @@ public class ModelImpl implements Model {
    */
   @Override
   public List<Pair<String, Integer>> getBestFive() {
-    return board.getBestFive();
+    return Collections.unmodifiableList(board.getBestFive());
   }
 
   /**
@@ -239,7 +242,7 @@ public class ModelImpl implements Model {
    */
   @Override
   public List<MovingObject> getSurprise() {
-    return this.level.getRound().getSurprise();
+    return Collections.unmodifiableList(this.level.getRound().getSurprise());
   }
 
   /**
@@ -248,5 +251,21 @@ public class ModelImpl implements Model {
   @Override
   public int getLife() {
     return this.level.getLife();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getString() {
+    return level.getSurpriseString();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void deleteString() {
+    this.level.resetBonus();
   }
 }

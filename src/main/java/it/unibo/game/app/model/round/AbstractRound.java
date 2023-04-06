@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
@@ -28,8 +29,8 @@ public abstract class AbstractRound implements Round {
   private List<MovingObject> extraBalls = new ArrayList<>();
   private MovingObject pad;
   private SizeCalculation sizeC;
-  // private final Pair<Double, Double> ballInitialPos;
   private List<MovingObject> surprise = new ArrayList<>();
+  private Random random = new Random();
 
   /**
    * constructor of the class.
@@ -61,6 +62,7 @@ public abstract class AbstractRound implements Round {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public List<MovingObject> getSurprise() {
     return this.surprise;
@@ -111,6 +113,7 @@ public abstract class AbstractRound implements Round {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public List<Brick> getBrick() {
     return this.brick;
@@ -122,8 +125,7 @@ public abstract class AbstractRound implements Round {
    * @return true if a brick to replace is found
    */
   protected boolean setBrickSurprise() {
-    Random random = new Random();
-    int idx = random.nextInt(brick.size());
+    int idx = this.random.nextInt(brick.size());
 
     if (brick.get(idx).getType() == BrickType.NORMAL) {
       brick.get(idx).changeType(BrickType.SURPRISE);
@@ -160,6 +162,7 @@ public abstract class AbstractRound implements Round {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public MovingObject getPad() {
     return this.pad;
@@ -168,6 +171,7 @@ public abstract class AbstractRound implements Round {
   /**
    * {@inheritDoc}
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public List<MovingObject> getBalls() {
     return this.balls;
@@ -208,12 +212,14 @@ public abstract class AbstractRound implements Round {
    * 
    * @return a list of extra balls
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   public List<MovingObject> getExtraBalls() {
     return this.extraBalls;
   }
 
   /**
-   * method to set position of bricks.
+   * {@inheritDoc}
    */
-  protected abstract void setPosBrick();
+  @Override
+  public abstract void setPosBrick();
 }

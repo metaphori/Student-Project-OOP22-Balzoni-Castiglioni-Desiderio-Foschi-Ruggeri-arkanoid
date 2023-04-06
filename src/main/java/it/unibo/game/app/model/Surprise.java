@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
@@ -38,9 +40,9 @@ public class Surprise {
   private static final int NUM_BALLS = 1;
   private static final int PERCENTUAL = 50;
   private static final int BONUS_DURATION = 10000;
-  private static final int FIX_START_Y = 5;
+  // private static final int FIX_START_Y = 5;
 
-  private Map<Integer, Runnable> mappa;
+  private Map<Integer, Runnable> map = new HashMap<>();
   private Random random = new Random();
   private Level level;
   private boolean padModified = false;
@@ -50,6 +52,7 @@ public class Surprise {
    * 
    * @param level current level
    */
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public Surprise(final Level level) {
     this.level = level;
   }
@@ -58,6 +61,8 @@ public class Surprise {
    * method that adds a life. Simone Ruggeri
    */
   private void extraLife() {
+    this.level.setSurpriseString("extraLife");
+    System.out.println("extraLife");
     this.level.increaseLife();
 
   }
@@ -67,22 +72,26 @@ public class Surprise {
    * Ruggeri
    */
   private void explosiveBomb() {
+    this.level.setSurpriseString("explosive Bomb");
+    System.out.println("explosiveBomb");
     Brick lastBrick = this.level.getLastSurpriseBrick();
     int index = this.level.getIndexLastSurprise();
 
     if (this.isIndexPositive(index - 1) && this.isThereLeftBrick(index - 1, lastBrick)
-        && !this.isObstacle(index - 1)) {
+        && !this.isObstacle(index - 1) && !this.isSursprise(index - 1)) {
       this.deleteBrick(index - 1);
       if (this.isIndexNotTheLast(index - 1)
-          && this.isThereRightBrick(index - 1, lastBrick)
-          && !this.isObstacle(index - 1)) {
+          && this.isThereRightBrick(index - 1, lastBrick) && !this.isObstacle(index - 1)
+          && !this.isSursprise(index - 1)) {
         this.deleteBrick(index - 1);
       }
     }
     if (this.isIndexPositive(index - 1) && this.isIndexNotTheLast(index)
-        && this.isThereRightBrick(index, lastBrick) && !this.isObstacle(index - 1)) {
+        && this.isThereRightBrick(index, lastBrick) && !this.isObstacle(index - 1)
+        && !this.isSursprise(index - 1)) {
       this.deleteBrick(index);
     }
+
   }
 
   /**
@@ -125,6 +134,17 @@ public class Surprise {
   }
 
   /**
+   * method that checks if the brick is a Surprise.
+   * 
+   * @param index
+   * @return true if it is a surprise.
+   */
+  private boolean isSursprise(int index) {
+    return this.level.getRound().getBrick().get(index).getType()
+        .equals(BrickType.SURPRISE);
+  }
+
+  /**
    * method that removes a brick.
    * 
    * @param index
@@ -157,12 +177,15 @@ public class Surprise {
    * method that randomly deletes bricks. Edoardo Desiderio
    */
   private void deleteRandomBricks() {
-    var i = random.nextInt(level.getRound().getBrick().size() / 2);
-    while (i >= 0) {
+    this.level.setSurpriseString("delete Random Bricks");
+    System.out.println("deleteRandomBricks");
+    var i = random.nextInt(1, level.getRound().getBrick().size() / 2) + 1;
+    while (i > 0) {
       level.getRound().remove(random.nextInt(level.getRound().getBrick().size()));
-      System.out.println("bricks to delate: " + i);
+      // System.out.println("bricks to delate: " + i);
       i--;
     }
+
   }
 
   /**
@@ -170,6 +193,8 @@ public class Surprise {
    */
   private void reduceSizePad() {
     if (!padModified) {
+      this.level.setSurpriseString("reduce Size Pad");
+      System.out.println("reduceSizePad");
       padModified = true;
       var pad = level.getRound().getPad();
       pad.getDimension().setWidth((pad.getDimension().getWidth() * this.delta()));
@@ -185,6 +210,7 @@ public class Surprise {
       };
       tm.schedule(tmTask, BONUS_DURATION);
     }
+
   }
 
   private double delta() {
@@ -197,13 +223,16 @@ public class Surprise {
    */
   private void enlargeSizePad() {
     if (!padModified) {
+      this.level.setSurpriseString("enlarge Size Pad");
+      System.out.println("enlargeSizePad");
       padModified = true;
       var pad = level.getRound().getPad();
       pad.getDimension().setWidth(pad.getDimension().getWidth() * (this.delta() + 1));
       var rightBorder = pad.getPos().getX() + pad.getDimension().getWidth();
       if (rightBorder > SizeCalculation.getWorldSize().getY()) {
         pad.setPos(new Pair<Double, Double>(
-            pad.getPos().getX() - (rightBorder - SizeCalculation.getWorldSize().getY()),
+            pad.getPos().getX()
+                - ((rightBorder - SizeCalculation.getWorldSize().getY() + 0.5)),
             pad.getPos().getY()));
       }
 
@@ -224,22 +253,30 @@ public class Surprise {
    * method that increases the speed of the ball. Virginia Foschi
    */
   private void increaseBallSpeed() {
+    this.level.setSurpriseString("increase Ball Speed");
+    System.out.println("increaseBallSpeed");
     this.level.getRound().getBalls()
         .forEach(x -> x.getSpeed().sum(new SpeedImpl(0.5, 0.2)));
+
   }
 
   /**
    * method that decrease the speed of the ball. Virginia Foschi
    */
   private void decreaseBallSpeed() {
+    this.level.setSurpriseString("decrease Ball Speed");
+    System.out.println("decreaseBallSpeed");
     this.level.getRound().getBalls()
         .forEach(x -> x.getSpeed().sum(new SpeedImpl(-0.5, -0.2)));
+
   }
 
   /**
    * method that replaces obstacles with normal bricks. Virginia Foschi
    */
   private void changeObstacles() {
+    this.level.setSurpriseString("change Obstacles");
+    System.out.println("changeObstacles");
     this.level.getRound().getBrick().replaceAll(x -> {
       if (x.getType().equals(BrickType.OBSTACLE)) {
         Brick brick = new NormalBrick(BrickType.NORMAL,
@@ -249,7 +286,6 @@ public class Surprise {
         return x;
       }
     });
-    System.out.println();
   }
 
   /**
@@ -257,6 +293,8 @@ public class Surprise {
    * Margherita Balzoni
    */
   private void increaseScore() {
+    this.level.setSurpriseString("increase Score");
+    System.out.println("increaseScore");
     Timer time = new Timer();
     TimerTask task = new TimerTask() {
 
@@ -268,38 +306,39 @@ public class Surprise {
     };
     time.schedule(task, BONUS_DURATION);
     this.level.getScore().enableBonus(false);
-
   }
 
   /**
    * method that increases the number of balls in play. Margherita Balzoni
    */
   private void addBalls() {
+    this.level.setSurpriseString("add Ball");
+    System.out.println("addBalls");
     for (int i = 0; i < NUM_BALLS; i++) {
       MovingObject ball = new Ball(this.level.getRound().getSizeCalc().getBallDim());
       this.level.getRound().getExtraBalls().add(ball);
     }
-
   }
 
   /**
    * method that adds a row of hard bricks. Chiara Castiglioni
    */
   private void addHardRow() {
+    this.level.setSurpriseString("add Hard Row");
+    System.out.println("addHardRow");
     double lastY = this.level.getRound().getBrick()
         .get(this.level.getRound().getBrick().size() - 1).getPos().getY();
     double brickH = this.level.getRound().getBrick()
         .get(this.level.getRound().getBrick().size() - 1).getBrickH();
     double brickW = this.level.getRound().getBrick()
         .get(this.level.getRound().getBrick().size() - 1).getBrickW();
-    double start = (brickW / 2) - FIX_START_Y;
+    double start = (brickW / 2);
     double stop = (SizeCalculation.getWorldSize().getY()) - (3 * (brickW / 2));
     for (double x = start; x <= stop; x = x + brickW) {
       NormalBrick brick = new NormalBrick(BrickType.NORMAL,
           new DimensionImpl(brickH, brickW), new Pair<>(x, lastY + brickH), 2);
       this.level.getRound().getBrick().add(brick);
     }
-    System.out.println();
   }
 
   /**
@@ -307,6 +346,8 @@ public class Surprise {
    * Castiglioni
    */
   private void changeHard() {
+    this.level.setSurpriseString("change Hard");
+    System.out.println("changeHard");
     List<Brick> hard = new ArrayList<>();
     Timer timer = new Timer();
     for (Brick brick : this.level.getRound().getBrick()) {
@@ -335,19 +376,18 @@ public class Surprise {
    * method that sets up the map by numbering the methods.
    */
   public void setMap() {
-    this.mappa = new HashMap<>(
-        Map.ofEntries(Map.entry(EXTRA_LIFE, () -> this.extraLife()),
-            Map.entry(EXPLOSIVE_BOMB, () -> this.explosiveBomb()),
-            Map.entry(DELETE_RANDOM_BRICKS, () -> this.deleteRandomBricks()),
-            Map.entry(REDUCE_SIZE_PAD, () -> this.reduceSizePad()),
-            Map.entry(ENLARGE_SIZE_PAD, () -> this.enlargeSizePad()),
-            Map.entry(INCREASE_BALL_SPEED, () -> this.increaseBallSpeed()),
-            Map.entry(DECREASE_BALL_SPEED, () -> this.decreaseBallSpeed()),
-            Map.entry(CHANGE_OBSTACLES, () -> this.changeObstacles()),
-            Map.entry(INCREASE_SCORE, () -> this.increaseScore()),
-            Map.entry(ADD_BALLS, () -> this.addBalls()),
-            Map.entry(CHANGE_ROW, () -> this.addHardRow()),
-            Map.entry(CHANGE_HARD, () -> this.changeHard())));
+    this.map = new HashMap<>(Map.ofEntries(Map.entry(EXTRA_LIFE, () -> this.extraLife()),
+        Map.entry(EXPLOSIVE_BOMB, () -> this.explosiveBomb()),
+        Map.entry(DELETE_RANDOM_BRICKS, () -> this.deleteRandomBricks()),
+        Map.entry(REDUCE_SIZE_PAD, () -> this.reduceSizePad()),
+        Map.entry(ENLARGE_SIZE_PAD, () -> this.enlargeSizePad()),
+        Map.entry(INCREASE_BALL_SPEED, () -> this.increaseBallSpeed()),
+        Map.entry(DECREASE_BALL_SPEED, () -> this.decreaseBallSpeed()),
+        Map.entry(CHANGE_OBSTACLES, () -> this.changeObstacles()),
+        Map.entry(INCREASE_SCORE, () -> this.increaseScore()),
+        Map.entry(ADD_BALLS, () -> this.addBalls()),
+        Map.entry(CHANGE_ROW, () -> this.addHardRow()),
+        Map.entry(CHANGE_HARD, () -> this.changeHard())));
   }
 
   /**
@@ -355,7 +395,6 @@ public class Surprise {
    */
   public void chooseSurprise() {
     final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
-    this.mappa.get(method).run();
-
+    this.map.get(method).run();
   }
 }

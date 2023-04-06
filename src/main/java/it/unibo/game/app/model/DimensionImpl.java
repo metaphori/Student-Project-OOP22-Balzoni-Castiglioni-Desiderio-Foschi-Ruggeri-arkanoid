@@ -2,50 +2,68 @@ package it.unibo.game.app.model;
 
 import it.unibo.game.app.api.Dimension;
 
+/**
+ * class that models an object dimension in terms of height and width.
+ */
 public class DimensionImpl implements Dimension {
 
   private double width;
-  private double hight;
+  private double height;
 
-  public DimensionImpl(final double hight, final double width) {
-    this.hight = hight;
+  /**
+   * constructor of this class.
+   * 
+   * @param height object height
+   * @param width  object width
+   */
+  public DimensionImpl(final double height, final double width) {
+    this.height = height;
     this.width = width;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public double getHeight() {
 
-    return this.hight;
+    return this.height;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public double getWidth() {
 
     return this.width;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void setHeight(double height) {
+  public void setHeight(final double height) {
 
-    this.hight = height;
+    this.height = height;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void setWidth(double width) {
+  public void setWidth(final double width) {
 
     this.width = width;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void increaseWidth(double width) {
+  public void increaseWidth(final double width) {
 
     this.width += width;
-  }
-
-  @Override
-  public void increaseHeight(double height) {
-
-    this.hight += hight;
   }
 
 }
