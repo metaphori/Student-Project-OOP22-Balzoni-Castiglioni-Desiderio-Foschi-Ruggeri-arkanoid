@@ -8,7 +8,6 @@ import java.util.Optional;
 
 import java.util.stream.Collectors;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.AppController;
 import it.unibo.game.app.api.Direction;
@@ -29,6 +28,11 @@ public class ControllerImpl implements AppController {
   private UIController uiContr;
   private Model model;
   private GameEngine gameEngine;
+  private static final int SCORE_X = 10;
+  private static final int SCORE_LIFE_Y = 20;
+  private static final int LIFE_X = 225;
+  private static final int BONUS_X = 100;
+  private static final int BONUS_Y = 150;
 
   /**
    * {@inheritDoc}
@@ -234,9 +238,9 @@ public class ControllerImpl implements AppController {
    */
   @Override
   public List<Pair<Double, Double>> getLabelPos() {
-    return List.of(new Pair<>(10 * delta().getX(), 20 * delta().getY()),
-        new Pair<>(225 * delta().getX(), 20 * delta().getY()),
-        new Pair<>(100 * delta().getX(), 150 * delta().getY()));
+    return List.of(new Pair<>(SCORE_X * delta().getX(), SCORE_LIFE_Y * delta().getY()),
+        new Pair<>(LIFE_X * delta().getX(), SCORE_LIFE_Y * delta().getY()),
+        new Pair<>(BONUS_X * delta().getX(), BONUS_Y * delta().getY()));
   }
 
   /**
@@ -287,7 +291,7 @@ public class ControllerImpl implements AppController {
   /**
    * method to change pad position.
    * 
-   * @param newPos new pad direction
+   * @param d new pad direction
    */
   private void movePad(final Direction d) {
     this.model.setPadPos(d);

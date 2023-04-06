@@ -167,12 +167,12 @@ public interface AppController {
   void restoreBall();
 
   /**
-   * move pad right
+   * move pad right.
    */
   void mvPadR();
 
   /**
-   * move pad Left
+   * move pad Left.
    */
   void mvPadL();
 
