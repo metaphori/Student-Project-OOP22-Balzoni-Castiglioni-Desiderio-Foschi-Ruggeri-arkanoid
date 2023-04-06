@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import it.unibo.game.Pair;
 import it.unibo.game.app.view.jswing.api.UIController;
 
-public class CommandsView extends JPanel {
+public final class CommandsView extends JPanel {
   private static final String COLOR = "#293132";
   private static final int MAX = 3;
   private static final int GAP = 15;
@@ -51,7 +51,7 @@ public class CommandsView extends JPanel {
 
   }
 
-  private final void createPanel(final String image, final String tx,
+  private void createPanel(final String image, final String tx,
       final Pair<Integer, Integer> dim) {
     JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
     panel.setBackground(Color.decode(COLOR));

@@ -71,9 +71,11 @@ public class UIControllerImpl implements UIController {
    * @param p pages
    */
   private void chargeView(final PAGES p) {
-    layout.show(deck, p.getName());
-    window.setTitle(p.getName());
-    views.get(p).requestFocusInWindow();
+    this.layout.show(deck, p.getName());
+    this.window.setTitle(p.getName());
+    System.out.println("" + this.window.getHeight() + ", " + this.window.getWidth());
+    System.out.println("" + this.deck.getHeight() + ", " + this.deck.getWidth());
+    this.views.get(p).requestFocusInWindow();
     if (p.equals(PAGES.GAME)) {
       this.appController.play();
     }
@@ -257,10 +259,6 @@ public class UIControllerImpl implements UIController {
         Integer.valueOf(this.deck.getHeight()).doubleValue());
   }
 
-  public Pair<Integer, Integer> frameDim() {
-    return new Pair<>(this.window.getWidth(), this.window.getHeight());
-  }
-
   /**
    * {@inheritDoc}
    */
@@ -327,6 +325,12 @@ public class UIControllerImpl implements UIController {
   @Override
   public void deleteString() {
     this.appController.deleteString();
+  }
+
+  @Override
+  public Pair<Integer, Integer> frameDim() {
+    // TODO Auto-generated method stub
+    return new Pair<>(this.window.getWidth(), this.window.getHeight());
   }
 
 }
