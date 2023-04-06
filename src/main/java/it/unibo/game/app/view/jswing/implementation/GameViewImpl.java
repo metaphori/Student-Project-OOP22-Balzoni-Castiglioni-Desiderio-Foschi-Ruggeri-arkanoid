@@ -7,6 +7,8 @@ import it.unibo.game.Pair;
 import it.unibo.game.app.view.jswing.api.GameView;
 import it.unibo.game.app.view.jswing.api.UIController;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
@@ -17,6 +19,7 @@ public final class GameViewImpl extends JPanel
     implements KeyListener, ActionListener, GameView {
 
   private UIController observer;
+  private boolean see = true;
   // private boolean play = true;
 
   @SuppressFBWarnings("EI_EXPOSE_REP2")
@@ -76,6 +79,28 @@ public final class GameViewImpl extends JPanel
     g2d.drawString("LIVES: " + this.observer.getLife(),
         observer.getLabelPos().get(1).getX().intValue(),
         observer.getLabelPos().get(1).getY().intValue());
+
+    if (!observer.getStringSur().isEmpty()) {
+      if (see) {
+        Timer timer = new Timer();
+        see = false;
+        TimerTask task = new TimerTask() {
+
+          @Override
+          public void run() {
+            observer.deleteString();
+            see = true;
+          }
+        };
+        timer.schedule(task, 1000);
+
+      }
+      g2d.setFont(new Font("myFont", Font.ITALIC, observer.getSizeFont()));
+      g2d.setColor(Color.RED);
+      g2d.drawString(observer.getStringSur(),
+          observer.getLabelPos().get(2).getX().intValue(),
+          observer.getLabelPos().get(2).getY().intValue());
+    }
 
     g2d.dispose();
 
