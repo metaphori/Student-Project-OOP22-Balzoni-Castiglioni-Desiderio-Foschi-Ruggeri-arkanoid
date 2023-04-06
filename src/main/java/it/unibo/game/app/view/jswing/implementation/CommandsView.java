@@ -22,7 +22,7 @@ public class CommandsView extends JPanel {
   private static final int MAX = 3;
   private static final int GAP = 15;
   private static final int DIM = 40;
-  private static final int FONT_SIZE=26;
+  private static final int FONT_SIZE = 26;
 
   public CommandsView(final UIController control) {
     this.setLayout(new GridLayout(MAX + 2, 1, GAP, GAP));
@@ -39,7 +39,7 @@ public class CommandsView extends JPanel {
     this.createPanel("/dx.png", "-Right arrow key to move the pad to the right  ",
         new Pair<>(DIM, DIM));
     this.createPanel("/space.png", "-Space key to stop the game  ",
-        new Pair<>(DIM * 2, DIM));
+        new Pair<>(DIM * 3, DIM));
 
     JPanel panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
     JButton jb = new JButton("MENU");
