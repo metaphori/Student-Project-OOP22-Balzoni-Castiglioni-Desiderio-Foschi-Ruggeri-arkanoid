@@ -21,7 +21,7 @@ import it.unibo.game.Pair;
 /**
  * class that save and load information of the leaderboard in a file.
  */
-public class LeaderBoardImpl implements LeaderBoard {
+final public class LeaderBoardImpl implements LeaderBoard {
 
   private final File file; // = new File("src/main/resources/File.txt");
   private static final int MAX = 5;
