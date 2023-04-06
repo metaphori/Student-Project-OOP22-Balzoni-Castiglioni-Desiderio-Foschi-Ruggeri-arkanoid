@@ -29,7 +29,7 @@ Il progetto, commissionato dall'Università di Bologna\footnote{\url{https://www
     \item Menù principale che all'avvio del software permette di scegliere il livello in base alla difficoltà e visionare la classifica.
     \item L’applicazione implementa la fisica della palla e ne gestisce il rimbalzo con i bordi dell’arena, con il pad e con i mattoncini.
     \item Area di gioco composta da un certo numero di mattoncini che cambiano disposizione ad ogni livello.
-    \item Gestione dei parametri del giocatore, in particolare vita (che diminuisce ogni volta che il pad non colpisce la pallina) e il punteggio.
+    \item Gestione dei parametri del giocatore, in particolare vita (che diminuisce ogni volta che la pallina esce dall'arena di gioco) e il punteggio.
     \item Organizzazione del gioco a livelli, ciascuno composto da 3 round ciascuno
     \item Creazione di differenti bonus o malus
     \item Avanzamento del gioco con difficoltà incrementale (quantità di mattoncini aumentata per ogni round)
@@ -67,6 +67,40 @@ questo non causerebbe modifiche nelle classi di Model e Controller.
 \chapter{Sviluppo}
 \section{Testing automatizzato}
 \section{Metodologia di lavoro}
+Per lavorare
+a questo progetto abbiamo cercato strutturare il lavoro seguendo queste macro domande:
+\subsection{Qual'è la missione del progetto e con quali risorse si intende perseguirla?}
+la missione del progetto è ampiamente descritta nei paragrafi precedenti.
+Le risorse da noi scelte in fase di pianificazione e progettazione sono varie tra cui:
+\begin{itemize}
+    \item materiale didattico fornito dai professori
+    \item plugin gradle
+    \item versione di java 17
+    \item git e github\footnote{\url{github.com}}
+    \item strumenti di pianificazione, comunicazione e in generale multimediali forniti dall'account aziendale (unibo).
+\end{itemize}
+
+\subsection{come verrà condotto il progetto?}
+Si può riassumere la conduzione del progetto con un'organigramma orizzontale.
+Ognuno ha piena responsabilità dei compiti che ci si è auto affidato al tempo di decisione e assegnazione delle task.
+Questo implica il fatto che l'auto organizzazione di ogni singolo componente è fondamentale per la buona riuscita del progetto.
+Ovviamente in caso di difficoltà il gruppo stimolerà il singolo a una soluzione senza però intaccarne la creatività.
+\subsection{come ne verrà controllato l'avanzamento?}
+\subsubsection{organizzazione DVCS}
+Nelle varie risorse scelte sono indicati git e github, git è un software DVCS presentato e spiegato a lezione mentre github.com è un servizio
+hub di repository.
+La produzione è organizzata su più branch.
+
+il branch principale (master nel nostro caso) raccoglie tutto il codice di progetto approvato da tutti, su github è settata una policy
+di sicurezza affinchè sia obbligatorio aprire una pull request per poter eseguire il merging del codice.
+Il branch develop raccoglie la linea di sviluppo in fase di pre-relies in cui è ammissibile trovare eventuali bug o errori di desing.
+
+Ogni elemento del teamWork, ad ogni step evolutivo si occupa di creare un branch locale che non è necessario venga pubblicato poichè finito
+il lavoro si occuperà di eseguire il merging  in develop.
+\subsubsection{ciclo di vita del progetto}
+ogni pull request (develop - master) verrà eseguita quando il codice develop soddisfa i requisiti che l'applicazione deve avere rispetto
+all'obbiettivo incrementale che ci siamo posti.
+In linea di massima la nostra scelta è di procedere a piccoli passi fino alla finalizzazione del progetto
 \section{Note di sviluppo}
 \chapter{Commenti finali}
 \section{Autovalutazione e lavori futuri}
