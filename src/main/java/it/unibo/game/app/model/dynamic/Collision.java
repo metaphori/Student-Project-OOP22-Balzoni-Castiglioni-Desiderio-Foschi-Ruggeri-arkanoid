@@ -39,7 +39,7 @@ public class Collision {
   public void collideWithEdges(final MovingObject b, final Double h, final Double w) {
     b.setBoundingBox(new CircleBoundingBox(b));
     if (b.getBoundingBox().getBox().get(Corner.LEFT_DOWN).getX() <= 0.5
-        || b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w - DELTA) {
+        || b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w) {
       b.getPhysics().changeDirection(Side.LEFT_RIGHT);
     }
     if (b.getBoundingBox().getBox().get(Corner.LEFT_UP).getY() <= 0.5) {
@@ -54,7 +54,7 @@ public class Collision {
    */
   public boolean collideWithBorder(final BoundingBox b) {
     if (b.getBox().get(Corner.LEFT_DOWN).getX() <= 0.5 || b.getBox()
-        .get(Corner.RIGHT_DOWN).getX() >= SizeCalculation.getWorldSize().getY() - DELTA) {
+        .get(Corner.RIGHT_DOWN).getX() >= SizeCalculation.getWorldSize().getY()) {
       return true;
     }
     return false;
