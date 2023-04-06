@@ -29,7 +29,6 @@ public abstract class AbstractRound implements Round {
   private List<MovingObject> extraBalls = new ArrayList<>();
   private MovingObject pad;
   private SizeCalculation sizeC;
-  // private final Pair<Double, Double> ballInitialPos;
   private List<MovingObject> surprise = new ArrayList<>();
   private Random random = new Random();
 
@@ -219,7 +218,8 @@ public abstract class AbstractRound implements Round {
   }
 
   /**
-   * method to set position of bricks.
+   * {@inheritDoc}
    */
+  @Override
   public abstract void setPosBrick();
 }
