@@ -252,10 +252,19 @@ public class SurpriseTest {
 
   }
 
+  /***
+   * 
+   * @throws NoSuchMethodException
+   * @throws SecurityException
+   * @throws IllegalAccessException
+   * @throws IllegalArgumentException
+   * @throws InvocationTargetException test normal enlarge pad
+   */
   @Test
   void testEnlargePad() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l = new FirstLevel();
+    l.setFirstRound();
     Surprise surprise = new Surprise(l);
     var pad = l.getRound().getPad();
     assertTrue(pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
@@ -278,10 +287,19 @@ public class SurpriseTest {
 
   }
 
+  /**
+   * 
+   * @throws NoSuchMethodException
+   * @throws SecurityException
+   * @throws IllegalAccessException
+   * @throws IllegalArgumentException
+   * @throws InvocationTargetException test edgecase of enlarge pad
+   */
   @Test
   void testEnlargePadHard() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l = new FirstLevel();
+    l.setFirstRound();
     Surprise surprise = new Surprise(l);
     var pad = l.getRound().getPad();
     pad.setPos(new Pair<Double, Double>(
@@ -319,6 +337,7 @@ public class SurpriseTest {
   void reducePadDimTest() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l = new FirstLevel();
+    l.setFirstRound();
     Surprise surprise = new Surprise(l);
     var pad = l.getRound().getPad();
 
@@ -348,6 +367,7 @@ public class SurpriseTest {
   void delateRandomBrickTest() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l = new FirstLevel();
+    l.setFirstRound();
     Surprise surprise = new Surprise(l);
     var old = l.getRound().getBrick().size();
 
