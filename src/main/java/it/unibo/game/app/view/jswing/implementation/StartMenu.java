@@ -22,11 +22,11 @@ public class StartMenu extends JPanel {
   private transient UIController uiControllerImpl;
   private static final int EASY_LEVEL = 1;
   private static final int MEDIUM_LEVEL = 2;
-  private static final int ROWS = 3;
+  private static final int ROWS = 2;
   private static final int COLUMS = 1;
   private static final int HARD_LEVEL = 3;
-  private static final int ROWS_BUTTONS = 4;
-  private static final int COLUMNS_BUTTONS = 2;
+  private static final int ROWS_BUTTONS = 5;
+  private static final int COLUMNS_BUTTONS = 1;
   private static final int HGAP = 15;
   private static final int VGAP = 15;
   private static final int TOP_BORDER = 50;
@@ -48,8 +48,8 @@ public class StartMenu extends JPanel {
     JButton medium = new CustomBtn(BTN_SIZE, "MEDIUM");
     JButton hard = new CustomBtn(BTN_SIZE, "HARD");
     JButton top5 = new CustomBtn(BTN_SIZE, "LEADERBOARD");
+    JButton commands = new CustomBtn(BTN_SIZE, "GAME COMMANDS");
     JLabel title = new JLabel("ARKANOID");
-    JLabel allert = new JLabel("to return to this menu during the game press space key");
     JPanel buttonContainer = new JPanel();
 
     buttonContainer.setLayout(new GridLayout(ROWS_BUTTONS, COLUMNS_BUTTONS, HGAP, VGAP));
@@ -61,20 +61,18 @@ public class StartMenu extends JPanel {
     title.setFont(f);
     title.setForeground(Color.WHITE);
     title.setHorizontalAlignment(SwingConstants.CENTER);
-    allert.setFont(new Font("Serif", Font.ITALIC, FONT_SIZE / 4));
-    allert.setForeground(Color.WHITE);
 
     this.setLayout(new GridLayout(ROWS, COLUMS, HGAP, VGAP));
     this.setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, LEFT_BORDER, BOTTOM_BORDER,
         RIGHT_BORDER));
 
-    this.add(allert, 1, 0);
     this.add(buttonContainer, 0, 0);
     this.add(title, 2, 0);
     buttonContainer.add(easy);
     buttonContainer.add(medium);
     buttonContainer.add(hard);
     buttonContainer.add(top5);
+    buttonContainer.add(commands);
 
     top5.addActionListener(new ActionListener() {
 
@@ -85,6 +83,14 @@ public class StartMenu extends JPanel {
 
     });
 
+    commands.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(final java.awt.event.ActionEvent e) {
+        uiControllerImpl.gameCommands();
+      }
+
+    });
     easy.addActionListener(new ActionListener() {
 
       @Override
