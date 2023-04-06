@@ -68,7 +68,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
 
     this.best.forEach(x -> {
       int indx = this.best.indexOf(x);
-      this.tx.get(indx).setText(Integer.toString(indx + 1) + "°     " + x.getX()
+      this.tx.get(indx).setText(Integer.toString(indx + 1) + "\u00B0" + "     " + x.getX()
           + "    pt:" + Integer.toString(x.getY()));
     });
 
@@ -90,7 +90,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
     this.best = this.control.getBestFive();
     this.best.forEach(x -> {
       int indx = this.best.indexOf(x);
-      this.tx.get(indx).setText(Integer.toString(indx + 1) + "°     " + x.getX()
+      this.tx.get(indx).setText(Integer.toString(indx + 1) + "\u00B0" + "     " + x.getX()
           + "    pt:" + Integer.toString(x.getY()));
     });
   }
