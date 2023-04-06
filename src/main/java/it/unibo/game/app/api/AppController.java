@@ -200,6 +200,20 @@ public interface AppController {
    */
   List<Pair<Double, Double>> getLabelPos();
 
+  /**
+   * method that resets the win.
+   */
   void restartWin();
+
+  /**
+   * 
+   * @return the name of the surprise.
+   */
+  String getStringSur();
+
+  /**
+   * delete the name of the surprise.
+   */
+  void deleteString();
 
 }

@@ -252,4 +252,20 @@ public class ModelImpl implements Model {
   public int getLife() {
     return this.level.getLife();
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getString() {
+    return level.getSurpriseString();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void deleteString() {
+    this.level.resetBonus();
+  }
 }

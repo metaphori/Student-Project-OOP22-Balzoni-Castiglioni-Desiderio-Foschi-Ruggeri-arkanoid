@@ -313,4 +313,20 @@ public class UIControllerImpl implements UIController {
     return this.appController.getFontSize();
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getStringSur() {
+    return this.appController.getStringSur();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void deleteString() {
+    this.appController.deleteString();
+  }
+
 }

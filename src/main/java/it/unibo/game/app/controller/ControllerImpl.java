@@ -235,7 +235,8 @@ public class ControllerImpl implements AppController {
   @Override
   public List<Pair<Double, Double>> getLabelPos() {
     return List.of(new Pair<>(10 * delta().getX(), 20 * delta().getY()),
-        new Pair<>(225 * delta().getX(), 20 * delta().getY()));
+        new Pair<>(225 * delta().getX(), 20 * delta().getY()),
+        new Pair<>(100 * delta().getX(), 150 * delta().getY()));
   }
 
   /**
@@ -337,9 +338,28 @@ public class ControllerImpl implements AppController {
     return this.model.getLife();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void restartWin() {
     this.gameEngine.resetWin();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getStringSur() {
+    return model.getString();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void deleteString() {
+    this.model.deleteString();
   }
 
 }
