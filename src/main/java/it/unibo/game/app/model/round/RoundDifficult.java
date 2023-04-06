@@ -84,7 +84,7 @@ public class RoundDifficult extends AbstractRound {
     /*
      * while (num < (obstacles / 2)) { replace(first++); replace(last--); ++num; }
      */
-    while (first < last) {
+    while (first <= last) {
       replace(first);
       first = first + 2;
     }
