@@ -16,9 +16,6 @@ import it.unibo.game.app.model.brick.Obstacle;
 public class RoundDifficult extends AbstractRound {
 
   private int obstacles;
-  // private double stopX;
-  // private double stopY;
-  private static final int FIX_START_Y = 5;
   private final int height;
 
   /**
@@ -43,7 +40,7 @@ public class RoundDifficult extends AbstractRound {
     int lines = 0;
     int insert = 0;
     int num = height;
-    double stopY = super.getSizeCalc().getStop().getY() - FIX_START_Y;
+    double stopY = super.getSizeCalc().getStop().getY();
     double stopX = super.getSizeCalc().getStop().getX();
     for (double i = stopX; lines < height; lines++, i = i
         - getSizeCalc().getBrickDim().getX()) {
