@@ -50,4 +50,29 @@ public class CommandsView extends JPanel {
 
   }
 
+  private final void createPanel(final String image, final String tx,
+      final Pair<Integer, Integer> dim) {
+    JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    panel.setBackground(Color.decode(COLOR));
+
+    JLabel text = new JLabel(tx);
+    text.setFont(new Font("myFont", Font.ITALIC, GAP));
+    text.setBackground(Color.decode(COLOR));
+    text.setForeground(Color.WHITE);
+    panel.add(text);
+
+    try {
+      Image img = ImageIO.read(this.getClass().getResourceAsStream(image))
+          .getScaledInstance(dim.getX(), dim.getY(), Image.SCALE_SMOOTH);
+      ImageIcon icon = new ImageIcon(img);
+      JLabel l = new JLabel(icon);
+      l.setSize(dim.getX(), dim.getY());
+      panel.add(l);
+    } catch (IOException ex) {
+      System.out.println(ex.toString());
+    }
+
+    this.add(panel);
+  }
+
 }
