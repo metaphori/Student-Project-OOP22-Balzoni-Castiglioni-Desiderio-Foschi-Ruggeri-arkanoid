@@ -227,7 +227,7 @@ public class Surprise {
       if (rightBorder > SizeCalculation.getWorldSize().getY()) {
         pad.setPos(new Pair<Double, Double>(
             pad.getPos().getX()
-                - ((rightBorder - SizeCalculation.getWorldSize().getY()) - 0.5),
+                - ((rightBorder - SizeCalculation.getWorldSize().getY() + 0.5)),
             pad.getPos().getY()));
       }
 
