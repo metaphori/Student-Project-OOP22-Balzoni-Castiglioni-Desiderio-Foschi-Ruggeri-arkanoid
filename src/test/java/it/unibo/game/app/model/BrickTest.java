@@ -50,20 +50,20 @@ public class BrickTest {
   void testHardBrick() {
     Level l = new SecondLevel();
     l.setFirstRound();
-    List<Brick> indexHardBrick = new ArrayList<>();
+    final List<Brick> hardBrick = l.getRound().getBrick().stream()
+        .filter(b -> b.getRes().get() == 2).toList();
     int oldSize = l.getRound().getBrick().size();
-    indexHardBrick = l.getRound().getBrick().stream().filter(b -> b.getRes().get() == 2)
-        .toList();
-    for (var b : indexHardBrick) {
+
+    for (var b : hardBrick) {
       l.getRound().remove(l.getRound().getBrick().indexOf(b));
       assertEquals(1,
           l.getRound().getBrick().get(l.getRound().getBrick().indexOf(b)).getRes().get());
       assertEquals(oldSize, l.getRound().getBrick().size());
     }
-    for (var b : indexHardBrick) {
+    for (var b : hardBrick) {
       l.getRound().remove(l.getRound().getBrick().indexOf(b));
       assertEquals(-1, l.getRound().getBrick().indexOf(b));
     }
-    assertEquals(oldSize - indexHardBrick.size(), l.getRound().getBrick().size());
+    assertEquals(oldSize - hardBrick.size(), l.getRound().getBrick().size());
   }
 }
