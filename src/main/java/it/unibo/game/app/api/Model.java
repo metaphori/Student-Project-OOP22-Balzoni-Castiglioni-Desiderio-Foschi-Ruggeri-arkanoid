@@ -169,6 +169,17 @@ public interface Model {
    */
   void restoreInitialPosition();
 
+  /**
+   * 
+   * @return the name of the surprise.
+   */
+  String getString();
+
+  /**
+   * delete the name of the surprise.
+   */
+  void deleteString();
+
   // List<Ball> getExtraBalls();
 
 }

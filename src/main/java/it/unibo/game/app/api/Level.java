@@ -97,4 +97,22 @@ public interface Level {
    * @return the index of the last surprise brick destroyed.
    */
   int getIndexLastSurprise();
+
+  /**
+   * set the name of the called surprise method.
+   * 
+   * @param surprise name of the surprise method.
+   */
+  void setSurpriseString(String surprise);
+
+  /**
+   * 
+   * @return name of the surprise method.
+   */
+  String getSurpriseString();
+
+  /**
+   * Reset the string of the surprise called empty.
+   */
+  void resetBonus();
 }

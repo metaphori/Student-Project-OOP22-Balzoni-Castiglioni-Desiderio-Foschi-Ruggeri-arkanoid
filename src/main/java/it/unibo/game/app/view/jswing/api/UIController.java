@@ -235,4 +235,15 @@ public interface UIController {
    * @return size of a resizable font
    */
   int getSizeFont();
+
+  /**
+   * 
+   * @return the name of the surprise.
+   */
+  String getStringSur();
+
+  /**
+   * delete the name of the surprise.
+   */
+  void deleteString();
 }

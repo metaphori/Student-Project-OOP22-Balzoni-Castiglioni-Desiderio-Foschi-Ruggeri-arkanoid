@@ -61,6 +61,7 @@ public class Surprise {
    * method that adds a life. Simone Ruggeri
    */
   private void extraLife() {
+    this.level.setSurpriseString("extraLife");
     System.out.println("extraLife");
     this.level.increaseLife();
 
@@ -71,6 +72,7 @@ public class Surprise {
    * Ruggeri
    */
   private void explosiveBomb() {
+    this.level.setSurpriseString("explosive Bomb");
     System.out.println("explosiveBomb");
     Brick lastBrick = this.level.getLastSurpriseBrick();
     int index = this.level.getIndexLastSurprise();
@@ -175,6 +177,7 @@ public class Surprise {
    * method that randomly deletes bricks. Edoardo Desiderio
    */
   private void deleteRandomBricks() {
+    this.level.setSurpriseString("delete Random Bricks");
     System.out.println("deleteRandomBricks");
     var i = random.nextInt(1, level.getRound().getBrick().size() / 2) + 1;
     while (i > 0) {
@@ -190,6 +193,7 @@ public class Surprise {
    */
   private void reduceSizePad() {
     if (!padModified) {
+      this.level.setSurpriseString("reduce Size Pad");
       System.out.println("reduceSizePad");
       padModified = true;
       var pad = level.getRound().getPad();
@@ -219,6 +223,7 @@ public class Surprise {
    */
   private void enlargeSizePad() {
     if (!padModified) {
+      this.level.setSurpriseString("enlarge Size Pad");
       System.out.println("enlargeSizePad");
       padModified = true;
       var pad = level.getRound().getPad();
@@ -248,6 +253,7 @@ public class Surprise {
    * method that increases the speed of the ball. Virginia Foschi
    */
   private void increaseBallSpeed() {
+    this.level.setSurpriseString("increase Ball Speed");
     System.out.println("increaseBallSpeed");
     this.level.getRound().getBalls()
         .forEach(x -> x.getSpeed().sum(new SpeedImpl(0.5, 0.2)));
@@ -258,6 +264,7 @@ public class Surprise {
    * method that decrease the speed of the ball. Virginia Foschi
    */
   private void decreaseBallSpeed() {
+    this.level.setSurpriseString("decrease Ball Speed");
     System.out.println("decreaseBallSpeed");
     this.level.getRound().getBalls()
         .forEach(x -> x.getSpeed().sum(new SpeedImpl(-0.5, -0.2)));
@@ -268,6 +275,7 @@ public class Surprise {
    * method that replaces obstacles with normal bricks. Virginia Foschi
    */
   private void changeObstacles() {
+    this.level.setSurpriseString("change Obstacles");
     System.out.println("changeObstacles");
     this.level.getRound().getBrick().replaceAll(x -> {
       if (x.getType().equals(BrickType.OBSTACLE)) {
@@ -285,6 +293,7 @@ public class Surprise {
    * Margherita Balzoni
    */
   private void increaseScore() {
+    this.level.setSurpriseString("increase Score");
     System.out.println("increaseScore");
     Timer time = new Timer();
     TimerTask task = new TimerTask() {
@@ -303,6 +312,7 @@ public class Surprise {
    * method that increases the number of balls in play. Margherita Balzoni
    */
   private void addBalls() {
+    this.level.setSurpriseString("add Ball");
     System.out.println("addBalls");
     for (int i = 0; i < NUM_BALLS; i++) {
       MovingObject ball = new Ball(this.level.getRound().getSizeCalc().getBallDim());
@@ -314,6 +324,7 @@ public class Surprise {
    * method that adds a row of hard bricks. Chiara Castiglioni
    */
   private void addHardRow() {
+    this.level.setSurpriseString("add Hard Row");
     System.out.println("addHardRow");
     double lastY = this.level.getRound().getBrick()
         .get(this.level.getRound().getBrick().size() - 1).getPos().getY();
@@ -335,6 +346,7 @@ public class Surprise {
    * Castiglioni
    */
   private void changeHard() {
+    this.level.setSurpriseString("change Hard");
     System.out.println("changeHard");
     List<Brick> hard = new ArrayList<>();
     Timer timer = new Timer();
@@ -382,8 +394,7 @@ public class Surprise {
    * method that randomly chooses which bonus or malus to invoke.
    */
   public void chooseSurprise() {
-    // final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
-    // this.map.get(method).run();
-    this.enlargeSizePad();
+    final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
+    this.map.get(method).run();
   }
 }
