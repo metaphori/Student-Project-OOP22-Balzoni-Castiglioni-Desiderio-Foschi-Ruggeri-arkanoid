@@ -248,6 +248,10 @@ public class UIControllerImpl implements UIController {
         Integer.valueOf(this.deck.getHeight()).doubleValue());
   }
 
+  public Pair<Integer, Integer> frameDim() {
+    return new Pair<>(this.window.getWidth(), this.window.getHeight());
+  }
+
   /**
    * {@inheritDoc}
    */
