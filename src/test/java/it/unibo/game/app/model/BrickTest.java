@@ -15,6 +15,9 @@ import it.unibo.game.app.api.Level;
 import it.unibo.game.app.model.levels.SecondLevel;
 import it.unibo.game.app.model.levels.ThirdLevel;
 
+/**
+ * class that contains tests to test obstacles and hard bricks.
+ */
 public class BrickTest {
 
   @Test

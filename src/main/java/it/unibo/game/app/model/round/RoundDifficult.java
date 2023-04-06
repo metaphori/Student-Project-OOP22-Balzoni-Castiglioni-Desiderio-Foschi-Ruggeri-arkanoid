@@ -81,10 +81,12 @@ public class RoundDifficult extends AbstractRound {
     int first = super.getBrick().size() - height;
     int last = super.getBrick().size() - 1;
     int num = 0;
-    while (num < (obstacles / 2)) {
-      replace(first++);
-      replace(last--);
-      ++num;
+    /*
+     * while (num < (obstacles / 2)) { replace(first++); replace(last--); ++num; }
+     */
+    while (first < last) {
+      replace(first);
+      first = first + 2;
     }
   }
 
