@@ -327,4 +327,10 @@ public class UIControllerImpl implements UIController {
     this.appController.deleteString();
   }
 
+  @Override
+  public Pair<Integer, Integer> frameDim() {
+    // TODO Auto-generated method stub
+    return new Pair<>(this.window.getWidth(), this.window.getHeight());
+  }
+
 }
