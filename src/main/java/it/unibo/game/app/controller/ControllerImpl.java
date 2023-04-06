@@ -168,7 +168,7 @@ public class ControllerImpl implements AppController {
   private List<Pair<Double, Double>> getPairList(final List<MovingObject> b) {
     return Collections.unmodifiableList(
         b.stream().map(ball -> new Pair<>(ball.getPos().getX() * this.delta().getX(),
-            ball.getPos().getY() * delta().getX())).collect(Collectors.toList()));
+            ball.getPos().getY() * delta().getY())).collect(Collectors.toList()));
   }
 
   /**
