@@ -20,6 +20,7 @@ public final class GameViewImpl extends JPanel
 
   private UIController observer;
   private boolean see = true;
+  private static final int TIME = 2000;
   // private boolean play = true;
 
   @SuppressFBWarnings("EI_EXPOSE_REP2")
@@ -92,7 +93,7 @@ public final class GameViewImpl extends JPanel
             see = true;
           }
         };
-        timer.schedule(task, 1000);
+        timer.schedule(task, TIME);
 
       }
       g2d.setFont(new Font("myFont", Font.ITALIC, observer.getSizeFont()));
