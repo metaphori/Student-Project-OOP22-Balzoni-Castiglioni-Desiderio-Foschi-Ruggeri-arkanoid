@@ -159,7 +159,7 @@ public class LeaderBoardImpl implements LeaderBoard {
     return new ArrayList<>();
   }
 
-  class User implements java.io.Serializable {
+  static class User implements java.io.Serializable {
     private static final long serialVersionUID = 8683452581122892189L;
     private final String name;
     private final String password;
