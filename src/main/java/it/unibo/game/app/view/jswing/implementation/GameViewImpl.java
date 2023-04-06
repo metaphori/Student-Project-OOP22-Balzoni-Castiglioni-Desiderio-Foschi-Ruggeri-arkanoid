@@ -13,7 +13,7 @@ import java.awt.geom.*;
 import java.util.Map.Entry;
 import java.util.Optional;
 
-public class GameViewImpl extends JPanel
+public final class GameViewImpl extends JPanel
     implements KeyListener, ActionListener, GameView {
 
   private UIController observer;
