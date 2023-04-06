@@ -29,7 +29,13 @@ import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
 
+/**
+ * method to test all surprise methods.
+ */
 public class SurpriseTest {
+
+  private static final double SPEED_X = 0.5;
+  private static final double SPEED_Y = 0.2;
 
   @Test
   void testExtraLife() throws NoSuchMethodException, SecurityException,
@@ -163,7 +169,7 @@ public class SurpriseTest {
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
       method.invoke(surprise);
-      initial.sum(new SpeedImpl(0.5, 0.2));
+      initial.sum(new SpeedImpl(SPEED_X, SPEED_Y));
       assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
     }
   }
@@ -181,7 +187,7 @@ public class SurpriseTest {
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
       method.invoke(surprise);
-      initial.sum(new SpeedImpl(-0.5, -0.2));
+      initial.sum(new SpeedImpl(-SPEED_X, -SPEED_Y));
       assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
     }
   }
