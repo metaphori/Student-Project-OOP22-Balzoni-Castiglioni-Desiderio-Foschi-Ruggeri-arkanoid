@@ -187,6 +187,7 @@ public class UIControllerImpl implements UIController {
    */
   @Override
   public void rPaint() {
+    Toolkit.getDefaultToolkit().sync();
     this.window.repaint();
   }
 
