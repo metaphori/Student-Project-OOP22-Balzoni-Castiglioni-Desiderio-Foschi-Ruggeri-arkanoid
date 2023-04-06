@@ -1,13 +1,10 @@
 package it.unibo.game.app.model.dynamic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Level;
-import it.unibo.game.app.api.MovingObject;
 import it.unibo.game.app.model.levels.FirstLevel;
 
 public class MoveTest {
