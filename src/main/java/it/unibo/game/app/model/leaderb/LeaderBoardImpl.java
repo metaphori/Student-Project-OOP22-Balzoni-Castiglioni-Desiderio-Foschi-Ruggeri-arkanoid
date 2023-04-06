@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.io.Serializable;
 
 import it.unibo.game.Pair;
 
@@ -106,18 +105,17 @@ public class LeaderBoardImpl implements LeaderBoard {
    * @throws FileNotFoundException
    * @throws ClassNotFoundException
    */
+  @SuppressWarnings("unchecked")
   private List<User> playersFromFile() {
-    if (this.file.length() > 0) {
-      try (ObjectInputStream oos = new ObjectInputStream(
-          new BufferedInputStream(new FileInputStream(file.getPath())))) {
-        return (List<User>) oos.readObject();
-      } catch (FileNotFoundException ex) {
-        System.out.println(ex.toString());
-      } catch (IOException ex) {
-        System.out.println(ex.toString());
-      } catch (ClassNotFoundException ex) {
-        System.out.println(ex.toString());
-      }
+    try (ObjectInputStream oos = new ObjectInputStream(
+        new BufferedInputStream(new FileInputStream(file.getPath())))) {
+      return (List<User>) oos.readObject();
+    } catch (FileNotFoundException ex) {
+      System.out.println(ex.toString());
+    } catch (IOException ex) {
+      System.out.println(ex.toString());
+    } catch (ClassNotFoundException ex) {
+      System.out.println(ex.toString());
     }
     return new ArrayList<>();
   }
@@ -138,6 +136,15 @@ public class LeaderBoardImpl implements LeaderBoard {
     }
   }
 
+  /**
+   * method to get the list of all players from file in resorces folder.
+   * 
+   * @return the list of players
+   * @throws IOException
+   * @throws FileNotFoundException
+   * @throws ClassNotFoundException
+   */
+  @SuppressWarnings("unchecked")
   private List<User> loadFromResources() {
     try (ObjectInputStream oos = new ObjectInputStream(
         new BufferedInputStream(this.getClass().getResourceAsStream("/File.txt")))) {
