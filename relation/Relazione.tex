@@ -64,6 +64,26 @@ serviti di una funzionalità di una libreria grafica (SwingWorker).
 \\La nostra strategia ha comunque il vantaggio che qualora fosse necessario cambiare l'interfaccia grafica
 questo non causerebbe modifiche nelle classi di Model e Controller.
 \section{Desing dettagliato}
+\textbf{Ruggeri Simone}\\
+Le parti di lavoro da me svolte hanno riguardato: la progettazione della struttura dei vari livelli,
+l'impostazione del primo livello con i suoi 3 round, il controllo se il giocatore manca la pallina oppure se finisce il round, lo sviluppo di
+alcuni metodi per i bonus, la parte di grafica che riguarda la pausa, il game over e la vittoria.\\\\
+\textbf{View di Pausa, Game Over e Vittoria}\\
+La parte grafica del progetto prevede l'alternarsi di JPanels (che rappresentano menù inziale, menù di pausa, gameover, vittoria, classifica)
+con la game view vera e propria.
+Per la realizzazione della parte grafica di mia responsabilità (menù di pausa, game-over, vittoria), ho creato una classe astratta 'AbstractView'
+che definsce delle impostazioni generali a cui fanno riferimento le classi che la estendono.
+Queste caratteristiche prevedono uno sfondo nero, un titolo, e tre pulsanti. Due di questi pulsanti, menuBtn e quitBtn,
+sono già definiti all'interno di AbstractView poichè sono in comune con tutti e tre i pannelli da visualizzare.
+Il terzo pulsante viene impostato in AbstractView (a livello di posizionamento) ma definito nelle classi che estendono poichè questo pulsante e la
+relativa azione che svolge cambia in base a quale panel l'untente si interfaccia nell'avanzamento del gioco.
+L'istanza UIController permette ai pannelli di poter svolgere azioni come cambiare view (da tutti e tre i panels è possibile tramite il pulsante
+mentuBtn andare alla schermata iniziale di gioco).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/AbstractView.png}
+    \caption{Schema UML dell'implementazione della View di Pausa, Game Over e Vittoria}
+\end{figure}
 \chapter{Sviluppo}
 \section{Testing automatizzato}
 \section{Metodologia di lavoro}
