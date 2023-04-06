@@ -135,6 +135,7 @@ public class CollisionTest {
   void testPadInsideShene() {
     Level l = new FirstLevel();
     this.colls = new Collision(l);
+    l.setFirstRound();
     /* set pad on right side */
     var pad = new Pad(SizeCalculation.getPadDim());
     pad.setPos(new Pair<Double, Double>(
