@@ -79,10 +79,16 @@ public class GameEngine {
     }
   }
 
+  /**
+   * method to set win.
+   */
   public void setWin() {
     this.winCondition = true;
   }
 
+  /**
+   * method to reset win.
+   */
   public void resetWin() {
     this.winCondition = false;
   }
