@@ -51,6 +51,7 @@ public class SurpriseTest {
       throws NoSuchMethodException, SecurityException, IllegalAccessException,
       IllegalArgumentException, InvocationTargetException, InterruptedException {
     Level level = new SecondLevel();
+    level.setFirstRound();
     Surprise surprise = new Surprise(level);
     Timer timer = new Timer();
 
@@ -107,8 +108,11 @@ public class SurpriseTest {
   void initTestAddHardRow() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     Level l1 = new FirstLevel();
+    l1.setFirstRound();
     Level l2 = new SecondLevel();
+    l2.setFirstRound();
     Level l3 = new ThirdLevel();
+    l3.setFirstRound();
     testAddHardRow(l1);
     testAddHardRow(l2);
     testAddHardRow(l3);

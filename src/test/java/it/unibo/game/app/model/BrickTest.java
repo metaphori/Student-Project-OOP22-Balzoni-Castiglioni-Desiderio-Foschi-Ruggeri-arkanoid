@@ -45,6 +45,7 @@ public class BrickTest {
   @Test
   void testHardBrick() {
     Level l = new SecondLevel();
+    l.setFirstRound();
     List<Brick> indexHardBrick = new ArrayList<>();
     int oldSize = l.getRound().getBrick().size();
     indexHardBrick = l.getRound().getBrick().stream().filter(b -> b.getRes().get() == 2)
