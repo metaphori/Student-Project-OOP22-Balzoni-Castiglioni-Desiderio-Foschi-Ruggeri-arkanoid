@@ -20,6 +20,7 @@ public class BrickTest {
   @Test
   void testObstacle() {
     Level l = new ThirdLevel();
+    l.setFirstRound();
     int maxRes = l.getRound().getBrick().stream().filter(x -> x.getRes().isPresent())
         .mapToInt(x -> x.getRes().get()).max().getAsInt();
     long obstacles = l.getRound().getBrick().stream()

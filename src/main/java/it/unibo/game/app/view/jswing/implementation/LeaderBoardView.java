@@ -4,7 +4,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
@@ -51,8 +50,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
     this.setBackground(Color.decode(COLOR));
 
     JLabel title = new JLabel("LEADERBOARD: ");
-    title.setFont(
-        new Font("myFont", Font.ITALIC, (int) (this.control.windowDim().getY() / GAP)));
+    title.setFont(new Font("myFont", Font.ITALIC, this.control.frameDim().getY() / GAP));
     title.setBackground(Color.decode(COLOR));
     title.setForeground(Color.YELLOW);
     this.add(title);
@@ -68,7 +66,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
 
     this.best.forEach(x -> {
       int indx = this.best.indexOf(x);
-      this.tx.get(indx).setText(Integer.toString(indx + 1) + "°     " + x.getX()
+      this.tx.get(indx).setText(Integer.toString(indx + 1) + "\u00B0" + "     " + x.getX()
           + "    pt:" + Integer.toString(x.getY()));
     });
 
@@ -90,7 +88,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
     this.best = this.control.getBestFive();
     this.best.forEach(x -> {
       int indx = this.best.indexOf(x);
-      this.tx.get(indx).setText(Integer.toString(indx + 1) + "°     " + x.getX()
+      this.tx.get(indx).setText(Integer.toString(indx + 1) + "\u00B0" + "     " + x.getX()
           + "    pt:" + Integer.toString(x.getY()));
     });
   }

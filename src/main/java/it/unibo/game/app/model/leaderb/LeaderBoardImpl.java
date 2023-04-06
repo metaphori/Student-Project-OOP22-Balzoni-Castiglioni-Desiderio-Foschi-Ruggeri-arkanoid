@@ -15,17 +15,32 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.io.Serializable;
 
 import it.unibo.game.Pair;
 
 /**
  * class that save and load information of the leaderboard in a file.
  */
-public class LeaderBoardImpl implements Serializable, LeaderBoard {
+public final class LeaderBoardImpl implements LeaderBoard {
 
-  private final File file = new File("src/main/resources/File.txt");
+  private final File file;
   private static final int MAX = 5;
+
+  /**
+   * constructor of this class.
+   */
+  public LeaderBoardImpl() {
+    this.file = new File("src/main/resources/File.txt"); // da eliminare e decommentare il
+                                                         // resto
+    /*
+     * this.file = new File(System.getProperty("user.home") +
+     * System.getProperty("file.separator") + "aRkAnOiD.txt"); try { List<User> list
+     * = new ArrayList<>(); if (this.file.createNewFile()) {
+     * list.addAll(this.loadFromResources()); } else {
+     * list.addAll(this.playersFromFile()); } this.writeOnFile(list); } catch
+     * (IOException e) { System.out.println(e.toString()); }
+     */
+  }
 
   /**
    * {@inheritDoc}
@@ -90,18 +105,17 @@ public class LeaderBoardImpl implements Serializable, LeaderBoard {
    * @throws FileNotFoundException
    * @throws ClassNotFoundException
    */
+  @SuppressWarnings("unchecked")
   private List<User> playersFromFile() {
-    if (this.file.length() > 0) {
-      try (ObjectInputStream oos = new ObjectInputStream(
-          new BufferedInputStream(new FileInputStream(file.getPath())))) {
-        return (List<User>) oos.readObject();
-      } catch (FileNotFoundException ex) {
-        System.out.println(ex.toString());
-      } catch (IOException ex) {
-        System.out.println(ex.toString());
-      } catch (ClassNotFoundException ex) {
-        System.out.println(ex.toString());
-      }
+    try (ObjectInputStream oos = new ObjectInputStream(
+        new BufferedInputStream(new FileInputStream(file.getPath())))) {
+      return (List<User>) oos.readObject();
+    } catch (FileNotFoundException ex) {
+      System.out.println(ex.toString());
+    } catch (IOException ex) {
+      System.out.println(ex.toString());
+    } catch (ClassNotFoundException ex) {
+      System.out.println(ex.toString());
     }
     return new ArrayList<>();
   }
@@ -122,7 +136,31 @@ public class LeaderBoardImpl implements Serializable, LeaderBoard {
     }
   }
 
+  /**
+   * method to get the list of all players from file in resorces folder.
+   * 
+   * @return the list of players
+   * @throws IOException
+   * @throws FileNotFoundException
+   * @throws ClassNotFoundException
+   */
+  @SuppressWarnings("unchecked")
+  private List<User> loadFromResources() {
+    try (ObjectInputStream oos = new ObjectInputStream(
+        new BufferedInputStream(this.getClass().getResourceAsStream("/File.txt")))) {
+      return (List<User>) oos.readObject();
+    } catch (FileNotFoundException ex) {
+      System.out.println(ex.toString());
+    } catch (IOException ex) {
+      System.out.println(ex.toString());
+    } catch (ClassNotFoundException ex) {
+      System.out.println(ex.toString());
+    }
+    return new ArrayList<>();
+  }
+
   static class User implements java.io.Serializable {
+    private static final long serialVersionUID = 8683452581122892189L;
     private final String name;
     private final String password;
     private final Map<Integer, Integer> points = new HashMap<>();
