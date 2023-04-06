@@ -63,6 +63,14 @@ possibile a mantenere separati gli aspetti logici, di controllo e di grafica. Tu
 serviti di una funzionalità di una libreria grafica (SwingWorker).
 \\La nostra strategia ha comunque il vantaggio che qualora fosse necessario cambiare l'interfaccia grafica
 questo non causerebbe modifiche nelle classi di Model e Controller.
+Nello specifico il pattern prevede comunque la suddivisione dei compiti in 3 parti:
+\begin{itemize}
+    \item Model gestisce i dati, la logica e le regole dell'applicazione.
+    \item View responsabile della visualizzazione del dominio applicativo e dell'interazione con l'utente.
+    \item Controller è l'elemento che si interporre tra il Model e la View.
+\end{itemize}
+Il Model è composto da varie classi e interfaccie che rappresentano i priincipali elementi applicativi (Level, Round, MovingObject, Brick, Pad, Surprise, SizeCalculation).
+Di seguito nella \Cref{images:} si può vedere una rappresentazione generale del Model.
 \section{Desing dettagliato}
 \textbf{Ruggeri Simone}\\
 Le parti di lavoro da me svolte hanno riguardato: la progettazione della struttura dei vari livelli,
@@ -90,7 +98,7 @@ mentuBtn andare alla schermata iniziale di gioco).
 Per lavorare
 a questo progetto abbiamo cercato strutturare il lavoro seguendo queste macro domande:
 \subsection{Qual'è la missione del progetto e con quali risorse si intende perseguirla?}
-la missione del progetto è ampiamente descritta nei paragrafi precedenti.
+La missione del progetto è ampiamente descritta nei paragrafi precedenti.
 Le risorse da noi scelte in fase di pianificazione e progettazione sono varie tra cui:
 \begin{itemize}
     \item materiale didattico fornito dai professori
@@ -100,27 +108,25 @@ Le risorse da noi scelte in fase di pianificazione e progettazione sono varie tr
     \item strumenti di pianificazione, comunicazione e in generale multimediali forniti dall'account aziendale (unibo).
 \end{itemize}
 
-\subsection{come verrà condotto il progetto?}
+\subsection{Come verrà condotto il progetto?}
 Si può riassumere la conduzione del progetto con un'organigramma orizzontale.
 Ognuno ha piena responsabilità dei compiti che ci si è auto affidato al tempo di decisione e assegnazione delle task.
 Questo implica il fatto che l'auto organizzazione di ogni singolo componente è fondamentale per la buona riuscita del progetto.
 Ovviamente in caso di difficoltà il gruppo stimolerà il singolo a una soluzione senza però intaccarne la creatività.
-\subsection{come ne verrà controllato l'avanzamento?}
-\subsubsection{organizzazione DVCS}
+\subsection{Come ne verrà controllato l'avanzamento?}
+\subsubsection{Organizzazione DVCS}
 Nelle varie risorse scelte sono indicati git e github, git è un software DVCS presentato e spiegato a lezione mentre github.com è un servizio
 hub di repository.
 La produzione è organizzata su più branch.
-
-il branch principale (master nel nostro caso) raccoglie tutto il codice di progetto approvato da tutti, su github è settata una policy
+\\Il branch principale (master nel nostro caso) raccoglie tutto il codice di progetto approvato da tutti, su github è settata una policy
 di sicurezza affinchè sia obbligatorio aprire una pull request per poter eseguire il merging del codice.
 Il branch develop raccoglie la linea di sviluppo in fase di pre-relies in cui è ammissibile trovare eventuali bug o errori di desing.
-
-Ogni elemento del teamWork, ad ogni step evolutivo, si occupa di creare un branch locale che non è necessario venga pubblicato poichè finito
+\\Ogni elemento del teamWork, ad ogni step evolutivo, si occupa di creare un branch locale che non è necessario venga pubblicato poichè finito
 il lavoro si occuperà di eseguire il merging  in develop.
-\subsubsection{ciclo di vita del progetto}
-ogni pull request (develop - master) verrà eseguita quando il codice develop soddisfa i requisiti che l'applicazione deve avere rispetto
+\subsubsection{Ciclo di vita del progetto}
+Ogni pull request (develop - master) verrà eseguita quando il codice develop soddisfa i requisiti che l'applicazione deve avere rispetto
 all'obbiettivo incrementale che ci siamo posti.
-In linea di massima la nostra scelta è di procedere a piccoli passi fino alla finalizzazione del progetto
+In linea di massima la nostra scelta è di procedere a piccoli passi fino alla finalizzazione del progetto.
 \section{Note di sviluppo}
 \chapter{Commenti finali}
 \section{Autovalutazione e lavori futuri}
