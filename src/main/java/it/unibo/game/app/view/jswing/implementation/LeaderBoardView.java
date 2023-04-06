@@ -71,8 +71,9 @@ public class LeaderBoardView extends JPanel implements ActionListener {
     });
 
     JPanel panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-    JButton jb = new JButton("back");
+    JButton jb = new JButton("MENU");
     jb.addActionListener(e -> control.initialView());
+    jb.setBorderPainted(true);
     panel.add(jb);
     panel.setBackground(Color.decode(COLOR));
     this.add(panel);
