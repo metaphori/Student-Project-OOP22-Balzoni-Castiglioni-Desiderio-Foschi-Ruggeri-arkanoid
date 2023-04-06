@@ -22,7 +22,7 @@ import it.unibo.game.Pair;
 /**
  * class that save and load information of the leaderboard in a file.
  */
-public class LeaderBoardImpl implements Serializable, LeaderBoard {
+public class LeaderBoardImpl implements LeaderBoard {
 
   private final File file = new File("src/main/resources/File.txt");
   private static final int MAX = 5;
@@ -122,7 +122,8 @@ public class LeaderBoardImpl implements Serializable, LeaderBoard {
     }
   }
 
-  static class User implements java.io.Serializable {
+  class User implements java.io.Serializable {
+    private static final long serialVersionUID = 8683452581122892189L;
     private final String name;
     private final String password;
     private final Map<Integer, Integer> points = new HashMap<>();
