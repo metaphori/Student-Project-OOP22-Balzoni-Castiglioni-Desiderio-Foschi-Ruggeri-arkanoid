@@ -20,7 +20,7 @@ public class CollisionTest {
   Collision colls;
 
   @Test
-  void TestEdgesColl() {
+  void testEdgesColl() {
     Level level = new FirstLevel();
     level.setFirstRound();
     this.colls = new Collision(level);
@@ -56,7 +56,7 @@ public class CollisionTest {
   }
 
   @Test
-  void TestPadColl() {
+  void testPadColl() {
     Level level = new FirstLevel();
     level.setFirstRound();
     this.colls = new Collision(level);
