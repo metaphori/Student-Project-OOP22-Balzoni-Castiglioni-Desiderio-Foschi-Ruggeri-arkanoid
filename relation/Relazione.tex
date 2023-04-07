@@ -215,6 +215,19 @@ determinata interazione della stessa si scatenerà l'evento desiderato.
 Per questo tipo di desing mi sono ispirato alle soluzioni viste in laboratorio e come mi è stato detto
 a ricevimento questo modo di fare non è un pattern observer puro ma posso affermare che sia di simile
 comportamento.
+\textbf{Window resizable.}\\
+
+l'idea nasce con la logica di mantenere sempre fisse le dimensioni decise interne al model
+e di renderizzare la view in maniera tale da crearne semplicemente le loro proiezioni su schermo.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/projection.jpg}
+    \caption{bozza fatta durante lo studio}
+\end{figure}
+Per quanto mi riguarda é stato chiaro per me dover trovare il modo di modficare le dimensioni del model rispetto
+uno scostamento opportuno.
+Dopo vari ragionamenti risulta corretto moltiplicare le dimensioni e la posizione per un delta calcolato
+
 
 
 \textbf{Castiglioni Chiara}\\
@@ -296,18 +309,6 @@ a capire che non cambia da solo il focus sulla finestra appena selezionata, risu
 inserire comandi input da tastiera se non dalla prima finestra aperta e la cosa é stata rislota
 aggiornando il focus alla carta appena selezionata.
 \\
-\textbf{Window resizable.}\\
-
-l'idea nasce con la logica di mantenere sempre fisse le dimensioni decise interne al model
-e di renderizzare la view in maniera tale da crearne semplicemente le loro proiezioni su schermo.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/projection.jpg}
-    \caption{bozza fatta durante lo studio}
-\end{figure}
-Per quanto mi riguarda é stato chiaro per me dover trovare il modo di modficare le dimensioni del model rispetto
-uno scostamento opportuno.
-Dopo vari ragionamenti risulta corretto moltiplicare le dimensioni e la posizione per un delta calcolato
 
 \chapter{Sviluppo}
 \section{Testing automatizzato}
