@@ -31,6 +31,7 @@ public final class GameViewImpl extends JPanel implements KeyListener, ActionLis
   private UIController observer;
   private boolean see = true;
   private static final int TIME = 2000;
+  private static final double ROW = 5d;
 
   /**
    * constructor of this class.
@@ -111,15 +112,14 @@ public final class GameViewImpl extends JPanel implements KeyListener, ActionLis
                     ? Color.BLUE
                     : x.getKey().getY().intValue() == observer.getRowC(2d).intValue()
                         ? Color.YELLOW
-                        : x.getKey().getY().intValue() == observer.getRowC(3d)
-                            .intValue()
-                                ? Color.MAGENTA
-                                : x.getKey().getY().intValue() == observer.getRowC(4d)
-                                    .intValue()
-                                        ? Color.ORANGE
-                                        : x.getKey().getY().intValue() == observer
-                                            .getRowC(5d).intValue() ? Color.CYAN
-                                                : Color.GREEN;
+                        : x.getKey().getY().intValue() == observer.getRowC(3d).intValue()
+                            ? Color.MAGENTA
+                            : x.getKey().getY().intValue() == observer.getRowC(4d)
+                                .intValue()
+                                    ? Color.ORANGE
+                                    : x.getKey().getY().intValue() == observer
+                                        .getRowC(ROW).intValue() ? Color.CYAN
+                                            : Color.GREEN;
   }
 
   /**

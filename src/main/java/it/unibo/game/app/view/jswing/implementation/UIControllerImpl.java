@@ -35,6 +35,7 @@ public class UIControllerImpl implements UIController {
   /**
    * {@inheritDoc}
    */
+
   @SuppressFBWarnings("EI_EXPOSE_REP2")
   public void set(final AppController control) {
     this.appController = control;
@@ -70,6 +71,7 @@ public class UIControllerImpl implements UIController {
    * 
    * @param p pages
    */
+
   private void chargeView(final PAGES p) {
     this.layout.show(deck, p.getName());
     this.window.setTitle(p.getName());
