@@ -35,11 +35,9 @@ public class GameEngine {
 
       @Override
       protected Void doInBackground() throws Exception {
-        long previousCycleStartTime = System.currentTimeMillis();
         while (thread && !winCondition) {
           long currentCycleStartTime = System.currentTimeMillis();
-          long elapsed = currentCycleStartTime - previousCycleStartTime;
-          update(elapsed);
+          update();
           if (checkRound()) {
             pause();
             controller.nextRound();
@@ -57,7 +55,6 @@ public class GameEngine {
           }
           render();
           waitForNextFrame(currentCycleStartTime);
-          previousCycleStartTime = currentCycleStartTime;
         }
         return null;
       }
@@ -109,11 +106,9 @@ public class GameEngine {
 
   /**
    * method that calls the update on the controller.
-   * 
-   * @param dt past time.
    */
-  private void update(final long dt) {
-    this.controller.update(dt);
+  private void update() {
+    this.controller.update();
   }
 
   /**

@@ -108,6 +108,14 @@ public class SurpriseTest {
       level.setLastSurpriseBrick(element.getKey(), element.getValue());
       method.invoke(surprise);
       int newSize = level.getRound().getBrick().size();
+      /*
+       * In the first round of FirstLevel, the number of surprises is 2. So the bomb
+       * can break: 0 bricks if it is not close to any brick (newSize will not
+       * change); 1 brick if only one of the bombs is close only to one brick; 2
+       * bricks if the bomb is between 2 bricks or both bombs are close to only a
+       * brick; 3 bricks if one bomb is between 2 bricks and the other has one close;
+       * 4 bricks if both bombs are between 2 bricks
+       */
       assertTrue(oldSize >= newSize && oldSize <= newSize + 4);
     }
   }
@@ -146,8 +154,6 @@ public class SurpriseTest {
     method.invoke(surprise);
     if (l.getId() == 2) {
       assertEquals(oldSize + count + 2, l.getRound().getBrick().size());
-    } else if (l.getId() == 1) {
-      assertEquals(oldSize + count, l.getRound().getBrick().size());
     } else {
       assertEquals(oldSize + count, l.getRound().getBrick().size());
     }

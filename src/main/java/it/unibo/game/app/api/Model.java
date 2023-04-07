@@ -114,10 +114,8 @@ public interface Model {
 
   /**
    * method that allows to update positions of objects.
-   * 
-   * @param dt
    */
-  void update(long dt);
+  void update();
 
   /**
    * method that allows to get player's actual score.

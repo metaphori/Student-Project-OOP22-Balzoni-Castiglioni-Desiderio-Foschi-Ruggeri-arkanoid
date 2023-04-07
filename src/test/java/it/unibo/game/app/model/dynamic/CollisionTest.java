@@ -22,6 +22,7 @@ public class CollisionTest {
   @Test
   void TestEdgesColl() {
     Level level = new FirstLevel();
+    level.setFirstRound();
     this.colls = new Collision(level);
     Direction dir = new DirectionImpl();
 
@@ -57,6 +58,7 @@ public class CollisionTest {
   @Test
   void TestPadColl() {
     Level level = new FirstLevel();
+    level.setFirstRound();
     this.colls = new Collision(level);
     var posPad = level.getRound().getPad().getPos();
     var dir = new DirectionImpl();
@@ -101,6 +103,7 @@ public class CollisionTest {
   @Test
   void collideWithBrick() {
     Level level = new FirstLevel();
+    level.setFirstRound();
     this.colls = new Collision(level);
     var brick = level.getRound().getBrick().get(level.getRound().getBrick().size() - 1);
 
@@ -116,6 +119,7 @@ public class CollisionTest {
   @Test
   void noCollisions() {
     Level level = new FirstLevel();
+    level.setFirstRound();
     this.colls = new Collision(level);
     var dir = new DirectionImpl();
     level.getRound().getBalls().get(0)

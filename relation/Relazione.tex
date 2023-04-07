@@ -107,6 +107,34 @@ Il Controller è costituito da una sola interfaccia che comunica con il Model e 
 Le parti di lavoro da me svolte hanno riguardato: la progettazione della struttura dei vari livelli,
 l'impostazione del primo livello con i suoi 3 round, il controllo se il giocatore manca la pallina oppure se finisce il round, lo sviluppo di
 alcuni metodi per i bonus, la parte di grafica che riguarda la pausa, il game over e la vittoria.\\\\
+\textbf{Livelli}\\
+Il gioco è suddiviso in tre livelli. Per la progettazione di una struttura comune per i livelli, ho creato un'interfaccia 'Level' e
+un'abstract class 'AbstractLevel'. In Level vengono dichiarati i metodi che ogni livello dovrà possedere, mentre in AbstractLevel vengono implemetati. I metodi che
+però definiscono caratteristiche differenti per ogni round del livello, sono dichiarati abstract e dovranno essere implementati nelle classi dei livelli. I tre livelli
+dunque, 'FirstLevel','SecondLevel' e 'ThirdLevel', dovranno estendere la classe astratta AbstractLevel.
+Level e AbstractLevel sono state create fin da subito, proprio per evitare di bloccare l'avanzamento dello sviluppo complessivo del progetto.
+Inizialmente sono stati creati e implementati i metodi che avrebbero svolto le azioni principali, mentre successivamente a man mano che il progetto progrediva
+sono stati aggiunti metodi e variabili che si sono dimostrati necessari.\\
+Ogni livello è composto da tre round. Per quanto riguarda la realizzazione del primo livello, questi 3 round sono generati tramite delle costanti, che indicano
+il numero di blocchi normali e blocchi sorpresa, da passare come argomento a 'RoundEasy'. RoundEasy definisce come questi blocchi debbano essere posizionati
+nella schermata di gioco.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{images/Levels.png}
+    \caption{Schema UML dell'organizzazione dei livelli.}
+    \label{images:Levels}
+\end{figure}
+\noindent
+\textbf{Controlli sul Round}\\
+Il decremento della vita all'interno del round di gioco e il passaggio all'eventuale round successivo sono
+condizionati dai controlli fatti nella classe GameOver (del model). All'interno di questa classe sono presenti due metodi che restituiscono al Model
+un valore booleano, che indicano se il player, tramite il controllo del pad, ha mancato la pallina oppure se il round è terminato.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/GameOver.png}
+    \caption{Schema UML della classe GameOver.}
+\end{figure}
+\noindent
 \textbf{View di Pausa, Game Over e Vittoria}\\
 La parte grafica del progetto prevede l'alternarsi di JPanels (che rappresentano menù inziale, menù di pausa, gameover, vittoria, classifica)
 con la game view vera e propria.
@@ -121,7 +149,7 @@ mentuBtn andare alla schermata iniziale di gioco).
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/AbstractView.png}
-    \caption{Schema UML dell'implementazione della View di Pausa, Game Over e Vittoria}
+    \caption{Schema UML dell'implementazione della View di Pausa, Game Over e Vittoria.}
 \end{figure}
 \pagebreak
 \subsection{Desiderio Edoardo}
@@ -146,14 +174,14 @@ Di fatto si è verificato che modifice come:
 \end{itemize}
 si sono rilevate poco costose sia in termini logici, guardando l'interfaccia UIController è lampante come muoversi,
 che in termini pratici, per aggiungere una nuova vista basta aggiungere la sua dichiarazione e il metodo che la invochi.
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/UiControllerDesing.png}
     \caption{proiezione UML della comunicazione fra il controller principale e le viste con UIController}
 \end{figure}
+
 \pagebreak
-\\
-\textbf{UIController, l'implementazione.}
+\textbf{UIController, l'implementazione.}\\
 Per gestire le varie viste ho scelto di utilizzare un layout di jswing chiamato CardLayout.
 Questo layout è funzionale a quello che intendevo far fare al View-controller poichè
 gestisce due o più componenti che condividono lo stesso spazio di visualizzazione (il jframe nel nostro caso).
@@ -170,6 +198,100 @@ a ricevimento questo modo di fare non è un pattern observer puro ma posso affer
 comportamento.
 
 CardLayout non è oro colato, infatti se non fosse stato per l'attività di debugging non sarei mai riuscito
+a capire che non cambia da solo il focus sulla finestra appena selezionata, risultava impossibile
+inserire comandi input da tastiera se non dalla prima finestra aperta e la cosa é stata rislota
+aggiornando il focus alla carta appena selezionata.
+\\
+
+\textbf{UIController, l'implementazione.}\\
+
+Ogni carta\footnote{nel nostro caso, classi che estendevano JPanel in modo da personalizzarne i meccanismi}
+all'avvio dell' applicazione viene aggiunta al "deck"\footnote{il JPanel che riempie il frame principale}
+a questo punto, con i metodi preposti al selezionamento di una carta basterà richiamarli per una visualizzazione
+corretta.
+Come sicuramente descritto anche dai miei colleghi, ogni classe View ha un riferimento all'interfaccia
+del loro controller, di fatto il controller quindi "osserva" il comportamento della view e quando accade una
+determinata interazione della stessa si scatenerà l'evento desiderato.
+Per questo tipo di desing mi sono ispirato alle soluzioni viste in laboratorio e come mi è stato detto
+a ricevimento questo modo di fare non è un pattern observer puro ma posso affermare che sia di simile
+comportamento.
+
+
+\textbf{Castiglioni Chiara}\\
+Nel corso dello sviluppo del progetto mi sono occupata principalmente della parte riguardante la struttura dei vari round, il game loop del videogioco,
+la parte di calcoli per il posizionamento delle varie entità e della loro diminsione, lo sviluppo di due metodi per i bonus, la creazione dell'entità Brick
+mentre nella parte della View l'apparizione della scritta che indica il bonus preso.\\
+\textbf{GameEngine}
+\\Questa classe è il vero e proprio motore del gioco al cui interno vi è il game loop cioè un ciclo che viene attivato quando:
+\begin{itemize}
+    \item L'utente seleziona uno dei tre livello messi a disposizione nello StartMenu.
+    \item Si riprende il gioco dal menù di pausa.
+    \item Si inizia un nuovo round.
+\end{itemize}
+mentre invece viene interrotto nel momento in cui:
+\begin{itemize}
+    \item Viene aperto il menù di pausa all'interno della partita.
+    \item Il giocatore perde le sue tre vite messe a disposizione.
+    \item L'utente vince il round e deve passare a quello successivo.
+    \item Il giocatore vince la partita.
+\end{itemize}
+Per la realizzazione del game loop mi sono servita di una classe della libreria Swing cioè SwingWorker che consente di eseguire un thread in background
+in quanto Swing utilizza un singolo thread cioè Event dispatch thread.
+\\All'interno del game loop richiamo alcuni metodi privati che richiamano a loro volta metodi del Controller in quanto questa classe deve comunicare con il Model
+e con la View aggiornandoli continuamente.
+\\Per quanto riguarda l'aggiornamento del Model il game loop si occupa continuamente di:
+\begin{itemize}
+    \item Richiamare l'update delle entità in movimento.
+    \item Controllare se vi è la terminazione del round e in tal caso richiamare l'inizializzazione del round successivo se vi è, altrimenti, viene impostata la vittoria.
+    \item Controllare il meccanismo di perdita di vita dell'utente, nel caso avesse ancora vite viene riposizionata la pallina alla posizione iniziale altrimenti viene dichiarato game over.
+\end{itemize}
+In riferimento alla View il game loop si occupa di richiamare la repaint del Frame.
+\\All'interno della classe GameEngine vi è anche un metodo che viene richiamato come ultimo all'interno del ciclo cioè WaitForNextFrame che si occupa di mantenere
+la stessa velocità di esecuzione del ciclo su diversi PC in modo tale da evitare che su dispositivi molto prestanti l'applicazione venga eseguita troppo velocemente.
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.5]{images/GameEngine.png}
+    \caption{Schema UML del GameEngine.}
+    \label{images:GameEngine}
+\end{figure}
+\textbf{Brick}\\
+Fin da subito mi sono occupata dell'entità brick facendo un'interfaccia Brick che estende quella già implementata dai miei colleghi (GameObject) in modo tale da avere già i metodi
+per la posizione dei brick, la loro boundingBox e la loro dimensione.
+\\Per questa entità ho poi implementato un'AbstractBrick che implementa Brick in modo tale che le due diverse tipologie di blocchi (normali e ostacoli) potessero estenderla ereditando dei medoti
+già implementati come per esempio il tipo di blocco e tutti i metodi deell'interfaccia GameObject mentre altri, invece, da implementare in quanto differiscono dalle diverse tipologie di blocchi come:
+\begin{itemize}
+    \item La resistenza del blocco.
+    \item Il metodo che serve a sapere se un blocco è distruttibile.
+    \item Il metodo hit che viene chiamato quando un blocco viene colpito dalla pallina.
+\end{itemize}
+In particolare mi sono occupata della classe NormalBrick che estende AbstractBrick la quale si occupa delle creazione di blocchi normali oppure hard a seconda della resistenza datagli.
+\\Questa scelta strutturale è dovuta dal fatto che i brick normali e quelli hard differiscono solamente a livello della quantità di resistenza quindi, ho ritenuto inutile creare un'altra classe e
+aggiungere un tipo diverso di brick all'interno di BrickType.
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.6]{images/Brick.png}
+    \caption{Schema UML dell'entità brick.}
+    \label{images:Brick}
+\end{figure}
+\textbf{SecondLevel}\\
+In questa classe mi sono occupata principalmente della scelta sulla quantità di blocchi da disporre all'interno dei tre round. La struttura della mia classe può essere
+visualizzata alla \Cref{images:Levels}.\\
+\textbf{SizeCalculation}\\
+Questa classe si occupa di eseguire calcoli riguardanti il posizionamento delle varie entità e la loro dimensione all'interno del mondo di gioco al
+quale abbiamo deciso di dargli una dimensione fissa.
+\\Questa classe richiede il numero di brick per riga e per colonna e il numero di round passati.
+Il primo parametro passato (numBrickCol) serve per calcolare l'altezza di ogni singolo blocco, il secondo (numBrickRow) per calcolare la larghezza dei blocchi
+mentre numRoundPassed serve per sapere fin dove posizionare i blocchi lungo l'asse delle ordinate.
+\\Vengono anche calcolati il punto di partenza e di fine del posizionamento dei blocchi lungo l'asse delle ascisse, facendoli lasciare sia all'inizio che alla fine mezza
+lunghezza del blocco dal muro.
+\\Vi sono anche due metodi che calcolano le dimensioni del pad e della pallina rispetto alle dimensioni del mondo nel model e un metodo che serve alla view per sapere qual è
+la coordinata y di ogni riga in modo da riuscire a colorare in modo diverso ogni riga.
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.5]{images/SizeCalculation.png}
+    \caption{Schema UML di SizeCalculation.}
+    \label{images:SizeCalculation}
+\end{figure}CardLayout non è oro colato, infatti se non fosse stato per l'attività di debugging non sarei mai riuscito
 a capire che non cambia da solo il focus sulla finestra appena selezionata, risultava impossibile
 inserire comandi input da tastiera se non dalla prima finestra aperta e la cosa é stata rislota
 aggiornando il focus alla carta appena selezionata.

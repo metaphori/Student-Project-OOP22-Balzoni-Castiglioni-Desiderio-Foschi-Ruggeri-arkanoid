@@ -188,7 +188,7 @@ public class ModelImpl implements Model {
    * {@inheritDoc}
    */
   @Override
-  public void update(final long dt) {
+  public void update() {
     move.update();
   }
 
