@@ -91,9 +91,16 @@ public class Collision {
   public boolean collideWithPad(final MovingObject b, final MovingObject p) {
     b.setBoundingBox(new CircleBoundingBox(b));
     p.setBoundingBox(new RectBoundingBox(p));
+
     var opt = b.getBoundingBox().collideWith(p.getBoundingBox());
     if (opt.isPresent()) {
-      b.getPhysics().changeDirection(opt.get());
+      var centre = b.getBoundingBox().checkCentre(p.getBoundingBox());
+      if (centre.isPresent()) {
+        b.getPhysics().changeDirection(centre.get());
+      } else {
+        b.getPhysics().changeDirection(opt.get());
+      }
+
       return true;
     }
     return false;
