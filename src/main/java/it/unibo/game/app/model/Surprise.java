@@ -42,6 +42,9 @@ public class Surprise {
   private static final int BONUS_DURATION = 10000;
   // private static final int FIX_START_Y = 5;
 
+  private static final double SPEED_X = 0.5;
+  private static final double SPEED_Y = 0.2;
+
   private Map<Integer, Runnable> map = new HashMap<>();
   private Random random = new Random();
   private Level level;
@@ -256,7 +259,7 @@ public class Surprise {
     this.level.setSurpriseString("increase Ball Speed");
     System.out.println("increaseBallSpeed");
     this.level.getRound().getBalls()
-        .forEach(x -> x.getSpeed().sum(new SpeedImpl(0.5, 0.2)));
+        .forEach(x -> x.getSpeed().sum(new SpeedImpl(SPEED_X, SPEED_Y)));
 
   }
 
@@ -267,7 +270,7 @@ public class Surprise {
     this.level.setSurpriseString("decrease Ball Speed");
     System.out.println("decreaseBallSpeed");
     this.level.getRound().getBalls()
-        .forEach(x -> x.getSpeed().sum(new SpeedImpl(-0.5, -0.2)));
+        .forEach(x -> x.getSpeed().sum(new SpeedImpl(-SPEED_X, -SPEED_Y)));
 
   }
 
