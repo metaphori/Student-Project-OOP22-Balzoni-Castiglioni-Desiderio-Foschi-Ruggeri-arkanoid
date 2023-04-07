@@ -246,8 +246,8 @@ public class ControllerImpl implements AppController {
   /**
    * {@inheritDoc}
    */
-  public void update(final long dt) {
-    this.model.update(dt);
+  public void update() {
+    this.model.update();
   }
 
   /**

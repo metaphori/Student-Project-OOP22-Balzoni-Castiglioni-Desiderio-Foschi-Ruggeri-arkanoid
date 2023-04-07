@@ -144,10 +144,8 @@ public interface AppController {
 
   /**
    * method to invoke update in model.
-   * 
-   * @param dt time
    */
-  void update(long dt);
+  void update();
 
   /**
    * method to invoke the game over frame change in the view.
