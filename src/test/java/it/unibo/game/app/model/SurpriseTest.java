@@ -146,8 +146,6 @@ public class SurpriseTest {
     method.invoke(surprise);
     if (l.getId() == 2) {
       assertEquals(oldSize + count + 2, l.getRound().getBrick().size());
-    } else if (l.getId() == 1) {
-      assertEquals(oldSize + count, l.getRound().getBrick().size());
     } else {
       assertEquals(oldSize + count, l.getRound().getBrick().size());
     }
