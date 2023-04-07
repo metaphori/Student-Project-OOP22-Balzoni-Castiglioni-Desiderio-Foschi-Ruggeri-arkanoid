@@ -54,9 +54,9 @@ public class FirstLevel extends AbstractLevel {
   }
 
   /**
-   * method that return the number of rows for the specific round.
+   * method that return the number of columns for the specific round.
    *
-   * @return rows
+   * @return columns
    */
   private int getCol() {
     if (this.getNumRoundPassed() == 0) {
