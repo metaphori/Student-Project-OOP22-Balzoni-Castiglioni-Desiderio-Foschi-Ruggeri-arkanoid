@@ -34,7 +34,7 @@ public class FirstLevel extends AbstractLevel {
    */
   @Override
   public void setFirstRound() {
-    this.setRound(NORMAL_FIRST, SURPRISE_FIRST);
+    this.set(NORMAL_FIRST, SURPRISE_FIRST);
   }
 
   /**
@@ -42,7 +42,7 @@ public class FirstLevel extends AbstractLevel {
    */
   @Override
   public void setSecondRound() {
-    this.setRound(NORMAL_SECOND, SURPRISE_SECOND);
+    this.set(NORMAL_SECOND, SURPRISE_SECOND);
   }
 
   /**
@@ -50,7 +50,7 @@ public class FirstLevel extends AbstractLevel {
    */
   @Override
   public void setThirdRound() {
-    this.setRound(NORMAL_THIRD, SURPRISE_THIRD);
+    this.set(NORMAL_THIRD, SURPRISE_THIRD);
   }
 
   /**
@@ -58,7 +58,7 @@ public class FirstLevel extends AbstractLevel {
    *
    * @return rows
    */
-  private int getRows() {
+  private int getCol() {
     if (this.getNumRoundPassed() == 0) {
       return BRICK_ROWS_FIRST;
     } else if (this.getNumRoundPassed() == 1) {
@@ -74,8 +74,8 @@ public class FirstLevel extends AbstractLevel {
    * @param normal   number of normal bricks in the round
    * @param surprise number of surprise brick in the round
    */
-  private void setRound(final int normal, final int surprise) {
-    int rows = this.getRows();
+  private void set(final int normal, final int surprise) {
+    int rows = this.getCol();
     this.sizeCalc = new SizeCalculation(BRICK_COLUMNS, rows, super.getNumRoundPassed());
     super.setRound(new RoundEasy(normal, surprise, sizeCalc));
     super.getRound().setPosBrick();
