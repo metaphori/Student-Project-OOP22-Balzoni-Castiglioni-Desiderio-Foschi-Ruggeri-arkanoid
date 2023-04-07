@@ -89,15 +89,30 @@ Le parti di lavoro da me svolte hanno riguardato: la progettazione della struttu
 l'impostazione del primo livello con i suoi 3 round, il controllo se il giocatore manca la pallina oppure se finisce il round, lo sviluppo di
 alcuni metodi per i bonus, la parte di grafica che riguarda la pausa, il game over e la vittoria.\\\\
 \textbf{Livelli}\\
-
+Il gioco è suddiviso in tre livelli. Per la progettazione di una struttura comune per i livelli, ho creato un'interfaccia 'Level' e
+un'abstract class 'AbstractLevel'. In Level vengono dichiarati i metodi che ogni livello dovrà possedere, mentre in AbstractLevel vengono implemetati. I metodi che
+però definiscono caratteristiche differenti per ogni round del livello, sono dichiarati abstract e dovranno essere implementati nelle classi dei livelli. I tre livelli
+dunque, 'FirstLevel','SecondLevel' e 'ThirdLevel', dovranno estendere la classe astratta AbstractLevel.
+Level e AbstractLevel sono state create fin da subito, proprio per evitare di bloccare l'avanzamento dello sviluppo complessivo del progetto.
+Inizialmente sono stati creati e implementati i metodi che avrebbero svolto le azioni principali, mentre successivamente a man mano che il progetto progrediva
+sono stati aggiunti metodi e variabili che si sono dimostrati necessari.\\
+Ogni livello è composto da tre round. Per quanto riguarda la realizzazione del primo livello, questi 3 round sono generati tramite delle costanti, che indicano
+il numero di blocchi normali e blocchi sorpresa, da passare come argomento a 'RoundEasy'. RoundEasy definisce come questi blocchi debbano essere posizionati
+nella schermata di gioco.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{images/Levels.png}
+    \caption{Schema UML dell'organizzazione dei livelli.}
+\end{figure}
+\noindent
 \textbf{Controlli sul Round}\\
-Ogni livello è composto da tre round. Il decremento della vita all'interno del round di gioco e il passaggio all'eventuale round successivo sono
+Il decremento della vita all'interno del round di gioco e il passaggio all'eventuale round successivo sono
 condizionati dai controlli fatti nella classe GameOver (del model). All'interno di questa classe sono presenti due metodi che restituiscono al Model
 un valore booleano, che indicano se il player, tramite il controllo del pad, ha mancato la pallina oppure se il round è terminato.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/GameOver.png}
-    \caption{Schema UML della classe GameOver}
+    \caption{Schema UML della classe GameOver.}
 \end{figure}
 \noindent
 \textbf{View di Pausa, Game Over e Vittoria}\\
@@ -114,7 +129,7 @@ mentuBtn andare alla schermata iniziale di gioco).
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/AbstractView.png}
-    \caption{Schema UML dell'implementazione della View di Pausa, Game Over e Vittoria}
+    \caption{Schema UML dell'implementazione della View di Pausa, Game Over e Vittoria.}
 \end{figure}
 \chapter{Sviluppo}
 \section{Testing automatizzato}
