@@ -14,6 +14,7 @@ public class BallPhysicsImpl implements Physics {
 
   private Direction d = new DirectionImpl();
   private Pair<Integer, Integer> temp;
+  private boolean centre = false;
 
   public BallPhysicsImpl() {
     this.temp = d.getDirection();
@@ -25,6 +26,11 @@ public class BallPhysicsImpl implements Physics {
   @Override
   public void changeDirection(final Side side) {
     this.d.setDirection(temp);
+    if (centre) {
+      d.setDirectionUp();
+      centre = false;
+    }
+
     switch (side) {
     case CORNER: {
       if (this.d.isDirectionLeft()) {
@@ -61,6 +67,7 @@ public class BallPhysicsImpl implements Physics {
     }
       break;
     case PAD_CENTRE: {
+      centre = true;
       d.setDirection(new Pair<Integer, Integer>(0, -2));
     }
 
