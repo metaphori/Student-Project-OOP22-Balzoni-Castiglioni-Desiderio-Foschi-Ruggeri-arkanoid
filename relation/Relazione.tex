@@ -83,6 +83,16 @@ Di seguito nella \Cref{images:Model} seguente si può vedere una rappresentazion
     \caption{Schema UML del Model.}
     \label{images:Model}
 \end{figure}
+La View è gestita principalmente da un'interfaccia, UIController, che dirige tutti i vari JPanel (LeaderboardView, GameView, CommandsView, StartMenu) ed è colei
+che comunica con il Controller dell'applicazione.
+Vi è anche una classe astratta (AbstractView) che viene estesa dai vari menù di gioco (GameOver, PauseMenu e Victory) i quali utilizzano la classe CustomBtn
+creata con lo scopo di avere i bottoni nei vari menù tutti con le stesse caratteristiche. Le principali dipendenze possono essere viste di seguito nella figura \Cref{images:View}.
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.6]{images/View.png}
+    \caption{Schema UML della View.}
+    \label{images:View}
+\end{figure}
 \section{Desing dettagliato}
 \textbf{Ruggeri Simone}\\
 Le parti di lavoro da me svolte hanno riguardato: la progettazione della struttura dei vari livelli,
