@@ -2,7 +2,6 @@ package it.unibo.game.app.view.jswing.implementation;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
-import it.unibo.game.app.view.jswing.api.GameView;
 import it.unibo.game.app.view.jswing.api.UIController;
 
 import java.util.Timer;
@@ -23,23 +22,34 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 
+/**
+ * takes care of showing the objects of the game and their position during the
+ * game.
+ */
 public final class GameViewImpl extends JPanel implements KeyListener, ActionListener {
 
   private UIController observer;
   private boolean see = true;
   private static final int TIME = 2000;
-  // private boolean play = true;
 
+  /**
+   * constructor of this class.
+   * 
+   * @param control
+   */
   @SuppressFBWarnings("EI_EXPOSE_REP2")
-  public GameViewImpl(UIController control) {
+  public GameViewImpl(final UIController control) {
     setFocusable(true);
     addKeyListener(this);
     setFocusTraversalKeysEnabled(false);
     this.observer = control;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void paintComponent(Graphics g) {
+  public void paintComponent(final Graphics g) {
     super.paintComponent(g);
     Graphics2D g2d = (Graphics2D) g;
     // Determina la dimensione del pannello
@@ -93,7 +103,7 @@ public final class GameViewImpl extends JPanel implements KeyListener, ActionLis
 
   }
 
-  private Color peekColor(Entry<Pair<Double, Double>, Optional<Integer>> x) {
+  private Color peekColor(final Entry<Pair<Double, Double>, Optional<Integer>> x) {
     return x.getValue().isEmpty() ? Color.BLACK
         : x.getValue().get() == 2 ? Color.LIGHT_GRAY
             : x.getKey().getY().intValue() == observer.getRowC(0d).intValue() ? Color.RED
@@ -112,13 +122,19 @@ public final class GameViewImpl extends JPanel implements KeyListener, ActionLis
                                                 : Color.GREEN;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void actionPerformed(ActionEvent arg0) {
+  public void actionPerformed(final ActionEvent arg0) {
     repaint();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void keyPressed(KeyEvent arg0) {
+  public void keyPressed(final KeyEvent arg0) {
     if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
       observer.movePadRight();
     }
@@ -129,12 +145,18 @@ public final class GameViewImpl extends JPanel implements KeyListener, ActionLis
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void keyReleased(KeyEvent arg0) {
+  public void keyReleased(final KeyEvent arg0) {
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void keyTyped(KeyEvent arg0) {
+  public void keyTyped(final KeyEvent arg0) {
   }
 
   /**
