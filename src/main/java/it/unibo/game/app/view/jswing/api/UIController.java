@@ -211,8 +211,6 @@ public interface UIController {
    */
   Pair<Double, Double> windowDim();
 
-  Pair<Integer, Integer> frameDim();
-
   /**
    * 
    * @return score.
