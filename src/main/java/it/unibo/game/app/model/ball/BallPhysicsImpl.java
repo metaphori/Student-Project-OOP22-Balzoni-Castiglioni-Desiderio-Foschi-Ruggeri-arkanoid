@@ -30,6 +30,18 @@ public class BallPhysicsImpl implements Physics {
       } else {
         this.d.setDirectionLeft();
       }
+    } else if (side == Side.CORNER) {
+      if (this.d.isDirectionLeft()) {
+        this.d.setDirectionRight();
+      } else {
+        this.d.setDirectionLeft();
+      }
+
+      if (this.d.isDirectionUp()) {
+        this.d.setDirectionDown();
+      } else {
+        this.d.setDirectionUp();
+      }
     }
   }
 
