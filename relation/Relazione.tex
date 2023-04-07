@@ -26,17 +26,17 @@ Il progetto, commissionato dall'Università di Bologna\footnote{\url{https://www
 \\
 \subsection*{Requisiti funzionali}
 \begin{itemize}
-  \item Menù principale che all'avvio del software permette di scegliere il livello in base alla difficoltà e visionare la classifica.
-  \item L’applicazione implementa la fisica della palla e ne gestisce il rimbalzo con i bordi dell’arena, con il pad e con i mattoncini.
-  \item Area di gioco composta da un certo numero di mattoncini che cambiano disposizione ad ogni livello.
-  \item Gestione dei parametri del giocatore, in particolare vita (che diminuisce ogni volta che la pallina esce dall'arena di gioco) e il punteggio.
-  \item Organizzazione del gioco a livelli, ciascuno composto da 3 round ciascuno
-  \item Creazione di differenti bonus o malus
-  \item Avanzamento del gioco con difficoltà incrementale (quantità di mattoncini aumentata per ogni round)
-  \item Realizzazione e aggiornamento di una classifica basata sul punteggio del giocatore
-        \subsection*{Requisiti non funzionali}
-  \item Fluidità del movimento degli oggetti
-  \item Grafica user-friendly
+    \item Menù principale che all'avvio del software permette di scegliere il livello in base alla difficoltà e visionare la classifica.
+    \item L’applicazione implementa la fisica della palla e ne gestisce il rimbalzo con i bordi dell’arena, con il pad e con i mattoncini.
+    \item Area di gioco composta da un certo numero di mattoncini che cambiano disposizione ad ogni livello.
+    \item Gestione dei parametri del giocatore, in particolare vita (che diminuisce ogni volta che la pallina esce dall'arena di gioco) e il punteggio.
+    \item Organizzazione del gioco a livelli, ciascuno composto da 3 round ciascuno
+    \item Creazione di differenti bonus o malus
+    \item Avanzamento del gioco con difficoltà incrementale (quantità di mattoncini aumentata per ogni round)
+    \item Realizzazione e aggiornamento di una classifica basata sul punteggio del giocatore
+          \subsection*{Requisiti non funzionali}
+    \item Fluidità del movimento degli oggetti
+    \item Grafica user-friendly
 \end{itemize}
 \section{Analisi e modello del dominio}
 Il gioco è strutturato a livelli di difficoltà crescente, ognuno dei quali presenta una diversa disposizione composta da tre diverse tipologie di mattoncini. Ogni livello è composto da tre round dove vi è sempre più un numero crescente di mattoncini.
@@ -45,16 +45,16 @@ Il livello contiene anche informazioni riguardanti il punteggio, il quale increm
 \\Il giocatore ha a disposizione un pad che si può muovere solo orrizzontalmente con il quale potrà far rimbalzare la sfera contro i mattoncini.
 Le tre tipologie di mattoncini sono:
 \begin{itemize}
-  \item NormalBrick: mattoncini normali che se colpiti una volta dalla palla vengono distrutti.
-  \item HardBrick: mattoncini che devono essere colpiti due volte per essere distrutti.
-  \item Obstacle: mattoncini indistruttibili.
+    \item NormalBrick: mattoncini normali che se colpiti una volta dalla palla vengono distrutti.
+    \item HardBrick: mattoncini che devono essere colpiti due volte per essere distrutti.
+    \item Obstacle: mattoncini indistruttibili.
 \end{itemize}
 Ulteriori dettagli circa le entità presenti possono essere consultati attraverso la \Cref{images:analysis} inserita di seguito.
 \begin{figure}[H]
-  \centering{}
-  \includegraphics[scale=0.8]{images/analysis.png}
-  \caption{Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro.}
-  \label{images:analysis}
+    \centering{}
+    \includegraphics[scale=0.8]{images/analysis.png}
+    \caption{Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro.}
+    \label{images:analysis}
 \end{figure}
 \chapter{Design}
 \section{Architettura}
@@ -71,9 +71,9 @@ questo non causerebbe modifiche nelle classi di Model e Controller.
 \end{figure}
 Il pattern prevede comunque la suddivisione dei compiti in 3 parti:
 \begin{itemize}
-  \item Model gestisce i dati, la logica e le regole dell'applicazione.
-  \item View responsabile della visualizzazione del dominio applicativo e dell'interazione con l'utente.
-  \item Controller è l'elemento che si interporre tra il Model e la View.
+    \item Model gestisce i dati, la logica e le regole dell'applicazione.
+    \item View responsabile della visualizzazione del dominio applicativo e dell'interazione con l'utente.
+    \item Controller è l'elemento che si interporre tra il Model e la View.
 \end{itemize}
 Il Model è composto da varie classi e interfaccie che rappresentano i principali elementi applicativi (Level, Round, MovingObject, Brick, Pad, Surprise, SizeCalculation).
 Di seguito nella \Cref{images:Model} seguente si può vedere una rappresentazione generale del Model.
@@ -119,14 +119,14 @@ relativa azione che svolge cambia in base a quale panel l'untente si interfaccia
 L'istanza UIController permette ai pannelli di poter svolgere azioni come cambiare view (da tutti e tre i panels è possibile tramite il pulsante
 mentuBtn andare alla schermata iniziale di gioco).
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{images/AbstractView.png}
-  \caption{Schema UML dell'implementazione della View di Pausa, Game Over e Vittoria}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/AbstractView.png}
+    \caption{Schema UML dell'implementazione della View di Pausa, Game Over e Vittoria}
 \end{figure}
 \pagebreak
 \subsection{Desiderio Edoardo}
 Dal momento in cui si è formato il gruppo il mio primo obbiettivo è stato quello preoccuparmi di creare una buona impostazione,
-in particolare grazie al colloquio con il professor Pianini ho potuto chiarire al gruppo maniera definitiva come fosse meglio
+in particolare grazie al colloquio con il professor Pianini ho potuto chiarire al gruppo in maniera definitiva come fosse meglio
 lavorare sul repository del progetto e come doveva funzionare il pattern dell'applicazione da noi scelto.
 In oltre, ho studiato come funzionano i file json di configurazione di vscode in maniera da fornire una configurazione user friendly
 a tutti i miei colleghi per un' esperienza "out of the box" dell' IDE come la configurazione di un debugger meno invasivo rispetto quello di  default.
@@ -140,22 +140,52 @@ Pagando con una maggiore ripetizione dei metodi "messaggeri" che si occupano sem
 dall' applicazione alla sua vista si ottiene una maggiore manutentibilità e scalabilità dell'applicazione.
 Di fatto si è verificato che modifice come:
 \begin{itemize}
-  \item modifica alle classi delle view
-  \item aggiunta metodi o relativa modifica
-  \item aggiunta di intere view
+    \item modifica alle classi delle view
+    \item aggiunta metodi o relativa modifica
+    \item aggiunta di intere view
 \end{itemize}
 si sono rilevate poco costose sia in termini logici, guardando l'interfaccia UIController è lampante come muoversi,
 che in termini pratici, per aggiungere una nuova vista basta aggiungere la sua dichiarazione e il metodo che la invochi.
 \begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{images/UiControllerDesing.png}
-  \caption{proiezione UML della comunicazione fra il controller principale e le viste con UIController}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/UiControllerDesing.png}
+    \caption{proiezione UML della comunicazione fra il controller principale e le viste con UIController}
 \end{figure}
-\textbf{UIController, l'implementazione.}\\
+\pagebreak
+\\
+\textbf{UIController, l'implementazione.}
+Per gestire le varie viste ho scelto di utilizzare un layout di jswing chiamato CardLayout.
+Questo layout è funzionale a quello che intendevo far fare al View-controller poichè
+gestisce due o più componenti che condividono lo stesso spazio di visualizzazione (il jframe nel nostro caso).
 
+Ogni carta\footnote{nel nostro caso, classi che estendevano JPanel in modo da personalizzarne i meccanismi}
+all'avvio dell' applicazione viene aggiunta al "deck"\footnote{il JPanel che riempie il frame principale}
+a questo punto, con i metodi preposti al selezionamento di una carta basterà richiamarli per una visualizzazione
+corretta.
+Come sicuramente descritto anche dai miei colleghi, ogni classe View ha un riferimento all'interfaccia
+del loro controller, di fatto il controller quindi "osserva" il comportamento della view e quando accade una
+determinata interazione della stessa si scatenerà l'evento desiderato.
+Per questo tipo di desing mi sono ispirato alle soluzioni viste in laboratorio e come mi è stato detto
+a ricevimento questo modo di fare non è un pattern observer puro ma posso affermare che sia di simile
+comportamento.
 
+CardLayout non è oro colato, infatti se non fosse stato per l'attività di debugging non sarei mai riuscito
+a capire che non cambia da solo il focus sulla finestra appena selezionata, risultava impossibile
+inserire comandi input da tastiera se non dalla prima finestra aperta e la cosa é stata rislota
+aggiornando il focus alla carta appena selezionata.
+\\
+\textbf{Window resizable.}\\
 
-
+l'idea nasce con la logica di mantenere sempre fisse le dimensioni decise interne al model
+e di renderizzare la view in maniera tale da crearne semplicemente le loro proiezioni su schermo.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/projection.jpg}
+    \caption{bozza fatta durante lo studio}
+\end{figure}
+Per quanto mi riguarda é stato chiaro per me dover trovare il modo di modficare le dimensioni del model rispetto
+uno scostamento opportuno.
+Dopo vari ragionamenti risulta corretto moltiplicare le dimensioni e la posizione per un delta calcolato
 
 \chapter{Sviluppo}
 \section{Testing automatizzato}
@@ -166,11 +196,11 @@ a questo progetto abbiamo cercato di strutturare il lavoro seguendo queste macro
 La missione del progetto è ampiamente descritta nei paragrafi precedenti.
 Le risorse da noi scelte in fase di pianificazione e progettazione sono varie tra cui:
 \begin{itemize}
-  \item materiale didattico fornito dai professori
-  \item plugin gradle
-  \item versione di java 17
-  \item git e github\footnote{\url{github.com}}
-  \item strumenti di pianificazione, comunicazione e in generale multimediali forniti dall'account aziendale (unibo).
+    \item materiale didattico fornito dai professori
+    \item plugin gradle
+    \item versione di java 17
+    \item git e github\footnote{\url{github.com}}
+    \item strumenti di pianificazione, comunicazione e in generale multimediali forniti dall'account aziendale (unibo).
 \end{itemize}
 
 \subsection{Come verrà condotto il progetto?}
