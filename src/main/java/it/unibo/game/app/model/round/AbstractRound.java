@@ -44,7 +44,7 @@ public abstract class AbstractRound implements Round {
     this.numSurprise = numS;
     this.sizeC = size;
     pad = new Pad(SizeCalculation.getPadDim());
-    balls.add(new Ball(size.getBallDim()));
+    balls.add(new Ball(SizeCalculation.getBallDim()));
   }
 
   /**
@@ -53,7 +53,7 @@ public abstract class AbstractRound implements Round {
   @Override
   public void restart() {
     this.balls.clear();
-    MovingObject ball = new Ball(sizeC.getBallDim());
+    MovingObject ball = new Ball(SizeCalculation.getBallDim());
     ball.getPhysics().getDir().resetDirection();
     this.balls.add(ball);
     this.surprise.clear();
@@ -200,7 +200,7 @@ public abstract class AbstractRound implements Round {
    * @return the ball to add to the list of bonus balls
    */
   private MovingObject addSurprise(final Brick brick) {
-    MovingObject b = new Ball(sizeC.getBallDim());
+    MovingObject b = new Ball(SizeCalculation.getBallDim());
     b.setPos(new Pair<>(brick.getPos().getX() + brick.getBrickW() / 2,
         brick.getPos().getY() + brick.getBrickH()));
     b.setSpeed(new SpeedImpl(0, 1));

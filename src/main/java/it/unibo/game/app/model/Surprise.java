@@ -324,7 +324,7 @@ public class Surprise {
     this.level.setSurpriseString("add Ball");
     System.out.println("addBalls");
     for (int i = 0; i < NUM_BALLS; i++) {
-      MovingObject ball = new Ball(this.level.getRound().getSizeCalc().getBallDim());
+      MovingObject ball = new Ball(SizeCalculation.getBallDim());
       this.level.getRound().getExtraBalls().add(ball);
     }
   }
