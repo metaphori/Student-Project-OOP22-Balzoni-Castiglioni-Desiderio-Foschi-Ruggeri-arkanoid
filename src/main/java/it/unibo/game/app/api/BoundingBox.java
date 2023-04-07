@@ -21,7 +21,11 @@ public interface BoundingBox {
     /**
      * Collision occurs in the corner.
      */
-    CORNER
+    CORNER,
+    /**
+     * Collision occurs in the centre of the pad.
+     */
+    PAD_CENTRE
 
   };
 
@@ -45,4 +49,11 @@ public interface BoundingBox {
    *         occurs
    */
   Optional<Side> collideWith(BoundingBox b);
+
+  /**
+   * 
+   * @param b BoundinBox of the GameObject with which the collision could occur.
+   * @return Side.PAD_CENTRE if the collision occurred in the centre of b.
+   */
+  Optional<Side> checkCentre(final BoundingBox b);
 }
