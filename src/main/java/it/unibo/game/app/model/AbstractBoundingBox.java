@@ -14,6 +14,7 @@ import it.unibo.game.app.api.BoundingBox;
 public class AbstractBoundingBox implements BoundingBox {
 
   private Map<Corner, Pair<Double, Double>> corners = new HashMap<>();
+  private final static int CENTRE_RANGE = 10;
 
   /**
    * 
@@ -43,6 +44,21 @@ public class AbstractBoundingBox implements BoundingBox {
   private boolean checkCorners(final Corner c1, final Corner c2, final BoundingBox b) {
     return this.range(this.corners.get(c1).getX(), b.getBox().get(c2).getX())
         && this.range(this.corners.get(c1).getY(), b.getBox().get(c2).getY());
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public Optional<Side> checkCentre(final BoundingBox b) {
+    Double d1 = (this.corners.get(Corner.LEFT_DOWN).getX()
+        + this.corners.get(Corner.RIGHT_DOWN).getX()) / 2;
+    Double d2 = (b.getBox().get(Corner.LEFT_UP).getX()
+        + b.getBox().get(Corner.RIGHT_UP).getX()) / 2;
+    if (d1 <= d2 + CENTRE_RANGE && d1 >= d2 - CENTRE_RANGE) {
+      return Optional.of(Side.PAD_CENTRE);
+    } else {
+      return Optional.empty();
+    }
   }
 
   /**
