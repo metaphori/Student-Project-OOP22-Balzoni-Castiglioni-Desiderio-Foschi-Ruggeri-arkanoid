@@ -5,7 +5,6 @@ import java.util.Optional;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
-import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.MovingObject;
 import it.unibo.game.app.api.BoundingBox.Corner;
@@ -71,7 +70,7 @@ public class Collision {
       var opt = b.getBoundingBox().collideWith(obj.getBoundingBox());
 
       if (opt.isPresent()) {
-        if (obj.getType() == BrickType.NORMAL) {
+        if (obj.getRes().isPresent() && obj.getRes().get().equals(1)) {
           this.level.getScore().increaseScore();
         } else {
           this.level.getScore().resetPoints();
