@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.model.levels.FirstLevel;
 
+/**
+ * method to test if isRoundFinished is working.
+ */
 public class GameOverTest {
   @Test
   void testIsRoundFinished() throws NoSuchMethodException, SecurityException,
