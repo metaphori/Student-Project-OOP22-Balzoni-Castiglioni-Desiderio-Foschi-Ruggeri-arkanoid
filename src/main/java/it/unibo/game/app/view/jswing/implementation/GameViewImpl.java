@@ -1,7 +1,5 @@
 package it.unibo.game.app.view.jswing.implementation;
 
-import javax.swing.*;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.view.jswing.api.GameView;
@@ -9,10 +7,20 @@ import it.unibo.game.app.view.jswing.api.UIController;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.*;
 import java.util.Map.Entry;
+
+import javax.swing.JPanel;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 
 public final class GameViewImpl extends JPanel
