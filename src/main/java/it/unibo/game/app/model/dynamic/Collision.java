@@ -5,7 +5,6 @@ import java.util.Optional;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
-import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.MovingObject;
 import it.unibo.game.app.api.BoundingBox.Corner;
