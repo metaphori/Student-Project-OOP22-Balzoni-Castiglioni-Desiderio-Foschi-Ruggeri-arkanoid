@@ -2,9 +2,16 @@
 
 classDiagram
     Level <|-- AbstractLevel
-    AbstractLevel <|-- FirstLevel
+    AbstractLevel <|-- FirstLevel 
     AbstractLevel <|-- SecondLevel
     AbstractLevel <|-- ThirdLevel
+    AbstractLevel o-- Round
+    AbstractLevel o-- Score
+    AbstractLevel o-- Brick
+    FirstLevel o-- SizeCalculation
+    SecondLevel o-- SizeCalculation
+    ThirdLevel o-- SizeCalculation
+
     
     class Level {
         <<Interface>>
@@ -44,6 +51,8 @@ classDiagram
       BRICK_ROWS_FIRST int = 8
       BRICK_ROWS_SECOND int = 11
       BRICK_ROWS_THIRD int = 13
+      -getCol() int
+      -set(int,int) void
     }
     class SecondLevel{
       ID int = 2
@@ -61,6 +70,8 @@ classDiagram
       BRICKCOL3 int = 7
       BRICKROW int = 15
       JUMP int = 4
+      -getCol() int
+      -set(int,int,int) void
     }
     class ThirdLevel{
         ID int = 3
@@ -73,6 +84,8 @@ classDiagram
         OBSTACLES1 int = 2
         OBSTACLES2 int = 4
         OBSTACLES3 int = 6
+        -getCol() int
+        -set(int,int,int) void
     }
 
     ## AbstractView

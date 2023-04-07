@@ -26,17 +26,17 @@ Il progetto, commissionato dall'Università di Bologna\footnote{\url{https://www
 \\
 \subsection*{Requisiti funzionali}
 \begin{itemize}
-  \item Menù principale che all'avvio del software permette di scegliere il livello in base alla difficoltà e visionare la classifica.
-  \item L’applicazione implementa la fisica della palla e ne gestisce il rimbalzo con i bordi dell’arena, con il pad e con i mattoncini.
-  \item Area di gioco composta da un certo numero di mattoncini che cambiano disposizione ad ogni livello.
-  \item Gestione dei parametri del giocatore, in particolare vita (che diminuisce ogni volta che la pallina esce dall'arena di gioco) e il punteggio.
-  \item Organizzazione del gioco a livelli, ciascuno composto da 3 round ciascuno
-  \item Creazione di differenti bonus o malus
-  \item Avanzamento del gioco con difficoltà incrementale (quantità di mattoncini aumentata per ogni round)
-  \item Realizzazione e aggiornamento di una classifica basata sul punteggio del giocatore
-        \subsection*{Requisiti non funzionali}
-  \item Fluidità del movimento degli oggetti
-  \item Grafica user-friendly
+    \item Menù principale che all'avvio del software permette di scegliere il livello in base alla difficoltà e visionare la classifica.
+    \item L’applicazione implementa la fisica della palla e ne gestisce il rimbalzo con i bordi dell’arena, con il pad e con i mattoncini.
+    \item Area di gioco composta da un certo numero di mattoncini che cambiano disposizione ad ogni livello.
+    \item Gestione dei parametri del giocatore, in particolare vita (che diminuisce ogni volta che la pallina esce dall'arena di gioco) e il punteggio.
+    \item Organizzazione del gioco a livelli, ciascuno composto da 3 round ciascuno
+    \item Creazione di differenti bonus o malus
+    \item Avanzamento del gioco con difficoltà incrementale (quantità di mattoncini aumentata per ogni round)
+    \item Realizzazione e aggiornamento di una classifica basata sul punteggio del giocatore
+          \subsection*{Requisiti non funzionali}
+    \item Fluidità del movimento degli oggetti
+    \item Grafica user-friendly
 \end{itemize}
 \section{Analisi e modello del dominio}
 Il gioco è strutturato a livelli di difficoltà crescente, ognuno dei quali presenta una diversa disposizione composta da tre diverse tipologie di mattoncini. Ogni livello è composto da tre round dove vi è sempre più un numero crescente di mattoncini.
@@ -45,16 +45,16 @@ Il livello contiene anche informazioni riguardanti il punteggio, il quale increm
 \\Il giocatore ha a disposizione un pad che si può muovere solo orrizzontalmente con il quale potrà far rimbalzare la sfera contro i mattoncini.
 Le tre tipologie di mattoncini sono:
 \begin{itemize}
-  \item NormalBrick: mattoncini normali che se colpiti una volta dalla palla vengono distrutti.
-  \item HardBrick: mattoncini che devono essere colpiti due volte per essere distrutti.
-  \item Obstacle: mattoncini indistruttibili.
+    \item NormalBrick: mattoncini normali che se colpiti una volta dalla palla vengono distrutti.
+    \item HardBrick: mattoncini che devono essere colpiti due volte per essere distrutti.
+    \item Obstacle: mattoncini indistruttibili.
 \end{itemize}
 Ulteriori dettagli circa le entità presenti possono essere consultati attraverso la \Cref{images:analysis} inserita di seguito.
 \begin{figure}[H]
-  \centering{}
-  \includegraphics[scale=0.8]{images/analysis.png}
-  \caption{Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro.}
-  \label{images:analysis}
+    \centering{}
+    \includegraphics[scale=0.8]{images/analysis.png}
+    \caption{Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro.}
+    \label{images:analysis}
 \end{figure}
 \chapter{Design}
 \section{Architettura}
@@ -71,9 +71,9 @@ questo non causerebbe modifiche nelle classi di Model e Controller.
 \end{figure}
 Il pattern prevede comunque la suddivisione dei compiti in 3 parti:
 \begin{itemize}
-  \item Model gestisce i dati, la logica e le regole dell'applicazione.
-  \item View responsabile della visualizzazione del dominio applicativo e dell'interazione con l'utente.
-  \item Controller è l'elemento che si interporre tra il Model e la View.
+    \item Model gestisce i dati, la logica e le regole dell'applicazione.
+    \item View responsabile della visualizzazione del dominio applicativo e dell'interazione con l'utente.
+    \item Controller è l'elemento che si interporre tra il Model e la View.
 \end{itemize}
 Il Model è composto da varie classi e interfaccie che rappresentano i principali elementi applicativi (Level, Round, MovingObject, Brick, Pad, Surprise, SizeCalculation).
 Di seguito nella \Cref{images:Model} seguente si può vedere una rappresentazione generale del Model.
@@ -107,6 +107,33 @@ Il Controller è costituito da una sola interfaccia che comunica con il Model e 
 Le parti di lavoro da me svolte hanno riguardato: la progettazione della struttura dei vari livelli,
 l'impostazione del primo livello con i suoi 3 round, il controllo se il giocatore manca la pallina oppure se finisce il round, lo sviluppo di
 alcuni metodi per i bonus, la parte di grafica che riguarda la pausa, il game over e la vittoria.\\\\
+\textbf{Livelli}\\
+Il gioco è suddiviso in tre livelli. Per la progettazione di una struttura comune per i livelli, ho creato un'interfaccia 'Level' e
+un'abstract class 'AbstractLevel'. In Level vengono dichiarati i metodi che ogni livello dovrà possedere, mentre in AbstractLevel vengono implemetati. I metodi che
+però definiscono caratteristiche differenti per ogni round del livello, sono dichiarati abstract e dovranno essere implementati nelle classi dei livelli. I tre livelli
+dunque, 'FirstLevel','SecondLevel' e 'ThirdLevel', dovranno estendere la classe astratta AbstractLevel.
+Level e AbstractLevel sono state create fin da subito, proprio per evitare di bloccare l'avanzamento dello sviluppo complessivo del progetto.
+Inizialmente sono stati creati e implementati i metodi che avrebbero svolto le azioni principali, mentre successivamente a man mano che il progetto progrediva
+sono stati aggiunti metodi e variabili che si sono dimostrati necessari.\\
+Ogni livello è composto da tre round. Per quanto riguarda la realizzazione del primo livello, questi 3 round sono generati tramite delle costanti, che indicano
+il numero di blocchi normali e blocchi sorpresa, da passare come argomento a 'RoundEasy'. RoundEasy definisce come questi blocchi debbano essere posizionati
+nella schermata di gioco.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{images/Levels.png}
+    \caption{Schema UML dell'organizzazione dei livelli.}
+\end{figure}
+\noindent
+\textbf{Controlli sul Round}\\
+Il decremento della vita all'interno del round di gioco e il passaggio all'eventuale round successivo sono
+condizionati dai controlli fatti nella classe GameOver (del model). All'interno di questa classe sono presenti due metodi che restituiscono al Model
+un valore booleano, che indicano se il player, tramite il controllo del pad, ha mancato la pallina oppure se il round è terminato.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/GameOver.png}
+    \caption{Schema UML della classe GameOver.}
+\end{figure}
+\noindent
 \textbf{View di Pausa, Game Over e Vittoria}\\
 La parte grafica del progetto prevede l'alternarsi di JPanels (che rappresentano menù inziale, menù di pausa, gameover, vittoria, classifica)
 con la game view vera e propria.
@@ -119,9 +146,9 @@ relativa azione che svolge cambia in base a quale panel l'untente si interfaccia
 L'istanza UIController permette ai pannelli di poter svolgere azioni come cambiare view (da tutti e tre i panels è possibile tramite il pulsante
 mentuBtn andare alla schermata iniziale di gioco).
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{images/AbstractView.png}
-  \caption{Schema UML dell'implementazione della View di Pausa, Game Over e Vittoria}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/AbstractView.png}
+    \caption{Schema UML dell'implementazione della View di Pausa, Game Over e Vittoria.}
 \end{figure}
 \pagebreak
 \subsection{Desiderio Edoardo}
@@ -140,16 +167,16 @@ Pagando con una maggiore ripetizione dei metodi "messaggeri" che si occupano sem
 dall' applicazione alla sua vista si ottiene una maggiore manutentibilità e scalabilità dell'applicazione.
 Di fatto si è verificato che modifice come:
 \begin{itemize}
-  \item modifica alle classi delle view
-  \item aggiunta metodi o relativa modifica
-  \item aggiunta di intere view
+    \item modifica alle classi delle view
+    \item aggiunta metodi o relativa modifica
+    \item aggiunta di intere view
 \end{itemize}
 si sono rilevate poco costose sia in termini logici, guardando l'interfaccia UIController è lampante come muoversi,
 che in termini pratici, per aggiungere una nuova vista basta aggiungere la sua dichiarazione e il metodo che la invochi.
 \begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{images/UiControllerDesing.png}
-  \caption{proiezione UML della comunicazione fra il controller principale e le viste con UIController}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/UiControllerDesing.png}
+    \caption{proiezione UML della comunicazione fra il controller principale e le viste con UIController}
 \end{figure}
 \textbf{UIController, l'implementazione.}\\
 
@@ -166,11 +193,11 @@ a questo progetto abbiamo cercato di strutturare il lavoro seguendo queste macro
 La missione del progetto è ampiamente descritta nei paragrafi precedenti.
 Le risorse da noi scelte in fase di pianificazione e progettazione sono varie tra cui:
 \begin{itemize}
-  \item materiale didattico fornito dai professori
-  \item plugin gradle
-  \item versione di java 17
-  \item git e github\footnote{\url{github.com}}
-  \item strumenti di pianificazione, comunicazione e in generale multimediali forniti dall'account aziendale (unibo).
+    \item materiale didattico fornito dai professori
+    \item plugin gradle
+    \item versione di java 17
+    \item git e github\footnote{\url{github.com}}
+    \item strumenti di pianificazione, comunicazione e in generale multimediali forniti dall'account aziendale (unibo).
 \end{itemize}
 
 \subsection{Come verrà condotto il progetto?}
