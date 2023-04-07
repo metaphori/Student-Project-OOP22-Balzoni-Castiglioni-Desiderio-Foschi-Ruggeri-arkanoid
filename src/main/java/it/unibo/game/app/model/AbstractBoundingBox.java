@@ -102,7 +102,7 @@ public class AbstractBoundingBox implements BoundingBox {
    * @return Returns true if d1 is within the range.
    */
   private boolean range(final Double d1, final Double d2) {
-    return (d1 >= d2 - 2 && d1 <= d2 + 2);
+    return (d1 >= d2 - 3 && d1 <= d2 + 3);
   }
 
   /**
