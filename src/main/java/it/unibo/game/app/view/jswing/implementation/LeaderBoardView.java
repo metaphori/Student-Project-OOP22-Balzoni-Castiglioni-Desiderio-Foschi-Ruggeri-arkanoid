@@ -33,6 +33,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
   private static final int MAX = 5;
   private static final int DIM = 25;
   private static final int GAP = 15;
+  private static final int TITLE_SIZE = 35;
   private UIController control;
 
   /**
@@ -50,7 +51,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
     this.setBackground(Color.decode(COLOR));
 
     JLabel title = new JLabel("LEADERBOARD: ");
-    title.setFont(new Font("myFont", Font.ITALIC, this.control.frameDim().getY() / GAP));
+    title.setFont(new Font("myFont", Font.ITALIC, TITLE_SIZE));
     title.setBackground(Color.decode(COLOR));
     title.setForeground(Color.YELLOW);
     this.add(title);
