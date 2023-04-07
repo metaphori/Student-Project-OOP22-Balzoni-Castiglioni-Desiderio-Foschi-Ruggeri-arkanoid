@@ -180,7 +180,37 @@ che in termini pratici, per aggiungere una nuova vista basta aggiungere la sua d
 \end{figure}
 \textbf{UIController, l'implementazione.}\\
 
-
+\textbf{Castiglioni Chiara}\\
+Nel corso dello sviluppo del progetto mi sono occupata principalmente della parte riguardante la struttura dei vari round, il game loop del videogioco,
+la parte di calcoli per il posizionamento delle varie entità e della loro diminsione, lo sviluppo di due metodi per i bonus, la creazione dell'entità Brick
+mentre nella parte della View l'apparizione della scritta che indica il bonus preso.\\
+\textbf{GameEngine}
+\\Questa classe è il vero e proprio motore del gioco al cui interno vi è il game loop cioè un ciclo che viene attivato quando:
+\begin{itemize}
+    \item L'utente seleziona uno dei tre livello messi a disposizione nello StartMenu.
+    \item Si riprende il gioco dal menù di pausa.
+    \item Si inizia un nuovo round.
+\end{itemize}
+mentre invece viene interrotto nel momento in cui:
+\begin{itemize}
+    \item Viene aperto il menù di pausa all'interno della partita.
+    \item Il giocatore perde le sue tre vite messe a disposizione.
+    \item L'utente vince il round e deve passare a quello successivo.
+    \item Il giocatore vince la partita.
+\end{itemize}
+Per la realizzazione del game loop mi sono servita di una classe della libreria Swing cioè SwingWorker che consente di eseguire un thread in background
+in quanto Swing utilizza un singolo thread cioè Event dispatch thread.
+\\All'interno del game loop richiamo alcuni metodi privati che richiamano a loro volta metodi del Controller in quanto questa classe deve comunicare con il Model
+e con la View aggiornandoli continuamente.
+\\Per quanto riguarda l'aggiornamento del Model il game loop si occupa continuamente di:
+\begin{itemize}
+    \item Richiamare l'update delle entità in movimento.
+    \item Controllare se vi è la terminazione del round e in tal caso richiamare l'inizializzazione del round successivo se vi è, altrimenti, viene impostata la vittoria.
+    \item Controllare il meccanismo di perdita di vita dell'utente, nel caso avesse ancora vite viene riposizionata la pallina alla posizione iniziale altrimenti viene dichiarato game over.
+\end{itemize}
+In riferimento alla View il game loop si occupa di richiamare la repaint del Frame.
+\\All'interno della classe GameEngine vi è anche un metodo che viene richiamato come ultimo all'interno del ciclo cioè WaitForNextFrame che si occupa di mantenere
+la stessa velocità di esecuzione del ciclo su diversi PC in modo tale da evitare che su dispositivi molto prestanti l'applicazione venga eseguita troppo velocemente.
 
 
 
