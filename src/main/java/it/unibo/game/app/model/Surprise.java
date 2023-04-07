@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
@@ -177,15 +179,19 @@ public class Surprise {
    * method that randomly deletes bricks. Edoardo Desiderio
    */
   private void deleteRandomBricks() {
-    this.level.setSurpriseString("delete Random Bricks");
-    System.out.println("deleteRandomBricks");
-    var i = random.nextInt(1, level.getRound().getBrick().size() / 2) + 1;
-    while (i > 0) {
-      level.getRound().remove(random.nextInt(level.getRound().getBrick().size()));
-      // System.out.println("bricks to delate: " + i);
-      i--;
+    try {
+      var i = random.nextInt(0, Integer.max(2, level.getRound().getBrick().size() / 2));
+      var label = String.format("delete Random Bricks: %d", i);
+      this.level.setSurpriseString(label);
+      System.out.println("-------------------------------------------------------------");
+      while (i > 0) {
+        this.deleteBrick(random.nextInt(0, level.getRound().getBrick().size()));
+        // System.out.println("bricks to delate: " + i);
+        i--;
+      }
+    } catch (Exception e) {
+      System.out.println(e.toString());
     }
-
   }
 
   /**
@@ -395,6 +401,16 @@ public class Surprise {
    */
   public void chooseSurprise() {
     final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
-    this.map.get(method).run();
+    CompletableFuture<Void> future = CompletableFuture
+        .runAsync(() -> this.map.get(method).run());
+    try {
+      future.get();
+    } catch (InterruptedException e) {
+      System.out.println(e.toString());
+    } catch (ExecutionException e) {
+      System.out.println(e.toString());
+
+    }
+    future.join();
   }
 }
