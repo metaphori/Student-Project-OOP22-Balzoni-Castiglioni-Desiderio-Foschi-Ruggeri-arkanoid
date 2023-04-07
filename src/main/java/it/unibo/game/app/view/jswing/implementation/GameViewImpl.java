@@ -23,8 +23,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 
-public final class GameViewImpl extends JPanel
-    implements KeyListener, ActionListener, GameView {
+public final class GameViewImpl extends JPanel implements KeyListener, ActionListener {
 
   private UIController observer;
   private boolean see = true;
