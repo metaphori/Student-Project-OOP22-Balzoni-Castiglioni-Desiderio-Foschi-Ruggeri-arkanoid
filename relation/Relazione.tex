@@ -65,7 +65,7 @@ serviti di una funzionalità di una libreria grafica (SwingWorker).
 questo non causerebbe modifiche nelle classi di Model e Controller.
 \begin{figure}[H]
     \centering{}
-    \includegraphics[scale=0.6]{images/MVC.png}
+    \includegraphics[scale=0.5]{images/MVC.png}
     \caption{Schema UML del pattern.}
     \label{images:MVC}
 \end{figure}
@@ -79,7 +79,7 @@ Il Model è composto da varie classi e interfaccie che rappresentano i principal
 Di seguito nella \Cref{images:Model} seguente si può vedere una rappresentazione generale del Model.
 \begin{figure}[H]
     \centering{}
-    \includegraphics[scale=0.8]{images/Model.png}
+    \includegraphics[scale=0.7]{images/Model.png}
     \caption{Schema UML del Model.}
     \label{images:Model}
 \end{figure}
@@ -89,10 +89,19 @@ Vi è anche una classe astratta (AbstractView) che viene estesa dai vari menù d
 creata con lo scopo di avere i bottoni nei vari menù tutti con le stesse caratteristiche. Le principali dipendenze possono essere viste di seguito nella figura \Cref{images:View}.
 \begin{figure}[H]
     \centering{}
-    \includegraphics[scale=0.6]{images/View.png}
+    \includegraphics[scale=0.5]{images/View.png}
     \caption{Schema UML della View.}
     \label{images:View}
 \end{figure}
+Il Controller è costituito da una sola interfaccia che comunica con il Model e con la View ma anche con la classe GameEngine, il motore dell'applicazione.
+\\Di seguito nella \Cref{images:Controller} l'UML del Controller.
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.4]{images/Controller.png}
+    \caption{Schema UML della View.}
+    \label{images:Controller}
+\end{figure}
+
 \section{Desing dettagliato}
 \textbf{Ruggeri Simone}\\
 Le parti di lavoro da me svolte hanno riguardato: la progettazione della struttura dei vari livelli,
