@@ -6,38 +6,43 @@ import java.util.Optional;
 import it.unibo.game.Pair;
 
 public interface BoundingBox {
-	/**
-	 * Side where the box collide.
-	 */
-	enum Side {
-		/**
-		 * Side top and bottom.
-		 */
-		UP_DOWN,
-		/**
-		 * Side left and right.
-		 */
-		LEFT_RIGHT
-	};
+  /**
+   * Side where the box collide.
+   */
+  enum Side {
+    /**
+     * Side top and bottom.
+     */
+    UP_DOWN,
+    /**
+     * Side left and right.
+     */
+    LEFT_RIGHT,
+    /**
+     * Collision occurs in the corner.
+     */
+    CORNER
 
-	/**
-	 * Corners of the bounding box.
-	 */
-	enum Corner {
-		LEFT_DOWN, LEFT_UP, RIGHT_DOWN, RIGHT_UP
-	};
+  };
 
-	/**
-	 * 
-	 * @return Map of Corners and their respective coordinates.
-	 */
-	Map<Corner, Pair<Double, Double>> getBox();
+  /**
+   * Corners of the bounding box.
+   */
+  enum Corner {
+    LEFT_DOWN, LEFT_UP, RIGHT_DOWN, RIGHT_UP
+  };
 
-	/**
-	 * 
-	 * @param b BoundinBox of the GameObject with which the collision could occur.
-	 * @return the side where the box collide or an empty optional if no collision.
-	 *         occurs
-	 */
-	Optional<Side> collideWith(BoundingBox b);
+  /**
+   * 
+   * @return Map of Corners and their respective coordinates.
+   */
+  Map<Corner, Pair<Double, Double>> getBox();
+
+  /**
+   * 
+   * @param b BoundinBox of the GameObject with which the collision could occur.
+   * @return the side where the box collide or an empty optional if no collision.
+   *         occurs
+   */
+  Optional<Side> collideWith(BoundingBox b);
 }
