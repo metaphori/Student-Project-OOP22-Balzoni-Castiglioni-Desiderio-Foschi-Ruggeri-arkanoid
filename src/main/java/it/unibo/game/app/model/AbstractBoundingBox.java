@@ -14,7 +14,7 @@ import it.unibo.game.app.api.BoundingBox;
 public class AbstractBoundingBox implements BoundingBox {
 
   private Map<Corner, Pair<Double, Double>> corners = new HashMap<>();
-  private final static int CENTRE_RANGE = 10;
+  private static final int CENTRE_RANGE = 10;
 
   /**
    * 

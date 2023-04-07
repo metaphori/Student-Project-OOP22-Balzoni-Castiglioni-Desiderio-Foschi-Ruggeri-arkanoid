@@ -20,7 +20,7 @@ public class CollisionTest {
   Collision colls;
 
   @Test
-  void TestEdgesColl() {
+  void testEdgesColl() {
     Level level = new FirstLevel();
     level.setFirstRound();
     this.colls = new Collision(level);
@@ -56,7 +56,7 @@ public class CollisionTest {
   }
 
   @Test
-  void TestPadColl() {
+  void testPadColl() {
     Level level = new FirstLevel();
     level.setFirstRound();
     this.colls = new Collision(level);
@@ -64,8 +64,10 @@ public class CollisionTest {
     var dir = new DirectionImpl();
 
     /* collision with the pad from above */
-    level.getRound().getBalls().get(0).setPos(new Pair<Double, Double>(posPad.getX() + 1,
-        posPad.getY() - level.getRound().getBalls().get(0).getDimension().getHeight()));
+
+    level.getRound().getBalls().get(0)
+        .setPos(new Pair<Double, Double>(posPad.getX() + 1, posPad.getY()
+            - level.getRound().getBalls().get(0).getDimension().getHeight() + 1));
     level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionDown();
     dir.setDirectionUp();
     assertTrue(colls.collideWithPad(level.getRound().getBalls().get(0),
