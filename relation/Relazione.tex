@@ -213,9 +213,28 @@ In riferimento alla View il game loop si occupa di richiamare la repaint del Fra
 la stessa velocità di esecuzione del ciclo su diversi PC in modo tale da evitare che su dispositivi molto prestanti l'applicazione venga eseguita troppo velocemente.
 \begin{figure}[H]
     \centering{}
-    \includegraphics[scale=0.6]{images/GameEngine.png}
+    \includegraphics[scale=0.5]{images/GameEngine.png}
     \caption{Schema UML del GameEngine.}
     \label{images:GameEngine}
+\end{figure}
+\textbf{Brick}\\
+Fin da subito mi sono occupata dell'entità brick facendo un'interfaccia Brick che estende quella già implementata dai miei colleghi (GameObject) in modo tale da avere già i metodi
+per la posizione dei brick, la loro boundingBox e la loro dimensione.
+\\Per questa entità ho poi implementato un'AbstractBrick che implementa Brick in modo tale che le due diverse tipologie di blocchi (normali e ostacoli) potessero estenderla ereditando dei medoti
+già implementati come per esempio il tipo di blocco e tutti i metodi deell'interfaccia GameObject mentre altri, invece, da implementare in quanto differiscono dalle diverse tipologie di blocchi come:
+\begin{itemize}
+    \item La resistenza del blocco.
+    \item Il metodo che serve a sapere se un blocco è distruttibile.
+    \item Il metodo hit che viene chiamato quando un blocco viene colpito dalla pallina.
+\end{itemize}
+In particolare mi sono occupata della classe NormalBrick che estende AbstractBrick la quale si occupa delle creazione di blocchi normali oppure hard a seconda della resistenza datagli.
+\\Questa scelta strutturale è dovuta dal fatto che i brick normali e quelli hard differiscono solamente a livello della quantità di resistenza quindi, ho ritenuto inutile creare un'altra classe e
+aggiungere un tipo diverso di brick all'interno di BrickType.
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.6]{images/Brick.png}
+    \caption{Schema UML dell'entità brick.}
+    \label{images:Brick}
 \end{figure}
 
 
