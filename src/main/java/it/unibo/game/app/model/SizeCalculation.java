@@ -19,7 +19,6 @@ public class SizeCalculation {
   private static final double MUL_X2 = 1.5;
   private static final double DIVEDER_PAD_X = 60;
   private static final double DIVEDER_BALL = 30;
-  // private static final int FIX_START_Y = 5;
 
   private int numBrickCol;
   private Double startX;
@@ -115,7 +114,7 @@ public class SizeCalculation {
    * 
    * @return the dimension of ball method that calculates the size of the ball.
    */
-  public Dimension getBallDim() {
+  public static Dimension getBallDim() {
     return new DimensionImpl(WORLD_WIDTH / DIVEDER_BALL, WORLD_WIDTH / DIVEDER_BALL);
   }
 }

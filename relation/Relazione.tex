@@ -122,6 +122,7 @@ nella schermata di gioco.
     \centering
     \includegraphics[scale=0.8]{images/Levels.png}
     \caption{Schema UML dell'organizzazione dei livelli.}
+    \label{images:Levels}
 \end{figure}
 \noindent
 \textbf{Controlli sul Round}\\
@@ -236,7 +237,25 @@ aggiungere un tipo diverso di brick all'interno di BrickType.
     \caption{Schema UML dell'entità brick.}
     \label{images:Brick}
 \end{figure}
-
+\textbf{SecondLevel}\\
+In questa classe mi sono occupata principalmente della scelta sulla quantità di blocchi da disporre all'interno dei tre round. La struttura della mia classe può essere
+visualizzata alla \Cref{images:Levels}.\\
+\textbf{SizeCalculation}\\
+Questa classe si occupa di eseguire calcoli riguardanti il posizionamento delle varie entità e la loro dimensione all'interno del mondo di gioco al
+quale abbiamo deciso di dargli una dimensione fissa.
+\\Questa classe richiede il numero di brick per riga e per colonna e il numero di round passati.
+Il primo parametro passato (numBrickCol) serve per calcolare l'altezza di ogni singolo blocco, il secondo (numBrickRow) per calcolare la larghezza dei blocchi
+mentre numRoundPassed serve per sapere fin dove posizionare i blocchi lungo l'asse delle ordinate.
+\\Vengono anche calcolati il punto di partenza e di fine del posizionamento dei blocchi lungo l'asse delle ascisse, facendoli lasciare sia all'inizio che alla fine mezza
+lunghezza del blocco dal muro.
+\\Vi sono anche due metodi che calcolano le dimensioni del pad e della pallina rispetto alle dimensioni del mondo nel model e un metodo che serve alla view per sapere qual è
+la coordinata y di ogni riga in modo da riuscire a colorare in modo diverso ogni riga.
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.5]{images/SizeCalculation.png}
+    \caption{Schema UML di SizeCalculation.}
+    \label{images:SizeCalculation}
+\end{figure}
 
 
 \chapter{Sviluppo}
