@@ -71,7 +71,7 @@ public class Collision {
       var opt = b.getBoundingBox().collideWith(obj.getBoundingBox());
 
       if (opt.isPresent()) {
-        if (obj.getType() == BrickType.NORMAL) {
+        if (obj.getRes().isPresent() && obj.getRes().get().equals(1)) {
           this.level.getScore().increaseScore();
         } else {
           this.level.getScore().resetPoints();
