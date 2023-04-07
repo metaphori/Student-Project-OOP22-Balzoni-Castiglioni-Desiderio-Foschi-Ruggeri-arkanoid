@@ -41,9 +41,11 @@ public class Collision {
         || b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w) {
       b.getPhysics().changeDirection(Side.LEFT_RIGHT);
     }
-    if (b.getBoundingBox().getBox().get(Corner.LEFT_UP).getY() < 2) {
+    if (b.getBoundingBox().getBox().get(Corner.LEFT_UP).getY() <= 2
+        && b.getPhysics().getDir().getDirection().getY() != 1) {
       System.out.println(b.getPos());
       b.getPhysics().changeDirection(Side.UP_DOWN);
+      System.out.println("cambioo");
     }
   }
 
