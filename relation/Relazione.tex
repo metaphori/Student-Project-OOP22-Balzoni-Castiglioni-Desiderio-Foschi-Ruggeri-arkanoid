@@ -173,7 +173,7 @@ Di fatto si è verificato che modifice come:
 \end{itemize}
 si sono rilevate poco costose sia in termini logici, guardando l'interfaccia UIController è lampante come muoversi,
 che in termini pratici, per aggiungere una nuova vista basta aggiungere la sua dichiarazione e il metodo che la invochi.
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/UiControllerDesing.png}
     \caption{proiezione UML della comunicazione fra il controller principale e le viste con UIController}
@@ -211,6 +211,12 @@ e con la View aggiornandoli continuamente.
 In riferimento alla View il game loop si occupa di richiamare la repaint del Frame.
 \\All'interno della classe GameEngine vi è anche un metodo che viene richiamato come ultimo all'interno del ciclo cioè WaitForNextFrame che si occupa di mantenere
 la stessa velocità di esecuzione del ciclo su diversi PC in modo tale da evitare che su dispositivi molto prestanti l'applicazione venga eseguita troppo velocemente.
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.6]{images/GameEngine.png}
+    \caption{Schema UML del GameEngine.}
+    \label{images:GameEngine}
+\end{figure}
 
 
 
