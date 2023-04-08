@@ -20,6 +20,7 @@ public interface MovingObject extends GameObject {
    * 
    * @param d
    */
+  @Override
   void setDimension(Dimension d);
 
   /**
