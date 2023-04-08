@@ -341,7 +341,7 @@ public class SurpriseTest {
     assertTrue(pad.getBoundingBox().getBox().get(Corner.RIGHT_DOWN)
         .getX() <= SizeCalculation.getWorldSize().getY());
 
-    assertFalse(pad.getPos().getX() == oldWpos);
+    assertFalse(pad.getPos().getX().equals(oldWpos));
     assertFalse(pad.getPos().getX() > oldWpos);
     assertTrue(pad.getDimension().getWidth() > SizeCalculation.getPadDim().getWidth());
     Timer timer = new Timer();
