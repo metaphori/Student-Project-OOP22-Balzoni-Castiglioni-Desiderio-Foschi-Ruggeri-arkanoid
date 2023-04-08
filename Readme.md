@@ -14,3 +14,8 @@ To play ARKANOID, you need to have Java installed on your system. You can downlo
 To run the game, simply download last release and execute the arkanoid.jar file:
 from terminal: `java -jar arkanoid.jar`
 or double click on application 
+
+## Controls
+
+- Use the left and right arrow keys to move the paddle.
+- Press space pause application
