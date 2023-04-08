@@ -338,6 +338,32 @@ della classe SizeCalculation già descritta per sapere dove partire a inserirli.
     \label{images:Round}
 \end{figure}
 
+\pagebreak
+\subsection{Foschi Virginia}
+Nel corso dello sviluppo del progetto il mio lavoro si è principalmente concentrato sulla gestione e implementazione della classifica di gioco, del salvataggio del punteggio, del livello difficile con i corrispondenti round e della visualizzazione dei comandi principali del gioco.\\
+Tuttavia ho collaborato anche alla creazione dei bonus e alla visualizzazione degli oggetti del gioco.\\\\
+\textbf{Classifica di gioco}\\
+Per quanto riguarda la realizzazione della classifica ho optato per la creazione, all'avvio dell'applicazione, di un file di testo nella home directory dell'utente in cui verrranno inizialmente caricati i punteggi conseguiti da me e i miei compagni che si trovano memorizzati all'interno di un file di testo nella cartella resources del progetto.
+\\Ogni giocatore ha la possibilità, una volta completato il livello o dopo aver perso, di memorizzare il punteggio complessivo conseguito inserendo nome e password. Si è pensato infatti all'utilizzo di una password in modo da permettere al giocatore, una volta riaperta l'applicazione, di aggiornare il punteggio conseguito nelle partite precedenti.
+\\La memorizzazione del punteggio avvine nel seguente modo:
+\begin{itemize}
+    \item Ogni volta che il giocatore decide di salvare il punteggio conseguito in un determinato livello, il vecchio punteggio, relativo a quel livello, sarà sempre rimpiazzato dal nuovo.
+    \item Il punteggio complessivo, cioè quello visualizzato nella classifica, sarà dato dalla somma dei punteggi conseguiti nei 3 livelli.
+\end{itemize}
+La classifica aggiornata è in ogni momento visualizzabile cliccando l'apposito tasto presente nel menù di gioco.\\\\
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.6]{images/leaderboard.png}
+    \caption{Schema UML della leaderboard.}
+    \label{images:leaderboard}
+\end{figure}
+\pagebreak
+\textbf{Levello e round difficile}\\
+Per quanto riguarda invece la struttura dei livelli e dei round si è cercato di organizzare il tutto in modo tale da creare codice facilmente espandibile in caso di aggiunta di ulteriori livelli di gioco e round.
+\\Ogni livello mantiene informazione sul round corrente al cui interno sono contenute tutte le informazioni riguardanti gli oggetti in gioco con le corrispondenti caratteristiche (posizione, velocità, dimensione,...).
+In particolare il livello difficile è caratterizzato dalla presenza di ostacoli, cioè mattoncini indistruttibili, e dalla disposizione dei blocchi in maniera piramidale.
+\\Mi sono basata sulla strutturazione e organizzazione delle classi realizzata dai miei compagni, che è possibile osservare in maniera dettagliata alla \Cref{images:Levels} e \Cref{images:Round}, e mi sono occupata del collegamento tra le varie classi in modo da permettere la visualizzazione a video degli oggetti del gioco tramite la classe GameView.\\\\
+
 \chapter{Sviluppo}
 \section{Testing automatizzato}
 \section{Metodologia di lavoro}
