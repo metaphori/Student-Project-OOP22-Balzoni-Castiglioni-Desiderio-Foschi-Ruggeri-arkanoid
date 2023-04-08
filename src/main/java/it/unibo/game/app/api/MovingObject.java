@@ -1,14 +1,36 @@
 package it.unibo.game.app.api;
-/*la calsse Speeed sono affari della Virginia */
 
+/*** interface that models the characteristics of a mobile object. */
 public interface MovingObject extends GameObject {
-	void setPhysics(Physics phsycs);
+  /**
+   * assigns the physics of the object.
+   * 
+   * @param phsycs
+   */
+  void setPhysics(Physics phsycs);
 
-	Physics getPhysics();
+  /**
+   * 
+   * @return the physics of the object.
+   */
+  Physics getPhysics();
 
-	void setDimension(Dimension d);
+  /**
+   * set dimension of the obj.
+   * 
+   * @param d
+   */
+  void setDimension(Dimension d);
 
-	Speed getSpeed();
+  /**
+   * @return speed of obj.
+   */
+  Speed getSpeed();
 
-	void setSpeed(Speed vel);
+  /**
+   * set a speed.
+   * 
+   * @param vel
+   */
+  void setSpeed(Speed vel);
 }

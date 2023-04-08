@@ -28,7 +28,7 @@ public interface Direction {
 
   /**
    * sets the direction of the MovingObject vertically without horizontal
-   * component
+   * component.
    */
   void setCentre();
 
@@ -46,7 +46,7 @@ public interface Direction {
 
   /**
    * 
-   * @return true if the obj go to the right
+   * @return true if the obj go to the right.
    */
   boolean isDirectionRight();
 

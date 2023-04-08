@@ -8,6 +8,7 @@ import it.unibo.game.app.api.Direction;
  */
 public class DirectionImpl implements Direction {
 
+  private static final int STARTER_Y = 2;
   private static final int LEFT = -1;
   private static final int RIGHT = 1;
   private static final int UP = -1;
@@ -103,7 +104,7 @@ public class DirectionImpl implements Direction {
    */
   @Override
   public void setCentre() {
-    this.d = new Pair<Integer, Integer>(0, -2);
+    this.d = new Pair<Integer, Integer>(0, -STARTER_Y);
   }
 
 }
