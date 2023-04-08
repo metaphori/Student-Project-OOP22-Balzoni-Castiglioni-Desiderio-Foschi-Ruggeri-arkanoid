@@ -33,7 +33,6 @@ public class SizeCalculation {
    * 
    * @param numBrickCol number of bricks in a column
    * @param numBrickRow number of brick in a row
-   * @param roundPassed number of rounds passed
    */
   public SizeCalculation(final int numBrickCol, final int numBrickRow) {
     this.numBrickCol = numBrickCol;
