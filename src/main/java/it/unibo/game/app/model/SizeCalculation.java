@@ -35,8 +35,7 @@ public class SizeCalculation {
    * @param numBrickRow number of brick in a row
    * @param roundPassed number of rounds passed
    */
-  public SizeCalculation(final int numBrickCol, final int numBrickRow,
-      final int roundPassed) {
+  public SizeCalculation(final int numBrickCol, final int numBrickRow) {
     this.numBrickCol = numBrickCol;
     this.startX = (WORLD_HEIGHT / 2) / DIVIDER_X;
     this.stopX = this.getStopX();
