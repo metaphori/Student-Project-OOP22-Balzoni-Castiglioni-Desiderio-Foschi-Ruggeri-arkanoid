@@ -6,35 +6,6 @@ import java.util.Optional;
 import it.unibo.game.Pair;
 
 public interface BoundingBox {
-  /**
-   * Side where the box collide.
-   */
-  enum Side {
-    /**
-     * Side top and bottom.
-     */
-    UP_DOWN,
-    /**
-     * Side left and right.
-     */
-    LEFT_RIGHT,
-    /**
-     * Collision occurs in the corner.
-     */
-    CORNER,
-    /**
-     * Collision occurs in the centre of the pad.
-     */
-    PAD_CENTRE
-
-  };
-
-  /**
-   * Corners of the bounding box.
-   */
-  enum Corner {
-    LEFT_DOWN, LEFT_UP, RIGHT_DOWN, RIGHT_UP
-  };
 
   /**
    * 

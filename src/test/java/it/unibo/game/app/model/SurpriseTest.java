@@ -25,9 +25,9 @@ import it.unibo.game.app.model.levels.FirstLevel;
 import it.unibo.game.app.model.levels.SecondLevel;
 import it.unibo.game.app.model.levels.ThirdLevel;
 import it.unibo.game.Pair;
-import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
+import it.unibo.game.app.api.Corner;
 
 /**
  * method to test all surprise methods.
@@ -326,7 +326,7 @@ public class SurpriseTest {
     method.setAccessible(true);
     method.invoke(surprise);
     pad.setBoundingBox(new RectBoundingBox(pad));
-    assertTrue(pad.getBoundingBox().getBox().get(BoundingBox.Corner.RIGHT_DOWN)
+    assertTrue(pad.getBoundingBox().getBox().get(Corner.RIGHT_DOWN)
         .getX() <= SizeCalculation.getWorldSize().getY());
 
     assertFalse(pad.getPos().getX() == oldWpos);
