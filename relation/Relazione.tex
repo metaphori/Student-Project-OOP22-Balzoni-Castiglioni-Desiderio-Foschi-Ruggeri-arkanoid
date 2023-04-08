@@ -377,11 +377,11 @@ Il mio contributo all'interno del progetto ha riguardato principalmente la gesti
 Per delimitare l'area occupata dai vari oggetti di gioco ho utilizzato una Bounding Box, ovvero il più piccolo rettangolo capace di contenere una determinta figura al suo interno.\\
 Sono partita realizzando un'intefaccia BoundigBox la quale viene implementata da una classe astratta AbstractBoundingBox.
 Successivamente ho creato due classi, CircleBoundingBox e RectBoundingBox, che estendono la classe astratta. In particolare la prima permette la creazione di Bounding Box per gli oggetti circolari come le palline e gli oggetti surprise, mentre la seconda le realizza per il pad e i brick.
-\\La box viene creata grazie ad una mappa all'interno della quale sono memorizzate le coordinate di tutti e quattro gli angoli della "scatola".
-\\Il metodo collideWith all'interno implementato all'interno della classe astratta AbstractBoundigBox permette di verificare l'intersezione tra due bounding box, se ciò non avviene verrà restituito un opzionale vuoto, in caso contrario restituirà il punto in cui è avvenuta la collisione:
+\\La box viene creata utilizzando la posizione di ogni oggetto (che fa riferimento all'angolo in alto a sinistra, permettendo così di calcolare i restanti tre) e viene memorizzata in una mappa all'interno della quale si trovano le coordinate di tutti e quattro gli angoli della "scatola".
+\\Il metodo collideWith implementato all'interno della classe astratta AbstractBoundigBox verifica l'intersezione tra due bounding box, se non si intersecano verrà restituito un opzionale vuoto, in caso contrario restituirà il punto in cui è avvenuta la collisione:
 \begin{itemize}
     \item  Su uno dei due lati orizzontali della box.
-    \item  Su uno dei due elati verticati della box .
+    \item  Su uno dei due lati verticati della box .
     \item  Tra due angoli della box .
   
 \end{itemize}
@@ -393,6 +393,19 @@ Questa informazine ci sarà utile in seguito per verificare le collisioni e gest
     \label{images:BoundigBox}
 \end{figure}
 \textbf{Gestione della direzione}\\
+Per gestire la direzione mi sono serivta di due interfacce Direction e Physics le quali vengono successivamenteimplementate dalle Classi DirectionImpl e BallPhysicsImpl.
+\\La prima si occupa di tener traccia della direzione corrente degli oggetti mentre la seconda gestisce l'aspetto più dinamico, grazie al metodo changeDirection è infatti possibile cambiare la direzione della palla a seconda del punto di collisione che si è ottenuto.
+\\ La pallina può muoversi in cinque direzioni, quattro sulla diagonale e una verso l'alto (che si può ottenere solo colpendo il pad al centro).
+\\Per quanto riguarda le prime quattro ho deciso di gestirle utilizzando una coppia di versori che assumono i segenti valori:
+\begin{itemize}
+    \item  Direzione SUD = 1
+    \item  Direzione NORD = -1
+    \item  Direzione EST = 1
+    \item  Direzione OVEST = -1
+  
+\end{itemize}
+(Dove SUD e NORD si riferiscono all'asse y e EST e OVEST all'asse x)
+\\Per la direzione verticale non ho usato lo stesso approccio per un motivo puramente estetico. Non avendo una componente orizzontale infatti , la pallina subiva visivamente un notevole "decremento" della velocità. Ho decisio così di assegnare alla componente vericale valore -2 in modo da raddoppiare la velocità sull'asse y.
 \begin{figure}[H]
     \centering{}
     \includegraphics[scale=0.6]{images/Physics.png}
@@ -400,6 +413,15 @@ Questa informazine ci sarà utile in seguito per verificare le collisioni e gest
     \label{images:Physics}
 \end{figure}
 \textbf{Collisioni}\\
+Per quanto riguarda le collisioni, io mi sono occupata principalmente di gestire quelle riguardanti la pallina.
+\\ Infatti sono stati realizzati da me tre dei quattro metodi che si trovano all'interno della classe Collision:
+\begin{itemize}
+    \item  collideWithEdges
+    \item collideWithBrick
+    \item collideWithPad
+  
+\end{itemize}
+
 \begin{figure}[H]
     \centering{}
     \includegraphics[scale=0.6]{images/Collision.png}
