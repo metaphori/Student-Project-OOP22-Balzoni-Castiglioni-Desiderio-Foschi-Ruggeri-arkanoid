@@ -161,7 +161,7 @@ In oltre, ho studiato come funzionano i file json di configurazione di vscode in
 a tutti i miei colleghi per un' esperienza "out of the box" dell' IDE come la configurazione di un debugger meno invasivo rispetto quello di  default.
 Ho riservato una buona attenzione a questa configurazione per limitare al massimo lo stress causato dalla poca intuittività di alcune
 automattizzazioni ed essere sereni e tranquilli.
-\\\textbf{UIController, la scelta.}\\
+\subsubsection{UIController, la scelta.}
 ho ritenuto vantaggioso avere un controller dedicato per la vista  che comunicasse
 con il controller principale dell' applicazione.
 
@@ -181,7 +181,7 @@ che in termini pratici, per aggiungere una nuova vista basta aggiungere la sua d
     \caption{proiezione UML della comunicazione fra il controller principale e le viste con UIController}
 \end{figure}
 
-\textbf{UIController, l'implementazione.}\\
+\subsubsection{UIController, l'implementazione.}
 Per gestire le varie viste ho scelto di utilizzare un layout di jswing chiamato CardLayout.
 Questo layout è funzionale a quello che intendevo far fare al View-controller poichè
 gestisce due o più componenti che condividono lo stesso spazio di visualizzazione (il jframe nel nostro caso).
@@ -202,7 +202,7 @@ a capire che non cambia da solo il focus sulla finestra appena selezionata, risu
 inserire comandi input da tastiera se non dalla prima finestra aperta e la cosa é stata rislota
 aggiornando il focus alla carta appena selezionata.\\
 
-\textbf{Window resizable.}\\
+\subsubsection{Window resizable.}
 
 l'idea nasce con la logica di mantenere sempre fisse le dimensioni del model
 e di renderizzare la view in maniera tale da crearne semplicemente le loro proiezioni su schermo.
@@ -214,7 +214,7 @@ e di renderizzare la view in maniera tale da crearne semplicemente le loro proie
 l'implementazione segue la logica descritta in figura: il model passa gli oggetti da disegnare con le
 relative dimensioni e posizioni sul paino, é compito poi del controller filtrarle e restituirle alla view,
 ricarlcolate in maniera opportuna.\\
-\textbf{Window resizable, la proporzione}\\
+\subsubsection{Window resizable, la proporzione}
 per proiettare correttamente gli oggettti di dimensione del model il controller deve moltiplicare ognuno
 di questi per un delta di proiezione.
 
