@@ -76,7 +76,7 @@ public final class ThirdLevel extends AbstractLevel {
    */
   private void set(final int normal, final int surprise, final int obstacles) {
     int h = getCol(normal, surprise, obstacles);
-    this.sizeC = new SizeCalculation(h, h + 1, super.getNumRoundPassed());
+    this.sizeC = new SizeCalculation(h, h + 1);
     super.setRound(new RoundDifficult(normal, surprise, sizeC, obstacles));
     super.getRound().setPosBrick();
   }

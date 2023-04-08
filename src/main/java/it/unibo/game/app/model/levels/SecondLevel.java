@@ -84,7 +84,7 @@ public class SecondLevel extends AbstractLevel {
    */
   private void set(final int normal, final int surprise, final int hardBrick) {
     int col = this.getCol();
-    this.sizeC = new SizeCalculation(col, BRICKROW, super.getNumRoundPassed());
+    this.sizeC = new SizeCalculation(col, BRICKROW);
     super.setRound(new RoundMedium(JUMP, normal, surprise, hardBrick, sizeC));
     super.getRound().setPosBrick();
   }
