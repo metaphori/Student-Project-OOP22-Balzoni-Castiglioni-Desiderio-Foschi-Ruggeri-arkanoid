@@ -1,8 +1,3 @@
-# Arkanoid
-
-`./gradlew run`
-
-
 # ARKANOID
 
 ARKANOID is a classic arcade game inspired by Breakout. The goal is to use a paddle to bounce a ball and destroy all the bricks on the screen. Some bricks may contain power-ups that can help or hinder the player. The game is over when the player runs out of lives or clears all the levels.
