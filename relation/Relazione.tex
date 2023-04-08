@@ -203,16 +203,36 @@ aggiornando il focus alla carta appena selezionata.\\
 
 \textbf{Window resizable.}\\
 
-l'idea nasce con la logica di mantenere sempre fisse le dimensioni decise interne al model
+l'idea nasce con la logica di mantenere sempre fisse le dimensioni del model
 e di renderizzare la view in maniera tale da crearne semplicemente le loro proiezioni su schermo.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/projection.jpg}
-    \caption{bozza fatta durante lo studio}
+    \includegraphics[width=0.8\textwidth]{images/resizableConcept.png}
+    \caption{bozza della proiezione di un mattoncino fatta durante lo studio}
 \end{figure}
-Per quanto mi riguarda é stato chiaro per me dover trovare il modo di modficare le dimensioni del model rispetto
-uno scostamento opportuno.
-Dopo vari ragionamenti risulta corretto moltiplicare le dimensioni e la posizione per un delta calcolato
+l'implementazione segue la logica descritta in figura: il model passa gli oggetti da disegnare con le
+relative dimensioni e posizioni sul paino, é compito poi del controller filtrarle e restituirle alla view,
+ricarlcolate in maniera opportuna.\\
+\textbf{Window resizable, la proporzione}\\
+per proiettare correttamente gli oggettti di dimensione del model il controller deve moltiplicare ognuno
+di questi per un delta di proiezione.
+
+Questo Delta é calcolato facendo il rapporto fra quelle che sono le dimensioni correnti della View , rispetto
+a quelle del model.\\
+\textbf{esempio:} \\
+assumiamo ipoteticamente che le dimensioni del model siano un mondo 400x400 nel quale sia disposto un mattoncino
+con coordinate (2,3) e lunghezza e altezza (5,2).
+A run time la view ha dimensioni 800x800  e quindi il controller posizionerá il mattoncino seguendo la logica
+sopra descritta.\\
+\begin{itemize}
+    \item calcolo $\Delta W \rightarrow$  800/400 = 2
+    \item calcolo $\Delta H \rightarrow$  800/400 = 2
+    \item calcolo coordinate $\rightarrow P(2 \times \Delta W, 3\times \Delta H)$
+    \item calcolo dimensioni $\rightarrow Dim(5 \times \Delta W,2\times \Delta H)$
+\end{itemize}
+in questa maniera viene assicurato un giusto mantenimento delle proporzioni delgi spazi decisi nel model.
+Utilizzando questo tipo di proiezione assicuro anche il fatto che qualsiasi evento generato nel model, come una
+collisione fra oggetti, venga riprodotto fedelmente sulla view.
 
 
 \pagebreak
