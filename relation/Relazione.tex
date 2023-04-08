@@ -26,7 +26,7 @@ Il progetto, commissionato dall'Università di Bologna\footnote{\url{https://www
 \\
 \subsection*{Requisiti funzionali}
 \begin{itemize}
-    \item Menù principale che all'avvio del software permette di scegliere il livello in base alla difficoltà e visionare la classifica.
+    \item Menù principale che all'avvio del software permette di scegliere il livello in base alla difficoltà, visionare la classifica e visualizzare i comandi.
     \item L’applicazione implementa la fisica della palla e ne gestisce il rimbalzo con i bordi dell’arena, con il pad e con i mattoncini.
     \item Area di gioco composta da un certo numero di mattoncini che cambiano disposizione ad ogni livello.
     \item Gestione dei parametri del giocatore, in particolare vita (che diminuisce ogni volta che la pallina esce dall'arena di gioco) e il punteggio.
@@ -374,6 +374,16 @@ In particolare il livello difficile è caratterizzato dalla presenza di ostacoli
 
 \chapter{Sviluppo}
 \section{Testing automatizzato}
+In parallelo allo sviluppo del progetto sono stati effettuati anche diversi test automatici utilizzando la libreria JUnit.
+Sulle componenti principali sono stati eseguiti i seguenti test automatici:
+\begin{itemize}
+    \item Test sui bonus: abbiamo scelto di testare ognuno i propri bonus all'interno dei vari livelli.
+    \item Test sulla entità brick: testato la resistenza di un blocco hard e degli ostacoli.
+    \item Test sulle modalità di game over.
+    \item Test sulla classifica
+    \item Test sulla dinamica: sulle collisioni e sul movimento dei MovingObject.
+\end{itemize}
+
 \section{Metodologia di lavoro}
 Per lavorare
 a questo progetto abbiamo cercato di strutturare il lavoro seguendo queste macro domande:
