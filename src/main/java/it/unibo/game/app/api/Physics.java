@@ -1,7 +1,5 @@
 package it.unibo.game.app.api;
 
-import it.unibo.game.app.api.BoundingBox.Side;
-
 /**
  * Interface that manages the change of direction of MovingObject.
  */

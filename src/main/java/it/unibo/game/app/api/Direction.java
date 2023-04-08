@@ -27,6 +27,12 @@ public interface Direction {
   void setDirectionRight();
 
   /**
+   * sets the direction of the MovingObject vertically without horizontal
+   * component
+   */
+  void setCentre();
+
+  /**
    * 
    * @return true if the direction of the Object is Up.
    */
