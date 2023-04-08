@@ -4,7 +4,7 @@ import it.unibo.game.app.api.Physics;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Direction;
-import it.unibo.game.app.api.BoundingBox.Side;
+import it.unibo.game.app.api.Side;
 import it.unibo.game.app.model.dynamic.DirectionImpl;
 
 /**
