@@ -11,6 +11,6 @@ ARKANOID is a classic arcade game inspired by Breakout. The goal is to use a pad
 
 To play ARKANOID, you need to have Java installed on your system. You can download Java from https://www.java.com/download/.
 
-To run the game, simply download last relies and execute the arkanoid.jar file:
+To run the game, simply download last release and execute the arkanoid.jar file:
 from terminal: `java -jar arkanoid.jar`
 or double click on application 
