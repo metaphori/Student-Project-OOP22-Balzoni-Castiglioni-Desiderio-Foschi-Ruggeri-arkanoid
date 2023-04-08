@@ -482,7 +482,16 @@ Nelle parti di codice da me curate, ho cercato, dove possibile, di fare uso dell
     \item Iterator per scorrere la lista delle palline bonus e contemporaneamente eliminarle in caso di contatto con il pad o fuoriuscita dal frame.
     \item java.util.Serializable per memorizzare l'oggetto User nel file.
 \end{itemize}
-
+\subsection{Castiglioni Chiara}
+Nelle mia parte di progetto ho cercato di utilizzare il più possibile:
+\begin{itemize}
+    \item stream e lambda expression.
+    \item Optional utilizzati per la resistenza dei brick.
+    \item javax.swing.SwingWorker\footnote{\url{https://docs.oracle.com/javase/7/docs/api/javax/swing/SwingWorker.html}} per la realizzazione del game loop.
+    \item java.util.Timer\footnote{\url{https://docs.oracle.com/javase/7/docs/api/java/util/Timer.html}} e java.util.TimerTask\footnote{\url{https://docs.oracle.com/javase/7/docs/api/java/util/TimerTask.html}} per l'implementazione di un metodo bonus e per l'apparizione della scritta del bonus preso.
+\end{itemize}
+L'unica fonte che ho utilizzato è stata {\url{https://www.youtube.com/watch?v=HUuiGW6TyfI}} per comprendere il funzionamento della
+classe SwingWorker, oltre alla documentazione Oracle.
 
 \chapter{Commenti finali}
 \section{Autovalutazione e lavori futuri}
