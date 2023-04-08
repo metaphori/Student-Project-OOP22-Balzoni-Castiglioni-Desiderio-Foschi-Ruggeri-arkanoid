@@ -408,6 +408,21 @@ Ogni pull request (develop - master) verrà eseguita quando il codice develop so
 all'obbiettivo incrementale che ci siamo posti.
 In linea di massima la nostra scelta è di procedere a piccoli passi fino alla finalizzazione del progetto.
 \section{Note di sviluppo}
+\subsection{Desiderio Edoardo}
+\begin{itemize}
+    \item Ispirato dalla programmazione funzionale ho cercato di evitare il piú possibile la scrittura di swtch
+          statement all'interno del progetto, in questo stnippet\footnote{\url{https://pastecode.io/s/18uxzd1a}} ho cercato
+          di fare un esempio per tutti i compagni del gruppo. Adottare questo metodo garantisce di mantenere in ordine il codice
+          e averne una manutentibilità e flessibilitá maggiore (la classe Surprise.java con uno switch sarebbe stata incomprensibile a mio avviso)
+    \item utilizzo di CompletableFuture per rendere asicrone operazioni dei surprise in modo che impattino il meno possibile
+          sull'esecuzione dell'intera applicazione
+    \item tutte le collezioni che dovevo ricalcolare nel controller per rendere le figure resizable le ho modificate
+          utilizzando stream combinate con lambda expression, l'utilizzo di lambda é stato fatto anche anche in assenza di stream
+\end{itemize}
+
+
+
+
 \chapter{Commenti finali}
 \section{Autovalutazione e lavori futuri}
 
