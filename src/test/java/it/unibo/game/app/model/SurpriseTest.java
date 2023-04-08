@@ -36,6 +36,8 @@ public class SurpriseTest {
 
   private static final double SPEED_X = 0.5;
   private static final double SPEED_Y = 0.2;
+  private static final int TIME_1 = 10000;
+  private static final int TIME_2 = 10500;
 
   @Test
   void testExtraLife() throws NoSuchMethodException, SecurityException,
@@ -84,7 +86,7 @@ public class SurpriseTest {
         }
       }
     };
-    timer.schedule(task, 10000);
+    timer.schedule(task, TIME_1);
 
   }
 
@@ -134,7 +136,17 @@ public class SurpriseTest {
     testAddHardRow(l3);
   }
 
-  void testAddHardRow(Level l) throws NoSuchMethodException, SecurityException,
+  /**
+   * method for testing adding a row of hard bricks.
+   * 
+   * @param l level
+   * @throws NoSuchMethodException
+   * @throws SecurityException
+   * @throws IllegalAccessException
+   * @throws IllegalArgumentException
+   * @throws InvocationTargetException
+   */
+  void testAddHardRow(final Level l) throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     List<Brick> reverse = new ArrayList<>();
     Surprise surprise = new Surprise(l);
@@ -260,7 +272,7 @@ public class SurpriseTest {
         assertEquals(s + 4, score.getScore());
       }
     };
-    timer.schedule(task, 10000);
+    timer.schedule(task, TIME_1);
 
   }
 
@@ -295,7 +307,7 @@ public class SurpriseTest {
             pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
       }
     };
-    timer.schedule(task, 10500);
+    timer.schedule(task, TIME_2);
 
   }
 
@@ -342,7 +354,7 @@ public class SurpriseTest {
             pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
       }
     };
-    timer.schedule(task, 10500);
+    timer.schedule(task, TIME_2);
   }
 
   @Test
@@ -371,7 +383,7 @@ public class SurpriseTest {
             pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
       }
     };
-    timer.schedule(task, 10500);
+    timer.schedule(task, TIME_2);
 
   }
 
