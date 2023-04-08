@@ -361,16 +361,26 @@ Per quanto riguarda la realizzazione della classifica ho optato per la creazione
 La classifica aggiornata è in ogni momento visualizzabile cliccando l'apposito tasto presente nel menù di gioco.\\\\
 \begin{figure}[H]
     \centering{}
-    \includegraphics[scale=0.6]{images/leaderboard.png}
+    \includegraphics[scale=0.4]{images/leaderboard.png}
     \caption{Schema UML della leaderboard.}
     \label{images:leaderboard}
 \end{figure}
-\pagebreak
-\textbf{Levello e round difficile}\\
+
+\textbf{Livello e round difficile}\\
 Per quanto riguarda invece la struttura dei livelli e dei round si è cercato di organizzare il tutto in modo tale da creare codice facilmente espandibile in caso di aggiunta di ulteriori livelli di gioco e round.
 \\Ogni livello mantiene informazione sul round corrente al cui interno sono contenute tutte le informazioni riguardanti gli oggetti in gioco con le corrispondenti caratteristiche (posizione, velocità, dimensione,...).
 In particolare il livello difficile è caratterizzato dalla presenza di ostacoli, cioè mattoncini indistruttibili, e dalla disposizione dei blocchi in maniera piramidale.
-\\Mi sono basata sulla strutturazione e organizzazione delle classi realizzata dai miei compagni, che è possibile osservare in maniera dettagliata alla \Cref{images:Levels} e \Cref{images:Round}, e mi sono occupata del collegamento tra le varie classi in modo da permettere la visualizzazione a video degli oggetti del gioco tramite la classe GameView.\\\\
+\\Mi sono basata sulla strutturazione e organizzazione delle classi realizzata dai miei compagni, che è possibile osservare in maniera dettagliata alla \Cref{images:Levels} e \Cref{images:Round}, e mi sono occupata del collegamento tra le varie classi in modo da permettere la visualizzazione a video degli oggetti del gioco tramite la classe GameView.\\
+
+\pagebreak
+
+\textbf{View}\\
+Dal punto di vista della view mi sono occupata principalmente dell'implementazione di 3 interfacce grafiche:\\
+\begin{itemize}
+    \item LeaderBoardView: interfaccia che permette di visualizzare a video la classifica costituita dai migliori 5 giocatori.
+    \item CommandView: insieme ai miei compagni abbiamo pensato di realizzare un'interfaccia per permettere al giocatore di visualizzare i comandi principali del gioco.
+    \item SaveScore: JDialog che permette al giocatore di inserire i suoi dati (nome e password) e salvare il proprio punteggio.
+\end{itemize}
 
 \chapter{Sviluppo}
 \section{Testing automatizzato}
