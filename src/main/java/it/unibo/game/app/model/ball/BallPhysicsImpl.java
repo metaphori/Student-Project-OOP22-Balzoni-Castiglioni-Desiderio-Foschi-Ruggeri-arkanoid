@@ -1,7 +1,6 @@
 package it.unibo.game.app.model.ball;
 
 import it.unibo.game.app.api.Physics;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.Direction;
 import it.unibo.game.app.api.Side;
@@ -68,7 +67,7 @@ public class BallPhysicsImpl implements Physics {
       break;
     case PAD_CENTRE: {
       centre = true;
-      d.setDirection(new Pair<Integer, Integer>(0, -2));
+      d.setCentre();
     }
 
     }
@@ -78,10 +77,11 @@ public class BallPhysicsImpl implements Physics {
   /**
    * {@inheritDoc}
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP")
   @Override
   public Direction getDir() {
-    return this.d;
+    Direction dir = new DirectionImpl();
+    dir.setDirection(this.d.getDirection());
+    return dir;
   }
 
 }

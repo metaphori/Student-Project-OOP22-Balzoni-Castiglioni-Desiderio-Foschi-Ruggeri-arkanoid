@@ -98,4 +98,12 @@ public class DirectionImpl implements Direction {
     this.d = new Pair<Integer, Integer>(LEFT, UP);
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setCentre() {
+    this.d = new Pair<Integer, Integer>(0, -2);
+  }
+
 }
