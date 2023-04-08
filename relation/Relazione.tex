@@ -267,7 +267,7 @@ e con la View aggiornandoli continuamente.
     \item Controllare il meccanismo di perdita di vita dell'utente, nel caso avesse ancora vite viene riposizionata la pallina alla posizione iniziale altrimenti viene dichiarato game over.
 \end{itemize}
 In riferimento alla View il game loop si occupa di richiamare la repaint del Frame.
-\\All'interno della classe GameEngine vi è anche un metodo che viene richiamato come ultimo all'interno del ciclo cioè WaitForNextFrame che si occupa di mantenere
+\\All'interno della classe GameEngine vi è anche un metodo che viene richiamato come ultimo all'interno del ciclo che si occupa di mantenere
 la stessa velocità di esecuzione del ciclo su diversi PC in modo tale da evitare che su dispositivi molto prestanti l'applicazione venga eseguita troppo velocemente.
 \begin{figure}[H]
     \centering{}
@@ -278,13 +278,8 @@ la stessa velocità di esecuzione del ciclo su diversi PC in modo tale da evitar
 \textbf{Brick}\\
 Fin da subito mi sono occupata dell'entità brick facendo un'interfaccia Brick che estende quella già implementata dai miei colleghi (GameObject) in modo tale da avere già i metodi
 per la posizione dei brick, la loro boundingBox e la loro dimensione.
-\\Per questa entità ho poi implementato un'AbstractBrick che implementa Brick in modo tale che le due diverse tipologie di blocchi (normali e ostacoli) potessero estenderla ereditando dei medoti
-già implementati come per esempio il tipo di blocco e tutti i metodi deell'interfaccia GameObject mentre altri, invece, da implementare in quanto differiscono dalle diverse tipologie di blocchi come:
-\begin{itemize}
-    \item La resistenza del blocco.
-    \item Il metodo che serve a sapere se un blocco è distruttibile.
-    \item Il metodo hit che viene chiamato quando un blocco viene colpito dalla pallina.
-\end{itemize}
+\\Per questa entità ho poi implementato una classe astratta che implementa l'interfaccia in modo tale che le due diverse tipologie di blocchi (normali e ostacoli) potessero estenderla ereditando dei medoti
+già implementati come per esempio il tipo di blocco e tutti i metodi dell'interfaccia GameObject, al fine di poter un giorno estendere i tipi di blocchi, mentre altri, invece, da implementare in quanto differiscono dalle diverse tipologie di blocchi.
 In particolare mi sono occupata della classe NormalBrick che estende AbstractBrick la quale si occupa delle creazione di blocchi normali oppure hard a seconda della resistenza datagli.
 \\Questa scelta strutturale è dovuta dal fatto che i brick normali e quelli hard differiscono solamente a livello della quantità di resistenza quindi, ho ritenuto inutile creare un'altra classe e
 aggiungere un tipo diverso di brick all'interno di BrickType.
@@ -300,11 +295,9 @@ visualizzata alla \Cref{images:Levels}.\\
 \textbf{SizeCalculation}\\
 Questa classe si occupa di eseguire calcoli riguardanti il posizionamento delle varie entità e la loro dimensione all'interno del mondo di gioco al
 quale abbiamo deciso di dargli una dimensione fissa.
-\\Questa classe richiede il numero di brick per riga e per colonna e il numero di round passati.
-Il primo parametro passato (numBrickCol) serve per calcolare l'altezza di ogni singolo blocco, il secondo (numBrickRow) per calcolare la larghezza dei blocchi
-mentre numRoundPassed serve per sapere fin dove posizionare i blocchi lungo l'asse delle ordinate.
-\\Vengono anche calcolati il punto di partenza e di fine del posizionamento dei blocchi lungo l'asse delle ascisse, facendoli lasciare sia all'inizio che alla fine mezza
-lunghezza del blocco dal muro.
+\\L'idea che mi era venuta in mente era quella di calcolare le dimensioni del brick in base al numero di brick da posizionare, mentre di lasciare mezza lunghezza di brick dai rispettivi
+lati del mondo per calcolare il punto di partenza e di fine del posizionamento dei blocchi lungo l'asse delle ascisse. Per il calcolo dell'ordinata invece viene calcolata in base al numero di brick per colonna,
+questo perché ogni round ha sempre più blocchi quindi necessita di spazio maggiore.
 \\Vi sono anche due metodi che calcolano le dimensioni del pad e della pallina rispetto alle dimensioni del mondo nel model e un metodo che serve alla view per sapere qual è
 la coordinata y di ogni riga in modo da riuscire a colorare in modo diverso ogni riga.
 \begin{figure}[H]
@@ -314,16 +307,9 @@ la coordinata y di ogni riga in modo da riuscire a colorare in modo diverso ogni
     \label{images:SizeCalculation}
 \end{figure}
 \textbf{Round}\\
-Per quanto riguarda l'organizzazione dei vari round è stato utile fin da subito creare una classe astratta in quanto ha permesso ai miei colleghi di estenderla e creare il proprio round.
-\\All'interno di AbstractRound viene tenuta traccia:
-\begin{itemize}
-    \item Della lista di brick all'interno del round.
-    \item Della lista di palline.
-    \item Dell'oggetto pad.
-    \item Della lista di palline surprise alla quale vengono aggiunti elementi quando viene distrutto un brick surprise.
-    \item Dell'oggetto SizeCalculation.
-\end{itemize}
-All'interno di questa classe ho scelto di implementare i metodi utili per rimuovere i brick, per settare i brick surprise ,in modo randomico, in quanto
+Per quanto riguarda l'organizzazione dei vari round è stato utile fin da subito creare una classe astratta in quanto ha permesso ai miei colleghi di estenderla e creare il proprio round e permetterà in futuro
+di aggiungerne altri.
+\\All'interno di questa classe ho scelto di implementare i metodi utili per rimuovere i brick, per settare i brick surprise in modo randomico, in quanto
 comune a tutti i tipi di round, il metodo per aggiungere le palline surprise e altri metodi get e set.
 \\L'unico metodo che ho deciso di mettere abstract è quello per il posizionamento dei brick in quanto ogni livello ha un proprio
 round con una diversa disposizione.\\
@@ -361,22 +347,41 @@ Per quanto riguarda la realizzazione della classifica ho optato per la creazione
 La classifica aggiornata è in ogni momento visualizzabile cliccando l'apposito tasto presente nel menù di gioco.\\\\
 \begin{figure}[H]
     \centering{}
-    \includegraphics[scale=0.6]{images/leaderboard.png}
+    \includegraphics[scale=0.4]{images/leaderboard.png}
     \caption{Schema UML della leaderboard.}
     \label{images:leaderboard}
 \end{figure}
-\pagebreak
-\textbf{Levello e round difficile}\\
+
+\textbf{Livello e round difficile}\\
 Per quanto riguarda invece la struttura dei livelli e dei round si è cercato di organizzare il tutto in modo tale da creare codice facilmente espandibile in caso di aggiunta di ulteriori livelli di gioco e round.
 \\Ogni livello mantiene informazione sul round corrente al cui interno sono contenute tutte le informazioni riguardanti gli oggetti in gioco con le corrispondenti caratteristiche (posizione, velocità, dimensione,...).
 In particolare il livello difficile è caratterizzato dalla presenza di ostacoli, cioè mattoncini indistruttibili, e dalla disposizione dei blocchi in maniera piramidale.
 \\Mi sono basata sulla strutturazione e organizzazione delle classi realizzata dai miei compagni, che è possibile osservare in maniera dettagliata alla \Cref{images:Levels} e \Cref{images:Round}, e mi sono occupata del collegamento tra le varie classi in modo da permettere la visualizzazione a video degli oggetti del gioco tramite la classe GameView.\\\\
+
+
+\pagebreak
+
+\textbf{View}\\
+Dal punto di vista della view mi sono occupata principalmente dell'implementazione di 3 interfacce grafiche:\\
+\begin{itemize}
+    \item LeaderBoardView: interfaccia che permette di visualizzare a video la classifica costituita dai migliori 5 giocatori.
+    \item CommandView: insieme ai miei compagni abbiamo pensato di realizzare un'interfaccia per permettere al giocatore di visualizzare i comandi principali del gioco.
+    \item SaveScore: JDialog che permette al giocatore di inserire i suoi dati (nome e password) e salvare il proprio punteggio.
+\end{itemize}
 \pagebreak
 \subsection{Balzoni Margherita}
 Il mio contributo all'interno del progetto ha riguardato principalmente la gestione della fisica della pallina, in particolare gli aspetti di creazione delle BoundigBox, controllo delle collisioni, movimento e gestione della direzione della palla.
 \\Mi sono occupata poi di realizzare il menù iniziale di gioco e implementare la classe che memorizza e increamenta il punteggio durante la partita.
 \\Ho inoltre collaborato alla realizzazione di alcuni bouns, nello specifico l'aggiunta di una pallina extra e il raddoppio del punteggio per un determinato periodo di tempo.\\\\
 \textbf{BoundigBox}\\
+\begin{figure}[H]
+    \centering{}
+    \includegraphics[scale=0.6]{images/BoundingBox.png}
+    \caption{Schema UML della BoundigBox.}
+    \label{images:BoundigBox}
+\end{figure}
+\textbf{Gestione della direzione}\\
+\textbf{Collisioni}\\
 \pagebreak
 \chapter{Sviluppo}
 \section{Testing automatizzato}
@@ -388,6 +393,13 @@ Sulle componenti principali sono stati eseguiti i seguenti test automatici:
     \item Test sulle modalità di game over.
     \item Test sulla classifica
     \item Test sulla dinamica: sulle collisioni e sul movimento dei MovingObject.
+\end{itemize}
+Si è anche dedicato del tempo fer fare dei test manuali dedicati principalmente al ridimensionamento della finestra di gioco.
+Il gioco è stato collaudato su più sistemi operativi:
+\begin{itemize}
+    \item Windows 10 e 11.
+    \item Light Ubuntu 22.04.1.
+    \item macOS.
 \end{itemize}
 
 \section{Metodologia di lavoro}
@@ -422,12 +434,29 @@ il lavoro si occuperà di eseguire il merging  in develop.
 \subsubsection{Ciclo di vita del progetto}
 Ogni pull request (develop - master) verrà eseguita quando il codice develop soddisfa i requisiti che l'applicazione deve avere rispetto
 all'obbiettivo incrementale che ci siamo posti.
-In linea di massima la nostra scelta è di procedere a piccoli passi fino alla finalizzazione del progetto.
+In linea di massima la nostra scelta è di procedere a piccoli passi fino alla finalizzazione del progetto.\\
+\\La parte di lavoro sviluppata in comune è stata quella inanzitutto della parte di analisi iniziale e poi successivamente durante il corso dello sviluppo
+sono state implementate classi comuni a tutti come quelle del Controller e quelle del Model, dove ognuno ha inserito dei metodi che servivano per collagare
+le parti di codice già create singolarmente.
+\\Si riporta di seguito la divisione dei compiti di ogni componente del gruppo.
+\subsection{Castiglioni Chiara}
+Le attività da me svolte sono state:
+\begin{itemize}
+    \item Creazione della struttura dei round e il relativo round medio.
+    \item Gestione del game loop.
+    \item Implementazione della parte di calcoli riguardante la dimensione e posizione delle entità.
+    \item Implementazione di due metodi all'interno della classe Surprise.
+    \item Implementazione del livello medio.
+    \item Creazione dell'entità brick.
+    \item Apparizione della scritta al centro del frame che indica il bonus preso.
+    \item Colorazione delle righe di brick.
+\end{itemize}
 \section{Note di sviluppo}
+In questa sezione vengono elencati gli aspetti avanzati del linguaggio utilizzato e di librerie.
 \subsection{Desiderio Edoardo}
 \begin{itemize}
-    \item Ispirato dalla programmazione funzionale ho cercato di evitare il piú possibile la scrittura di swtch
-          statement all'interno del progetto, in questo stnippet\footnote{\url{https://pastecode.io/s/18uxzd1a}} ho cercato
+    \item Ispirato dalla programmazione funzionale ho cercato di evitare il piú possibile la scrittura di switch
+          statement all'interno del progetto, in questo snippet\footnote{\url{https://pastecode.io/s/18uxzd1a}} ho cercato
           di fare un esempio per tutti i compagni del gruppo. Adottare questo metodo garantisce di mantenere in ordine il codice
           e averne una manutentibilità e flessibilitá maggiore (la classe Surprise.java con uno switch sarebbe stata incomprensibile a mio avviso)
     \item utilizzo di CompletableFuture per rendere asicrone operazioni dei surprise in modo che impattino il meno possibile
@@ -435,8 +464,6 @@ In linea di massima la nostra scelta è di procedere a piccoli passi fino alla f
     \item tutte le collezioni che dovevo ricalcolare nel controller per rendere le figure resizable le ho modificate
           utilizzando stream combinate con lambda expression, l'utilizzo di lambda é stato fatto  anche in assenza di stream
 \end{itemize}
-
-
 
 
 \chapter{Commenti finali}

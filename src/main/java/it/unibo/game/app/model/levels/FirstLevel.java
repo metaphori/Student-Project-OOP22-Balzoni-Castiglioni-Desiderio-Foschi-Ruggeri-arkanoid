@@ -76,7 +76,7 @@ public class FirstLevel extends AbstractLevel {
    */
   private void set(final int normal, final int surprise) {
     int rows = this.getCol();
-    this.sizeCalc = new SizeCalculation(BRICK_COLUMNS, rows, super.getNumRoundPassed());
+    this.sizeCalc = new SizeCalculation(BRICK_COLUMNS, rows);
     super.setRound(new RoundEasy(normal, surprise, sizeCalc));
     super.getRound().setPosBrick();
   }

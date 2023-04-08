@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.BoundingBox;
+import it.unibo.game.app.api.Corner;
+import it.unibo.game.app.api.Side;
 
 /**
  * Class that builds a boundig box around a GameObject to control collisions.
