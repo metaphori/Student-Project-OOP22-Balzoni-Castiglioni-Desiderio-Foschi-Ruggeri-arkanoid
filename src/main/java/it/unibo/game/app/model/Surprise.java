@@ -46,6 +46,7 @@ public class Surprise {
 
   private static final double SPEED_X = 0.5;
   private static final double SPEED_Y = 0.2;
+  private static final double LENGTH = 0.1;
 
   private Map<Integer, Runnable> map = new HashMap<>();
   private Random random = new Random();
@@ -104,13 +105,13 @@ public class Surprise {
    * 
    * @param index
    * @param lastBrick
-   * @return
+   * @return true if there is a brick on the left
    */
-  private boolean isThereLeftBrick(int index, Brick lastBrick) {
+  private boolean isThereLeftBrick(final int index, final Brick lastBrick) {
     return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick
         .getPos().getY()
         && (lastBrick.getPos().getX() - lastBrick.getBrickW())
-            - this.level.getRound().getBrick().get(index).getPos().getX() < 0.1);
+            - this.level.getRound().getBrick().get(index).getPos().getX() < LENGTH);
   }
 
   /**
@@ -118,13 +119,13 @@ public class Surprise {
    * 
    * @param index
    * @param lastBrick
-   * @return
+   * @return true if there is a brick on the right
    */
-  private boolean isThereRightBrick(int index, Brick lastBrick) {
+  private boolean isThereRightBrick(final int index, final Brick lastBrick) {
     return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick
         .getPos().getY()
         && (this.level.getRound().getBrick().get(index).getPos().getX()
-            - lastBrick.getBrickW()) - lastBrick.getPos().getX() < 0.1);
+            - lastBrick.getBrickW()) - lastBrick.getPos().getX() < LENGTH);
   }
 
   /**
@@ -133,7 +134,7 @@ public class Surprise {
    * @param index
    * @return true if it is an obstacle.
    */
-  private boolean isObstacle(int index) {
+  private boolean isObstacle(final int index) {
     return this.level.getRound().getBrick().get(index).getType()
         .equals(BrickType.OBSTACLE);
   }
@@ -144,7 +145,7 @@ public class Surprise {
    * @param index
    * @return true if it is a surprise.
    */
-  private boolean isSursprise(int index) {
+  private boolean isSursprise(final int index) {
     return this.level.getRound().getBrick().get(index).getType()
         .equals(BrickType.SURPRISE);
   }
@@ -154,7 +155,7 @@ public class Surprise {
    * 
    * @param index
    */
-  private void deleteBrick(int index) {
+  private void deleteBrick(final int index) {
     this.level.getRound().getBrick().remove(index);
   }
 
@@ -164,7 +165,7 @@ public class Surprise {
    * @param index
    * @return true if index is greater equals than zero
    */
-  private boolean isIndexPositive(int index) {
+  private boolean isIndexPositive(final int index) {
     return index >= 0;
   }
 
@@ -174,7 +175,7 @@ public class Surprise {
    * @param index
    * @return true if index minor than the size of the list
    */
-  private boolean isIndexNotTheLast(int index) {
+  private boolean isIndexNotTheLast(final int index) {
     return index < this.level.getRound().getBrick().size();
   }
 
