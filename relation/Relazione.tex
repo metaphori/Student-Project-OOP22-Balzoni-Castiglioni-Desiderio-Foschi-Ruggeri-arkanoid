@@ -391,7 +391,7 @@ Sulle componenti principali sono stati eseguiti i seguenti test automatici:
     \item Test sui bonus: abbiamo scelto di testare ognuno i propri bonus all'interno dei vari livelli.
     \item Test sulla entità brick: testato la resistenza di un blocco hard e degli ostacoli.
     \item Test sulle modalità di game over.
-    \item Test sulla classifica
+    \item Test sulla classifica: si verifica la correttezza del salvataggio del punteggio del giocatore.
     \item Test sulla dinamica: sulle collisioni e sul movimento dei MovingObject.
 \end{itemize}
 Si è anche dedicato del tempo fer fare dei test manuali dedicati principalmente al ridimensionamento della finestra di gioco.
@@ -451,6 +451,16 @@ Le attività da me svolte sono state:
     \item Apparizione della scritta al centro del frame che indica il bonus preso.
     \item Colorazione delle righe di brick.
 \end{itemize}
+\subsection{Foschi Virginia}
+I compiti da me sviluppati sono stati:
+\begin{itemize}
+    \item Implementazione del livello difficile con i corrispondenti 3 round.
+    \item Gestione classifica e salvataggio punteggio.
+    \item Implementazione di 3 metodi all'interno della classe surprise.
+    \item Visualizzazione degli oggetti (pad, pallina e brick) nella scena.
+    \item Creazione e gestione delle palline bonus.
+    \item Creazione e gestione degli ostacoli.
+\end{itemize}
 \section{Note di sviluppo}
 In questa sezione vengono elencati gli aspetti avanzati del linguaggio utilizzato e di librerie.
 \subsection{Desiderio Edoardo}
@@ -463,6 +473,14 @@ In questa sezione vengono elencati gli aspetti avanzati del linguaggio utilizzat
           sull'esecuzione dell'intera applicazione
     \item tutte le collezioni che dovevo ricalcolare nel controller per rendere le figure resizable le ho modificate
           utilizzando stream combinate con lambda expression, l'utilizzo di lambda é stato fatto  anche in assenza di stream
+\end{itemize}
+\subsection{Foschi Virginia}
+Nelle parti di codice da me curate, ho cercato, dove possibile, di fare uso delle seguenti funzionalità del linguaggio Java:
+\begin{itemize}
+    \item uso di stream e lambda expression dove possibile per rendere il codice più leggibile.
+    \item Optional che mi hanno permesso di memorizzare tutti i mattoncini, indipendentemente dal tipo, in un'unica lista all'interno della classe round.
+    \item Iterator per scorrere la lista delle palline bonus e contemporaneamente eliminarle in caso di contatto con il pad o fuoriuscita dal frame.
+    \item java.util.Serializable per memorizzare l'oggetto User nel file.
 \end{itemize}
 
 
