@@ -26,7 +26,6 @@ import it.unibo.game.app.model.dynamic.SpeedImpl;
  */
 public class Surprise {
 
-  private static final double TOLLERANCE = 0.1;
   private static final int NUM_TOT_SURSPRISE = 12;
   private static final int EXTRA_LIFE = 1;
   private static final int EXPLOSIVE_BOMB = 2;
@@ -47,6 +46,7 @@ public class Surprise {
 
   private static final double SPEED_X = 0.5;
   private static final double SPEED_Y = 0.2;
+  private static final double LENGTH = 0.1;
 
   private Map<Integer, Runnable> map = new HashMap<>();
   private Random random = new Random();
@@ -105,13 +105,13 @@ public class Surprise {
    * 
    * @param index
    * @param lastBrick
-   * @return true if there is a brick to the left of the bomb
+   * @return true if there is a brick on the left
    */
   private boolean isThereLeftBrick(final int index, final Brick lastBrick) {
     return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick
         .getPos().getY()
         && (lastBrick.getPos().getX() - lastBrick.getBrickW())
-            - this.level.getRound().getBrick().get(index).getPos().getX() < TOLLERANCE);
+            - this.level.getRound().getBrick().get(index).getPos().getX() < LENGTH);
   }
 
   /**
@@ -119,13 +119,13 @@ public class Surprise {
    * 
    * @param index
    * @param lastBrick
-   * @return true if there is a brick to the right of the bomb
+   * @return true if there is a brick on the right
    */
   private boolean isThereRightBrick(final int index, final Brick lastBrick) {
     return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick
         .getPos().getY()
         && (this.level.getRound().getBrick().get(index).getPos().getX()
-            - lastBrick.getBrickW()) - lastBrick.getPos().getX() < TOLLERANCE);
+            - lastBrick.getBrickW()) - lastBrick.getPos().getX() < LENGTH);
   }
 
   /**

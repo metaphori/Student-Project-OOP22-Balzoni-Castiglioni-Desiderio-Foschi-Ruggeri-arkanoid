@@ -17,7 +17,7 @@ import it.unibo.game.app.model.SizeCalculation;
  * Class that handles collisions.
  */
 public class Collision {
-  // private static final double DELTA = 7.5;
+
   private Level level;
 
   /**
