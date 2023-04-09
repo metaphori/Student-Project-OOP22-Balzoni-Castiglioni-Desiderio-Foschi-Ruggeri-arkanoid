@@ -76,7 +76,6 @@ public class Collision {
         if (obj.getRes().isPresent() && obj.getRes().get().equals(1)) {
           this.level.getScore().increaseScore();
         } else {
-          System.out.println(b.getPos());
           this.level.getScore().resetPoints();
         }
         b.getPhysics().changeDirection(opt.get());
