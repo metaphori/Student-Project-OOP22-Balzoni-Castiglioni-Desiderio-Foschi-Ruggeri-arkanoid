@@ -110,21 +110,17 @@ public final class LeaderBoardImpl implements LeaderBoard {
    */
   @SuppressWarnings("unchecked")
   private List<User> playersFromFile() {
-    if (file.length() > 0) {
-      try (ObjectInputStream oos = new ObjectInputStream(
-          new BufferedInputStream(new FileInputStream(file.getPath())))) {
-        return (List<User>) oos.readObject();
-      } catch (FileNotFoundException ex) {
-        System.out.println(ex.toString());
-      } catch (IOException ex) {
-        System.out.println(ex.toString());
-      } catch (ClassNotFoundException ex) {
-        System.out.println(ex.toString());
-      }
-      return new ArrayList<>();
-    } else {
-      return new ArrayList<>();
+    try (ObjectInputStream oos = new ObjectInputStream(
+        new BufferedInputStream(new FileInputStream(file.getPath())))) {
+      return (List<User>) oos.readObject();
+    } catch (FileNotFoundException ex) {
+      System.out.println(ex.toString());
+    } catch (IOException ex) {
+      System.out.println(ex.toString());
+    } catch (ClassNotFoundException ex) {
+      System.out.println(ex.toString());
     }
+    return new ArrayList<>();
   }
 
   /**
