@@ -23,10 +23,16 @@ public class LeaderBoardTest {
   @Test
   void leaderBoardTest() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-    String name = getString();
-    String pass = getString();
-    System.out.println(name + " " + pass);
     LeaderBoard l = new LeaderBoardImpl();
+    String name;
+    String pass;
+    while (true) {
+      name = getString();
+      pass = getString();
+      if (l.getPoints(name, pass).isEmpty()) {
+        break;
+      }
+    }
     l.updatePoints(name, pass, NUM, 1);
     assertEquals(l.getPoints(name, pass), Optional.of(NUM));
     l.updatePoints(name, pass, NUM * 2, 1);
