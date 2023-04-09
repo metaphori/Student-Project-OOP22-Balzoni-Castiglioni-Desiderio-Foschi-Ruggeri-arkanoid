@@ -8,8 +8,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.junit.jupiter.api.Test;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -38,6 +36,7 @@ public class SurpriseTest {
 
   private static final double SPEED_X = 0.5;
   private static final double SPEED_Y = 0.2;
+  private static final int NUM = 20;
   private static final int TIME_1 = 10000;
   private static final int TIME_2 = 10500;
 
@@ -184,7 +183,7 @@ public class SurpriseTest {
     Surprise surprise = new Surprise(level);
     Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
         level.getRound().getBalls().get(0).getSpeed().getY());
-    int num = 20;
+    int num = NUM;
     Method method = Surprise.class.getDeclaredMethod("increaseBallSpeed");
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
@@ -202,7 +201,7 @@ public class SurpriseTest {
     Surprise surprise = new Surprise(level);
     Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
         level.getRound().getBalls().get(0).getSpeed().getY());
-    int num = 20;
+    int num = NUM;
     Method method = Surprise.class.getDeclaredMethod("decreaseBallSpeed");
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
