@@ -242,8 +242,8 @@ Nel corso dello sviluppo del progetto mi sono occupata principalmente della part
 la parte di calcoli per il posizionamento delle varie entità e della loro diminsione, lo sviluppo di due metodi per i bonus, la creazione dell'entità Brick
 mentre nella parte della View l'apparizione della scritta che indica il bonus preso.\\Inoltre ho collaborato con i miei compagni nell'implementazione delle parti comuni come
 il Controller oppure il Model.\\
-\textbf{GameEngine}
-\\Questa classe è il vero e proprio motore del gioco al cui interno vi è il game loop cioè un ciclo che viene attivato quando:
+\textbf{Gestione del game loop}
+\\Il game loop è il vero e proprio motore del gioco cioè un ciclo che viene attivato quando:
 \begin{itemize}
     \item L'utente seleziona uno dei tre livello messi a disposizione nello StartMenu.
     \item Si riprende il gioco dal menù di pausa.
@@ -267,7 +267,7 @@ e con la View aggiornandoli continuamente.
     \item Controllare il meccanismo di perdita di vita dell'utente, nel caso avesse ancora vite viene riposizionata la pallina alla posizione iniziale altrimenti viene dichiarato game over.
 \end{itemize}
 In riferimento alla View il game loop si occupa di richiamare la repaint del Frame.
-\\All'interno della classe GameEngine vi è anche un metodo che viene richiamato come ultimo all'interno del ciclo che si occupa di mantenere
+\\All'interno della classe ho voluto anche implementare un metodo che viene richiamato come ultimo all'interno del ciclo che si occupa di mantenere
 la stessa velocità di esecuzione del ciclo su diversi PC in modo tale da evitare che su dispositivi molto prestanti l'applicazione venga eseguita troppo velocemente.
 \begin{figure}[H]
     \centering{}
@@ -275,21 +275,21 @@ la stessa velocità di esecuzione del ciclo su diversi PC in modo tale da evitar
     \caption{Schema UML del GameEngine.}
     \label{images:GameEngine}
 \end{figure}
-\textbf{Brick}\\
-Fin da subito mi sono occupata dell'entità brick facendo un'interfaccia Brick che estende quella già implementata dai miei colleghi (GameObject) in modo tale da avere già i metodi
+\textbf{Entità Brick}\\
+Fin da subito mi sono occupata dell'entità brick facendo un'interfaccia che estende quella già implementata dai miei colleghi per gli oggetti di gioco in modo tale da avere già i metodi
 per la posizione dei brick, la loro boundingBox e la loro dimensione.
 \\Per questa entità ho poi implementato una classe astratta che implementa l'interfaccia in modo tale che le due diverse tipologie di blocchi (normali e ostacoli) potessero estenderla ereditando dei medoti
-già implementati come per esempio il tipo di blocco e tutti i metodi dell'interfaccia GameObject, al fine di poter un giorno estendere i tipi di blocchi, mentre altri, invece, da implementare in quanto differiscono dalle diverse tipologie di blocchi.
-In particolare mi sono occupata della classe NormalBrick che estende AbstractBrick la quale si occupa delle creazione di blocchi normali oppure hard a seconda della resistenza datagli.
+già implementati come per esempio il tipo di blocco e tutti i metodi dell'interfaccia scritta dai miei colleghi sugli oggetti, al fine di poter un giorno estendere i tipi di blocchi, mentre altri, invece, da implementare in quanto differiscono dalle diverse tipologie di blocchi.
+In particolare mi sono occupata dell'entità di brick normale, che estende la classe astratta, la quale si occupa delle creazione di blocchi normali oppure hard a seconda della resistenza datagli.
 \\Questa scelta strutturale è dovuta dal fatto che i brick normali e quelli hard differiscono solamente a livello della quantità di resistenza quindi, ho ritenuto inutile creare un'altra classe e
-aggiungere un tipo diverso di brick all'interno di BrickType.
+aggiungere un tipo diverso di brick.
 \begin{figure}[H]
     \centering{}
     \includegraphics[scale=0.6]{images/Brick.png}
     \caption{Schema UML dell'entità brick.}
     \label{images:Brick}
 \end{figure}
-\textbf{SecondLevel}\\
+\textbf{Secondo Livello}\\
 In questa classe mi sono occupata principalmente della scelta sulla quantità di blocchi da disporre all'interno dei tre round. La struttura della mia classe può essere
 visualizzata alla \Cref{images:Levels}.\\
 \textbf{SizeCalculation}\\
@@ -330,8 +330,10 @@ della classe SizeCalculation già descritta per sapere dove partire a inserirli.
 In questo progetto mi sono anche dedicata a creare due bonus che fossero correlati con quello che ho spiegato fino ad ora, cioè i blocchi hard.
 \\Infatti i miei due surprise sono uno un bonus in quanto cambia per 10 secondi i blocchi hard con quelli normali mentre l'altro è un malus perché aggiungo una riga di
 blocchi hard. Per l'implementazione del primo mi sono servita di due classi di libreria Timer e TimerTask, sovvrascrivendo il metodo run che è colui che scaduto il Timer
-esegue le istruzioni che ha al suo interno.
-
+esegue le istruzioni che ha al suo interno.\\
+\textbf{View}\\
+La parte da me svolta all'interno della view è stata quella principalmente di: implementare il metodo per la colorazione dei brick a seconda della riga in cui sono situati utilizzando
+il metodo implementato all'interno di SizeCalculation e l'apparizione della scritta del bonus preso implementato attraverso l'uso di un Timer come fatto già all'interno di un mio bonus.
 \pagebreak
 \subsection{Foschi Virginia}
 Nel corso dello sviluppo del progetto il mio lavoro si è principalmente concentrato sulla gestione e implementazione della classifica di gioco, del salvataggio del punteggio, del livello difficile con i corrispondenti round e della visualizzazione dei comandi principali del gioco.\\
@@ -383,7 +385,7 @@ Successivamente ho creato due classi, CircleBoundingBox e RectBoundingBox, che e
     \item  Su uno dei due lati orizzontali della box.
     \item  Su uno dei due lati verticati della box .
     \item  Tra due angoli della box .
-  
+
 \end{itemize}
 Questa informazine ci sarà utile in seguito per verificare le collisioni e gestire il cambio di direzione della palla.
 \begin{figure}[H]
@@ -402,7 +404,7 @@ Per gestire la direzione mi sono serivta di due interfacce Direction e Physics l
     \item  Direzione NORD = -1
     \item  Direzione EST = 1
     \item  Direzione OVEST = -1
-  
+
 \end{itemize}
 (Dove SUD e NORD si riferiscono all'asse y e EST e OVEST all'asse x)
 \\Per la direzione verticale non ho usato lo stesso approccio per un motivo puramente estetico. Non avendo una componente orizzontale infatti , la pallina subiva visivamente un notevole "decremento" della velocità. Ho decisio così di assegnare alla componente vericale valore -2 in modo da raddoppiare la velocità sull'asse y.
@@ -419,7 +421,7 @@ Per quanto riguarda le collisioni, io mi sono occupata principalmente di gestire
     \item  collideWithEdges
     \item collideWithBrick
     \item collideWithPad
-  
+
 \end{itemize}
 
 \begin{figure}[H]
