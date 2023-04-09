@@ -13,6 +13,8 @@ To run the game, simply download last release and execute the arkanoid.jar file:
 from terminal: `java -jar arkanoid.jar`
 or double click on application 
 
+## Doc
+download the zip in the last release and open the index.html file
 ## Controls
 
 - Use the left and right arrow keys to move the paddle.
