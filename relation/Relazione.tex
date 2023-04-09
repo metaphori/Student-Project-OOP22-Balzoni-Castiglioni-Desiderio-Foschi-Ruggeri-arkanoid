@@ -195,7 +195,7 @@ Per gestire le varie viste ho scelto di utilizzare un layout di jswing chiamato 
 Questo layout è funzionale a quello che intendevo far fare al View-controller poichè
 gestisce due o più componenti che condividono lo stesso spazio di visualizzazione (il jframe nel nostro caso).
 
-Ogni carta\footnote{nel nostro caso, classi che estendevano JPanel in modo da personalizzarne i meccanismi}
+Ogni carta\footnote{nel nostro caso, classi che estendevano JPanel in modo da personalizzarne i contenuti}
 all'avvio dell' applicazione viene aggiunta al "deck"\footnote{il JPanel che riempie il frame principale}
 a questo punto, con i metodi preposti al selezionamento di una carta basterà richiamarli per una visualizzazione
 corretta.
@@ -251,8 +251,8 @@ Nel corso dello sviluppo del progetto mi sono occupata principalmente della part
 la parte di calcoli per il posizionamento delle varie entità e della loro diminsione, lo sviluppo di due metodi per i bonus, la creazione dell'entità Brick
 mentre nella parte della View l'apparizione della scritta che indica il bonus preso.\\Inoltre ho collaborato con i miei compagni nell'implementazione delle parti comuni come
 il Controller oppure il Model.\\
-\textbf{GameEngine}
-\\Questa classe è il vero e proprio motore del gioco al cui interno vi è il game loop cioè un ciclo che viene attivato quando:
+\textbf{Gestione del game loop}
+\\Il game loop è il vero e proprio motore del gioco cioè un ciclo che viene attivato quando:
 \begin{itemize}
     \item L'utente seleziona uno dei tre livello messi a disposizione nello StartMenu.
     \item Si riprende il gioco dal menù di pausa.
@@ -276,7 +276,7 @@ e con la View aggiornandoli continuamente.
     \item Controllare il meccanismo di perdita di vita dell'utente, nel caso avesse ancora vite viene riposizionata la pallina alla posizione iniziale altrimenti viene dichiarato game over.
 \end{itemize}
 In riferimento alla View il game loop si occupa di richiamare la repaint del Frame.
-\\All'interno della classe GameEngine vi è anche un metodo che viene richiamato come ultimo all'interno del ciclo che si occupa di mantenere
+\\All'interno della classe ho voluto anche implementare un metodo che viene richiamato come ultimo all'interno del ciclo che si occupa di mantenere
 la stessa velocità di esecuzione del ciclo su diversi PC in modo tale da evitare che su dispositivi molto prestanti l'applicazione venga eseguita troppo velocemente.
 \begin{figure}[H]
     \centering{}
@@ -284,21 +284,21 @@ la stessa velocità di esecuzione del ciclo su diversi PC in modo tale da evitar
     \caption{Schema UML del GameEngine.}
     \label{images:GameEngine}
 \end{figure}
-\textbf{Brick}\\
-Fin da subito mi sono occupata dell'entità brick facendo un'interfaccia Brick che estende quella già implementata dai miei colleghi (GameObject) in modo tale da avere già i metodi
+\textbf{Entità Brick}\\
+Fin da subito mi sono occupata dell'entità brick facendo un'interfaccia che estende quella già implementata dai miei colleghi per gli oggetti di gioco in modo tale da avere già i metodi
 per la posizione dei brick, la loro boundingBox e la loro dimensione.
 \\Per questa entità ho poi implementato una classe astratta che implementa l'interfaccia in modo tale che le due diverse tipologie di blocchi (normali e ostacoli) potessero estenderla ereditando dei medoti
-già implementati come per esempio il tipo di blocco e tutti i metodi dell'interfaccia GameObject, al fine di poter un giorno estendere i tipi di blocchi, mentre altri, invece, da implementare in quanto differiscono dalle diverse tipologie di blocchi.
-In particolare mi sono occupata della classe NormalBrick che estende AbstractBrick la quale si occupa delle creazione di blocchi normali oppure hard a seconda della resistenza datagli.
+già implementati come per esempio il tipo di blocco e tutti i metodi dell'interfaccia scritta dai miei colleghi sugli oggetti, al fine di poter un giorno estendere i tipi di blocchi, mentre altri, invece, da implementare in quanto differiscono dalle diverse tipologie di blocchi.
+In particolare mi sono occupata dell'entità di brick normale, che estende la classe astratta, la quale si occupa delle creazione di blocchi normali oppure hard a seconda della resistenza datagli.
 \\Questa scelta strutturale è dovuta dal fatto che i brick normali e quelli hard differiscono solamente a livello della quantità di resistenza quindi, ho ritenuto inutile creare un'altra classe e
-aggiungere un tipo diverso di brick all'interno di BrickType.
+aggiungere un tipo diverso di brick.
 \begin{figure}[H]
     \centering{}
     \includegraphics[scale=0.6]{images/Brick.png}
     \caption{Schema UML dell'entità brick.}
     \label{images:Brick}
 \end{figure}
-\textbf{SecondLevel}\\
+\textbf{Secondo Livello}\\
 In questa classe mi sono occupata principalmente della scelta sulla quantità di blocchi da disporre all'interno dei tre round. La struttura della mia classe può essere
 visualizzata alla \Cref{images:Levels}.\\
 \textbf{SizeCalculation}\\
@@ -339,8 +339,10 @@ della classe SizeCalculation già descritta per sapere dove partire a inserirli.
 In questo progetto mi sono anche dedicata a creare due bonus che fossero correlati con quello che ho spiegato fino ad ora, cioè i blocchi hard.
 \\Infatti i miei due surprise sono uno un bonus in quanto cambia per 10 secondi i blocchi hard con quelli normali mentre l'altro è un malus perché aggiungo una riga di
 blocchi hard. Per l'implementazione del primo mi sono servita di due classi di libreria Timer e TimerTask, sovvrascrivendo il metodo run che è colui che scaduto il Timer
-esegue le istruzioni che ha al suo interno.
-
+esegue le istruzioni che ha al suo interno.\\
+\textbf{View}\\
+La parte da me svolta all'interno della view è stata quella principalmente di: implementare il metodo per la colorazione dei brick a seconda della riga in cui sono situati utilizzando
+il metodo implementato all'interno di SizeCalculation e l'apparizione della scritta del bonus preso implementato attraverso l'uso di un Timer come fatto già all'interno di un mio bonus.
 \pagebreak
 \subsection{Foschi Virginia}
 Nel corso dello sviluppo del progetto il mio lavoro si è principalmente concentrato sulla gestione e implementazione della classifica di gioco, del salvataggio del punteggio, del livello difficile con i corrispondenti round e della visualizzazione dei comandi principali del gioco.\\
@@ -377,7 +379,6 @@ Dal punto di vista della view mi sono occupata principalmente dell'implementazio
     \item CommandView: insieme ai miei compagni abbiamo pensato di realizzare un'interfaccia per permettere al giocatore di visualizzare i comandi principali del gioco.
     \item SaveScore: JDialog che permette al giocatore di inserire i suoi dati (nome e password) e salvare il proprio punteggio.
 \end{itemize}
-\pagebreak
 \subsection{Balzoni Margherita}
 Il mio contributo all'interno del progetto ha riguardato principalmente la gestione della fisica della pallina, in particolare gli aspetti di creazione delle BoundigBox, controllo delle collisioni, movimento e gestione della direzione della palla.
 \\Mi sono occupata poi di realizzare il menù iniziale di gioco e implementare la classe che memorizza e increamenta il punteggio durante la partita.
@@ -392,7 +393,6 @@ Successivamente ho creato due classi, CircleBoundingBox e RectBoundingBox, che e
     \item  Su uno dei due lati orizzontali della box.
     \item  Su uno dei due lati verticati della box .
     \item  Tra due angoli della box .
-
 \end{itemize}
 Questa informazine ci sarà utile in seguito per verificare le collisioni e gestire il cambio di direzione della palla.
 \begin{figure}[H]
@@ -430,6 +430,11 @@ Per quanto riguarda le collisioni, io mi sono occupata principalmente di gestire
     \item collideWithPad
 
 \end{itemize}
+Infatti sono stati realizzati da me tre dei quattro metodi che si trovano all'interno della classe Collision ( collideWithEdges, collideWithBrick, collideWithPad) .
+
+Il controllo delle collsioni l'ho strutturato nel seguende modo:
+\\ come prima cosa viene creata una BoundigBox specifica per ogni oggetto di gioco da controllare , essa viene creata ogni volta che viene richiamato il metodo, successivamente avviene la verifica della collisione sfruttando i metodi della classe bounding box ( che ho descritto precendentemente), infine se la collisione è avvenuta verrà aggiornata opportunamente la direzione e in caso di distruzione di uno o più brick sarà aggiornato il punteggio.
+
 
 \begin{figure}[H]
     \centering{}
@@ -437,20 +442,37 @@ Per quanto riguarda le collisioni, io mi sono occupata principalmente di gestire
     \caption{Schema UML della gestione delle Collisioni.}
     \label{images:Collision}
 \end{figure}
+\pagebreak
 \textbf{Movimento}\\
+Il movimento degli oggetti in gioco è gestito dalla classe Move la quale,
+attraverso il metodo updat aggiorna la posizione di tutti i MovingObject.
+Per quanto riguarda il movimento delle palline verrà richiamato il metodo nextBall.
+\\All'interno di questo metodo dopo aver controllato se sono avvenute tutte le possibili collisioni della palla ed eventualmente dopo aver modificato la direzione, viene aggiornata la posizione della pallina.
+\\La nuova posizione si ottiene sommando a quella attuale la direzione moltiplicata per la velocità.
 \begin{figure}[H]
     \centering{}
     \includegraphics[scale=0.6]{images/Move.png}
     \caption{Schema UML del Movimento.}
     \label{images:Move}
 \end{figure}
+\pagebreak
 \textbf{Punteggio}\\
+Dopo aver discusso insieme il valore da assegnare ad ogni brick distrutto ,abbiamo optato per il seguente metodo:
+\\Ad ogni brick distrutto viene assegnato un punteggio pari ad una costante all'interno della classe Score (che in questo caso ha valore uno), se vengono distrutti più brick consecutivamente questi hanno tutti valore doppio rispetto alla costante, ciò permette di ottenere punteggi ogni volta differenti completando gli stessi livelli.
+\\Inizialmente si era pensato di raddoppiare il punteggio per ogni brick colpito consecutivamente ma ciò postava ad un incremento eccessivo del punteggio al termine del terzo round, poichè il punteggio è unico per un intero livello.
+\\Per realizzare la struttura adatta a gestire il punteggio sono partita realizzado un'interfaccia score contenente metodi implementati dalla classe ScoreImpl che permetono di svolgere azioni utili: Ad esempio resetPoints che segnala di non dover raddoppiare il punteggio per il blocco successivo ( ciò avviene quando la pallina colpisce il pad o un ostacolo) o enableBonus.
+\\Questi metodi grazie all'utilizzo dei campi della classe permettono di increamentare il punteggio in modi diversi a seconda della situazione di gioco in cui ci si trova.
 \begin{figure}[H]
     \centering{}
     \includegraphics[scale=0.6]{images/Score.png}
     \caption{Schema UML del Punteggio.}
     \label{images:Score}
 \end{figure}
+\pagebreak
+\textbf{Menù iniziale}\\
+\\Per quanto riguarda la parte grafica, mi sono occupata di realizzare il menù d'avvio dell'applicazione utilizzando la libreria Java swing.
+\\La classe StartMenu estende JPanel e contiene al suo interno la Jlabel con il nome del gioco e un buttonContainer (ovvero un JPanel che ha come layout un GridBagLayout) che contiene e organizza i vari bottoni della schermata.
+\\Per velocizzare la scrittura e evitare inutili ripetizioni ho creato anche una classe CustomBtn che si occupa di creare bottoni personalizzati per tutti i menù del gioco.
 \pagebreak
 \chapter{Sviluppo}
 \section{Testing automatizzato}
@@ -529,6 +551,7 @@ I compiti da me sviluppati sono stati:
     \item Visualizzazione degli oggetti (pad, pallina e brick) nella scena.
     \item Creazione e gestione delle palline bonus.
     \item Creazione e gestione degli ostacoli.
+    \item Realizzazione di tre interfacce grafiche.
 \end{itemize}
 \subsection{Balzoni Margherita}
 I compiti da me svolti sono stati:
@@ -540,6 +563,16 @@ I compiti da me svolti sono stati:
     \item Implementazione di due metodi della classe Surprise.
     \item realizzazione del menù iniziale dell'applicazione.
     \item Gestione del punteggio.
+\end{itemize}
+\subsection{Ruggeri Simone}
+Le attività da me svolte sono state:
+\begin{itemize}
+    \item Creazione della struttura dei livelli.
+    \item Implementazione del primo livello con i corrispondenti 3 round.
+    \item Realizzazione dei controlli nella classe GameOver.
+    \item Creazione della struttura e implementazione dei menù di pausa, gameover e vittoria.
+    \item Definizione nella classe Surprise della mappa e del metodo che la inzializza.
+    \item Implementazione di due metodi bonus della classe Surprise.
 \end{itemize}
 
 \section{Note di sviluppo}
@@ -558,7 +591,7 @@ In questa sezione vengono elencati gli aspetti avanzati del linguaggio utilizzat
 \subsection{Foschi Virginia}
 Nelle parti di codice da me curate, ho cercato, dove possibile, di fare uso delle seguenti funzionalità del linguaggio Java:
 \begin{itemize}
-    \item uso di stream e lambda expression dove possibile per rendere il codice più leggibile.
+    \item uso di stream e lambda expression per rendere il codice più leggibile.
     \item Optional che mi hanno permesso di memorizzare tutti i mattoncini, indipendentemente dal tipo, in un'unica lista all'interno della classe round.
     \item Iterator per scorrere la lista delle palline bonus e contemporaneamente eliminarle in caso di contatto con il pad o fuoriuscita dal frame.
     \item java.util.Serializable per memorizzare l'oggetto User nel file.
@@ -571,13 +604,39 @@ Nelle mia parte di progetto ho cercato di utilizzare il più possibile:
     \item javax.swing.SwingWorker\footnote{\url{https://docs.oracle.com/javase/7/docs/api/javax/swing/SwingWorker.html}} per la realizzazione del game loop.
     \item java.util.Timer\footnote{\url{https://docs.oracle.com/javase/7/docs/api/java/util/Timer.html}} e java.util.TimerTask\footnote{\url{https://docs.oracle.com/javase/7/docs/api/java/util/TimerTask.html}} per l'implementazione di un metodo bonus e per l'apparizione della scritta del bonus preso.
 \end{itemize}
+
 L'unica fonte che ho utilizzato è stata {\url{https://www.youtube.com/watch?v=HUuiGW6TyfI}} per comprendere il funzionamento della
 classe SwingWorker, oltre alla documentazione Oracle.
-
+\subsection{Ruggeri Simone}
+Nelle parti di codice di mia responsabilità ho cercato di utilizzare le lambda expression dove possibile.\\
+Per risolvere il problema riscontrato nell'inizializzazione della mappa in Surprise, che usando Map.of non potevo inizializzare più di
+10 istanze, ho trovato la soluzione di utilizzare Map.ofEntries online. {\url{https://typeofnan.dev/how-to-create-a-map-of-more-than-10-in-java/}}
+\subsection{Balzoni Margherita}
+Nelle parti di codice da me realizzate ho crecato di utilizzare dove possibile lambda expression, è risultato molto utile inoltre l'uso di Optional, utilizzati in diversi punti del mio codice sopratutto per quanto rigarda il controllo delle collsioni.
+\\Per l'implementazione di uno dei due bonus a me assegnati, ho inoltre sfruttato java.util.Timer e java.util.TimerTask, che mi ha permesso di raddoppiare il punteggio per un determinato periodo di tempo.
 \chapter{Commenti finali}
 \section{Autovalutazione e lavori futuri}
-
-\appendix
+\subsection{Foschi Virginia}
+Non avendo mai svolto un progetto di gruppo prima d'ora devo dire che mi ritengo abbastanza soddisfatta del lavoro svolto. Lavorare in gruppo non è semplice ma credo che ciascuno di noi abbia contribuito con le proprie capacità alla realizzazione complessiva del videogioco.
+Fondamentali sono sicuramente stati gli incontri iniziali per stabilire la suddivisione del lavoro e la capacità dei vari membri del gruppo di sapersi ascoltare in modo tale da trarre, dalle varie opinioni, pensieri, idee, una soluzione ottimale all'organizzazione del progetto e alla strautturazione delle varie classi.
+Nel mio piccolo penso di essermi data da fare nella realizzazione del progetto e di essermi resa disponibile nell'aiutare gli altri in caso di difficoltà.
+Lavorare in gruppo mi ha posto dinanzi ad una serie di sfide come il sapersi fidare del lavoro altrui e sapersi confrontare su questioni su cui si hanno idee/pareri discordanti, sfide per nulla banali per un caratterino come il mio, però devo dire che complessivamente sono soddisfatta dello sviluppo finale del gioco e dell'essere riusciti a rispettare le tempistiche.
+\subsection{Castiglioni Chiara}
+Sono soddisfatta del lavoro da me svolto. Questo proggetto è stato molto utile per colmare alcune lacune riguardo allo sviluppo di un applicativo completamente da zero,
+dato che non avevo mai avuto occasione. Anche lavorare in gruppo è stata una sfida che mi ritengo di aver superato in quanto siamo riusciti a organizzarci e a comunicare con
+costanza, senza lasciare indietro nessuno e aiutando chi era in difficoltà spronandolo a trovare una soluzione.\\
+Inoltre questo progetto mi ha aiutata a comprendere meglio gli aspetti del linguaggio da me affrontati per la prima volta e mi ha fatto crescre a livello di organizzazione del lavoro nel rispetto delle
+tempistiche in quanto alcuni compiti da me svolti era propedeutici allo sviluppo di alcune parti affrontate dai miei colleghi.
+\\Per quanto riguarda il futuro, mi piacerebbe rivedere quanto già fatto e migliorarlo; con più tempo a disposizione magari potrei provare a cambiare la libreria grafica e raffinare il codice già scritto.
+\subsection{Ruggeri Simone}
+Questo progetto ha rappresentato la mia prima occasione per la realizzazione di un progetto di gruppo. Ho iniziato questo percorso con diverse perplessità e dubbi
+che alla fine del progetto mi sento di aver chiarito. Personalmente l'approccio che vedo funzionare meglio con me, che mi permette di fare chiarezza con i concetti
+teorici e alcune dinamiche, è capire le cose mentre si fanno. Il tempo speso in questo progetto mi ha permesso infatti di capire bene i concetti spiegati a lezione e
+di poterli usare con facilità. Prima di iniziare questo percorso di gruppo, Git e GitHub, a parte come concetto, non avevo capito come funzionassero e mi spaventava
+l'idea di usarli. Questo progetto mi ha dato l'occasione per capire bene come utilizzare questi strumenti e creare delle linee guida per poter agevolare anche i miei
+compagni. Per il corretto avanzamento del lavoro è stato fondamentale rimanere dopo le lezioni per potersi confrontare, valutare cambiamenti e discutere insieme
+dell'approccio megliore da seguire. Ho trovato i miei compagni molto preparati, professionali e predisposti al lavoro di gruppo. Nonostante i problemi dovuti
+all'inesperienza, sono molto felice del mio contributo e di ciò che ho imparato.
 \section{Guida utente}
 All'avvio dell'applicazione si presenta la seguente schermata di menu iniziale:
 \begin{figure}[H]
