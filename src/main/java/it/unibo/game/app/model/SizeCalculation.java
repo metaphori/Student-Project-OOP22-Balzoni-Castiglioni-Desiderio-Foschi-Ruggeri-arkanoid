@@ -19,7 +19,6 @@ public class SizeCalculation {
   private static final double MUL_X2 = 1.5;
   private static final double DIVEDER_PAD_X = 60;
   private static final double DIVEDER_BALL = 30;
-  // private static final int FIX_START_Y = 5;
 
   private int numBrickCol;
   private Double startX;
@@ -34,10 +33,8 @@ public class SizeCalculation {
    * 
    * @param numBrickCol number of bricks in a column
    * @param numBrickRow number of brick in a row
-   * @param roundPassed number of rounds passed
    */
-  public SizeCalculation(final int numBrickCol, final int numBrickRow,
-      final int roundPassed) {
+  public SizeCalculation(final int numBrickCol, final int numBrickRow) {
     this.numBrickCol = numBrickCol;
     this.startX = (WORLD_HEIGHT / 2) / DIVIDER_X;
     this.stopX = this.getStopX();
@@ -115,7 +112,7 @@ public class SizeCalculation {
    * 
    * @return the dimension of ball method that calculates the size of the ball.
    */
-  public Dimension getBallDim() {
+  public static Dimension getBallDim() {
     return new DimensionImpl(WORLD_WIDTH / DIVEDER_BALL, WORLD_WIDTH / DIVEDER_BALL);
   }
 }

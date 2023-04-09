@@ -17,13 +17,21 @@ import javax.swing.JPanel;
 import it.unibo.game.Pair;
 import it.unibo.game.app.view.jswing.api.UIController;
 
-public class CommandsView extends JPanel {
+/**
+ * class to show the player the principal commands of the game.
+ */
+public final class CommandsView extends JPanel {
   private static final String COLOR = "#293132";
   private static final int MAX = 3;
   private static final int GAP = 15;
   private static final int DIM = 40;
   private static final int FONT_SIZE = 26;
 
+  /**
+   * constructor of this class.
+   * 
+   * @param control to mantain internal reference to UIController
+   */
   public CommandsView(final UIController control) {
     this.setLayout(new GridLayout(MAX + 2, 1, GAP, GAP));
     this.setBorder(BorderFactory.createEmptyBorder(0, GAP, 0, GAP));
@@ -51,7 +59,7 @@ public class CommandsView extends JPanel {
 
   }
 
-  private final void createPanel(final String image, final String tx,
+  private void createPanel(final String image, final String tx,
       final Pair<Integer, Integer> dim) {
     JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
     panel.setBackground(Color.decode(COLOR));

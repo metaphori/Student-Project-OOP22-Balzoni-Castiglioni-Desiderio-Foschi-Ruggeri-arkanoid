@@ -39,7 +39,7 @@ public interface UIController {
      */
     GAME_OVER("GAME_OVER"),
     /**
-     * game commands
+     * game commands.
      */
     GAME_COMMANDS("GAME_COMMANDS");
 
@@ -65,7 +65,7 @@ public interface UIController {
   };
 
   /**
-   * method that sets the controller and creates a new Frame, also initializes the
+   * method that sets the controller and creates a new Frame also initializes the
    * page map and calls the initialView method.
    * 
    * @param control controller of the application.
@@ -78,7 +78,7 @@ public interface UIController {
   void initialView();
 
   /**
-   * method that brings up the game commands page
+   * method that brings up the game commands page.
    */
   void gameCommands();
 
@@ -210,8 +210,6 @@ public interface UIController {
    * @return dimension of the frame.
    */
   Pair<Double, Double> windowDim();
-
-  Pair<Integer, Integer> frameDim();
 
   /**
    * 

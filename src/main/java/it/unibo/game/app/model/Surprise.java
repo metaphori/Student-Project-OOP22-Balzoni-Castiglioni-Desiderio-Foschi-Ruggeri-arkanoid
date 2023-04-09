@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.Pair;
@@ -41,6 +43,10 @@ public class Surprise {
   private static final int PERCENTUAL = 50;
   private static final int BONUS_DURATION = 10000;
   // private static final int FIX_START_Y = 5;
+
+  private static final double SPEED_X = 0.5;
+  private static final double SPEED_Y = 0.2;
+  private static final double LENGTH = 0.1;
 
   private Map<Integer, Runnable> map = new HashMap<>();
   private Random random = new Random();
@@ -99,13 +105,13 @@ public class Surprise {
    * 
    * @param index
    * @param lastBrick
-   * @return
+   * @return true if there is a brick on the left
    */
-  private boolean isThereLeftBrick(int index, Brick lastBrick) {
+  private boolean isThereLeftBrick(final int index, final Brick lastBrick) {
     return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick
         .getPos().getY()
         && (lastBrick.getPos().getX() - lastBrick.getBrickW())
-            - this.level.getRound().getBrick().get(index).getPos().getX() < 0.1);
+            - this.level.getRound().getBrick().get(index).getPos().getX() < LENGTH);
   }
 
   /**
@@ -113,13 +119,13 @@ public class Surprise {
    * 
    * @param index
    * @param lastBrick
-   * @return
+   * @return true if there is a brick on the right
    */
-  private boolean isThereRightBrick(int index, Brick lastBrick) {
+  private boolean isThereRightBrick(final int index, final Brick lastBrick) {
     return (this.level.getRound().getBrick().get(index).getPos().getY() == lastBrick
         .getPos().getY()
         && (this.level.getRound().getBrick().get(index).getPos().getX()
-            - lastBrick.getBrickW()) - lastBrick.getPos().getX() < 0.1);
+            - lastBrick.getBrickW()) - lastBrick.getPos().getX() < LENGTH);
   }
 
   /**
@@ -128,7 +134,7 @@ public class Surprise {
    * @param index
    * @return true if it is an obstacle.
    */
-  private boolean isObstacle(int index) {
+  private boolean isObstacle(final int index) {
     return this.level.getRound().getBrick().get(index).getType()
         .equals(BrickType.OBSTACLE);
   }
@@ -139,7 +145,7 @@ public class Surprise {
    * @param index
    * @return true if it is a surprise.
    */
-  private boolean isSursprise(int index) {
+  private boolean isSursprise(final int index) {
     return this.level.getRound().getBrick().get(index).getType()
         .equals(BrickType.SURPRISE);
   }
@@ -149,7 +155,7 @@ public class Surprise {
    * 
    * @param index
    */
-  private void deleteBrick(int index) {
+  private void deleteBrick(final int index) {
     this.level.getRound().getBrick().remove(index);
   }
 
@@ -159,7 +165,7 @@ public class Surprise {
    * @param index
    * @return true if index is greater equals than zero
    */
-  private boolean isIndexPositive(int index) {
+  private boolean isIndexPositive(final int index) {
     return index >= 0;
   }
 
@@ -169,7 +175,7 @@ public class Surprise {
    * @param index
    * @return true if index minor than the size of the list
    */
-  private boolean isIndexNotTheLast(int index) {
+  private boolean isIndexNotTheLast(final int index) {
     return index < this.level.getRound().getBrick().size();
   }
 
@@ -177,15 +183,19 @@ public class Surprise {
    * method that randomly deletes bricks. Edoardo Desiderio
    */
   private void deleteRandomBricks() {
-    this.level.setSurpriseString("delete Random Bricks");
-    System.out.println("deleteRandomBricks");
-    var i = random.nextInt(1, level.getRound().getBrick().size() / 2) + 1;
-    while (i > 0) {
-      level.getRound().remove(random.nextInt(level.getRound().getBrick().size()));
-      // System.out.println("bricks to delate: " + i);
-      i--;
+    try {
+      var i = random.nextInt(0, Integer.max(2, level.getRound().getBrick().size() / 2));
+      var label = String.format("delete Random Bricks: %d", i);
+      this.level.setSurpriseString(label);
+      System.out.println("-------------------------------------------------------------");
+      while (i > 0) {
+        this.deleteBrick(random.nextInt(0, level.getRound().getBrick().size()));
+        // System.out.println("bricks to delate: " + i);
+        i--;
+      }
+    } catch (Exception e) {
+      System.out.println(e.toString());
     }
-
   }
 
   /**
@@ -256,7 +266,7 @@ public class Surprise {
     this.level.setSurpriseString("increase Ball Speed");
     System.out.println("increaseBallSpeed");
     this.level.getRound().getBalls()
-        .forEach(x -> x.getSpeed().sum(new SpeedImpl(0.5, 0.2)));
+        .forEach(x -> x.getSpeed().sum(new SpeedImpl(SPEED_X, SPEED_Y)));
 
   }
 
@@ -267,7 +277,7 @@ public class Surprise {
     this.level.setSurpriseString("decrease Ball Speed");
     System.out.println("decreaseBallSpeed");
     this.level.getRound().getBalls()
-        .forEach(x -> x.getSpeed().sum(new SpeedImpl(-0.5, -0.2)));
+        .forEach(x -> x.getSpeed().sum(new SpeedImpl(-SPEED_X, -SPEED_Y)));
 
   }
 
@@ -315,7 +325,7 @@ public class Surprise {
     this.level.setSurpriseString("add Ball");
     System.out.println("addBalls");
     for (int i = 0; i < NUM_BALLS; i++) {
-      MovingObject ball = new Ball(this.level.getRound().getSizeCalc().getBallDim());
+      MovingObject ball = new Ball(SizeCalculation.getBallDim());
       this.level.getRound().getExtraBalls().add(ball);
     }
   }
@@ -395,6 +405,16 @@ public class Surprise {
    */
   public void chooseSurprise() {
     final int method = random.nextInt(NUM_TOT_SURSPRISE) + 1;
-    this.map.get(method).run();
+    CompletableFuture<Void> future = CompletableFuture
+        .runAsync(() -> this.map.get(method).run());
+    try {
+      future.get();
+    } catch (InterruptedException e) {
+      System.out.println(e.toString());
+    } catch (ExecutionException e) {
+      System.out.println(e.toString());
+
+    }
+    future.join();
   }
 }

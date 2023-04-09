@@ -15,7 +15,6 @@ import it.unibo.game.app.model.brick.Obstacle;
  */
 public class RoundDifficult extends AbstractRound {
 
-  private int obstacles;
   private final int height;
 
   /**
@@ -29,7 +28,6 @@ public class RoundDifficult extends AbstractRound {
   public RoundDifficult(final int numB, final int numS, final SizeCalculation size,
       final int obstacles) {
     super(numB, numS, size);
-    this.obstacles = obstacles;
     this.height = (int) Math.sqrt((double) (2 * (obstacles + numB + numS)));
   }
 
@@ -67,8 +65,8 @@ public class RoundDifficult extends AbstractRound {
    */
   private void setSurprise() {
     int num = 0;
-    while (num < getNumSur()) {
-      if (setBrickSurprise()) {
+    while (num < super.getNumSur()) {
+      if (super.setBrickSurprise()) {
         ++num;
       }
     }
@@ -80,11 +78,7 @@ public class RoundDifficult extends AbstractRound {
   private void setPosObstacles() {
     int first = super.getBrick().size() - height;
     int last = super.getBrick().size() - 1;
-    int num = 0;
-    /*
-     * while (num < (obstacles / 2)) { replace(first++); replace(last--); ++num; }
-     */
-    while (first < last) {
+    while (first <= last) {
       replace(first);
       first = first + 2;
     }

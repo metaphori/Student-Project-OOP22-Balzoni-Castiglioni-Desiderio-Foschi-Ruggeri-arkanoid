@@ -2,20 +2,46 @@ package it.unibo.game.app.api;
 
 import it.unibo.game.Pair;
 
+/**
+ * game object must implement all methods of the game objects considering that.
+ * they are static.
+ */
 public interface GameObject {
-	/*
-	 * game object deve implementare tutti i metodi degli oggetti di gioco
-	 * considerando che siano statici
-	 */
-	void setPos(Pair<Double, Double> pos);
 
-	Pair<Double, Double> getPos();
+  /**
+   * set pos of game obj.
+   * 
+   * @param pos
+   */
+  void setPos(Pair<Double, Double> pos);
 
-	BoundingBox getBoundingBox();
+  /**
+   * 
+   * @return pos of game obj
+   */
+  Pair<Double, Double> getPos();
 
-	void setBoundingBox(BoundingBox box);
+  /**
+   * @return bounding box area of game obj
+   */
+  BoundingBox getBoundingBox();
 
-	Dimension getDimension();
+  /**
+   * set bounding box of game obj.
+   * 
+   * @param box
+   */
+  void setBoundingBox(BoundingBox box);
 
-	void setDimension(Dimension d);
+  /**
+   * @return dimension of obj
+   */
+  Dimension getDimension();
+
+  /**
+   * set dimension of obj.
+   * 
+   * @param d
+   */
+  void setDimension(Dimension d);
 }

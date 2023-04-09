@@ -16,6 +16,11 @@ bin/
 *.fls
 *.log
 *.out
-*.pdf
 *.synctex.gz
 *.toc
+
+#ignore leaderboard
+File.txt
+
+#ignored hidden file of macOS
+.DS_Store

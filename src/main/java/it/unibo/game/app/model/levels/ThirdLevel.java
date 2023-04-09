@@ -14,12 +14,12 @@ public final class ThirdLevel extends AbstractLevel {
   private static final int OBSTACLE1 = 2;
 
   private static final int NORMAL2 = 13;
-  private static final int SURPRISE2 = 4;
-  private static final int OBSTACLE2 = 4;
+  private static final int SURPRISE2 = 5;
+  private static final int OBSTACLE2 = 3;
 
-  private static final int NORMAL3 = 16;
+  private static final int NORMAL3 = 18;
   private static final int SURPRISE3 = 6;
-  private static final int OBSTACLE3 = 6;
+  private static final int OBSTACLE3 = 4;
 
   private static final int ID = 3;
   private SizeCalculation sizeC;
@@ -76,7 +76,7 @@ public final class ThirdLevel extends AbstractLevel {
    */
   private void set(final int normal, final int surprise, final int obstacles) {
     int h = getCol(normal, surprise, obstacles);
-    this.sizeC = new SizeCalculation(h, h + 1, super.getNumRoundPassed());
+    this.sizeC = new SizeCalculation(h, h + 1);
     super.setRound(new RoundDifficult(normal, surprise, sizeC, obstacles));
     super.getRound().setPosBrick();
   }

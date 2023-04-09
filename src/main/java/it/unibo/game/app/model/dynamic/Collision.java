@@ -5,11 +5,10 @@ import java.util.Optional;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
-import it.unibo.game.app.api.BrickType;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.api.MovingObject;
-import it.unibo.game.app.api.BoundingBox.Corner;
-import it.unibo.game.app.api.BoundingBox.Side;
+import it.unibo.game.app.api.Corner;
+import it.unibo.game.app.api.Side;
 import it.unibo.game.app.model.CircleBoundingBox;
 import it.unibo.game.app.model.RectBoundingBox;
 import it.unibo.game.app.model.SizeCalculation;
@@ -18,7 +17,7 @@ import it.unibo.game.app.model.SizeCalculation;
  * Class that handles collisions.
  */
 public class Collision {
-  // private static final double DELTA = 7.5;
+
   private Level level;
 
   /**
@@ -38,11 +37,14 @@ public class Collision {
    */
   public void collideWithEdges(final MovingObject b, final Double h, final Double w) {
     b.setBoundingBox(new CircleBoundingBox(b));
-    if (b.getBoundingBox().getBox().get(Corner.LEFT_DOWN).getX() <= 0.5
-        || b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w) {
+    if ((b.getBoundingBox().getBox().get(Corner.LEFT_DOWN).getX() <= 0.5
+        && b.getPhysics().getDir().getDirection().getX() == -1)
+        || b.getBoundingBox().getBox().get(Corner.RIGHT_DOWN).getX() >= w
+            && b.getPhysics().getDir().getDirection().getX() == 1) {
       b.getPhysics().changeDirection(Side.LEFT_RIGHT);
     }
-    if (b.getBoundingBox().getBox().get(Corner.LEFT_UP).getY() <= 0.5) {
+    if (b.getBoundingBox().getBox().get(Corner.LEFT_UP).getY() <= 0.5
+        && b.getPhysics().getDir().getDirection().getY() != 1) {
       b.getPhysics().changeDirection(Side.UP_DOWN);
     }
   }
@@ -71,7 +73,7 @@ public class Collision {
       var opt = b.getBoundingBox().collideWith(obj.getBoundingBox());
 
       if (opt.isPresent()) {
-        if (obj.getType() == BrickType.NORMAL) {
+        if (obj.getRes().isPresent() && obj.getRes().get().equals(1)) {
           this.level.getScore().increaseScore();
         } else {
           this.level.getScore().resetPoints();
@@ -92,9 +94,16 @@ public class Collision {
   public boolean collideWithPad(final MovingObject b, final MovingObject p) {
     b.setBoundingBox(new CircleBoundingBox(b));
     p.setBoundingBox(new RectBoundingBox(p));
+
     var opt = b.getBoundingBox().collideWith(p.getBoundingBox());
     if (opt.isPresent()) {
-      b.getPhysics().changeDirection(opt.get());
+      var centre = b.getBoundingBox().checkCentre(p.getBoundingBox());
+      if (centre.isPresent()) {
+        b.getPhysics().changeDirection(centre.get());
+      } else {
+        b.getPhysics().changeDirection(opt.get());
+      }
+
       return true;
     }
     return false;

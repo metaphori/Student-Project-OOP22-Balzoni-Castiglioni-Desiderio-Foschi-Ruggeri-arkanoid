@@ -51,15 +51,6 @@ public class SpeedImpl implements Speed {
    * {@inheritDoc}
    */
   @Override
-  public void mul(final double num) {
-    this.x = this.x * num;
-    this.y = this.y * num;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;

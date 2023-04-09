@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import it.unibo.game.Pair;
 import it.unibo.game.app.api.BoundingBox;
+import it.unibo.game.app.api.Corner;
+import it.unibo.game.app.api.Side;
 
 /**
  * Class that builds a boundig box around a GameObject to control collisions.
@@ -14,6 +16,7 @@ import it.unibo.game.app.api.BoundingBox;
 public class AbstractBoundingBox implements BoundingBox {
 
   private Map<Corner, Pair<Double, Double>> corners = new HashMap<>();
+  private static final int CENTRE_RANGE = 10;
 
   /**
    * 
@@ -34,13 +37,45 @@ public class AbstractBoundingBox implements BoundingBox {
   }
 
   /**
+   * 
+   * @param c1 corner of this boundingBox
+   * @param c2 corner of boundingBox b
+   * @param b  bounidngBox to check
+   * @return true if the two corners collide
+   */
+  private boolean checkCorners(final Corner c1, final Corner c2, final BoundingBox b) {
+    return this.range(this.corners.get(c1).getX(), b.getBox().get(c2).getX())
+        && this.range(this.corners.get(c1).getY(), b.getBox().get(c2).getY());
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public Optional<Side> checkCentre(final BoundingBox b) {
+    Double d1 = (this.corners.get(Corner.LEFT_DOWN).getX()
+        + this.corners.get(Corner.RIGHT_DOWN).getX()) / 2;
+    Double d2 = (b.getBox().get(Corner.LEFT_UP).getX()
+        + b.getBox().get(Corner.RIGHT_UP).getX()) / 2;
+    if (d1 <= d2 + CENTRE_RANGE && d1 >= d2 - CENTRE_RANGE) {
+      return Optional.of(Side.PAD_CENTRE);
+    } else {
+      return Optional.empty();
+    }
+  }
+
+  /**
    * {@inheritDoc}
    */
   @Override
   public Optional<Side> collideWith(final BoundingBox b) {
-    if ((this.equals(this.corners.get(Corner.LEFT_DOWN).getY(),
+    if (this.checkCorners(Corner.LEFT_UP, Corner.RIGHT_DOWN, b)
+        || this.checkCorners(Corner.LEFT_DOWN, Corner.RIGHT_UP, b)
+        || this.checkCorners(Corner.RIGHT_UP, Corner.LEFT_DOWN, b)
+        || this.checkCorners(Corner.RIGHT_DOWN, Corner.LEFT_UP, b)) {
+      return Optional.of(Side.CORNER);
+    } else if ((this.range(this.corners.get(Corner.LEFT_DOWN).getY(),
         b.getBox().get(Corner.LEFT_UP).getY())
-        || this.equals(this.corners.get(Corner.LEFT_UP).getY(),
+        || this.range(this.corners.get(Corner.LEFT_UP).getY(),
             b.getBox().get(Corner.LEFT_DOWN).getY()))
         && (this.corners.get(Corner.LEFT_UP).getX() <= b.getBox().get(Corner.RIGHT_DOWN)
             .getX()
@@ -48,9 +83,9 @@ public class AbstractBoundingBox implements BoundingBox {
                 .get(Corner.LEFT_DOWN).getX())) {
       return Optional.of(Side.UP_DOWN);
 
-    } else if ((this.equals(this.corners.get(Corner.RIGHT_DOWN).getX(),
+    } else if ((this.range(this.corners.get(Corner.RIGHT_DOWN).getX(),
         b.getBox().get(Corner.LEFT_DOWN).getX())
-        || this.equals(this.corners.get(Corner.LEFT_DOWN).getX(),
+        || this.range(this.corners.get(Corner.LEFT_DOWN).getX(),
             b.getBox().get(Corner.RIGHT_DOWN).getX()))
         && (this.corners.get(Corner.RIGHT_DOWN).getY() >= b.getBox().get(Corner.LEFT_UP)
             .getY()
@@ -68,8 +103,8 @@ public class AbstractBoundingBox implements BoundingBox {
    * @param d2
    * @return Returns true if d1 is within the range.
    */
-  private boolean equals(final Double d1, final Double d2) {
-    return (d1 >= d2 - 2 && d1 <= d2 + 2);
+  private boolean range(final Double d1, final Double d2) {
+    return (d1 >= d2 - 3 && d1 <= d2 + 3);
   }
 
   /**

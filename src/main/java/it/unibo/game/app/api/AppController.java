@@ -144,10 +144,8 @@ public interface AppController {
 
   /**
    * method to invoke update in model.
-   * 
-   * @param dt time
    */
-  void update(long dt);
+  void update();
 
   /**
    * method to invoke the game over frame change in the view.
@@ -167,12 +165,12 @@ public interface AppController {
   void restoreBall();
 
   /**
-   * move pad right
+   * move pad right.
    */
   void mvPadR();
 
   /**
-   * move pad Left
+   * move pad Left.
    */
   void mvPadL();
 

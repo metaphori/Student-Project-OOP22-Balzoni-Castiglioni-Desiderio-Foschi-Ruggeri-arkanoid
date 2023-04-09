@@ -25,9 +25,9 @@ import it.unibo.game.app.model.levels.FirstLevel;
 import it.unibo.game.app.model.levels.SecondLevel;
 import it.unibo.game.app.model.levels.ThirdLevel;
 import it.unibo.game.Pair;
-import it.unibo.game.app.api.BoundingBox;
 import it.unibo.game.app.api.Brick;
 import it.unibo.game.app.api.BrickType;
+import it.unibo.game.app.api.Corner;
 
 /**
  * method to test all surprise methods.
@@ -36,6 +36,9 @@ public class SurpriseTest {
 
   private static final double SPEED_X = 0.5;
   private static final double SPEED_Y = 0.2;
+  private static final int NUM = 20;
+  private static final int TIME_1 = 10000;
+  private static final int TIME_2 = 10500;
 
   @Test
   void testExtraLife() throws NoSuchMethodException, SecurityException,
@@ -84,7 +87,7 @@ public class SurpriseTest {
         }
       }
     };
-    timer.schedule(task, 10000);
+    timer.schedule(task, TIME_1);
 
   }
 
@@ -108,6 +111,14 @@ public class SurpriseTest {
       level.setLastSurpriseBrick(element.getKey(), element.getValue());
       method.invoke(surprise);
       int newSize = level.getRound().getBrick().size();
+      /*
+       * In the first round of FirstLevel, the number of surprises is 2. So the bomb
+       * can break: 0 bricks if it is not close to any brick (newSize will not
+       * change); 1 brick if only one of the bombs is close only to one brick; 2
+       * bricks if the bomb is between 2 bricks or both bombs are close to only a
+       * brick; 3 bricks if one bomb is between 2 bricks and the other has one close;
+       * 4 bricks if both bombs are between 2 bricks
+       */
       assertTrue(oldSize >= newSize && oldSize <= newSize + 4);
     }
   }
@@ -126,7 +137,17 @@ public class SurpriseTest {
     testAddHardRow(l3);
   }
 
-  void testAddHardRow(Level l) throws NoSuchMethodException, SecurityException,
+  /**
+   * method for testing adding a row of hard bricks.
+   * 
+   * @param l level
+   * @throws NoSuchMethodException
+   * @throws SecurityException
+   * @throws IllegalAccessException
+   * @throws IllegalArgumentException
+   * @throws InvocationTargetException
+   */
+  void testAddHardRow(final Level l) throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     List<Brick> reverse = new ArrayList<>();
     Surprise surprise = new Surprise(l);
@@ -146,8 +167,6 @@ public class SurpriseTest {
     method.invoke(surprise);
     if (l.getId() == 2) {
       assertEquals(oldSize + count + 2, l.getRound().getBrick().size());
-    } else if (l.getId() == 1) {
-      assertEquals(oldSize + count, l.getRound().getBrick().size());
     } else {
       assertEquals(oldSize + count, l.getRound().getBrick().size());
     }
@@ -164,14 +183,14 @@ public class SurpriseTest {
     Surprise surprise = new Surprise(level);
     Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
         level.getRound().getBalls().get(0).getSpeed().getY());
-    int num = 10;
+    int num = NUM;
     Method method = Surprise.class.getDeclaredMethod("increaseBallSpeed");
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
       method.invoke(surprise);
-      initial.sum(new SpeedImpl(SPEED_X, SPEED_Y));
-      assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
     }
+    initial.sum(new SpeedImpl(SPEED_X * num, SPEED_Y * num));
+    assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
   }
 
   @Test
@@ -182,14 +201,14 @@ public class SurpriseTest {
     Surprise surprise = new Surprise(level);
     Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
         level.getRound().getBalls().get(0).getSpeed().getY());
-    int num = 10;
+    int num = NUM;
     Method method = Surprise.class.getDeclaredMethod("decreaseBallSpeed");
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
       method.invoke(surprise);
-      initial.sum(new SpeedImpl(-SPEED_X, -SPEED_Y));
-      assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
     }
+    initial.sum(new SpeedImpl(-SPEED_X * num, -SPEED_Y * num));
+    assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
   }
 
   @Test
@@ -254,7 +273,7 @@ public class SurpriseTest {
         assertEquals(s + 4, score.getScore());
       }
     };
-    timer.schedule(task, 10000);
+    timer.schedule(task, TIME_1);
 
   }
 
@@ -289,7 +308,7 @@ public class SurpriseTest {
             pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
       }
     };
-    timer.schedule(task, 10500);
+    timer.schedule(task, TIME_2);
 
   }
 
@@ -320,10 +339,10 @@ public class SurpriseTest {
     method.setAccessible(true);
     method.invoke(surprise);
     pad.setBoundingBox(new RectBoundingBox(pad));
-    assertTrue(pad.getBoundingBox().getBox().get(BoundingBox.Corner.RIGHT_DOWN)
+    assertTrue(pad.getBoundingBox().getBox().get(Corner.RIGHT_DOWN)
         .getX() <= SizeCalculation.getWorldSize().getY());
 
-    assertFalse(pad.getPos().getX() == oldWpos);
+    assertFalse(pad.getPos().getX().equals(oldWpos));
     assertFalse(pad.getPos().getX() > oldWpos);
     assertTrue(pad.getDimension().getWidth() > SizeCalculation.getPadDim().getWidth());
     Timer timer = new Timer();
@@ -336,7 +355,7 @@ public class SurpriseTest {
             pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
       }
     };
-    timer.schedule(task, 10500);
+    timer.schedule(task, TIME_2);
   }
 
   @Test
@@ -365,7 +384,7 @@ public class SurpriseTest {
             pad.getDimension().getWidth() == SizeCalculation.getPadDim().getWidth());
       }
     };
-    timer.schedule(task, 10500);
+    timer.schedule(task, TIME_2);
 
   }
 

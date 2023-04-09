@@ -95,7 +95,7 @@ public interface Round {
   List<MovingObject> getExtraBalls();
 
   /**
-   * methodto set brick in right position.
+   * method to set brick in right position.
    */
   void setPosBrick();
 
