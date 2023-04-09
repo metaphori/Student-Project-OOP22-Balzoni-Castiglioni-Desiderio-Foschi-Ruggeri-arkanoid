@@ -69,13 +69,16 @@ public class CollisionTest {
         .setPos(new Pair<Double, Double>(posPad.getX() + 1, posPad.getY()
             - level.getRound().getBalls().get(0).getDimension().getHeight() + 1));
     level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionDown();
+    level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionRight();
     dir.setDirectionUp();
     assertTrue(colls.collideWithPad(level.getRound().getBalls().get(0),
         level.getRound().getPad()));
+    colls.collideWithPad(level.getRound().getBalls().get(0), level.getRound().getPad());
     assertEquals(dir.getDirection(),
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
 
     /* collision with the pad from the side */
+
     level.getRound().getBalls().get(0)
         .setPos(new Pair<Double, Double>(
             posPad.getX() - level.getRound().getBalls().get(0).getDimension().getWidth(),
@@ -84,19 +87,22 @@ public class CollisionTest {
     dir.setDirectionLeft();
     assertTrue(colls.collideWithPad(level.getRound().getBalls().get(0),
         level.getRound().getPad()));
+    colls.collideWithPad(level.getRound().getBalls().get(0), level.getRound().getPad());
     assertEquals(dir.getDirection(),
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
 
     /* collision in the corner */
+
     level.getRound().getBalls().get(0).setPos(new Pair<Double, Double>(
         posPad.getX() - level.getRound().getBalls().get(0).getDimension().getWidth(),
         posPad.getY() - level.getRound().getBalls().get(0).getDimension().getHeight()));
     level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionRight();
     level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionDown();
     dir.setDirectionUp();
-    dir.setDirectionRight();
+    dir.setDirectionLeft();
     assertTrue(colls.collideWithPad(level.getRound().getBalls().get(0),
         level.getRound().getPad()));
+    colls.collideWithPad(level.getRound().getBalls().get(0), level.getRound().getPad());
     assertEquals(dir.getDirection(),
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
 
