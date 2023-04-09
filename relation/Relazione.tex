@@ -370,7 +370,6 @@ Dal punto di vista della view mi sono occupata principalmente dell'implementazio
     \item CommandView: insieme ai miei compagni abbiamo pensato di realizzare un'interfaccia per permettere al giocatore di visualizzare i comandi principali del gioco.
     \item SaveScore: JDialog che permette al giocatore di inserire i suoi dati (nome e password) e salvare il proprio punteggio.
 \end{itemize}
-\pagebreak
 \subsection{Balzoni Margherita}
 Il mio contributo all'interno del progetto ha riguardato principalmente la gestione della fisica della pallina, in particolare gli aspetti di creazione delle BoundigBox, controllo delle collisioni, movimento e gestione della direzione della palla.
 \\Mi sono occupata poi di realizzare il menù iniziale di gioco e implementare la classe che memorizza e increamenta il punteggio durante la partita.
@@ -416,13 +415,11 @@ Per gestire la direzione mi sono serivta di due interfacce Direction e Physics l
 \end{figure}
 \textbf{Collisioni}\\
 Per quanto riguarda le collisioni, io mi sono occupata principalmente di gestire quelle riguardanti la pallina.
-\\ Infatti sono stati realizzati da me tre dei quattro metodi che si trovano all'interno della classe Collision:
-\begin{itemize}
-    \item  collideWithEdges
-    \item collideWithBrick
-    \item collideWithPad
+\\ Infatti sono stati realizzati da me tre dei quattro metodi che si trovano all'interno della classe Collision ( collideWithEdges, collideWithBrick, collideWithPad) .
 
-\end{itemize}
+Il controllo delle collsioni l'ho strutturato nel seguende modo:
+\\ come prima cosa viene creata una BoundigBox specifica per ogni oggetto di gioco da controllare , essa viene creata ogni volta che viene richiamato il metodo, successivamente avviene la verifica della collisione sfruttando i metodi della classe bounding box ( che ho descritto precendentemente), infine se la collisione è avvenuta verrà aggiornata opportunamente la direzione e in caso di distruzione di uno o più brick sarà aggiornato il punteggio.
+
 
 \begin{figure}[H]
     \centering{}
@@ -430,14 +427,26 @@ Per quanto riguarda le collisioni, io mi sono occupata principalmente di gestire
     \caption{Schema UML della gestione delle Collisioni.}
     \label{images:Collision}
 \end{figure}
+\pagebreak
 \textbf{Movimento}\\
+Il movimento degli oggetti in gioco è gestito dalla classe Move la quale,
+attraverso il metodo updat aggiorna la posizione di tutti i MovingObject.
+Per quanto riguarda il movimento delle palline verrà richiamato il metodo nextBall.
+\\All'interno di questo metodo dopo aver controllato se sono avvenute tutte le possibili collisioni della palla ed eventualmente dopo aver modificato la direzione, viene aggiornata la posizione della pallina.
+\\La nuova posizione si ottiene sommando a quella attuale la direzione moltiplicata per la velocità.
 \begin{figure}[H]
     \centering{}
     \includegraphics[scale=0.6]{images/Move.png}
     \caption{Schema UML del Movimento.}
     \label{images:Move}
 \end{figure}
+\pagebreak
 \textbf{Punteggio}\\
+Dopo aver discusso insieme il valore da assegnare ad ogni brick distrutto ,abbiamo optato per il seguente metodo:
+\\Ad ogni brick distrutto viene assegnato un punteggio pari ad una costante all'interno della classe Score (che in questo caso ha valore uno), se vengono distrutti più brick consecutivamente questi hanno tutti valore doppio rispetto alla costante, ciò permette di ottenere punteggi ogni volta differenti completando gli stessi livelli.
+\\Inizialmente si era pensato di raddoppiare il punteggio per ogni brick colpito consecutivamente ma ciò postava ad un incremento eccessivo del punteggio al termine del terzo round, poichè il punteggio è unico per un intero livello.
+\\Per realizzare la struttura adatta a gestire il punteggio sono partita realizzado un'interfaccia score contenente metodi implementati dalla classe ScoreImpl che permetono di svolgere azioni utili: Ad esempio resetPoints che segnala di non dover raddoppiare il punteggio per il blocco successivo ( ciò avviene quando la pallina colpisce il pad o un ostacolo) o enableBonus.
+\\Questi metodi grazie all'utilizzo dei campi della classe permettono di increamentare il punteggio in modi diversi a seconda della situazione di gioco in cui ci si trova.
 \begin{figure}[H]
     \centering{}
     \includegraphics[scale=0.6]{images/Score.png}
