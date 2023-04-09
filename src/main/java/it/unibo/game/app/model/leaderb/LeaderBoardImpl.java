@@ -150,7 +150,7 @@ public final class LeaderBoardImpl implements LeaderBoard {
   @SuppressWarnings("unchecked")
   private List<User> loadFromResources() {
     try (ObjectInputStream oos = new ObjectInputStream(
-        new BufferedInputStream(this.getClass().getResourceAsStream("/File.txt")))) {
+        new BufferedInputStream(this.getClass().getResourceAsStream("/Filee.txt")))) {
       return (List<User>) oos.readObject();
     } catch (FileNotFoundException ex) {
       System.out.println(ex.toString());
