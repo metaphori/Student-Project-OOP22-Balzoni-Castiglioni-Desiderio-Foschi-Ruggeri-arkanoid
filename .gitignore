@@ -21,7 +21,7 @@ bin/
 *.toc
 
 #ignore leaderboard
-Filee.txt
+File.txt
 
 #ignored hidden file of macOS
 .DS_Store
