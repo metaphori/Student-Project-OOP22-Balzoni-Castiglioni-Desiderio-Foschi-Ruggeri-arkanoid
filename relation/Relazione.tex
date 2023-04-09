@@ -161,6 +161,15 @@ In oltre, ho studiato come funzionano i file json di configurazione di vscode in
 a tutti i miei colleghi per un' esperienza "out of the box" dell' IDE come la configurazione di un debugger meno invasivo rispetto quello di  default.
 Ho riservato una buona attenzione a questa configurazione per limitare al massimo lo stress causato dalla poca intuittività di alcune
 automattizzazioni ed essere sereni e tranquilli.
+\subsubsection{Elementi di gioco.}
+Dalla descrizione del dominio risulta chiaro che il gioco dovrà mostrare e gestire due tipi di entità diverse:
+\begin{itemize}
+    \item entità statiche
+    \item entità dinamiche
+\end{itemize}
+L'idea iniziale é stata di creare due intefacce che avessero proprietá specifice per ogni tipo di queste entità.
+Da specificare che un'entitá mobile del gioco estende anche tutte le proprieta di un entitá statica
+
 \subsubsection{UIController, la scelta.}
 ho ritenuto vantaggioso avere un controller dedicato per la vista  che comunicasse
 con il controller principale dell' applicazione.
@@ -383,7 +392,7 @@ Successivamente ho creato due classi, CircleBoundingBox e RectBoundingBox, che e
     \item  Su uno dei due lati orizzontali della box.
     \item  Su uno dei due lati verticati della box .
     \item  Tra due angoli della box .
-  
+
 \end{itemize}
 Questa informazine ci sarà utile in seguito per verificare le collisioni e gestire il cambio di direzione della palla.
 \begin{figure}[H]
@@ -402,7 +411,7 @@ Per gestire la direzione mi sono serivta di due interfacce Direction e Physics l
     \item  Direzione NORD = -1
     \item  Direzione EST = 1
     \item  Direzione OVEST = -1
-  
+
 \end{itemize}
 (Dove SUD e NORD si riferiscono all'asse y e EST e OVEST all'asse x)
 \\Per la direzione verticale non ho usato lo stesso approccio per un motivo puramente estetico. Non avendo una componente orizzontale infatti , la pallina subiva visivamente un notevole "decremento" della velocità. Ho decisio così di assegnare alla componente vericale valore -2 in modo da raddoppiare la velocità sull'asse y.
@@ -419,7 +428,7 @@ Per quanto riguarda le collisioni, io mi sono occupata principalmente di gestire
     \item  collideWithEdges
     \item collideWithBrick
     \item collideWithPad
-  
+
 \end{itemize}
 
 \begin{figure}[H]
