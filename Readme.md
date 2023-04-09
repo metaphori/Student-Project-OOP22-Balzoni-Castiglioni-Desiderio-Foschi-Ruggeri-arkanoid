@@ -1,4 +1,8 @@
 # ARKANOID
+ 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-EPL_2.0-red.svg)](https://opensource.org/licenses/EPL-2.0)
+![Info](https://img.shields.io/badge/Report%20made%20using-LaTeX-blue)
 
 ARKANOID is a classic arcade game inspired by Breakout. The goal is to use a paddle to bounce a ball and destroy all the bricks on the screen. Some bricks may contain power-ups that can help or hinder the player. The game is over when the player runs out of lives or clears all the levels.
 
