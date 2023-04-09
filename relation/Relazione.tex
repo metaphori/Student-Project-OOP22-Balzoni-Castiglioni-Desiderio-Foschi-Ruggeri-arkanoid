@@ -383,7 +383,7 @@ Successivamente ho creato due classi, CircleBoundingBox e RectBoundingBox, che e
     \item  Su uno dei due lati orizzontali della box.
     \item  Su uno dei due lati verticati della box .
     \item  Tra due angoli della box .
-  
+
 \end{itemize}
 Questa informazine ci sarà utile in seguito per verificare le collisioni e gestire il cambio di direzione della palla.
 \begin{figure}[H]
@@ -402,7 +402,7 @@ Per gestire la direzione mi sono serivta di due interfacce Direction e Physics l
     \item  Direzione NORD = -1
     \item  Direzione EST = 1
     \item  Direzione OVEST = -1
-  
+
 \end{itemize}
 (Dove SUD e NORD si riferiscono all'asse y e EST e OVEST all'asse x)
 \\Per la direzione verticale non ho usato lo stesso approccio per un motivo puramente estetico. Non avendo una componente orizzontale infatti , la pallina subiva visivamente un notevole "decremento" della velocità. Ho decisio così di assegnare alla componente vericale valore -2 in modo da raddoppiare la velocità sull'asse y.
@@ -419,7 +419,7 @@ Per quanto riguarda le collisioni, io mi sono occupata principalmente di gestire
     \item  collideWithEdges
     \item collideWithBrick
     \item collideWithPad
-  
+
 \end{itemize}
 
 \begin{figure}[H]
@@ -520,6 +520,7 @@ I compiti da me sviluppati sono stati:
     \item Visualizzazione degli oggetti (pad, pallina e brick) nella scena.
     \item Creazione e gestione delle palline bonus.
     \item Creazione e gestione degli ostacoli.
+    \item Realizzazione di tre interfacce grafiche.
 \end{itemize}
 \subsection{Balzoni Margherita}
 I compiti da me svolti sono stati:
@@ -549,7 +550,7 @@ In questa sezione vengono elencati gli aspetti avanzati del linguaggio utilizzat
 \subsection{Foschi Virginia}
 Nelle parti di codice da me curate, ho cercato, dove possibile, di fare uso delle seguenti funzionalità del linguaggio Java:
 \begin{itemize}
-    \item uso di stream e lambda expression dove possibile per rendere il codice più leggibile.
+    \item uso di stream e lambda expression per rendere il codice più leggibile.
     \item Optional che mi hanno permesso di memorizzare tutti i mattoncini, indipendentemente dal tipo, in un'unica lista all'interno della classe round.
     \item Iterator per scorrere la lista delle palline bonus e contemporaneamente eliminarle in caso di contatto con il pad o fuoriuscita dal frame.
     \item java.util.Serializable per memorizzare l'oggetto User nel file.
@@ -567,7 +568,11 @@ classe SwingWorker, oltre alla documentazione Oracle.
 
 \chapter{Commenti finali}
 \section{Autovalutazione e lavori futuri}
-
+\subsection{Foschi Virginia}
+Non avendo mai svolto un progetto di gruppo prima d'ora devo dire che mi ritengo abbastanza soddisfatta del lavoro svolto. Lavorare in gruppo non è semplice ma credo che ciascuno di noi abbia contribuito con le proprie capacità alla realizzazione complessiva del videogioco.
+Fondamentali sono sicuramente stati gli incontri iniziali per stabilire la suddivisione del lavoro e la capacità dei vari membri del gruppo di sapersi ascoltare in modo tale da trarre, dalle varie opinioni, pensieri, idee, una soluzione ottimale all'organizzazione del progetto e alla strautturazione delle varie classi.
+Nel mio piccolo penso di essermi data da fare nella realizzazione del progetto e di essermi resa disponibile nell'aiutare gli altri in caso di difficoltà.
+Lavorare in gruppo mi ha posto dinanzi ad una serie di sfide come il sapersi fidare del lavoro altrui e sapersi confrontare su questioni su cui si hanno idee/pareri discordanti, sfide per nulla banali per un caratterino come il mio, però devo dire che complessivamente sono soddisfatta dello sviluppo finale del gioco e dell'essere riusciti a rispettare le tempistiche.
 \appendix
 \section{Guida utente}
 All'avvio dell'applicazione si presenta la seguente schermata di menu iniziale:
