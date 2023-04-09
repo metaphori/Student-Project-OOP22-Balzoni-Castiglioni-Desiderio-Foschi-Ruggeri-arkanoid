@@ -184,14 +184,14 @@ public class SurpriseTest {
     Surprise surprise = new Surprise(level);
     Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
         level.getRound().getBalls().get(0).getSpeed().getY());
-    int num = 10;
+    int num = 20;
     Method method = Surprise.class.getDeclaredMethod("increaseBallSpeed");
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
       method.invoke(surprise);
-      initial.sum(new SpeedImpl(SPEED_X, SPEED_Y));
-      assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
     }
+    initial.sum(new SpeedImpl(SPEED_X * num, SPEED_Y * num));
+    assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
   }
 
   @Test
@@ -202,14 +202,14 @@ public class SurpriseTest {
     Surprise surprise = new Surprise(level);
     Speed initial = new SpeedImpl(level.getRound().getBalls().get(0).getSpeed().getX(),
         level.getRound().getBalls().get(0).getSpeed().getY());
-    int num = 10;
+    int num = 20;
     Method method = Surprise.class.getDeclaredMethod("decreaseBallSpeed");
     method.setAccessible(true);
     for (int i = 0; i < num; i++) {
       method.invoke(surprise);
-      initial.sum(new SpeedImpl(-SPEED_X, -SPEED_Y));
-      assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
     }
+    initial.sum(new SpeedImpl(-SPEED_X * num, -SPEED_Y * num));
+    assertEquals(level.getRound().getBalls().get(0).getSpeed(), initial);
   }
 
   @Test
