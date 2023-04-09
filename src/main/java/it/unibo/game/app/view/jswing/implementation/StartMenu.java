@@ -27,12 +27,12 @@ public class StartMenu extends JPanel {
   private static final int HARD_LEVEL = 3;
   private static final int ROWS_BUTTONS = 5;
   private static final int COLUMNS_BUTTONS = 1;
-  private static final int HGAP = 15;
-  private static final int VGAP = 15;
+  private static final int HGAP = 10;
+  private static final int VGAP = 10;
   private static final int TOP_BORDER = 50;
-  private static final int BOTTOM_BORDER = 25;
+  private static final int BOTTOM_BORDER = 50;
   private static final int LEFT_BORDER = 25;
-  private static final int RIGHT_BORDER = 50;
+  private static final int RIGHT_BORDER = 25;
   private static final int FONT_SIZE = 60;
   private static final int BTN_SIZE = 25;
 
