@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import it.unibo.game.Pair;
 
+/**
+ * interface for creating BoundiBox.
+ */
 public interface BoundingBox {
 
   /**
@@ -26,5 +29,5 @@ public interface BoundingBox {
    * @param b BoundinBox of the GameObject with which the collision could occur.
    * @return Side.PAD_CENTRE if the collision occurred in the centre of b.
    */
-  Optional<Side> checkCentre(final BoundingBox b);
+  Optional<Side> checkCentre(BoundingBox b);
 }

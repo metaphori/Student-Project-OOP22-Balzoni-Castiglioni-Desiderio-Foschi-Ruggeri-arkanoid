@@ -6,7 +6,7 @@ package it.unibo.game.app.api;
 
 public enum Corner {
   /**
-   * Bottom left corner
+   * Bottom left corner.
    */
   LEFT_DOWN,
   /**

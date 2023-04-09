@@ -15,6 +15,9 @@ public class BallPhysicsImpl implements Physics {
   private Pair<Integer, Integer> temp;
   private boolean centre = false;
 
+  /**
+   * constructor of this class.
+   */
   public BallPhysicsImpl() {
     this.temp = d.getDirection();
   }
@@ -30,8 +33,7 @@ public class BallPhysicsImpl implements Physics {
       centre = false;
     }
 
-    switch (side) {
-    case CORNER: {
+    if (side.equals(Side.CORNER)) {
       if (this.d.isDirectionLeft()) {
         this.d.setDirectionRight();
       } else {
@@ -44,9 +46,7 @@ public class BallPhysicsImpl implements Physics {
         this.d.setDirectionUp();
       }
       temp = d.getDirection();
-    }
-      break;
-    case LEFT_RIGHT: {
+    } else if (side.equals(Side.LEFT_RIGHT)) {
       if (this.d.isDirectionLeft()) {
         this.d.setDirectionRight();
       } else {
@@ -54,22 +54,16 @@ public class BallPhysicsImpl implements Physics {
       }
       temp = d.getDirection();
 
-    }
-      break;
-    case UP_DOWN: {
+    } else if (side.equals(Side.UP_DOWN)) {
       if (this.d.isDirectionUp()) {
         this.d.setDirectionDown();
       } else {
         this.d.setDirectionUp();
       }
       temp = d.getDirection();
-    }
-      break;
-    case PAD_CENTRE: {
+    } else {
       centre = true;
       d.setCentre();
-    }
-
     }
 
   }

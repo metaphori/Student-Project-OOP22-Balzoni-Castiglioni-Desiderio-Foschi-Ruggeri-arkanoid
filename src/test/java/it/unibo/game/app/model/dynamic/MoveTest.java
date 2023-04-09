@@ -7,7 +7,13 @@ import it.unibo.game.Pair;
 import it.unibo.game.app.api.Level;
 import it.unibo.game.app.model.levels.FirstLevel;
 
+/**
+ * Test that controls the movement.
+ */
 public class MoveTest {
+  /**
+   * Check that by calling the update method the ball moves to the right position.
+   */
   @Test
   void testUpdate() {
     Level level = new FirstLevel();

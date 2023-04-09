@@ -16,9 +16,15 @@ import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.levels.FirstLevel;
 import it.unibo.game.app.model.pad.Pad;
 
+/**
+ * Collision control tests.
+ */
 public class CollisionTest {
-  Collision colls;
+  private Collision colls;
 
+  /**
+   * Edge collision control.
+   */
   @Test
   void testEdgesColl() {
     Level level = new FirstLevel();
@@ -55,6 +61,9 @@ public class CollisionTest {
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
   }
 
+  /**
+   * Pad collision control.
+   */
   @Test
   void testPadColl() {
     Level level = new FirstLevel();
@@ -69,13 +78,16 @@ public class CollisionTest {
         .setPos(new Pair<Double, Double>(posPad.getX() + 1, posPad.getY()
             - level.getRound().getBalls().get(0).getDimension().getHeight() + 1));
     level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionDown();
+    level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionRight();
     dir.setDirectionUp();
     assertTrue(colls.collideWithPad(level.getRound().getBalls().get(0),
         level.getRound().getPad()));
+    colls.collideWithPad(level.getRound().getBalls().get(0), level.getRound().getPad());
     assertEquals(dir.getDirection(),
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
 
     /* collision with the pad from the side */
+
     level.getRound().getBalls().get(0)
         .setPos(new Pair<Double, Double>(
             posPad.getX() - level.getRound().getBalls().get(0).getDimension().getWidth(),
@@ -84,24 +96,30 @@ public class CollisionTest {
     dir.setDirectionLeft();
     assertTrue(colls.collideWithPad(level.getRound().getBalls().get(0),
         level.getRound().getPad()));
+    colls.collideWithPad(level.getRound().getBalls().get(0), level.getRound().getPad());
     assertEquals(dir.getDirection(),
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
 
     /* collision in the corner */
+
     level.getRound().getBalls().get(0).setPos(new Pair<Double, Double>(
         posPad.getX() - level.getRound().getBalls().get(0).getDimension().getWidth(),
         posPad.getY() - level.getRound().getBalls().get(0).getDimension().getHeight()));
     level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionRight();
     level.getRound().getBalls().get(0).getPhysics().getDir().setDirectionDown();
     dir.setDirectionUp();
-    dir.setDirectionRight();
+    dir.setDirectionLeft();
     assertTrue(colls.collideWithPad(level.getRound().getBalls().get(0),
         level.getRound().getPad()));
+    colls.collideWithPad(level.getRound().getBalls().get(0), level.getRound().getPad());
     assertEquals(dir.getDirection(),
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
 
   }
 
+  /**
+   * Brick collision control.
+   */
   @Test
   void collideWithBrick() {
     Level level = new FirstLevel();
@@ -118,6 +136,9 @@ public class CollisionTest {
 
   }
 
+  /**
+   * case where no collisions should be detected.
+   */
   @Test
   void noCollisions() {
     Level level = new FirstLevel();
@@ -137,6 +158,9 @@ public class CollisionTest {
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
   }
 
+  /**
+   * Checking pad collisions with edges.
+   */
   @Test
   void testPadInsideShene() {
     Level l = new FirstLevel();
