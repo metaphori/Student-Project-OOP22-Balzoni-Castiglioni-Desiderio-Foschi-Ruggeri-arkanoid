@@ -252,7 +252,7 @@ che in termini pratici, per aggiungere una nuova vista basta aggiungere la sua d
 \end{figure}
 
 \subsubsection{UIController, l'implementazione.}
-Per gestire le varie viste ho scelto di utilizzare un layout di jswing chiamato CardLayout.
+Per gestire le varie viste ho scelto di utilizzare un layout di jswing (ne approffondiró l'utilizzo nelle note di sviluppo).
 Questo layout è funzionale a quello che intendevo far fare al View-controller poichè
 gestisce due o più componenti che condividono lo stesso spazio di visualizzazione (il jframe nel nostro caso).
 
@@ -262,21 +262,12 @@ gestisce due o più componenti che condividono lo stesso spazio di visualizzazio
     \caption{proiezione UML dei metodi predisposti al cambio interfaccia}
 \end{figure}
 
-Ogni carta\footnote{nel nostro caso, classi che estendevano JPanel in modo da personalizzarne i contenuti}
-all'avvio dell' applicazione viene aggiunta al "deck"\footnote{il JPanel che riempie il frame principale}
-a questo punto, con i metodi preposti al selezionamento di una carta basterà richiamarli per una visualizzazione
-corretta.
 Come sicuramente descritto anche dai miei colleghi, ogni classe View ha un riferimento all'interfaccia
 del loro controller, di fatto il controller quindi "osserva" il comportamento della view e quando accade una
 determinata interazione della stessa si scatenerà l'evento desiderato.
 Per questo tipo di desing mi sono ispirato alle soluzioni viste in laboratorio e come mi è stato detto
 a ricevimento questo modo di fare non è un pattern observer puro ma posso affermare che sia di simile
 comportamento.
-
-CardLayout non è oro colato, infatti se non fosse stato per l'attività di debugging non sarei mai riuscito
-a capire che non cambia da solo il focus sulla finestra appena selezionata, risultava impossibile
-inserire comandi input da tastiera se non dalla prima finestra aperta e la cosa é stata rislota
-aggiornando il focus alla carta appena selezionata.\\
 
 \subsubsection{Window resizable.}
 
@@ -310,7 +301,22 @@ sopra descritta.\\
 in questa maniera viene assicurato un giusto mantenimento delle proporzioni delgi spazi decisi nel model.
 Utilizzando questo tipo di proiezione assicuro anche il fatto che qualsiasi evento generato nel model, come una
 collisione fra oggetti, venga riprodotto fedelmente sulla view.
+\subsubsection{Surprise: remove Random Brick}
+questo metodo posso considerarlo come un Malus poiché ho deciso di rimuovere brick senza aggiornare
+il punteggio, di fatto per il giocatore si ridurrá la possibilitá di aumentare il suo punteggio nel determinato round, é
+un metodo molto semplice di cui l'implemetazione é praticamente descritta dal suo nominativo.
+\subsubsection{Surprise: reduce Size \& enlarge size pad}
+questi sono due metodi su cui posso spendere qualche parola piú interssante.
+Per mantere una buona predisposizione alle modifiche ho creato un metodo di Utiliy che in base a una determinato valore
+percentuale calcoli un fattore da moltiplicare per la lunghezza a runtime del pad.
+Il fattore moltiplicativo é calcolato nel seguente modo: \textbf{(100-PercentualeDecisa)/100}
+in questa maniera potrei evolvere l'applicazione aumentando o diminuendo di percentuali variabili il pad
+generando cosí un gioco piú accattivante dato dall'imprevedibilitá.
 
+Per garantite che il pad rimanga sempre all'interno della scena di gioco nel caso in cui ingrandendolo uscisse
+dalla stessa ho previsto anche un ricalcolo della sua posizione in base alle nuove dimensioni.
+\\
+that's it
 
 \pagebreak
 \subsection{Castiglioni Chiara}
@@ -616,6 +622,21 @@ I compiti da me sviluppati sono stati:
     \item Realizzazione di tre interfacce grafiche.
     \item Creazione e gestione della velocità degli oggetti.
 \end{itemize}
+\subsection{Desiderio Edoardo}
+i problemi da me risolti principalmente sono:
+\begin{itemize}
+    \item Configurazione progetto gradle
+    \item garantire piú possibile l'integritá del pattern architetturale dell'applicazione
+    \item Desing oggetti di gioco e movimento del pad
+    \item Desing  e implementazione della gestione delle viste
+    \item studio, desing e implementazione delle figure in maniera che fossero ridimensionabili a runtime
+    \item riprogettazione e suddivisione in pkg del progetto in maniera da poter suddividere le classi in base
+          al loro concetto
+    \item Configurazione e personalizzazione di vscode con formatter javastyle in modo da automatizzare piú possibile il lavoro
+    \item implementazione di 3 metodi dentro it.unibo.game.app.model.Surprise
+    \item gestione di avanzamento della produzione, a metá progetto si é rotta ma grazie alla buona organizzazione
+          descritta nel paragrafo prima siamo riusciti a recuperare la linea di progetto
+\end{itemize}
 \subsection{Balzoni Margherita}
 I compiti da me svolti sono stati:
 \begin{itemize}
@@ -650,6 +671,16 @@ In questa sezione vengono elencati gli aspetti avanzati del linguaggio utilizzat
           sull'esecuzione dell'intera applicazione
     \item tutte le collezioni che dovevo ricalcolare nel controller per rendere le figure resizable le ho modificate
           utilizzando stream combinate con lambda expression, l'utilizzo di lambda é stato fatto  anche in assenza di stream
+    \item Per la gestione e lo scambio delle viste all'interno di un unico frame ho utilizzato CardLayout.
+          Come in un mazzo da gioco,
+          ogni carta\footnote{nel nostro caso, classi che estendevano JPanel in modo da personalizzarne i contenuti}
+          all'avvio dell' applicazione viene aggiunta al "deck"\footnote{il JPanel che riempie il frame principale}
+          a questo punto, con i metodi preposti al selezionamento di una carta basterà richiamarli per una visualizzazione
+          corretta.
+          Senza un'accurata fase di debugging non avrei mai capito che CardLayout non sposta in automatico il focus
+          sulla carta corrente. É stato fondamentale capire come aggiornare quest'ultimo poiché ci avrebbe costretto a una
+          soluzione diversa ma sicuramente meno efficace e pulita
+    \item java.util.TimerTask java.util.Timer per realizzare l'attivazione di processi in backround in un determinato asso di tempo
 \end{itemize}
 \subsection{Foschi Virginia}
 Nelle parti di codice da me curate, ho cercato, dove possibile, di fare uso delle seguenti funzionalità del linguaggio Java:
@@ -679,6 +710,17 @@ Nelle parti di codice da me realizzate ho crecato di utilizzare dove possibile l
 \\Per l'implementazione di uno dei due bonus a me assegnati, ho inoltre sfruttato java.util.Timer e java.util.TimerTask, che mi ha permesso di raddoppiare il punteggio per un determinato periodo di tempo.
 \chapter{Commenti finali}
 \section{Autovalutazione e lavori futuri}
+\subsection{Desiderio Edoardo}
+Inizio chiedendo scusa a tutto il gruppo, visto il mio compito gestionale dell'avanzamento mi sento responsabile di qualsiasi errore
+rilevato dal plugin gradle. Ho chiuso un' occhio accontentandomi di una compilazione andata a buon fine per la fretta di veder maturare
+il progetto. Non mi sento responsabile per l'errore in se, ma avrei dovuto insistere nel trovare e stimolare tutti a una risoluzione incrementale anche di errori non direttamente connessi al dominio del problema.
+A parte questa questa mia inadempienza gestionale sono molto felice del contributo dato al progetto e di aver potuto partecipare con questo gruppo.
+Ho notato durante il lavoro che ogni componente ha messo a disposizione di tutti i suoi punti di forza mentre tutto il gruppo ha spalleggiato il singolo
+sui punti piú deboli.
+Nella sfera privata invece l'esperienza mi ha impattato positivamente poiché dover gestire il mio tempo per il progetto ha avuto riflessi positivi anche nelle mie task personali.
+
+
+
 \subsection{Foschi Virginia}
 Non avendo mai svolto un progetto di gruppo prima d'ora devo dire che mi ritengo abbastanza soddisfatta del lavoro svolto. Lavorare in gruppo non è semplice ma credo che ciascuno di noi abbia contribuito con le proprie capacità alla realizzazione complessiva del videogioco.
 Fondamentali sono sicuramente stati gli incontri iniziali per stabilire la suddivisione del lavoro e la capacità dei vari membri del gruppo di sapersi ascoltare in modo tale da trarre, dalle varie opinioni, pensieri, idee, una soluzione ottimale all'organizzazione del progetto e alla strautturazione delle varie classi.
@@ -702,7 +744,7 @@ dell'approccio megliore da seguire. Ho trovato i miei compagni molto preparati, 
 all'inesperienza, sono molto felice del mio contributo e di ciò che ho imparato.
 \subsection{Balzoni Margherita}
 Mi ritengo soddisfatta del lavoro da me svolto e dall'organizzazione e l'impegno del gruppo. Nonostante le difficoltà iniziali causate principalmente dall'inesperienza,
-poichè questo è stato il primo vero progetto per la maggior parte dei componenti del gruppo (me compresa), una volta preso il via siamo riusciti a svolgere i compiti a 
+poichè questo è stato il primo vero progetto per la maggior parte dei componenti del gruppo (me compresa), una volta preso il via siamo riusciti a svolgere i compiti a
 noi assegnati collaborando e ripettando le scadenze da noi prefissate. Ciò ha permesso di avere un avanzamento costante del progetto.
 \\Grazie agli incontri fatti su Teams siamo riusciti a creare una distribuzione del equilibrata del lavoro che ha permesso di evidenziare i punti di forza di ogni componente e chiarire, grazie all'aiuto dei compgni , dubbi e lacune.
 Ho apprezzato moltissimo, infatti,  lo scambio reciproco di idee e la disponibilità nell'aiutarci a vicenda nei momenti in cui sono insorte difficoltà.
