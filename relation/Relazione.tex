@@ -168,7 +168,68 @@ Dalla descrizione del dominio risulta chiaro che il gioco dovrà mostrare e gest
     \item entità dinamiche
 \end{itemize}
 L'idea iniziale é stata di creare due intefacce che avessero proprietá specifice per ogni tipo di queste entità.
-Da specificare che un'entitá mobile del gioco estende anche tutte le proprieta di un entitá statica
+Da specificare che un'entitá mobile del gioco estende anche tutte le proprieta di un entitá statica.
+Proprietá di un GameObj:
+\begin{itemize}
+    \item dimensione
+    \item posizione
+    \item riferimento al suo bordo
+\end{itemize}
+Proprietá di un MovingObj:
+\begin{itemize}
+    \item fisica
+    \item velocitá
+\end{itemize}
+con questa struttura iniziale ogni classe estendeva l'implementazione di un gameObj e per gli oggetti che avrebbero dovuto muoversi
+veniva implementata l'interfaccia MovingObj
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/EmbrionalGameObjsDesing.png}
+    \caption{Schema UML del desing iniziale delle entitá di gioco.}
+\end{figure}
+questo design delle classi si é presto dimostrato fallace, per via della poca manutentibilità ed estenbilitá\footnote{risultava dover fare tantissimo copia-incolla per le implementazioni},
+quindi é stata necessaria una riorganizzazione strutturale della gestione delle entitá di gioco.
+
+\paragraph{riorganizzazione}
+Partendo dall'interfaccia gameObject ho lasciato a chi dovesse occuparsene la possibilitá di implementarla a piacimento. Per quanto riguarda gli oggetti
+mobili ho definito una classe astratta che permettesse la gestione di tutte le parti comuni a un qualsiasi oggetto di gioco piú la definizione della sua
+velocitá e eventuale logica di spostamento.
+In questo modo garantisco una maggiore estendibilitá e riuso del codice (la possibilitá di dover aggiungere un nuovo oggetto mobile non imparanoia nessuno).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/RefactorGameEntity.png}
+    \caption{Schema UML ristrutturato.}
+\end{figure}
+
+si puó notare che il pad é differemte dalla pallina poiché il suo spostamento viene gestito dall'utente e non dall'
+implementazione di logiche interne all'applicazione.
+
+\subsubsection{implementazione e movimento del pad}
+Oltre al desing delle entità di gioco ho implementato la logica del movimento del pad, ritengo questa una parte
+molto delicata poiché la facilitá con cui si puó violare il pattern MVC era abbastanza elevata\footnote{potrebbe sembrare molto piú facile e banale inserire i calcoli dentro il jpannel}.
+Di fatto mi sono occupato di far veicolare l'imput catturato dalla view cercando di scindere il piú possibile
+la logica di spostamento dall'attuazione dello stesso delegandola al model.
+Gli step che compie il messaggio di imput per muovere il pad sono i seguenti:
+\begin{itemize}
+    \item l'utente preme una direzione che vuole assegnare al pad
+    \item il view Controller si accorge di questo e comunica la cosa al controller specificando solo in maniera logica
+          la nuova direzione da intraprendere ma senza preoccuparsi di implementarla
+    \item il controller conosce i vari tipi di direzioni che un GameObj puó assumere e in base alla logica catturata
+          dalla view la concretizza passandone il messaggio all'entryPoint del model
+    \item  il messaggio é entrato nel model e viene gestito aggiornando la poizione del pad in base alla sua velocitá
+\end{itemize}
+
+per evitare che il pad uscisse dalla scena di gioco infine ho valutato se la nuova posizione genrasse una collisone coi
+le deathline del mondo imposte dal model e nel caso accadesse questo evitavo di aggiornare la posizione richiesta ma mantenedo
+quella in collisione con il bordo.
+Ecco una vista porzionata rispetto allo scambio di messaggi che vengono fatti quando si vuole muovere il pad
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/padInput.png}
+    \caption{da leggere da sinistra verso destra}
+\end{figure}
+
 
 \subsubsection{UIController, la scelta.}
 ho ritenuto vantaggioso avere un controller dedicato per la vista  che comunicasse
@@ -186,14 +247,20 @@ si sono rilevate poco costose sia in termini logici, guardando l'interfaccia UIC
 che in termini pratici, per aggiungere una nuova vista basta aggiungere la sua dichiarazione e il metodo che la invochi.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/UiControllerDesing.png}
-    \caption{proiezione UML della comunicazione fra il controller principale e le viste con UIController}
+    \includegraphics[width=0.5\textwidth]{images/UIControllerDesing.png}
+    \caption{proiezione UML della comunicazione fra le viste con UIController}
 \end{figure}
 
 \subsubsection{UIController, l'implementazione.}
 Per gestire le varie viste ho scelto di utilizzare un layout di jswing chiamato CardLayout.
 Questo layout è funzionale a quello che intendevo far fare al View-controller poichè
 gestisce due o più componenti che condividono lo stesso spazio di visualizzazione (il jframe nel nostro caso).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/UIControllerIMpl.png}
+    \caption{proiezione UML dei metodi predisposti al cambio interfaccia}
+\end{figure}
 
 Ogni carta\footnote{nel nostro caso, classi che estendevano JPanel in modo da personalizzarne i contenuti}
 all'avvio dell' applicazione viene aggiunta al "deck"\footnote{il JPanel che riempie il frame principale}
@@ -423,13 +490,6 @@ Per gestire la direzione mi sono serivta di due interfacce Direction e Physics l
 \end{figure}
 \textbf{Collisioni}\\
 Per quanto riguarda le collisioni, io mi sono occupata principalmente di gestire quelle riguardanti la pallina.
-\\ Infatti sono stati realizzati da me tre dei quattro metodi che si trovano all'interno della classe Collision:
-\begin{itemize}
-    \item  collideWithEdges
-    \item collideWithBrick
-    \item collideWithPad
-
-\end{itemize}
 Infatti sono stati realizzati da me tre dei quattro metodi che si trovano all'interno della classe Collision ( collideWithEdges, collideWithBrick, collideWithPad) .
 
 Il controllo delle collsioni l'ho strutturato nel seguende modo:
