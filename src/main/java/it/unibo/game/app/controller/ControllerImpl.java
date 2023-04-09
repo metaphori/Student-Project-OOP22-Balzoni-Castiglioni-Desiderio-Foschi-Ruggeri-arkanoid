@@ -230,7 +230,9 @@ public class ControllerImpl implements AppController {
    */
   @Override
   public int getFontSize() {
-    return FONT_SIZE;
+    var dt = this.delta().getX() < this.delta().getY() ? this.delta().getX()
+        : this.delta().getY();
+    return FONT_SIZE * dt.intValue();
   }
 
   /**
