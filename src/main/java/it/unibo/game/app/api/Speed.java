@@ -26,11 +26,4 @@ public interface Speed {
    */
   void sum(Speed vel);
 
-  /**
-   * method to increase or decrease speed proportionally.
-   * 
-   * @param num value by which we want to multiply the speed
-   */
-  void mul(double num);
-
 }
