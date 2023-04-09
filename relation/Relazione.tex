@@ -20,7 +20,7 @@
 \newpage
 
 \chapter{Analisi}
-Il seguente capitolo contine l'analisi dei requisiti e del problema, ovvero fornisce una descrizione del dominio applicativo e delle funzionalità offerte dall'applicazione.
+Il seguente capitolo contiene l'analisi dei requisiti e del problema, ovvero fornisce una descrizione del dominio applicativo e delle funzionalità offerte dall'applicazione.
 \section{Requisiti}
 Il progetto, commissionato dall'Università di Bologna\footnote{\url{https://www.unibo.it/it}}, si pone come obbiettivo la realizzazione di un videogioco del genere Arcade, di nome Arkanoid\footnote{\url{https://it.wikipedia.org/wiki/Arkanoid}}.\\L'obbiettivo del gioco è quello di superare i tre round per ogni livello di difficoltà cercando di totalizzare un punteggio elevato, abbattendo un certo numero di mattoncini colorati colpendoli con una sfera.
 \\
@@ -30,7 +30,7 @@ Il progetto, commissionato dall'Università di Bologna\footnote{\url{https://www
     \item L’applicazione implementa la fisica della palla e ne gestisce il rimbalzo con i bordi dell’arena, con il pad e con i mattoncini.
     \item Area di gioco composta da un certo numero di mattoncini che cambiano disposizione ad ogni livello.
     \item Gestione dei parametri del giocatore, in particolare vita (che diminuisce ogni volta che la pallina esce dall'arena di gioco) e il punteggio.
-    \item Organizzazione del gioco a livelli, ciascuno composto da 3 round ciascuno
+    \item Organizzazione del gioco a livelli ciascuno composto da 3 round
     \item Creazione di differenti bonus o malus
     \item Avanzamento del gioco con difficoltà incrementale (quantità di mattoncini aumentata per ogni round)
     \item Realizzazione e aggiornamento di una classifica basata sul punteggio del giocatore
@@ -39,9 +39,9 @@ Il progetto, commissionato dall'Università di Bologna\footnote{\url{https://www
     \item Grafica user-friendly
 \end{itemize}
 \section{Analisi e modello del dominio}
-Il gioco è strutturato a livelli di difficoltà crescente, ognuno dei quali presenta una diversa disposizione composta da tre diverse tipologie di mattoncini. Ogni livello è composto da tre round dove vi è sempre più un numero crescente di mattoncini.
-Il livello contiene anche informazioni riguardanti il punteggio, il quale incrementa man mano che i mattoncini vengono distrutti e la vita del giocatore.
-\\Le vite stabiliscono il numero di tentativi che l'utente ha per superare il livello al termine delle quali il giocatore potrà segliere se salvare il proprio punteggio, tornare alla schermata di gioco oppure uscira dall'applicazione, le stesse scelte saranno disponibili anche in caso di vittoria.
+Il gioco è strutturato a livelli di difficoltà crescente, ognuno dei quali presenta una diversa disposizione dei mattonicini appartenenti a tre diverse tipologie. Ogni livello è composto da tre round dove vi è sempre un numero crescente di mattoncini.
+Il livello contiene anche informazioni riguardanti il punteggio, il quale incrementa man mano che i mattoncini vengono distrutti, e la vita del giocatore.
+\\Le vite stabiliscono il numero di tentativi che l'utente ha per superare il livello al termine delle quali il giocatore potrà segliere se salvare il proprio punteggio, tornare alla schermata di gioco oppure uscire dall'applicazione; le stesse scelte saranno disponibili anche in caso di vittoria.
 \\Il giocatore ha a disposizione un pad che si può muovere solo orrizzontalmente con il quale potrà far rimbalzare la sfera contro i mattoncini.
 Le tre tipologie di mattoncini sono:
 \begin{itemize}
@@ -58,7 +58,7 @@ Ulteriori dettagli circa le entità presenti possono essere consultati attravers
 \end{figure}
 \chapter{Design}
 \section{Architettura}
-Si è optato per un pattern architetturale ispirato a un MVC(Model , View, Controller) in cui ci siamo impegnati il più
+Si è optato per un pattern architetturale ispirato a un MVC (Model , View, Controller) in cui ci siamo impegnati il più
 possibile a mantenere separati gli aspetti logici, di controllo e di grafica. Tuttavia non ne rispetta tutti i principi poiché nella classe GameEngine ci siamo
 serviti di una funzionalità di una libreria grafica (SwingWorker).
 \\La nostra strategia ha comunque il vantaggio che qualora fosse necessario cambiare l'interfaccia grafica
@@ -73,7 +73,7 @@ Il pattern prevede comunque la suddivisione dei compiti in 3 parti:
 \begin{itemize}
     \item Model gestisce i dati, la logica e le regole dell'applicazione.
     \item View responsabile della visualizzazione del dominio applicativo e dell'interazione con l'utente.
-    \item Controller è l'elemento che si interporre tra il Model e la View.
+    \item Controller è l'elemento che si interpone tra il Model e la View.
 \end{itemize}
 Il Model è composto da varie classi e interfaccie che rappresentano i principali elementi applicativi (Level, Round, MovingObject, Brick, Pad, Surprise, SizeCalculation).
 Di seguito nella \Cref{images:Model} seguente si può vedere una rappresentazione generale del Model.
@@ -346,7 +346,7 @@ il metodo implementato all'interno di SizeCalculation e l'apparizione della scri
 \pagebreak
 \subsection{Foschi Virginia}
 Nel corso dello sviluppo del progetto il mio lavoro si è principalmente concentrato sulla gestione e implementazione della classifica di gioco, del salvataggio del punteggio, del livello difficile con i corrispondenti round e della visualizzazione dei comandi principali del gioco.\\
-Tuttavia ho collaborato anche alla creazione dei bonus e alla visualizzazione degli oggetti del gioco.\\\\
+Ho collaborato anche alla creazione dei bonus e alla visualizzazione degli oggetti del gioco.\\\\
 \textbf{Classifica di gioco}\\
 Per quanto riguarda la realizzazione della classifica ho optato per la creazione, all'avvio dell'applicazione, di un file di testo nella home directory dell'utente in cui verrranno inizialmente caricati i punteggi conseguiti da me e i miei compagni che si trovano memorizzati all'interno di un file di testo nella cartella resources del progetto.
 \\Ogni giocatore ha la possibilità, una volta completato il livello o dopo aver perso, di memorizzare il punteggio complessivo conseguito inserendo nome e password. Si è pensato infatti all'utilizzo di una password in modo da permettere al giocatore, una volta riaperta l'applicazione, di aggiornare il punteggio conseguito nelle partite precedenti.
@@ -487,7 +487,7 @@ Sulle componenti principali sono stati eseguiti i seguenti test automatici:
     \item Test sulla classifica: si verifica la correttezza del salvataggio del punteggio del giocatore.
     \item Test sulla dinamica: sulle collisioni e sul movimento dei MovingObject.
 \end{itemize}
-Si è anche dedicato del tempo fer fare dei test manuali dedicati principalmente al ridimensionamento della finestra di gioco.
+Si è anche dedicato del tempo per fare dei test manuali dedicati principalmente al ridimensionamento della finestra di gioco.
 Il gioco è stato collaudato su più sistemi operativi:
 \begin{itemize}
     \item Windows 10 e 11.
