@@ -350,7 +350,7 @@ Tuttavia ho collaborato anche alla creazione dei bonus e alla visualizzazione de
 \textbf{Classifica di gioco}\\
 Per quanto riguarda la realizzazione della classifica ho optato per la creazione, all'avvio dell'applicazione, di un file di testo nella home directory dell'utente in cui verrranno inizialmente caricati i punteggi conseguiti da me e i miei compagni che si trovano memorizzati all'interno di un file di testo nella cartella resources del progetto.
 \\Ogni giocatore ha la possibilità, una volta completato il livello o dopo aver perso, di memorizzare il punteggio complessivo conseguito inserendo nome e password. Si è pensato infatti all'utilizzo di una password in modo da permettere al giocatore, una volta riaperta l'applicazione, di aggiornare il punteggio conseguito nelle partite precedenti.
-\\La memorizzazione del punteggio avvine nel seguente modo:
+\\La memorizzazione del punteggio avviene nel seguente modo:
 \begin{itemize}
     \item Ogni volta che il giocatore decide di salvare il punteggio conseguito in un determinato livello, il vecchio punteggio, relativo a quel livello, sarà sempre rimpiazzato dal nuovo.
     \item Il punteggio complessivo, cioè quello visualizzato nella classifica, sarà dato dalla somma dei punteggi conseguiti nei 3 livelli.
@@ -369,11 +369,13 @@ Per quanto riguarda invece la struttura dei livelli e dei round si è cercato di
 In particolare il livello difficile è caratterizzato dalla presenza di ostacoli, cioè mattoncini indistruttibili, e dalla disposizione dei blocchi in maniera piramidale.
 \\Mi sono basata sulla strutturazione e organizzazione delle classi realizzata dai miei compagni, che è possibile osservare in maniera dettagliata alla \Cref{images:Levels} e \Cref{images:Round}, e mi sono occupata del collegamento tra le varie classi in modo da permettere la visualizzazione a video degli oggetti del gioco tramite la classe GameView.\\\\
 
-
-\pagebreak
+\textbf{Gestione palline bonus}\\
+Mi sono occupata inoltre della gestione delle palline bonus ovvero oggetti che vengono rilasciati nel momento in cui viene distrutto un blocco sorpresa.
+Ciascuna pallina corrisponde ad un bonus o malus che viene scelto ogni volta in modo casuale e di cui il giocatore potrà usufruire solo in caso di contatto tra la pallina e il pad.
+In particolare mi sono occupata dell'implementazione di 2 bonus ovvero diminuzione velocità pallina e rimpiazzo ostacoli con blocchi normali e un malus corrispondente all'aumento della velocità della pallina.\\\\
 
 \textbf{View}\\
-Dal punto di vista della view mi sono occupata principalmente dell'implementazione di 3 interfacce grafiche:\\
+Dal punto di vista della view mi sono occupata principalmente dell'implementazione di 3 interfacce grafiche:
 \begin{itemize}
     \item LeaderBoardView: interfaccia che permette di visualizzare a video la classifica costituita dai migliori 5 giocatori.
     \item CommandView: insieme ai miei compagni abbiamo pensato di realizzare un'interfaccia per permettere al giocatore di visualizzare i comandi principali del gioco.
@@ -552,6 +554,7 @@ I compiti da me sviluppati sono stati:
     \item Creazione e gestione delle palline bonus.
     \item Creazione e gestione degli ostacoli.
     \item Realizzazione di tre interfacce grafiche.
+    \item Creazione e gestione della velocità degli oggetti.
 \end{itemize}
 \subsection{Balzoni Margherita}
 I compiti da me svolti sono stati:
