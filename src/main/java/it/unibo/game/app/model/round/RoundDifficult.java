@@ -65,8 +65,8 @@ public class RoundDifficult extends AbstractRound {
    */
   private void setSurprise() {
     int num = 0;
-    while (num < getNumSur()) {
-      if (setBrickSurprise()) {
+    while (num < super.getNumSur()) {
+      if (super.setBrickSurprise()) {
         ++num;
       }
     }
