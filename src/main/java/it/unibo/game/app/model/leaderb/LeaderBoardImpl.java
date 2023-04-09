@@ -30,8 +30,9 @@ public final class LeaderBoardImpl implements LeaderBoard {
    * constructor of this class.
    */
   public LeaderBoardImpl() {
-    this.file = new File("src/main/resources/File.txt"); // da eliminare e decommentare il
-                                                         // resto
+    this.file = new File("src/main/resources/Filee.txt"); // da eliminare e decommentare
+                                                          // il
+                                                          // resto
     /*
      * this.file = new File(System.getProperty("user.home") +
      * System.getProperty("file.separator") + "aRkAnOiD.txt"); try { List<User> list
