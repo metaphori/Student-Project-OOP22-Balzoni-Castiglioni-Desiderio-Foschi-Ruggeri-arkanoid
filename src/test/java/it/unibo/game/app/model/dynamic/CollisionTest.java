@@ -16,9 +16,15 @@ import it.unibo.game.app.model.SizeCalculation;
 import it.unibo.game.app.model.levels.FirstLevel;
 import it.unibo.game.app.model.pad.Pad;
 
+/**
+ * Collision control tests.
+ */
 public class CollisionTest {
-  Collision colls;
+  private Collision colls;
 
+  /**
+   * Edge collision control.
+   */
   @Test
   void testEdgesColl() {
     Level level = new FirstLevel();
@@ -55,6 +61,9 @@ public class CollisionTest {
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
   }
 
+  /**
+   * Pad collision control.
+   */
   @Test
   void testPadColl() {
     Level level = new FirstLevel();
@@ -108,6 +117,9 @@ public class CollisionTest {
 
   }
 
+  /**
+   * Brick collision control.
+   */
   @Test
   void collideWithBrick() {
     Level level = new FirstLevel();
@@ -124,6 +136,9 @@ public class CollisionTest {
 
   }
 
+  /**
+   * case where no collisions should be detected.
+   */
   @Test
   void noCollisions() {
     Level level = new FirstLevel();
@@ -143,6 +158,9 @@ public class CollisionTest {
         level.getRound().getBalls().get(0).getPhysics().getDir().getDirection());
   }
 
+  /**
+   * Checking pad collisions with edges.
+   */
   @Test
   void testPadInsideShene() {
     Level l = new FirstLevel();
