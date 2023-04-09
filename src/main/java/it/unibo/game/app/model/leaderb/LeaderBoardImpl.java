@@ -30,17 +30,19 @@ public final class LeaderBoardImpl implements LeaderBoard {
    * constructor of this class.
    */
   public LeaderBoardImpl() {
-    this.file = new File("src/main/resources/Filee.txt"); // da eliminare e decommentare
-                                                          // il
-                                                          // resto
-    /*
-     * this.file = new File(System.getProperty("user.home") +
-     * System.getProperty("file.separator") + "aRkAnOiD.txt"); try { List<User> list
-     * = new ArrayList<>(); if (this.file.createNewFile()) {
-     * list.addAll(this.loadFromResources()); } else {
-     * list.addAll(this.playersFromFile()); } this.writeOnFile(list); } catch
-     * (IOException e) { System.out.println(e.toString()); }
-     */
+    this.file = new File(System.getProperty("user.home")
+        + System.getProperty("file.separator") + "aRkAnOiD.txt");
+    try {
+      List<User> list = new ArrayList<>();
+      if (this.file.createNewFile() || this.file.length() == 0) {
+        list.addAll(this.loadFromResources());
+      } else {
+        list.addAll(this.playersFromFile());
+      }
+      this.writeOnFile(list);
+    } catch (IOException e) {
+      System.out.println(e.toString());
+    }
   }
 
   /**
