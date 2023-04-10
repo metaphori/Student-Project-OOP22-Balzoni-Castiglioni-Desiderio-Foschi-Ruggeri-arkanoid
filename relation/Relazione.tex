@@ -448,12 +448,14 @@ Ciascuna pallina corrisponde ad un bonus o malus che viene scelto ogni volta in 
 In particolare mi sono occupata dell'implementazione di 2 bonus ovvero diminuzione velocità pallina e rimpiazzo ostacoli con blocchi normali e un malus corrispondente all'aumento della velocità della pallina.\\\\
 
 \textbf{View}\\
-Dal punto di vista della view mi sono occupata principalmente dell'implementazione di 3 interfacce grafiche:
+Dal punto di vista della view mi sono occupata principalmente dell'implementazione di 3 interfacce grafiche, di cui due strettamente collegate al concetto di leaderboard di cui mi sono occupata in questo progetto:
 \begin{itemize}
-    \item LeaderBoardView: interfaccia che permette di visualizzare a video la classifica costituita dai migliori 5 giocatori.
+    \item LeaderBoardView: interfaccia grafica che permette di visualizzare a video la classifica costituita dai migliori 5 giocatori.
     \item CommandView: insieme ai miei compagni abbiamo pensato di realizzare un'interfaccia per permettere al giocatore di visualizzare i comandi principali del gioco.
     \item SaveScore: JDialog che permette al giocatore di inserire i suoi dati (nome e password) e salvare il proprio punteggio.
 \end{itemize}
+Per le prime due, che estendono JPanel, ho optato per un GridLayout in quanto permette di organizzare i componenti in un contenitore come se fossero disposti su una griglia. LeaderBoardView ha in più la caratteristica che deve essere dinamica cioè mostrare in ogni momento la classifica aggiornata dei migliori 5 giocatori; questa classe infatti implementa ActionListener in modo tale da andare a modificare ogni volta il contenuto delle JLabels.
+SaveScore invece estende JDialog in quanto è utilizzata per prendere input dall'utente, ovvero le sue credenziali all'interno del gioco, per permettergli di memorizzare il suo punteggio, e in caso risultasse tra i migliori 5 giocatori, visualizzare la sua posizione all'interno della classifica.
 \subsection{Balzoni Margherita}
 Il mio contributo all'interno del progetto ha riguardato principalmente la gestione della fisica della pallina, in particolare gli aspetti di creazione delle BoundigBox, controllo delle collisioni, movimento e gestione della direzione della palla.
 \\Mi sono occupata poi di realizzare il menù iniziale di gioco e implementare la classe che memorizza e increamenta il punteggio durante la partita.
