@@ -18,6 +18,7 @@ bin/
 *.out
 *.synctex.gz
 *.toc
+*.pdf
 
 #ignore leaderboard
 File.txt
