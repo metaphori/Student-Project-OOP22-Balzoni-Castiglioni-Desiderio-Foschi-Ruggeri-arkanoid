@@ -17,7 +17,7 @@ public class GameOver {
    * 
    * @param round represents the playing round
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP2")
+  
   public GameOver(final Round round) {
     this.round = round;
   }

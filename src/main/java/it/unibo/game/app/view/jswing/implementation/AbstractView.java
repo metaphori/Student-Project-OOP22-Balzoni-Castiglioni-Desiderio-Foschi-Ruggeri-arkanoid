@@ -38,7 +38,7 @@ public abstract class AbstractView extends JPanel {
    * @param button         the button that will appear in the panel
    * @param actionListener the action that will implement this button
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP2")
+  
   public AbstractView(final UIControllerImpl uiCtrl, final String title,
       final JButton button, final ActionListener actionListener) {
     this.observer = uiCtrl;

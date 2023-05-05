@@ -22,7 +22,7 @@ public class GameEngine {
    * 
    * @param contr controller interacting with the model
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP2")
+  
   public GameEngine(final AppController contr) {
     this.controller = contr;
   }

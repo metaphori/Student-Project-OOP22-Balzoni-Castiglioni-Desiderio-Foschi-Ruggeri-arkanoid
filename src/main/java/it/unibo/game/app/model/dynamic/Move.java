@@ -26,7 +26,7 @@ public class Move {
    * 
    * @param l level.
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP2")
+  
   public Move(final Level l) {
     coll = new Collision(l);
     this.l = l;

@@ -58,7 +58,7 @@ public class Surprise {
    * 
    * @param level current level
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP2")
+  
   public Surprise(final Level level) {
     this.level = level;
   }

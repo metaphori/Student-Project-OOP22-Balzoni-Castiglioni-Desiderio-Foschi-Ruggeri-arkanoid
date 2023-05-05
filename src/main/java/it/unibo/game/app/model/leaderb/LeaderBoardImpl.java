@@ -108,7 +108,6 @@ public final class LeaderBoardImpl implements LeaderBoard {
    * @throws FileNotFoundException
    * @throws ClassNotFoundException
    */
-  @SuppressWarnings("unchecked")
   private List<User> playersFromFile() {
     try (ObjectInputStream oos = new ObjectInputStream(
         new BufferedInputStream(new FileInputStream(file.getPath())))) {
@@ -147,7 +146,6 @@ public final class LeaderBoardImpl implements LeaderBoard {
    * @throws FileNotFoundException
    * @throws ClassNotFoundException
    */
-  @SuppressWarnings("unchecked")
   private List<User> loadFromResources() {
     try (ObjectInputStream oos = new ObjectInputStream(
         new BufferedInputStream(this.getClass().getResourceAsStream("/Filee.txt")))) {

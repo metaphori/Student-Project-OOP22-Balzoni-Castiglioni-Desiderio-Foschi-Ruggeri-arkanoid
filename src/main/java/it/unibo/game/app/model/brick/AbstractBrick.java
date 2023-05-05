@@ -104,7 +104,7 @@ public abstract class AbstractBrick implements Brick {
   /**
    * {@inheritDoc}
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP")
+  
   @Override
   public Dimension getDimension() {
     return this.d;

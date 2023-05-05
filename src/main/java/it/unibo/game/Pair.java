@@ -56,7 +56,6 @@ public class Pair<X, Y> implements java.io.Serializable {
   /**
    * {@inheritDoc}
    */
-  @SuppressWarnings("rawtypes")
   @Override
   public boolean equals(final Object obj) {
     if (this == obj) {

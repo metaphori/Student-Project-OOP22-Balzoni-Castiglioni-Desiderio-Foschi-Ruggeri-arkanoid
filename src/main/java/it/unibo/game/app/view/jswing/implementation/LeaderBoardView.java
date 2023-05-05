@@ -42,7 +42,7 @@ public class LeaderBoardView extends JPanel implements ActionListener {
    * @param control UIcontroller to get information about who are best five
    *                players
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP")
+  
   public LeaderBoardView(final UIController control) {
     this.control = control;
     this.best = control.getBestFive();

@@ -24,7 +24,7 @@ public class Collision {
    * 
    * @param lev
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP2")
+  
   public Collision(final Level lev) {
     this.level = lev;
   }

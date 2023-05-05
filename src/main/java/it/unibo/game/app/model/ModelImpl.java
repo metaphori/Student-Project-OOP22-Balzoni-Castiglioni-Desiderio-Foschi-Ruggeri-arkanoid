@@ -35,7 +35,7 @@ public class ModelImpl implements Model {
   /**
    * {@inheritDoc}
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP")
+  
   @Override
   public void setController(final AppController c) {
     this.control = c;

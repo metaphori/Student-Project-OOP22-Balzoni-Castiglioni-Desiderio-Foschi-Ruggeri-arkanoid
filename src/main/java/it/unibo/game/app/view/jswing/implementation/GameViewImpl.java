@@ -38,7 +38,7 @@ public final class GameViewImpl extends JPanel implements KeyListener, ActionLis
    * 
    * @param control
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP2")
+  
   public GameViewImpl(final UIController control) {
     setFocusable(true);
     addKeyListener(this);

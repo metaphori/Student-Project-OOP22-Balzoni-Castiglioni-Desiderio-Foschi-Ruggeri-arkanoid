@@ -79,7 +79,7 @@ public abstract class AbstractLevel implements Level {
   /**
    * {@inheritDoc}
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP")
+  
   @Override
   public Round getRound() {
     return this.currentRound;
@@ -88,7 +88,7 @@ public abstract class AbstractLevel implements Level {
   /**
    * {@inheritDoc}
    */
-  @SuppressFBWarnings("EI_EXPOSE_REP")
+  
   @Override
   public void setRound(final Round r) {
     this.currentRound = r;

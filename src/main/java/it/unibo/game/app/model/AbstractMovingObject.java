@@ -72,7 +72,7 @@ public abstract class AbstractMovingObject implements MovingObject {
   }
 
   /** {@inheritDoc} */
-  @SuppressFBWarnings("EI_EXPOSE_REP")
+  
   @Override
   public Dimension getDimension() {
 

@@ -36,7 +36,7 @@ public class UIControllerImpl implements UIController {
    * {@inheritDoc}
    */
 
-  @SuppressFBWarnings("EI_EXPOSE_REP2")
+  
   public void set(final AppController control) {
     this.appController = control;
 
